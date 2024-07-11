@@ -9,7 +9,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => (
     <SkipLink href="#main">Direct naar inhoud</SkipLink>
     <Screen maxWidth="wide">
       <Header 
-        appName="Zaken Woningkwaliteit en Duurzaamheid" 
+        appName={`${ import.meta.env.VITE_APP_TITLE }`}
         links={<PageMenu alignEnd><PageMenu.Link href="#">Contact</PageMenu.Link><PageMenu.Link href="#">Mijn Amsterdam</PageMenu.Link><PageMenu.Link href="#" icon={function Qa(){}}>Zoeken</PageMenu.Link></PageMenu>}
         menu={<button className="ams-header__menu-button">Menu</button>}
       />
