@@ -6,11 +6,11 @@ import "@amsterdam/design-system-css/dist/index.css"
 import "@amsterdam/design-system-tokens/dist/index.css"
 import { useAuth } from "react-oidc-context"
 function App() {
-  const auth = useAuth();
+  const auth = useAuth()
   console.log(auth.user)
   return (
     <>
-      <Header appName="Zaken Woningkwaliteit en Duurzaamheid" />
+      <Header appName={`${ import.meta.env.VITE_APP_TITLE }`} />
       <Screen maxWidth="wide">
         <main id="main">
           <Overlap>
