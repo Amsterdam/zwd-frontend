@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     open: true // Opens browser when running npm start
+  },  
+  resolve: {
+    alias: {
+      src: "/src"
+    }
   }
 })
