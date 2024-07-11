@@ -22,6 +22,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/prop-types': 'off',
     "arrow-body-style": ["error", "as-needed"],
     "block-spacing": ["error", "always"],
     "comma-dangle": ["error", "never"],
