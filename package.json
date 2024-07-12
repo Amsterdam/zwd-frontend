@@ -17,10 +17,14 @@
   },
   "dependencies": {
     "@amsterdam/design-system-react": "^0.10.0",
+    "@types/styled-components": "^5.1.34",
+    "jwt-decode": "^4.0.0",
     "oidc-client-ts": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-oidc-context": "^3.1.0"
+    "react-oidc-context": "^3.1.0",
+    "react-router-dom": "^6.24.1",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

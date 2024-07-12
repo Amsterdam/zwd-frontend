@@ -1,55 +1,42 @@
-import { Grid, Overlap, SearchField, AspectRatio, Image } from "@amsterdam/design-system-react"
-import DefaultLayout from "src/components/layouts/DefaultLayout/DefaultLayout"
+import { useEffect, useState } from "react"
+import { useAuth, hasAuthParams } from "react-oidc-context"
+import { RouterProvider } from "react-router-dom"
+import { useDecodedToken } from "app/hooks"
+import router from "app/routing/router"
 
-import "./App.css"
-import "@amsterdam/design-system-assets/font/index.css"
-import "@amsterdam/design-system-css/dist/index.css"
-import "@amsterdam/design-system-tokens/dist/index.css"
-import { useAuth } from "react-oidc-context"
+
 function App() {
   const auth = useAuth()
-  console.log(auth.user)
+  const decodedToken = useDecodedToken()
+  const [hasTriedSignin, setHasTriedSignin] = useState(false)
+
+  console.log("USER=>", decodedToken)
+
+  // automatically sign-in
+  useEffect(() => {
+    if (!hasAuthParams() &&
+        !auth.isAuthenticated && !auth.activeNavigator && !auth.isLoading &&
+        !hasTriedSignin
+    ) {
+      void auth.signinRedirect()
+      setHasTriedSignin(true)
+    }
+  }, [auth, hasTriedSignin])
+
+  if (auth.isLoading) {
+    return <div>Signing you in/out...</div>
+  }
+
+  if (!auth.isAuthenticated) {
+    return <div>Unable to log in</div>
+  }
+
   return (
-    <DefaultLayout>
-      <Overlap>
-        <AspectRatio ratio="2x-wide">
-          <Image
-            alt=""
-            cover
-            sizes="(max-width: 36rem) 640px, (max-width: 68rem) 1280px, 1600px"
-            src="https://picsum.photos/1600/500"
-            srcSet="https://picsum.photos/640/200 640w, https://picsum.photos/1280/400 1280w, https://picsum.photos/1600/500 1600w"
-          />
-        </AspectRatio>
-        <Grid
-          style={{
-            alignSelf: "center"
-          }}
-        >
-          <Grid.Cell
-            span={{
-              medium: 6,
-              narrow: 4,
-              wide: 8
-            }}
-            start={{
-              medium: 2,
-              narrow: 1,
-              wide: 3
-            }}
-          >
-            <SearchField onSubmit={function Qa(){}}>
-              <SearchField.Input
-                label="Zoeken"
-                placeholder="Wat kunnen we voor u vinden?"
-              />
-              <SearchField.Button />
-            </SearchField>
-          </Grid.Cell>
-        </Grid>
-      </Overlap>
-      <button onClick={() => void auth.signinRedirect()}>Log in</button>
-    </DefaultLayout>         
+    <>
+      <RouterProvider router={router} />
+      <h1>Hi { decodedToken?.given_name }</h1>
+      <button onClick={() => void auth.removeUser()}>Log out</button>
+    </>
   )
 }
 
