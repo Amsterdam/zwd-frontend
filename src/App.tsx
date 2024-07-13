@@ -3,6 +3,7 @@ import { useAuth, hasAuthParams } from "react-oidc-context"
 import { RouterProvider } from "react-router-dom"
 import { useDecodedToken } from "app/hooks"
 import router from "app/routing/router"
+import { LoggingInPage, LoggingInErrorPage } from "app/pages"
 
 
 function App() {
@@ -23,12 +24,13 @@ function App() {
     }
   }, [auth, hasTriedSignin])
 
+ 
   if (auth.isLoading) {
-    return <div>Signing you in/out...</div>
+    return <LoggingInPage />
   }
 
   if (!auth.isAuthenticated) {
-    return <div>Unable to log in</div>
+    return <LoggingInErrorPage />
   }
 
   return (

@@ -31,7 +31,7 @@ export const SearchPage: React.FC = () => (
         <SearchField onSubmit={function Qa(){}}>
           <SearchField.Input
             label="Zoeken"
-            placeholder="Wat kunnen we voor u vinden?"
+            placeholder="Zoek op adres, straat of postcode"
           />
           <SearchField.Button />
         </SearchField>

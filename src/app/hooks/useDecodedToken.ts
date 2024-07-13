@@ -6,6 +6,7 @@ type DecodedToken = {
   family_name: string // lastname
   name: string        // lastname, firstname
   unique_name: string // email
+  [key: string]: number | string | string[]
 }
 
 export const useDecodedToken = (): DecodedToken | undefined => {

@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 `
 
 const StyledIcon = styled(Icon)`
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 `
 
 export const User: React.FC = () => {

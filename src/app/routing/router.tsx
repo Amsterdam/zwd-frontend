@@ -1,6 +1,6 @@
 import { DefaultLayout } from "app/components"
 import { 
-  CasesPage, NotFoundPage, SearchPage, TasksPage 
+  CasesPage, NotFoundPage, SearchPage, TasksPage, AuthPage 
 } from "app/pages"
 import { createBrowserRouter } from "react-router-dom"
 
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
         element: <TasksPage />
       }
     ]
+  },
+  {
+    path: "/auth",
+    element: <AuthPage />
   }
 ])
 
