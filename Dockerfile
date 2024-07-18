@@ -8,8 +8,8 @@ ENV DIR /var/www
 COPY . $DIR/
 RUN ls -la $DIR
 
-# build dirs
-RUN mkdir -p $DIR/builds/application
+# build dirs and "config" directory in /application
+RUN mkdir -p $DIR/builds/application/config
 
 WORKDIR $DIR
 COPY package*.json $DIR/
@@ -17,7 +17,7 @@ RUN npm ci --production --unsafe-perm --ignore-scripts .
 
 RUN npm run build
 
-RUN mv $DIR/build/* $DIR/builds/application/
+RUN mv $DIR/dist/* $DIR/builds/application/
 
 FROM nginx:stable-alpine
 
