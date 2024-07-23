@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Icon } from "@amsterdam/design-system-react"
 import { PersonalLoginIcon } from "@amsterdam/design-system-react-icons"
 import { useAuth } from "react-oidc-context"
+import { useNavigate } from "react-router-dom"  
 import { useDecodedToken } from "app/hooks" 
 
 const Wrapper = styled.div`
@@ -17,9 +18,10 @@ const StyledIcon = styled(Icon)`
 export const User: React.FC = () => {
   const auth = useAuth()
   const decodedToken = useDecodedToken()
+  const navigate = useNavigate()
 
   return auth.isAuthenticated ? (
-    <Wrapper>
+    <Wrapper onClick={() => navigate("/auth")} >
       <StyledIcon
         size="level-5"
         svg={ PersonalLoginIcon }

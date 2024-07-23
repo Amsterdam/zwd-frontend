@@ -1,7 +1,9 @@
-import { Heading, Screen } from "@amsterdam/design-system-react"
+import { Button, Heading, Icon, Screen } from "@amsterdam/design-system-react"
 import styled from "styled-components"
 import { Spinner } from "app/components"
 import { useDecodedToken } from "app/hooks"
+import { useAuth } from "react-oidc-context"
+import { LogoutIcon } from "@amsterdam/design-system-react-icons"
 
 const Wrapper = styled(Screen)<{ align?: string }>`
   display: flex;
@@ -13,6 +15,7 @@ const Wrapper = styled(Screen)<{ align?: string }>`
 export const LoggingInPage: React.FC = () => (
   <Wrapper fullHeight>
     <Heading level={4}>U wordt automatisch aangemeld...</Heading>
+    <br />
     <Spinner />
   </Wrapper>
 )
@@ -24,6 +27,7 @@ export const LoggingInErrorPage: React.FC = () => (
 )
 
 export const AuthPage: React.FC = () => {
+  const auth = useAuth()
   const decodedToken = useDecodedToken()
 
   return decodedToken ? (
@@ -34,6 +38,12 @@ export const AuthPage: React.FC = () => {
           <strong>{key}:</strong> {Array.isArray(value) ? value.join(", ") : value.toString()}
         </div>
       ))}
+      <div>
+        <Button variant="primary" onClick={() => void auth.removeUser()}>
+          Uitloggen
+          <Icon size="level-5" svg={LogoutIcon} />
+        </Button>
+      </div>
     </Wrapper>
   ) : <></>
 }

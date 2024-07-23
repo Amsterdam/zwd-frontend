@@ -1,19 +1,25 @@
 import { PageMenu } from "@amsterdam/design-system-react"
 import { SearchIcon } from "@amsterdam/design-system-react-icons"
-import { Link } from "react-router-dom" 
+import { useLinkClickHandler } from "react-router-dom" 
 
-export const NavMenu: React.FC = () => (
-  <PageMenu>
-    <Link to="/zoeken" >
-      <PageMenu.Link icon={ SearchIcon }>Zoeken</PageMenu.Link>
-    </Link>
-    <Link to="/zaken" >
-      <PageMenu.Link>Zakenoverzicht</PageMenu.Link>
-    </Link>
-    <Link to="/taken" >
-      <PageMenu.Link href="/taken">Takenoverzicht</PageMenu.Link>
-    </Link>
-  </PageMenu>
-)
+export const NavMenu: React.FC = () => {
+  const handleHomeClick = useLinkClickHandler("/")
+  const handleZakenClick = useLinkClickHandler("/zaken")
+  const handleTakenClick = useLinkClickHandler("/taken")
+  
+  return (
+    <PageMenu>
+      <PageMenu.Link icon={ SearchIcon } onClick={ handleHomeClick }>
+        Zoeken
+      </PageMenu.Link>
+      <PageMenu.Link onClick={ handleZakenClick }>
+        Zakenoverzicht
+      </PageMenu.Link>
+      <PageMenu.Link onClick={ handleTakenClick }>
+        Takenoverzicht
+      </PageMenu.Link>
+    </PageMenu>
+  )
+}
 
 export default NavMenu
