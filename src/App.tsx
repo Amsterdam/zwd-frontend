@@ -3,9 +3,10 @@ import { useAuth, hasAuthParams } from "react-oidc-context"
 import { RouterProvider } from "react-router-dom"
 import router from "app/routing/router"
 import { LoggingInPage, LoggingInErrorPage } from "app/pages"
+import ApiProvider from "app/state/rest/provider/ApiProvider"
 
 
-function App() {
+const App = () => {
   const auth = useAuth()
   const [hasTriedSignin, setHasTriedSignin] = useState(false)
 
@@ -30,9 +31,9 @@ function App() {
   }
 
   return (
-    <>
+    <ApiProvider>
       <RouterProvider router={router} />
-    </>
+    </ApiProvider>
   )
 }
 
