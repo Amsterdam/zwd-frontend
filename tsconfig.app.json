@@ -5,6 +5,7 @@
       "app/*": ["./src/app/*"],
     },
     "composite": true,
+    "esModuleInterop": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "target": "ES2020",
     "useDefineForClassFields": true,
@@ -27,5 +28,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["src", "./.eslintrc.cjs"]
+  "include": ["src", "scripts", "./.eslintrc.cjs"]
 }
