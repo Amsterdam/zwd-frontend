@@ -2,17 +2,18 @@
   "name": "zwd-frontend",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
   "engines": {
     "node": ">=20",
     "npm": ">=10"
   },
   "scripts": {
     "start": "vite",
+    "ont": "env-cmd -f .env.ontwikkel vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
+    "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "@types/styled-components": "^5.1.34",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "axios": "^1.7.2",
+    "immer": "^10.1.1",
     "jwt-decode": "^4.0.0",
     "oidc-client-ts": "^3.0.1",
     "react": "^18.3.1",
@@ -29,12 +31,15 @@
     "react-oidc-context": "^3.1.0",
     "react-router-dom": "^6.24.1",
     "styled-components": "^6.1.11",
-    "typescript": "^5.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
     "vite": "^5.3.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
+    "dtsgenerator": "^3.19.2",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
