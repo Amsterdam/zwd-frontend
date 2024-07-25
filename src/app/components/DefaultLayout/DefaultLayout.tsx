@@ -17,6 +17,7 @@ export const DefaultLayout: React.FC = () => (
         )}
       />
       <NavMenu />
+      <br />
       <main id="main">
         <Outlet />
       </main>
