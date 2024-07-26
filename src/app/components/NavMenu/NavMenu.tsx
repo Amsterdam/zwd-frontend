@@ -1,25 +1,35 @@
 import { PageMenu } from "@amsterdam/design-system-react"
 import { SearchIcon } from "@amsterdam/design-system-react-icons"
-import { useLinkClickHandler } from "react-router-dom" 
+import { useLinkClickHandler, useHref } from "react-router-dom" 
 
-export const NavMenu: React.FC = () => {
-  const handleHomeClick = useLinkClickHandler("/")
-  const handleZakenClick = useLinkClickHandler("/zaken")
-  const handleTakenClick = useLinkClickHandler("/taken")
-  
+type MenuItem = {
+  label: string
+  path: string
+  icon?: React.ComponentType
+}
+
+const menuItems: MenuItem[] = [
+  { label: "Zoeken", path: "/", icon: SearchIcon },
+  { label: "Zakenoverzicht", path: "/zaken" },
+  { label: "Takenoverzicht", path: "/taken" }
+]
+
+const NavMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
+  const handleClick = useLinkClickHandler(path)
+  const href = useHref(path)
   return (
-    <PageMenu>
-      <PageMenu.Link icon={ SearchIcon } onClick={ handleHomeClick }>
-        Zoeken
-      </PageMenu.Link>
-      <PageMenu.Link onClick={ handleZakenClick }>
-        Zakenoverzicht
-      </PageMenu.Link>
-      <PageMenu.Link onClick={ handleTakenClick }>
-        Takenoverzicht
-      </PageMenu.Link>
-    </PageMenu>
+    <PageMenu.Link href={ href } icon={ icon } onClick={ handleClick }>
+      { label }
+    </PageMenu.Link>
   )
 }
+
+export const NavMenu = () => (
+  <PageMenu>
+    { menuItems.map((props) => (
+      <NavMenuItem key={ props.path } {...props} />
+    ))}
+  </PageMenu>
+)
 
 export default NavMenu
