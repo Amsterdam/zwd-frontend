@@ -1,4 +1,7 @@
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./NavMenu/NavMenu"
+export * from "./SmallSkeleton/SmallSkeleton"
 export * from "./Spinner/Spinner"
+export * from "./Table/Table"
+export * from "./Table/types"
 export * from "./User/User"

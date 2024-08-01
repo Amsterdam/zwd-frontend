@@ -1,19 +1,33 @@
 import { Heading } from "@amsterdam/design-system-react"
 import { useCases } from "app/state/rest"
+import { ColumnType, Table } from "app/components"
+
+const columns: ColumnType<Components.Schemas.Case>[] = [
+  {
+    header: "ID",
+    dataIndex: "id",
+    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>  a?.id - b?.id
+  }, {
+    header: "Description",
+    dataIndex: "description",
+    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => a.description.localeCompare(b.description),    
+    defaultSortOrder: "DESCEND"
+  }
+]
 
 export const CasesPage: React.FC = () => {
-  // const [data, loading, error] = useApiHook("cases")
   const [data, { isBusy }] = useCases()
-  console.log("DATA, loading", data, isBusy)
 
   return (
     <>
       <Heading level={ 3 } >
         Zakenoverzicht
       </Heading>
-      <ul>
-        {data?.map((i) => <li key={ i.id }>`${ i.id }-${ i.description }`</li>)}
-      </ul>
+      <Table 
+        columns={ columns } 
+        data={ data } 
+        loading={ isBusy }
+      />
     </>
   )
 }
