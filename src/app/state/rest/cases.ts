@@ -9,6 +9,7 @@ export const useCases = (options?: Options) => {
     ...options,
     url: `${ makeApiUrl("cases") }`,
     groupName: "cases",
-    handleError
+    handleError,
+    isProtected: true
   })
 }
