@@ -60,6 +60,8 @@ const reducer = (state: State, action: Action) => {
 export const useApiCache = () => {
   const [ cache, dispatch ] = useReducer(reducer, {})
 
+  // @ts-expect-error Unsafe return and use of any
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const getCacheItem = useCallback((key: string) => cache[key], [ cache ])
   const setCacheItem = useCallback((key: string, value: unknown) => dispatch({ type: "SET_ITEM", key, value }), [ dispatch ])
   const updateCacheItem = useCallback((key: string, updater: (cache: unknown) => void) => dispatch({ type: "UPDATE_ITEM", key, updater }), [ dispatch ])
