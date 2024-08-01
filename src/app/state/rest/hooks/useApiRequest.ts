@@ -58,7 +58,9 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, hand
       const response: unknown = await request<Schema>(options.method, url, payload) //TODO any used to be unknown
 
       if (isGetOptions(options) || (isMutateOptions(options) && options.useResponseAsCache)) {
-        setCacheItem(url, response?.data)
+        if (response && typeof response === "object" && "data" in response) {
+          setCacheItem(url, response?.data)
+        }
       }
 
       return response
@@ -102,7 +104,7 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, hand
     queueRequest({ method: "delete", ...options }), [ queueRequest ])
 
   const updateCache = useCallback(
-    (updater: (item: Schema) => void) => updateCacheItem(url, updater),
+    (updater: (item: unknown) => void) => updateCacheItem(url, updater),
     [ updateCacheItem, url ]
   )
 
