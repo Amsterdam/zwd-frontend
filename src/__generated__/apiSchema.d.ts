@@ -2,11 +2,29 @@ declare namespace Components {
     namespace Schemas {
         export interface Case {
             id: number;
-            description: string;
+            description?: string | null;
+            workflows: CaseWorkflow[];
         }
-        export interface PatchedCase {
-            id?: number;
+        export interface CaseCreate {
+            description?: string | null;
+        }
+        export interface CaseWorkflow {
+            id: number;
+            case?: number | null;
+            workflow_type?: string | null;
+            workflow_version?: string | null;
+            workflow_theme_name?: string | null;
+            workflow_message_name?: string | null;
+            data?: null;
+            tasks: string;
+        }
+        export interface GenericCompletedTaskCreate {
+            id: number;
+            case_user_task_id: string;
+            case: number;
+            variables: any;
             description?: string;
+            date_added: string; // date-time
         }
     }
 }
@@ -27,38 +45,14 @@ declare namespace Paths {
         }
     }
     namespace CasesCreate {
-        export type RequestBody = Components.Schemas.Case;
+        export type RequestBody = Components.Schemas.CaseCreate;
         namespace Responses {
-            export type $201 = Components.Schemas.Case;
-        }
-    }
-    namespace CasesDestroy {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        namespace Responses {
-            export interface $204 {
-            }
+            export type $201 = Components.Schemas.CaseCreate;
         }
     }
     namespace CasesList {
         namespace Responses {
             export type $200 = Components.Schemas.Case[];
-        }
-    }
-    namespace CasesPartialUpdate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.PatchedCase;
-        namespace Responses {
-            export type $200 = Components.Schemas.Case;
         }
     }
     namespace CasesRetrieve {
@@ -72,16 +66,22 @@ declare namespace Paths {
             export type $200 = Components.Schemas.Case;
         }
     }
-    namespace CasesUpdate {
+    namespace CasesWorkflowsRetrieve {
         namespace Parameters {
             export type Id = number;
         }
         export interface PathParameters {
             id: Parameters.Id;
         }
-        export type RequestBody = Components.Schemas.Case;
         namespace Responses {
             export type $200 = Components.Schemas.Case;
+        }
+    }
+    namespace GenericTasksCompleteCreate {
+        export type RequestBody = Components.Schemas.GenericCompletedTaskCreate;
+        namespace Responses {
+            export interface $200 {
+            }
         }
     }
 }

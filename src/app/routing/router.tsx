@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "taken",
         element: <TasksPage />
+      },
+      {
+        path: "vve/:vveId/zaken/nieuw",
+        element: <TasksPage />
       }
     ]
   },

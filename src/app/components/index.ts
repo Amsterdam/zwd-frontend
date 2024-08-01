@@ -1,5 +1,6 @@
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./NavMenu/NavMenu"
+export * from "./RouterLink/RouterLink"
 export * from "./SmallSkeleton/SmallSkeleton"
 export * from "./Spinner/Spinner"
 export * from "./Table/Table"
