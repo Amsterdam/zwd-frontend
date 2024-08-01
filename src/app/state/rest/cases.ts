@@ -4,7 +4,6 @@ import useApiRequest from "./hooks/useApiRequest"
 
 
 export const useCases = (options?: Options) => {
-  console.log("PRINT", makeApiUrl("cases"))
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.Case[]>({
     ...options,
