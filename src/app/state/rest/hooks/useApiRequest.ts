@@ -2,7 +2,7 @@ import { useCallback, useEffect, useContext } from "react"
 
 import { ApiContext } from "../provider/ApiProvider"
 import { ApiGroup } from "../index"
-import useRequest, { RequestError } from "./useRequest"
+import useRequestWrapper, { RequestError } from "./useRequestWrapper"
 
 type GetOptions = {
   method: "get"
@@ -33,7 +33,7 @@ type Config = {
   handleError?: (error: RequestError) => void
 }
 
-const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, handleError, lazy, keepUsingInvalidCache }: Config) => {
+const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, isProtected, handleError, lazy, keepUsingInvalidCache }: Config) => {
   const {
     getCacheItem,
     setCacheItem,
@@ -44,7 +44,7 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, hand
     isRequestPendingInQueue
   } = useContext(ApiContext)[groupName]
 
-  const request = useRequest()
+  const request = useRequestWrapper(isProtected)
 
   /**
    * Executes an API request
