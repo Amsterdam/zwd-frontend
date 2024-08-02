@@ -1,6 +1,6 @@
 import { DefaultLayout } from "app/components"
 import { 
-  CasesPage, NotFoundPage, SearchPage, TasksPage, AuthPage 
+  CasesPage, NotFoundPage, SearchPage, TasksPage, AuthPage, CaseCreatePage 
 } from "app/pages"
 import { createBrowserRouter } from "react-router-dom"
 
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "vve/:vveId/zaken/nieuw",
-        element: <TasksPage />
+        element: <CaseCreatePage />
       }
     ]
   },

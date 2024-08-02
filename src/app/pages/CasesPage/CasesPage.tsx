@@ -1,6 +1,5 @@
-import { Heading } from "@amsterdam/design-system-react"
 import { useCases } from "app/state/rest"
-import { ColumnType, Table } from "app/components"
+import { ColumnType, Table, PageHeading } from "app/components"
 
 const columns: ColumnType<Components.Schemas.Case>[] = [
   {
@@ -10,7 +9,9 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
   }, {
     header: "Description",
     dataIndex: "description",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => a.description.localeCompare(b.description),    
+    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
+      a?.description && b?.description ? a.description.localeCompare(b.description) : -1
+    ),    
     defaultSortOrder: "DESCEND"
   }
 ]
@@ -20,12 +21,10 @@ export const CasesPage: React.FC = () => {
 
   return (
     <>
-      <Heading level={ 3 } >
-        Zakenoverzicht
-      </Heading>
+      <PageHeading label="Zakenoverzicht" />
       <Table 
         columns={ columns } 
-        data={ data } 
+        data={ data as Components.Schemas.Case[] } 
         loading={ isBusy }
       />
     </>

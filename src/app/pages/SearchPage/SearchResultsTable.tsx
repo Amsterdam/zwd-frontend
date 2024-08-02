@@ -18,8 +18,8 @@ const columns: ColumnType<Vve>[] = [
   }, {
     header: "",
     dataIndex: "id",
-    minWidth: 125,
-    render: () => <RouterLink label="Start traject" path="" />
+    minWidth: 170,
+    render: () => <RouterLink label="Zaak aanmaken" path="" />
   }
 ]
 
