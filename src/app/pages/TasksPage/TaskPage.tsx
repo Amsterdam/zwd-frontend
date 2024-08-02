@@ -1,10 +1,8 @@
-import { Heading } from "@amsterdam/design-system-react"
+import { PageHeading } from "app/components"
 
 export const TasksPage: React.FC = () => (
   <>
-    <Heading level={ 3 } >
-      Takenoverzicht
-    </Heading>
+    <PageHeading label="Takenoverzicht" />
   </>
 )
 
