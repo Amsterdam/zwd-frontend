@@ -16,7 +16,7 @@ export const LoggingInPage: React.FC = () => (
   <Wrapper fullHeight>
     <Heading level={4}>U wordt automatisch aangemeld...</Heading>
     <br />
-    <Spinner />
+    <Spinner size={ 48 }/>
   </Wrapper>
 )
 
