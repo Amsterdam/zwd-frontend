@@ -41,3 +41,16 @@ export const Spinner: React.FC<Props> = ({ loading = true, size = 32, color = "#
     </SpinnerWrapper>
   ) : <></>
 )
+
+const PageSpinnerWraper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+`
+
+export const PageSpinner: React.FC = () => (
+  <PageSpinnerWraper>
+    <Spinner size={ 48 }  />
+  </PageSpinnerWraper>
+)

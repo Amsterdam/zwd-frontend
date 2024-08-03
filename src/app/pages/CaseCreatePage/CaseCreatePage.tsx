@@ -40,7 +40,7 @@ export const CaseCreatePage: React.FC = () => {
           navigate(`/zaken/${ zaakId }`)
         }        
       }).catch((err) => {
-        console.log("Error", err)
+        console.log("Error creating case:", err)
       })
       .finally(() => {
         setLoading(false)
