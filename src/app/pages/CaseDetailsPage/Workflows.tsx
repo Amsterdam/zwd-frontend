@@ -17,7 +17,7 @@ const Div = styled.div`
   
 `
 
-const columns: ColumnType<Components.Schemas.CaseWorkflow>[] = [
+const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
   {
     header: "",
     dataIndex: "id",
@@ -32,8 +32,8 @@ const columns: ColumnType<Components.Schemas.CaseWorkflow>[] = [
   }, {
     header: "Verwerking taak",
     dataIndex: "id",
-    minWidth: 170
-    // render: () => <RouterLink label="Zaakdetails" path="" />
+    minWidth: 170,
+    render: () => <>Taak afronden</>
   }
 ]
   
@@ -49,7 +49,7 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
   return (
     <>
       { workflows?.length > 0 ? (
-        workflows.map(({ id, workflow_type, workflow_message_name, tasks }) => (
+        workflows.map(({ id, workflow_type, workflow_message_name, tasks = [] }) => (
           <Wrapper key={ `${ id }` }>
             <Div>
               <Heading level={ 4 }>{ workflow_type }</Heading>
@@ -58,7 +58,7 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
             <Table
               columns={ columns }
               lastColumnFixed
-              data={ tasks || [] }
+              data={ (tasks as Components.Schemas.CaseUserTask[]) }
               pagination={ false }
             />
           </Wrapper>
