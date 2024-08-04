@@ -40,6 +40,7 @@ module.exports = {
     "semi": ["error", "never"],
     "indent": ["error", 2],
     "template-curly-spacing": ["error", "always"],
+    "@typescript-eslint/no-unsafe-assignment": "warn",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/member-delimiter-style": ["error", {
       multiline: {

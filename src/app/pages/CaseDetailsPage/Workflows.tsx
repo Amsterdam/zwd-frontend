@@ -58,7 +58,6 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
             <Table
               columns={ columns }
               lastColumnFixed
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               data={ tasks }
               pagination={ false }
             />
