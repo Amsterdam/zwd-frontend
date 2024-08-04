@@ -8,6 +8,19 @@ declare namespace Components {
         export interface CaseCreate {
             description?: string | null;
         }
+        export interface CaseUserTask {
+            id: number;
+            task_id: string; // uuid
+            task_name: string;
+            name: string;
+            form?: null;
+            roles?: string[] | null;
+            due_date: string; // date-time
+            owner?: number | null;
+            created: string; // date-time
+            updated: string; // date-time
+            completed?: boolean;
+        }
         export interface CaseWorkflow {
             id: number;
             case?: number | null;
@@ -16,7 +29,7 @@ declare namespace Components {
             workflow_theme_name?: string | null;
             workflow_message_name?: string | null;
             data?: null;
-            tasks: string;
+            tasks: CaseUserTask[];
         }
         export interface GenericCompletedTaskCreate {
             id: number;

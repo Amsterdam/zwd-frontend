@@ -1,10 +1,12 @@
 import { Button, ErrorMessage, Field, Grid, Label, Paragraph, TextArea } from "@amsterdam/design-system-react"
 import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
 import { useForm } from "react-hook-form"
-import { PageHeading } from "app/components"
+import { PageHeading, Spinner } from "app/components"
 import { useCases } from "app/state/rest"
 import styled from "styled-components"
 import withExceptionCapturing from "app/utils/withExceptionCapturing"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 type FormData  = {
   description?: Components.Schemas.CaseCreate["description"]
@@ -15,22 +17,33 @@ const StyledGrid = styled(Grid)`
 `
 
 export const CaseCreatePage: React.FC = () => {
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
     formState: { errors, isValid }
   } = useForm<FormData>()
-  const [ ,{ execPost } ] = useCases()
+  const [ ,{ execPost } ] = useCases({ lazy: true })
+  const navigate = useNavigate()
 
   const onSubmit = handleSubmit((data) => {
+    setLoading(true)
     const values: Components.Schemas.CaseCreate = {
       description: data?.description as string
     }
     execPost(values as Components.Schemas.Case)
       .then((resp) => {
-        console.log("SUCCES", resp)
+        // @ts-expect-error: Unreachable code error
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        const zaakId = resp?.data?.id
+        if (zaakId) {
+          navigate(`/zaken/${ zaakId }`)
+        }        
       }).catch((err) => {
-        console.log("Error", err)
+        console.log("Error creating case:", err)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   })
 
@@ -60,7 +73,10 @@ export const CaseCreatePage: React.FC = () => {
               )}
             </Field>
             <div>
-              <Button type="submit" disabled={ !isValid  }>Zaak aanmaken</Button>
+              <Button type="submit" disabled={ !isValid || loading }>
+                Zaak aanmaken  
+                <Spinner loading={ loading } size={ 32 } color="#FFFFFF"/>
+              </Button>
             </div>
           </form>
         </Grid.Cell>

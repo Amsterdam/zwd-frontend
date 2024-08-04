@@ -14,3 +14,25 @@ export const useCases = (options?: Options) => {
     isProtected: true
   })
 }
+
+export const useCase = (id: Components.Schemas.Case["id"] ,options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.Case>({
+    ...options,
+    url: `${ makeApiUrl("cases", id) }`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useWorkflows = (id: Components.Schemas.Case["id"] ,options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseWorkflow[]>({
+    ...options,
+    url: `${ makeApiUrl("cases", id, "workflows") }`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
