@@ -36,3 +36,14 @@ export const useWorkflows = (id: Components.Schemas.Case["id"] ,options?: Option
     isProtected: true
   })
 }
+
+export const useTaskComplete = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.GenericCompletedTaskCreate>({
+    ...options,
+    url: makeApiUrl("generic-tasks", "complete"),
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
