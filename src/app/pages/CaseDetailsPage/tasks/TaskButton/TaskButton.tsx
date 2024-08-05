@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Button, Checkbox, Field, Row } from "@amsterdam/design-system-react"
@@ -11,10 +10,6 @@ type Props = {
   caseId: Components.Schemas.Case["id"]
 }
 
-type FormData  = {
-  completed?: Components.Schemas.CaseUserTask["completed"]
-}
-
 export const TaskButton: React.FC<Props> = ({ task, caseId }) => {
   const { isModalOpen, openModal, closeModal } = useModal()
   const [loading, setLoading] = useState(false)
@@ -22,13 +17,13 @@ export const TaskButton: React.FC<Props> = ({ task, caseId }) => {
     register,
     handleSubmit,
     formState: { isValid }
-  } = useForm<FormData>()
+  } = useForm()
   const [, { execPost }] = useTaskComplete({ lazy: true })
   
   const onSubmit = handleSubmit(() => {
     setLoading(true)
-    const values: Components.Schemas.GenericCompletedTaskCreate["variables"] = {
-      case_user_task_id: task.id,
+    const values = {
+      case_user_task_id: task?.id.toString(),
       case: caseId,
       variables: {
         completed: true
