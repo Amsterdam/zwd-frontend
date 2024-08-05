@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { DocumentIcon } from "@amsterdam/design-system-react-icons"
 import { useCase } from "app/state/rest"
 import { PageHeading, PageSpinner } from "app/components"
-import Workflows from "./Workflows"
+import Workflows from "./Workflows/Workflows"
 import { Grid, Row } from "@amsterdam/design-system-react"
 
 export const CaseDetailsPage: React.FC = () => {

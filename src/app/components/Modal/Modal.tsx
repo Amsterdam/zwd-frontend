@@ -1,11 +1,12 @@
 import { ReactNode } from "react"
 import styled from "styled-components"
-import { Icon } from "@amsterdam/design-system-react"
+import { Heading, Icon } from "@amsterdam/design-system-react"
 import { CloseIcon } from "@amsterdam/design-system-react-icons"
 
+
 type Props = {
-  title?: string
-  open?: boolean
+  title: string
+  open: boolean
   onOk?: () => void
   onCancel?: () => void
   children?: ReactNode
@@ -32,8 +33,8 @@ const Container = styled.div`
   border-radius: 10px;
 `
 
-const Heading = styled.div`
-  padding: 0 20px;
+const Header = styled.div`
+  padding: 10px 20px;
 `
 
 const StyledIcon = styled(Icon)`
@@ -51,7 +52,7 @@ const Content = styled.div`
   padding: 20px;
 `
 
-export const Modal: React.FC<Props> = ({ title, open = true, onCancel, children }) => open ? (
+export const Modal: React.FC<Props> = ({ title, open, onCancel, children }) => open ? (
   <Wrapper onClick={ onCancel }>
     <Container
       onClick={(e) => {
@@ -59,14 +60,14 @@ export const Modal: React.FC<Props> = ({ title, open = true, onCancel, children 
         e.stopPropagation()
       }}
     >
-      <Heading>
+      <Header>
         <StyledIcon
           size="level-5"
           svg={ CloseIcon }
           onClick={ onCancel }
         />
-        <h2>{ title }</h2>
-      </Heading>
+        <Heading size="level-5">{ title }</Heading>
+      </Header>
       <Content>
         { children }
       </Content>

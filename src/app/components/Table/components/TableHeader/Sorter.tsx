@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Icon } from "@amsterdam/design-system-react"
 import { SortingType, ASCEND, DESCEND, SortOrder } from "../../types"
-import { ArrowDownward, ArrowUpward } from "./icons"
+import { ArrowDownward, ArrowUpward } from "app/components"
 
 type Props = {
   header?: React.ReactNode
