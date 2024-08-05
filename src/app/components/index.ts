@@ -1,4 +1,5 @@
 export * from "./DefaultLayout/DefaultLayout"
+export * from "./Modal/Modal"
 export * from "./NavMenu/NavMenu"
 export * from "./PageHeading/PageHeading"
 export * from "./RouterLink/RouterLink"
