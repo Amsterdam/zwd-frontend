@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Button, Checkbox, Field, Row } from "@amsterdam/design-system-react"
@@ -8,7 +9,6 @@ import { useTaskComplete } from "app/state/rest"
 type Props = {
   task: Components.Schemas.CaseUserTask
   caseId: Components.Schemas.Case["id"]
-  // onSubmit?: (variables: Components.Schemas.GenericCompletedTask["variables"]) => Promise<unknown>
 }
 
 type FormData  = {
@@ -44,9 +44,6 @@ export const TaskButton: React.FC<Props> = ({ task, caseId }) => {
         setLoading(false)
       })
   })
-
-
-  console.log("TASK", task)
 
   return (
     <>
