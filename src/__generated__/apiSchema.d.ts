@@ -13,7 +13,7 @@ declare namespace Components {
             task_id: string; // uuid
             task_name: string;
             name: string;
-            form?: null;
+            form?: any;
             roles?: string[] | null;
             due_date: string; // date-time
             owner?: number | null;
