@@ -29,7 +29,7 @@ const useProtectedRequest = () => {
         //   case 401: keycloak.logout(); break
         //   case 403: navigateTo("/auth"); break
         // }
-        if (error !== undefined) throw error
+        if (error !== undefined) throw new Error("error")
       }
     },
     [token, request]

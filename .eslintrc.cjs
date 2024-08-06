@@ -41,21 +41,6 @@ module.exports = {
     "indent": ["error", 2],
     "template-curly-spacing": ["error", "always"],
     "@typescript-eslint/no-unsafe-assignment": "warn",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-    "@typescript-eslint/member-delimiter-style": ["error", {
-      multiline: {
-        delimiter: "none",
-        requireLast: true
-      },
-      singleline: {
-        delimiter: "comma",
-        requireLast: false
-      }
-    }],
-    "@typescript-eslint/type-annotation-spacing": ["error", {
-      before: false,
-      after: true,
-      overrides: { arrow: { before: true, after: true } }
-    }]
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"]
   },
 }
