@@ -1,4 +1,4 @@
-import { ColumnType, Table, RouterLink } from "app/components"
+import { ColumnType, Table, LinkButton } from "app/components"
 import { vveList } from "app/dummy_data/vveList"
 import { useNavigate } from "react-router-dom"
 
@@ -19,7 +19,7 @@ const columns: ColumnType<Vve>[] = [
     header: "",
     dataIndex: "id",
     minWidth: 170,
-    render: () => <RouterLink label="Zaak aanmaken" path="" />
+    render: () => <LinkButton label="Zaak aanmaken" path="" /> // onClickRow is overruling the  link
   }
 ]
 

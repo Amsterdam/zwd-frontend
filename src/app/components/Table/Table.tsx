@@ -12,6 +12,7 @@ import { TableType, SortingType, DESCEND } from "./types"
 
 const Wrap = styled.div`
   position: relative;
+  font-size: var(--ams-text-level-6-font-size);
 `
 
 const StyledTable = styled.table`

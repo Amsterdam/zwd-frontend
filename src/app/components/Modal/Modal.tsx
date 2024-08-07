@@ -25,16 +25,16 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   background-color: white;
-  margin: 25% auto; /* 15% from the top and centered */
+  margin: 15% auto; /* 15% from the top and centered */
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
-  max-width: 500px;
+  max-width: 600px;
   box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: 4px;
 `
 
 const Header = styled.div`
-  padding: 10px 20px;
+  padding: 30px 40px;
 `
 
 const StyledIcon = styled(Icon)`
@@ -49,7 +49,7 @@ const StyledIcon = styled(Icon)`
 
 const Content = styled.div`
   border-top: 1px solid #e0e0e0;
-  padding: 20px;
+  padding: 40px;
 `
 
 export const Modal: React.FC<Props> = ({ title, open, onCancel, children }) => open ? (

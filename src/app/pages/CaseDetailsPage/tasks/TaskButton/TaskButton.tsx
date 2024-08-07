@@ -1,5 +1,4 @@
-import { Button } from "@amsterdam/design-system-react"
-import { useModal } from "app/components"
+import { useModal, LinkButton } from "app/components"
 import FormModal from "../FormModal/FormModal"
 
 type Props = {
@@ -7,17 +6,14 @@ type Props = {
   caseId: Components.Schemas.Case["id"]
 }
 
+// const StyledButton
+
 export const TaskButton: React.FC<Props> = ({ task, caseId }) => {
   const { isModalOpen, openModal, closeModal } = useModal()
 
   return (
     <>
-      <Button
-        variant="primary"
-        onClick={ openModal }
-      >
-        Taak afronden
-      </Button>
+      <LinkButton label="Taak afronden" onClick={ openModal } />
       <FormModal 
         task={ task } 
         caseId={ caseId }

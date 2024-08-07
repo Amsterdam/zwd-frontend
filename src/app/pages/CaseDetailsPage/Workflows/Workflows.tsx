@@ -31,12 +31,11 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
               lastColumnFixed
               data={ tasks }
               pagination={ false }
+              emptyPlaceholder="Geen taken beschikbaar."
             />
           </Wrapper>
         ))
-      ) : (
-        <>Geen taken beschikbaar.</>
-      )}
+      ) : <></>}
     </>
   )
 }
