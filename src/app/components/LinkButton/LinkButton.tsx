@@ -27,7 +27,6 @@ export const LinkButton: React.FC<Props> = ({ label, path = "", onClick }) => {
       <LinkList.Link
         href={ href } 
         onClick={ onClickLink }
-        size="small"
       >
         { label }
       </LinkList.Link>

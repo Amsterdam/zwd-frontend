@@ -2,7 +2,6 @@ import { Field, Label, Select } from "@amsterdam/design-system-react"
 import { useForm } from "react-hook-form"
 import withExceptionCapturing from "app/utils/withExceptionCapturing"
 import { SubmitButtonRow } from "./SubmitButtonRow"
-import styled from "styled-components"
 
 
 export type FormItem = {
@@ -24,9 +23,6 @@ type Props = {
   form: FormItem[]
 }
 
-const StyledLabel = styled(Label)`
-  font-size: var(--ams-text-level-5-font-size);
-`
 
 const formatData = (form: FormItem[], data: GenericTaskFormData) => (
   form.reduce<GenericTaskFormData>((acc, item) => {
@@ -60,7 +56,7 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
         case "select":
           return (
             <Field key={index}>
-              <StyledLabel htmlFor={formItem.name} >{formItem.label}</StyledLabel>
+              <Label htmlFor={formItem.name} >{formItem.label}</Label>
               <Select {...register(formItem.name, { required: formItem.required })}>
                 { formItem.options?.map((option) => (
                   <Select.Option key={option.value} value={option.value}>

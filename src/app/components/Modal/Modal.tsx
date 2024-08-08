@@ -62,11 +62,11 @@ export const Modal: React.FC<Props> = ({ title, open, onCancel, children }) => o
     >
       <Header>
         <StyledIcon
-          size="level-5"
+          size="level-3"
           svg={ CloseIcon }
           onClick={ onCancel }
         />
-        <Heading size="level-5">{ title }</Heading>
+        <Heading size="level-3">{ title }</Heading>
       </Header>
       <Content>
         { children }
