@@ -23,6 +23,7 @@ type Props = {
   form: FormItem[]
 }
 
+
 const formatData = (form: FormItem[], data: GenericTaskFormData) => (
   form.reduce<GenericTaskFormData>((acc, item) => {
     const key = item.name
@@ -55,7 +56,7 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
         case "select":
           return (
             <Field key={index}>
-              <Label htmlFor={formItem.name}>{formItem.label}</Label>
+              <Label htmlFor={formItem.name} >{formItem.label}</Label>
               <Select {...register(formItem.name, { required: formItem.required })}>
                 { formItem.options?.map((option) => (
                   <Select.Option key={option.value} value={option.value}>

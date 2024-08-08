@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const SubmitButtonRow: React.FC<Props> = ({ onCancel, disabled = false, loading = false }) => (
-  <Row align="end">
+  <Row align="between" style={{ marginTop: 16 }}>
     <Button variant="secondary" onClick={ onCancel }>
       Annuleer  
     </Button>

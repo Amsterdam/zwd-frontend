@@ -1,5 +1,5 @@
 import { useCases } from "app/state/rest"
-import { ColumnType, Table, PageHeading, RouterLink } from "app/components"
+import { ColumnType, Table, PageHeading, LinkButton } from "app/components"
 import { useNavigate } from "react-router-dom"
 
 const columns: ColumnType<Components.Schemas.Case>[] = [
@@ -18,7 +18,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     header: "",
     dataIndex: "id",
     minWidth: 170,
-    render: () => <RouterLink label="Zaakdetails" path="" />
+    render: () => <LinkButton label="Zaakdetails" path="" />
   }
 ]
 

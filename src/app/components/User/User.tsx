@@ -8,7 +8,6 @@ import { useDecodedToken } from "app/hooks"
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  font-size: var(--ams-page-menu-item-font-size);
 `
 
 const StyledIcon = styled(Icon)`

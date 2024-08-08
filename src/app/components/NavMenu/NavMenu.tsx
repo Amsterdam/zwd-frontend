@@ -1,12 +1,17 @@
 import { PageMenu } from "@amsterdam/design-system-react"
 import { SearchIcon } from "@amsterdam/design-system-react-icons"
 import { useLinkClickHandler, useHref } from "react-router-dom" 
+import { styled } from "styled-components"
 
 type MenuItem = {
   label: string
   path: string
   icon?: React.ComponentType
 }
+
+const StyledPageMenuLink = styled(PageMenu.Link)`
+  font-size: var(--ams-text-level-5-font-size);
+`
 
 const menuItems: MenuItem[] = [
   { label: "Zoeken", path: "/", icon: SearchIcon },
@@ -18,9 +23,9 @@ const NavMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
   const handleClick = useLinkClickHandler(path)
   const href = useHref(path)
   return (
-    <PageMenu.Link href={ href } icon={ icon } onClick={ handleClick }>
+    <StyledPageMenuLink href={ href } icon={ icon } onClick={ handleClick }>
       { label }
-    </PageMenu.Link>
+    </StyledPageMenuLink>
   )
 }
 
