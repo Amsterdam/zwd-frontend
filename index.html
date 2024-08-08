@@ -5,19 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/amsterdam.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaken Woningkwaliteit en Duurzaamheid</title>
-    <script>
-      // Check if the hostname contains "localhost" or is an IP address commonly used for localhost
-
-      if (window.location.host === 'localhost:5173') {
-          // Do not load the script
-          console.log('Skipping env.js on localhost.');
-      } else {
-          // Load the script
-          var script = document.createElement('script');
-          script.src = '/config/env.js';
-          document.head.appendChild(script);
-      }
-    </script>
+    <script src='/config/env.js'></script>
   </head>
   <body>
     <div id="root"></div>

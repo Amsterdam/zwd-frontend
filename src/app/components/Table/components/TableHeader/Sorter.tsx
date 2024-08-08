@@ -48,7 +48,7 @@ const StyledLabel = styled.div<{ $isSelected: boolean, $sortOrder: SortOrder }>`
 `
 
 const StyledIcon = styled(Icon)<{ $isSelected: boolean }>`
-  margin: -5px 8px 0 8px;
+  margin: -2px 8px 0 8px;
   visibility: ${ ({ $isSelected }) => $isSelected ? "visible" : "hidden" };
 
 `
@@ -66,7 +66,7 @@ const Sorter: React.FC<Props> = ({ header, index, sorting, onChangeSorting }) =>
   return (
     <StyledLabel $isSelected={ isSelected } $sortOrder={ sorting?.order ?? ASCEND } onClick={ onSorterClick }>
       { header ?? <>&nbsp;</> }
-      <StyledIcon $isSelected={ isSelected } svg={ iconSvg } size="level-5" />
+      <StyledIcon $isSelected={ isSelected } svg={ iconSvg } size="level-3" />
     </StyledLabel>
   )
 }
