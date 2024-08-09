@@ -14,7 +14,7 @@ const Wrapper = styled.div<{ $isBorder: boolean }>`
   display: flex;  
   padding-bottom: 8px;
   margin-bottom: 8px;
-  border-bottom: ${ ({ $isBorder }) => $isBorder ? "1px solid rgb(180, 180, 180)" : "none" };
+  border-bottom: ${ ({ $isBorder }) => $isBorder ? "1px solid #b4b4b4" : "none" };
 `
 
 const StyledIcon = styled(Icon)`

@@ -36,6 +36,8 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
           </Wrapper>
         ))
       ) : <></>}
+      <br />
+      <br />
     </>
   )
 }

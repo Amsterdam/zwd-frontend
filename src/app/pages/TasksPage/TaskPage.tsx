@@ -1,6 +1,6 @@
-import dayjs from "dayjs"
 import { ColumnType, LinkButton, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
+import { formatDate } from "app/utils/dates"
 
 
 const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
@@ -21,7 +21,7 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     sorter: (a: Components.Schemas.CaseUserTask, b: Components.Schemas.CaseUserTask) => (
       a.created.localeCompare(b.created)
     ),
-    render: (text) => dayjs(text).format("DD-MM-YYYY HH:mm")
+    render: (text) => formatDate(text, true)
   }, {
     header: "",
     dataIndex: "case",

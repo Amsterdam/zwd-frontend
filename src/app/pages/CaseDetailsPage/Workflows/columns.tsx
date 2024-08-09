@@ -1,7 +1,7 @@
 import { Icon } from "@amsterdam/design-system-react"
-import dayjs from "dayjs"
 import { ColumnType, TaskOutlined } from "app/components"
 import TaskButton from "../tasks/TaskButton/TaskButton"
+import { formatDate } from "app/utils/dates"
 
 const getColumns = (caseId: Components.Schemas.Case["id"]): ColumnType<Components.Schemas.CaseUserTask>[] => ([
   {
@@ -14,7 +14,7 @@ const getColumns = (caseId: Components.Schemas.Case["id"]): ColumnType<Component
   }, {
     header: "Slotdatum",
     dataIndex: "due_date",
-    render: (text) => dayjs(text).format("DD-MM-YYYY")
+    render: (text) => formatDate(text)
   }, {
     header: "Verwerking taak",
     dataIndex: "id",
