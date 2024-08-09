@@ -24,9 +24,9 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     render: (text) => dayjs(text).format("DD-MM-YYYY HH:mm")
   }, {
     header: "",
-    dataIndex: "id",
+    dataIndex: "case",
     minWidth: 170,
-    render: (id) => <LinkButton label="Zaakdetails" path={ `/zaken/${ id }`} />
+    render: (caseId) => <LinkButton label="Zaakdetails" path={ `/zaken/${ caseId }`} />
   }
 ]
 
