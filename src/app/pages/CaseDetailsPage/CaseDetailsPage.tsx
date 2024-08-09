@@ -3,6 +3,7 @@ import { DocumentIcon } from "@amsterdam/design-system-react-icons"
 import { useCase } from "app/state/rest"
 import { PageHeading, PageSpinner, DetailsList } from "app/components"
 import Workflows from "./Workflows/Workflows"
+import CaseHistory from "./CaseHistory/CaseHistory"
 
 
 export const CaseDetailsPage: React.FC = () => {
@@ -25,6 +26,7 @@ export const CaseDetailsPage: React.FC = () => {
       <br />
       <br />
       { data?.id && <Workflows caseId={ data?.id } /> }
+      { data?.id && <CaseHistory caseId={ data?.id } /> }
     </>
   )
 }

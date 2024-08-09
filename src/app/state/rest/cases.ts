@@ -2,6 +2,7 @@ import type { Options } from "./"
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
+
 type CaseApiResponse = Components.Schemas.Case[] | Components.Schemas.Case;
 
 export const useCases = (options?: Options) => {
@@ -42,6 +43,17 @@ export const useTaskComplete = (options?: Options) => {
   return useApiRequest<Components.Schemas.GenericCompletedTaskCreate>({
     ...options,
     url: makeApiUrl("generic-tasks", "complete"),
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCaseEvents = (id: Components.Schemas.Case["id"] ,options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<CaseEvent[]>({
+    ...options,
+    url: `${ makeApiUrl("cases", id, "events") }`,
     groupName: "cases",
     handleError,
     isProtected: true

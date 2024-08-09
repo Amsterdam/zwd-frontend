@@ -1,5 +1,6 @@
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./DetailsList/DetailsList"
+export * from "./TimelineEvents/TimelineEvents"
 export * from "./icons/icons"
 export * from "./Modal/Modal"
 export * from "./Modal/hooks/useModal"
