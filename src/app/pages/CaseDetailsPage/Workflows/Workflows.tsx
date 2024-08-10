@@ -9,6 +9,10 @@ type Props = {
 }
 
 const Wrapper = styled.div`
+  margin-bottom: 32px;
+`
+
+const TableWrapper = styled.div`
   margin-bottom: 10px;
 `
 
@@ -21,11 +25,11 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
     return <SmallSkeleton height={ 4 } />
   }
   return (
-    <>
+    <Wrapper>
       <PageHeading label="Open taken" level={ 4 } />
       { workflows?.length > 0 ? (
         workflows.map(({ id, tasks = [] }) => (
-          <Wrapper key={ `${ id }` }>
+          <TableWrapper key={ `${ id }` }>
             <Table
               columns={ columns }
               lastColumnFixed
@@ -33,12 +37,10 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
               pagination={ false }
               emptyPlaceholder="Geen taken beschikbaar."
             />
-          </Wrapper>
+          </TableWrapper>
         ))
       ) : <></>}
-      <br />
-      <br />
-    </>
+    </Wrapper>
   )
 }
 

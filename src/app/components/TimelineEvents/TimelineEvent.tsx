@@ -10,8 +10,9 @@ type Props = {
 }
 
 const Wrapper = styled.div`
+  margin-left: 25px;
   padding: 25px;
-  background-color: #E6E6E6;
+  background-color: rgba(0, 0, 0, 0.08);;
   border: 0.5px solid #d4d2d2;
   border-radius: 4px;
   box-shadow: 
