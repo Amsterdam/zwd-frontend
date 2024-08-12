@@ -18,7 +18,7 @@ export const getEventTitle = (event: CaseEvent): string => {
 
 export const EVENT_VALUES: Record<string, string> = {
   "date_added": "Datum",
-  "author": "Medewerker",
+  "author": "Uitvoerder",
   "description": "Toelichting"
 }
 
