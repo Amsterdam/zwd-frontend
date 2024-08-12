@@ -1,59 +1,25 @@
 import React from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 type StyledProps = {
-  $isFixed?: boolean
-  $minWidth?: number
-  $w?: number
-  $h?: number
+  $width?: number
 }
 
 const StyledTableHeader = styled.th<StyledProps>`
   text-align: left;
   border-bottom: 1px solid #B4B4B4;
   padding: 8px 12px;
-  min-width: ${ ({ $minWidth }) => $minWidth ? `${ $minWidth }px` : "auto" };
-  width: ${ ({ $w }) => $w ? `${ $w }px` : "auto" };
   white-space: nowrap;
-  height: ${ ({ $h }) => $h ? `${ $h }px;` : "auto" };
-
-  ${ ({ $isFixed, $minWidth }) => $isFixed && css`
-      position: absolute;
-      right: 0;
-      width: ${ $minWidth ? `${ $minWidth }px` : "auto" };
-
-      /* hide text on mobile for fixed column */
-      opacity: 0;
-      @media screen and (min-width: $ams-breakpoint-medium) {
-        opacity: 100;
-      }
-  ` }
-
+  width: ${ ({ $width }) => $width ? `${ $width }px` : "auto" };
 `
 
 type Props = {
   width?: number
-  isFixed?: boolean
-  minWidth?: number
   children?: React.ReactNode 
 }
 
-/**
- * This table-cell is positioned absolutely, to mimic a 'fixed-column' on smaller screens.
- *
- * Its positioned absolutely and therefore doesn't automatically follow the 'document-flow' anymore.
- * We calculate its height based on the height of the parent-node.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flow_Layout/In_Flow_and_Out_of_Flow
- */
-
-const StyledHeader: React.FC<Props> = ({ children, width, minWidth, isFixed }) => (
-  <StyledTableHeader
-    $h={20}
-    $w={ width }
-    $minWidth={ minWidth }
-    $isFixed={ isFixed }
-  >
+const StyledHeader: React.FC<Props> = ({ children, width }) => (
+  <StyledTableHeader $width={ width } >
     { children }
   </StyledTableHeader>
 )

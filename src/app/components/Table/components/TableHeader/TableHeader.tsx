@@ -3,20 +3,18 @@ import Sorter from "./Sorter"
 import { ColumnType, SortingType } from "../../types"
 
 type Props<T> = {
-  lastColumnFixed?: boolean
   columns: ColumnType<T>[]
   onChangeSorting: (sorting: SortingType) => void
   sorting?: SortingType
 }
 
-const TableHeader = <T,>({ columns, lastColumnFixed, onChangeSorting, sorting }: Props<T>) => (
+const TableHeader = <T,>({ columns, onChangeSorting, sorting }: Props<T>) => (
   <thead>
     <tr>
-      { columns.map(({ header, minWidth, sorter }, index) =>
+      { columns.map(({ header, width, sorter }, index) =>
         <StyledHeader
           key={ index }
-          minWidth={ minWidth }
-          isFixed={ lastColumnFixed && index === columns.length - 1 }
+          width={ width }
         >
           { sorter ? (
             <Sorter 

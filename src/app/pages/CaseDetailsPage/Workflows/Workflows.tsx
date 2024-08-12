@@ -31,8 +31,7 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
         workflows.map(({ id, tasks = [] }) => (
           <TableWrapper key={ `${ id }` }>
             <Table
-              columns={ columns }
-              lastColumnFixed
+              columns={ columns }             
               data={ tasks }
               pagination={ false }
               emptyPlaceholder="Geen taken beschikbaar."

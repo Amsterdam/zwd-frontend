@@ -8,7 +8,8 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     header: "Taak ID",
     dataIndex: "id",
     sorter: (a: Components.Schemas.CaseUserTask, b: Components.Schemas.CaseUserTask) =>  a?.id - b?.id,    
-    defaultSortOrder: "DESCEND"
+    defaultSortOrder: "DESCEND",
+    width: 100
   }, {
     header: "Open taak",
     dataIndex: "name",
@@ -25,7 +26,7 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
   }, {
     header: "",
     dataIndex: "case",
-    minWidth: 170,
+    width: 100,
     render: (caseId) => <LinkButton label="Zaakdetails" path={ `/zaken/${ caseId }`} />
   }
 ]
