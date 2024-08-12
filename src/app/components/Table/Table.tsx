@@ -159,11 +159,8 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
                 const text: string = column.dataIndex ? _get(rowData, column.dataIndex) as string : ""
                 const node = column.render ? column.render(text, rowData) : text
                 return (
-                  <TableCell key={ index } data-testid="table-cell">
-                    {loading
-                      ? <SmallSkeleton maxRandomWidth={ column.minWidth ?? 30 } />
-                      : node
-                    }
+                  <TableCell key={ index } $borderLeft={ column.borderLeft } data-testid="table-cell">
+                    { node }
                   </TableCell>
                 )
               })}
@@ -173,7 +170,7 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
             <Row key={ index }>
               {row.map((_, index) => (
                 <TableCell data-testid="table-cell" key={ index }>
-                  <SmallSkeleton maxRandomWidth={ columns[index].minWidth ?? 30 } />
+                  <SmallSkeleton maxRandomWidth={ columns[index].width ?? 30 } />
                 </TableCell>
               ))}
             </Row>

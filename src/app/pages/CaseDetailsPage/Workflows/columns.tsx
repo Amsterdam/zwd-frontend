@@ -7,6 +7,7 @@ const getColumns = (caseId: Components.Schemas.Case["id"]): ColumnType<Component
   {
     header: "",
     dataIndex: "id",
+    width: 60,
     render: () => <Icon svg={ TaskOutlined } />
   }, {
     header: "Open taken",
@@ -18,7 +19,7 @@ const getColumns = (caseId: Components.Schemas.Case["id"]): ColumnType<Component
   }, {
     header: "Verwerking taak",
     dataIndex: "id",
-    minWidth: 170,
+    width: 150,
     render: (_, task) => <TaskButton task={ task } caseId={ caseId } />
   }
 ])

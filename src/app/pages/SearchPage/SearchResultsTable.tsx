@@ -18,7 +18,7 @@ const columns: ColumnType<Vve>[] = [
   }, {
     header: "",
     dataIndex: "id",
-    minWidth: 170,
+    width: 140,
     render: () => <LinkButton label="Zaak aanmaken" path="" /> // onClickRow is overruling the  link
   }
 ]

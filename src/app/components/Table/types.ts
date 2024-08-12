@@ -27,7 +27,8 @@ export type ColumnType<T> = {
   sorter?: Sorter<T>
   sortOrder?: SortOrder
   defaultSortOrder?: SortOrder
-  minWidth?: number
+  width?: number
+  borderLeft?: boolean
   render?: (text: string, record: T) => React.ReactNode
 }
 
@@ -39,7 +40,6 @@ export type OnChangeSortingType<T> = {
 export type TableType<T> = {
   numLoadingRows?: number
   loading?: boolean
-  lastColumnFixed?: boolean
   columns: ColumnType<T>[]
   data?: T[]
   emptyPlaceholder?: React.ReactNode
