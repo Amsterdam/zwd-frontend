@@ -20,6 +20,7 @@ declare namespace Components {
             created: string; // date-time
             updated: string; // date-time
             completed?: boolean;
+            case: number
         }
         export interface CaseWorkflow {
             id: number;

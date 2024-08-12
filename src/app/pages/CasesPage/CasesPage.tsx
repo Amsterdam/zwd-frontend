@@ -18,7 +18,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     header: "",
     dataIndex: "id",
     width: 100,
-    render: () => <LinkButton label="Zaakdetails" path="" />
+    render: () => <LinkButton label="Zaakdetails" />
   }
 ]
 

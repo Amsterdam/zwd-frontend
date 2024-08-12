@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import { ColumnType, LinkButton, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
@@ -27,12 +28,13 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     header: "",
     dataIndex: "case",
     width: 100,
-    render: (caseId) => <LinkButton label="Zaakdetails" path={ `/zaken/${ caseId }`} />
+    render: () => <LinkButton label="Zaakdetails" />
   }
 ]
 
 export const TasksPage: React.FC = () => {
   const [data, { isBusy }] = useTasks()
+  const navigate = useNavigate()
   
   return (
     <>
@@ -41,6 +43,7 @@ export const TasksPage: React.FC = () => {
         columns={ columns } 
         data={ data as Components.Schemas.CaseUserTask[] } 
         loading={ isBusy }
+        onClickRow={(obj) => navigate(`/zaken/${ obj.case }`)}
       />
     </>
   )
