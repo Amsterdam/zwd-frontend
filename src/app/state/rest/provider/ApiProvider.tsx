@@ -10,7 +10,8 @@ type GroupedContext = Record<ApiGroup, ApiCache & RequestQueue>
 
 export const ApiContext = createContext<GroupedContext>({
   cases: noopContext,
-  tasks: noopContext
+  tasks: noopContext,
+  bpmn: noopContext
 })
 
 type Props = {
@@ -24,6 +25,10 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
       ...useRequestQueue()
     },
     tasks: {
+      ...useApiCache(),
+      ...useRequestQueue()
+    },
+    bpmn: {
       ...useApiCache(),
       ...useRequestQueue()
     }
