@@ -1,5 +1,10 @@
 declare namespace Components {
     namespace Schemas {
+        export interface BpmnModel {
+            version: string;
+            file_name: string;
+            model: string;
+        }
         export interface Case {
             id: number;
             description?: string | null;
@@ -7,6 +12,24 @@ declare namespace Components {
         }
         export interface CaseCreate {
             description?: string | null;
+        }
+        export interface CaseEvent {
+            id: number;
+            event_values: {
+                [name: string]: any;
+            };
+            event_variables: {
+                [name: string]: any;
+            };
+            date_created: string; // date-time
+            type: /**
+             * * `CASE` - CASE
+             * * `CASE_CLOSE` - CASE_CLOSE
+             * * `GENERIC_TASK` - GENERIC_TASK
+             */
+            TypeEnum;
+            emitter_id: number;
+            case: number;
         }
         export interface CaseUserTask {
             id: number;
@@ -20,7 +43,7 @@ declare namespace Components {
             created: string; // date-time
             updated: string; // date-time
             completed?: boolean;
-            case: number
+            case: number;
         }
         export interface CaseWorkflow {
             id: number;
@@ -40,6 +63,12 @@ declare namespace Components {
             description?: string;
             date_added: string; // date-time
         }
+        /**
+         * * `CASE` - CASE
+         * * `CASE_CLOSE` - CASE_CLOSE
+         * * `GENERIC_TASK` - GENERIC_TASK
+         */
+        export type TypeEnum = "CASE" | "CASE_CLOSE" | "GENERIC_TASK";
     }
 }
 declare namespace Paths {
@@ -58,10 +87,51 @@ declare namespace Paths {
             }
         }
     }
+    namespace BpmnModelsFileRetrieve {
+        namespace Parameters {
+            export type ModelName = string; // ^[^/]+$
+            export type Version = string; // ^[^/]+$
+        }
+        export interface PathParameters {
+            model_name: Parameters.ModelName /* ^[^/]+$ */;
+            version: Parameters.Version /* ^[^/]+$ */;
+        }
+        namespace Responses {
+            export interface $200 {
+            }
+        }
+    }
+    namespace BpmnModelsList {
+        namespace Responses {
+            export type $200 = string[];
+        }
+    }
+    namespace BpmnModelsList2 {
+        namespace Parameters {
+            export type ModelName = string; // ^[^/]+$
+        }
+        export interface PathParameters {
+            model_name: Parameters.ModelName /* ^[^/]+$ */;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.BpmnModel[];
+        }
+    }
     namespace CasesCreate {
         export type RequestBody = Components.Schemas.CaseCreate;
         namespace Responses {
             export type $201 = Components.Schemas.CaseCreate;
+        }
+    }
+    namespace CasesEventsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseEvent;
         }
     }
     namespace CasesList {
@@ -96,6 +166,22 @@ declare namespace Paths {
         namespace Responses {
             export interface $200 {
             }
+        }
+    }
+    namespace TasksList {
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseUserTask[];
+        }
+    }
+    namespace TasksRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseUserTask;
         }
     }
 }
