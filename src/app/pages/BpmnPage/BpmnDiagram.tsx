@@ -8,7 +8,6 @@ type Props = {
 
 export const BpmnDiagram: React.FC<Props> = ({ bpmnModel }) => {
   const { model, version } = bpmnModel
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const [xml, { isBusy }] = useBpmnFile(model, version)
   
   if (isBusy) {
