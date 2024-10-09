@@ -1,48 +1,45 @@
-import { AspectRatio, Grid, SearchField, Image, Overlap } from "@amsterdam/design-system-react"
-import { SearchResultsTable } from "./SearchResultsTable"
+import { useCallback, useState } from "react"
+import debounce from "lodash.debounce"
+import { SearchField } from "@amsterdam/design-system-react"
+import SearchResults from "./SearchResults/SearchResults"
+import { PageHeading } from "app/components"
+import { useURLState } from "app/hooks"
 
-export const SearchPage: React.FC = () => (
-  <>
-    <Overlap>
-      <AspectRatio ratio="2x-wide">
-        <Image
-          alt=""
-          cover
-          sizes="(max-width: 36rem) 640px, (max-width: 68rem) 1280px, 1600px"
-          src="https://picsum.photos/1600/500"
-          srcSet="https://picsum.photos/640/200 640w, https://picsum.photos/1280/400 1280w, https://picsum.photos/1600/500 1600w"
+const DELAY = 750
+
+export const SearchPage: React.FC = () => {
+  const [searchString, setSearchString] = useURLState("q", "")
+  const [debouncedSearchString, setDebouncedSearchString] = useState<string>(searchString)
+  
+  // Memoize the debounced function to prevent recreation on every render
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSetValue = useCallback(
+    debounce((value: string) => setDebouncedSearchString(value), DELAY),
+    []
+  )
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value
+    setSearchString(value)
+    debouncedSetValue(value)
+  }
+
+  return (
+    <>
+      <PageHeading label="Adres zoeken" />
+      <SearchField style={{ width: 600, marginBottom: "2rem" }}>
+        <SearchField.Input
+          placeholder="Zoek op postcode of straat"
+          name="search-box"
+          onChange={ onChange }
+          value={ searchString }
         />
-      </AspectRatio>
-      <Grid
-        style={{
-          alignSelf: "center"
-        }}
-      >
-        <Grid.Cell
-          span={{
-            medium: 6,
-            narrow: 4,
-            wide: 8
-          }}
-          start={{
-            medium: 2,
-            narrow: 1,
-            wide: 3
-          }}
-        >
-          <SearchField onSubmit={function Qa(){}}>
-            <SearchField.Input
-              label="Zoeken"
-              placeholder="Zoek op adres, straat of postcode"
-            />
-            <SearchField.Button />
-          </SearchField>
-        </Grid.Cell>
-      </Grid>
-    </Overlap>
-    <SearchResultsTable/>
-  </>
-)
+        <SearchField.Button />
+      </SearchField>
+      <SearchResults searchString={ debouncedSearchString } />
+    </>
+  )
+}
 
 export default SearchPage
     

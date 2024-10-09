@@ -9,9 +9,10 @@ import { ApiGroup } from "../index"
 type GroupedContext = Record<ApiGroup, ApiCache & RequestQueue>
 
 export const ApiContext = createContext<GroupedContext>({
+  bpmn: noopContext,
   cases: noopContext,
   tasks: noopContext,
-  bpmn: noopContext
+  bagPdok: noopContext
 })
 
 type Props = {
@@ -20,15 +21,19 @@ type Props = {
 
 const ApiProvider: React.FC<Props> = ({ children }) => {
   const value: GroupedContext = {
+    bagPdok: {
+      ...useApiCache(),
+      ...useRequestQueue()
+    },
+    bpmn: {
+      ...useApiCache(),
+      ...useRequestQueue()
+    },
     cases: {
       ...useApiCache(),
       ...useRequestQueue()
     },
     tasks: {
-      ...useApiCache(),
-      ...useRequestQueue()
-    },
-    bpmn: {
       ...useApiCache(),
       ...useRequestQueue()
     }
