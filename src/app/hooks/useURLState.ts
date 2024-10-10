@@ -24,6 +24,7 @@ export const useURLState = (key: string, defaultValue: string): [string, (value:
 
   useEffect(() => {
     setQueryParam(key, state)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, state])
 
   const setURLState = useCallback((value: string) => {

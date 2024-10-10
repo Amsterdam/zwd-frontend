@@ -3,13 +3,12 @@ import { LinkButton } from "app/components"
 const columns = [
   {
     header: "Adres",
-    dataIndex: "weergavenaam",
-    minWidth: 100
+    dataIndex: "weergavenaam"
   },
   {
     header: "",
     dataIndex: "adresseerbaarobject_id",
-    minWidth: 140,
+    width: 80,
     render: () => <LinkButton label="Bekijk" path="" /> // onClickRow is overruling the  link
   }
 ]

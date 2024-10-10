@@ -27,7 +27,7 @@ export const SearchPage: React.FC = () => {
   return (
     <>
       <PageHeading label="Adres zoeken" />
-      <SearchField style={{ width: 600, marginBottom: "2rem" }}>
+      <SearchField onSubmit={(e) => e.preventDefault() }  style={{ width: 600, marginBottom: "2rem" }}>
         <SearchField.Input
           placeholder="Zoek op postcode of straat"
           name="search-box"
