@@ -2,6 +2,7 @@ export type ApiGroup =
   | "cases"
   | "tasks"
   | "bpmn"
+  | "bagPdok"
 
 export type Options = {
   keepUsingInvalidCache?: boolean
@@ -12,3 +13,4 @@ export type Options = {
 export * from "./cases"
 export * from "./tasks"
 export * from "./bpmn"
+export * from "./bagPdok"
