@@ -14,6 +14,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
+    "test": "vitest",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -50,8 +51,9 @@
     "dtsgenerator": "^3.19.2",
     "env-cmd": "^10.1.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.12"
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "vitest": "^2.1.2"
   }
 }
