@@ -1,6 +1,7 @@
 import { exec } from "child_process"
 
-const url = "https://api.zwd.woon-o.azure.amsterdam.nl/api/schema/?format=json"
+// const url = "https://api.zwd.woon-o.azure.amsterdam.nl/api/schema/?format=json"
+const url = "http://localhost:8081/api/schema/?format=json"
 
 exec(`dtsgen -o ./src/__generated__/apiSchema.d.ts --url ${ url }`,
   (error, stdout, stderr) => {

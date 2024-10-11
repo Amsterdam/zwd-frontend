@@ -1,8 +1,10 @@
 export type ApiGroup =
-  | "cases"
-  | "tasks"
-  | "bpmn"
+  | "address" 
   | "bagPdok"
+  | "bpmn"
+  | "cases"
+  | "dataPunt"
+  | "tasks"
 
 export type Options = {
   keepUsingInvalidCache?: boolean
@@ -10,7 +12,9 @@ export type Options = {
   isMockExtended?: boolean
 }
 
-export * from "./cases"
-export * from "./tasks"
-export * from "./bpmn"
+export * from "./address"
 export * from "./bagPdok"
+export * from "./bpmn"
+export * from "./cases"
+export * from "./dataPunt"
+export * from "./tasks"

@@ -21,17 +21,15 @@ const SearchResults: React.FC<Props> = ({ searchString }) => {
   const dataSource = bagData?.response?.docs?.filter((obj) => obj.adresseerbaarobject_id) || []
 
   return (
-    isValid ? (
-      <Table
-        columns={ columns }
-        data={ dataSource }
-        loading={ loading }
-        numLoadingRows={ 1 }
-        onClickRow={({ adresseerbaarobject_id }) => navigate(`vve/${ adresseerbaarobject_id }/zaken/nieuw`)}
-        emptyPlaceholder="Er zijn geen adressen gevonden"
-        pagination={ false }
-      />
-    ) : null
+    <Table
+      columns={ columns }
+      data={ dataSource }
+      loading={ loading }
+      numLoadingRows={ 1 }
+      onClickRow={({ adresseerbaarobject_id }) => navigate(`adres/${ adresseerbaarobject_id }`)}
+      emptyPlaceholder={ isValid ? "Geen resultaten gevonden" : "Voer minimaal 3 karakters in" }
+      pagination={ false }
+    />
   )
 }
 

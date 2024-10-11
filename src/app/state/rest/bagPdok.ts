@@ -4,7 +4,7 @@ import useApiRequest from "./hooks/useApiRequest"
 import qs from "qs"
 
 // Constants
-const PDOK_URL = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/suggest"
+const PDOK_URL = "https://api.pdok.nl/bzk/locatieserver/search/v3_1/free"
 const MUNICIPALITY_FILTER = "gemeentenaam:(amsterdam)"
 const ADDRESS_FILTER = "AND (type:adres) AND (adrestype: hoofdadres)"
 const DEFAULT_SORT = "score desc, weergavenaam asc"

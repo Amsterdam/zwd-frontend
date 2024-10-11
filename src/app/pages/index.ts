@@ -1,4 +1,5 @@
 export * from "./AuthPage/AuthPage"
+export * from "./AddressPage/AddressPage"
 export * from "./CaseCreatePage/CaseCreatePage"
 export * from "./CaseDetailsPage/CaseDetailsPage"
 export * from "./CasesPage/CasesPage"
