@@ -68,6 +68,7 @@ declare namespace Components {
             name: string;
             build_year: number;
             number_of_appartments: number;
+            message?: string | null;
         }
         /**
          * * `CASE` - CASE

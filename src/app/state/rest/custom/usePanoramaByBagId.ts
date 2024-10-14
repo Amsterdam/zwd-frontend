@@ -1,4 +1,4 @@
-import { useBagPdok, usePanorama } from "app/state/rest"
+import { useBagPdokByBagId, usePanorama } from "app/state/rest"
 
 const extractLatLng = (point?: BAGPdokAddress["centroide_ll"]) => {
   // Ensure the string starts with "POINT(" and ends with ")"
@@ -17,7 +17,7 @@ const extractLatLng = (point?: BAGPdokAddress["centroide_ll"]) => {
 }
 
 export const usePanoramaByBagId = (bagId: string, width: number | undefined, aspect: number | undefined, radius: number, fov: number | undefined) => {
-  const [data] = useBagPdok(bagId)
+  const [data] = useBagPdokByBagId(bagId)
   const docs = data?.response?.docs
   const foundAddress = docs && docs[0] ? docs[0] : undefined
   const latLng = extractLatLng(foundAddress?.centroide_ll)
