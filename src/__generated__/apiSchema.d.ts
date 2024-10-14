@@ -63,6 +63,13 @@ declare namespace Components {
             description?: string;
             date_added: string; // date-time
         }
+        export interface HomeownerAssociation {
+            id: number;
+            name: string;
+            build_year: number;
+            number_of_appartments: number;
+            message?: string | null;
+        }
         /**
          * * `CASE` - CASE
          * * `CASE_CLOSE` - CASE_CLOSE
@@ -72,6 +79,17 @@ declare namespace Components {
     }
 }
 declare namespace Paths {
+    namespace AddressHomeownerAssociationRetrieve {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
     namespace ApiSchemaRetrieve {
         namespace Parameters {
             export type Format = "json" | "yaml";

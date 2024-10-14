@@ -33,7 +33,7 @@ export const SearchResultsTable: React.FC = () => {
         columns={ columns } 
         data={ vveList } 
         loading={ false }
-        onClickRow={(_, id) => navigate(`vve/${ id }/zaken/nieuw`)}
+        onClickRow={(_, id) => navigate(`/vve/${ id }/zaken/nieuw`)}
       />
     </>
   )

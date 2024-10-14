@@ -1,7 +1,7 @@
 import { DefaultLayout } from "app/components"
 import { 
-  AuthPage, CaseCreatePage, CaseDetailsPage, CasesPage, 
-  NotFoundPage, SearchPage, TasksPage, BpmnPage, SearchVvePage  
+  AuthPage, AddressPage, CaseCreatePage, CaseDetailsPage, CasesPage, 
+  NotFoundPage, SearchPage, TasksPage, BpmnPage, SearchVvePage
 } from "app/pages"
 import { createBrowserRouter } from "react-router-dom"
 
@@ -14,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <SearchPage />
+      },
+      {
+        path: "adres/:bagId",
+        element: <AddressPage />
       },
       {
         path: "bpmn",
