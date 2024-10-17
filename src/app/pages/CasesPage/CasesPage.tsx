@@ -9,10 +9,10 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>  a?.id - b?.id,    
     defaultSortOrder: "DESCEND"
   }, {
-    header: "Description",
-    dataIndex: "description",
+    header: "VVE",
+    dataIndex: "homeowner_association",
     sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
-      a?.description && b?.description ? a.description.localeCompare(b.description) : -1
+      a?.homeowner_association && b?.homeowner_association ? a.homeowner_association.localeCompare(b.homeowner_association) : -1
     )
   }, {
     header: "",

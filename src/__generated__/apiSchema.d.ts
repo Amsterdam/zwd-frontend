@@ -9,9 +9,12 @@ declare namespace Components {
             id: number;
             description?: string | null;
             workflows: CaseWorkflow[];
+            homeowner_association: string | null;
         }
         export interface CaseCreate {
             description?: string | null;
+            advice_type?: string | null;
+            homeowner_association?: number | null;
         }
         export interface CaseEvent {
             id: number;
@@ -44,6 +47,7 @@ declare namespace Components {
             updated: string; // date-time
             completed?: boolean;
             case: number;
+            homeowner_association: string | null;
         }
         export interface CaseWorkflow {
             id: number;

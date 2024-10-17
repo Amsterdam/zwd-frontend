@@ -1,0 +1,31 @@
+import React, { ReactNode } from "react"
+import { useForm, UseFormReturn, FieldValues, DefaultValues  } from "react-hook-form"
+import withExceptionCapturing from "app/utils/withExceptionCapturing"
+
+type FormProps<T extends FieldValues> = {
+  defaultValues?: DefaultValues<T>
+  children: ReactNode
+  onSubmit: (data: T) => void
+}
+
+export const Form = <T extends FieldValues>({ defaultValues, children, onSubmit }: FormProps<T>) => {
+  const methods: UseFormReturn<T> = useForm<T>({ defaultValues })
+  const { handleSubmit, register, formState: { errors } } = methods
+
+  return (
+    <form onSubmit={ withExceptionCapturing(handleSubmit(onSubmit)) }>
+      {React.Children.map(children, (child) =>
+        React.isValidElement(child) && child.props.name
+          ? React.createElement(child.type, {
+            ...{
+              ...child.props,
+              key: child.props.name,
+              register,
+              errors
+            }
+          })
+          : child
+      )}
+    </form>
+  )
+}

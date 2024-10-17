@@ -12,6 +12,9 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     defaultSortOrder: "DESCEND",
     width: 100
   }, {
+    header: "VVE",
+    dataIndex: "homeowner_association"
+  }, {
     header: "Open taak",
     dataIndex: "name",
     sorter: (a: Components.Schemas.CaseUserTask, b: Components.Schemas.CaseUserTask) => (
@@ -20,6 +23,7 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
   }, {
     header: "Gemaakt op",
     dataIndex: "created",
+    width: 130,
     sorter: (a: Components.Schemas.CaseUserTask, b: Components.Schemas.CaseUserTask) => (
       a.created.localeCompare(b.created)
     ),
