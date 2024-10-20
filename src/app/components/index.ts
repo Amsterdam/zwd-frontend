@@ -1,6 +1,7 @@
 export * from "./Descriptions/Descriptions"
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./DetailsList/DetailsList"
+export * from "./forms/index"
 export * from "./icons/icons"
 export * from "./LinkButton/LinkButton"
 export * from "./Modal/hooks/useModal"

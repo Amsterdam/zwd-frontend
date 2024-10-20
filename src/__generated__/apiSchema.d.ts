@@ -1,5 +1,11 @@
 declare namespace Components {
     namespace Schemas {
+        /**
+         * * `Energieadvies` - ENERGY_ADVICE
+         * * `Haalbaarheidsonderzoek` - HBO
+         * * `Cursus` - COURSE
+         */
+        export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek" | "Cursus";
         export interface BpmnModel {
             version: string;
             file_name: string;
@@ -9,12 +15,25 @@ declare namespace Components {
             id: number;
             description?: string | null;
             workflows: CaseWorkflow[];
-            homeowner_association: string | null;
+            advice_type?: /**
+             * * `Energieadvies` - ENERGY_ADVICE
+             * * `Haalbaarheidsonderzoek` - HBO
+             * * `Cursus` - COURSE
+             */
+            AdviceTypeEnum;
+            homeowner_association: string;
         }
         export interface CaseCreate {
+            id: number;
             description?: string | null;
-            advice_type?: string | null;
+            advice_type?: /**
+             * * `Energieadvies` - ENERGY_ADVICE
+             * * `Haalbaarheidsonderzoek` - HBO
+             * * `Cursus` - COURSE
+             */
+            AdviceTypeEnum;
             homeowner_association?: number | null;
+            contacts?: Contact[];
         }
         export interface CaseEvent {
             id: number;
@@ -47,7 +66,7 @@ declare namespace Components {
             updated: string; // date-time
             completed?: boolean;
             case: number;
-            homeowner_association: string | null;
+            homeowner_association: string;
         }
         export interface CaseWorkflow {
             id: number;
@@ -58,6 +77,12 @@ declare namespace Components {
             workflow_message_name?: string | null;
             data?: null;
             tasks: CaseUserTask[];
+        }
+        export interface Contact {
+            fullname: string;
+            email: string; // email
+            phone: string;
+            role: string;
         }
         export interface GenericCompletedTaskCreate {
             id: number;
@@ -72,7 +97,15 @@ declare namespace Components {
             name: string;
             build_year: number;
             number_of_appartments: number;
-            message?: string | null;
+            contacts: Nested[];
+        }
+        export interface Nested {
+            id: number;
+            email: string; // email
+            phone: string;
+            fullname: string;
+            role: string;
+            homeowner_associations?: number[];
         }
         /**
          * * `CASE` - CASE
@@ -188,6 +221,22 @@ declare namespace Paths {
         namespace Responses {
             export interface $200 {
             }
+        }
+    }
+    namespace HomeownerAssociationList {
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation[];
+        }
+    }
+    namespace HomeownerAssociationRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
         }
     }
     namespace TasksList {

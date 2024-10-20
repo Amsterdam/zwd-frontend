@@ -13,7 +13,10 @@ const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
     width: 100
   }, {
     header: "VVE",
-    dataIndex: "homeowner_association"
+    dataIndex: "homeowner_association",
+    sorter: (a: Components.Schemas.CaseUserTask, b: Components.Schemas.CaseUserTask) => (
+      a?.homeowner_association && b?.homeowner_association ? a.homeowner_association.localeCompare(b.homeowner_association) : -1
+    )
   }, {
     header: "Open taak",
     dataIndex: "name",

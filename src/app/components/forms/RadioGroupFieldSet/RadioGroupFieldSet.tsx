@@ -1,6 +1,6 @@
 import React from "react"
 import { FieldSet, Radio } from "@amsterdam/design-system-react"
-import { FieldValues, UseFormRegister } from "react-hook-form"
+import type { FormState, FieldValues, UseFormRegister, RegisterOptions } from "react-hook-form"
 
 
 type Option = {
@@ -9,23 +9,30 @@ type Option = {
 }
 
 type Props = {
-  register?: UseFormRegister<FieldValues>
-  options: Option[]
   name: string
   label?: string
+  options: Option[]
+  register?: UseFormRegister<FieldValues>
+  formState?: FormState<FieldValues>
+  validation?: RegisterOptions
 }
 
-export const RadioGroupFieldSet: React.FC<Props> = ({ register, options, label, name, ...rest }) => (
-  <FieldSet legend={ label ?? name } >
-    {options.map(({ value, label }) => (
-      <Radio 
-        key={value} 
-        value={value}
-        {...(register ? register(name, { required: true }) : {})} 
-        {...rest}
-      >
-        { label }
-      </Radio>
-    ))}
-  </FieldSet>
-)
+export const RadioGroupFieldSet: React.FC<Props> = ({ name, label, options, register, formState, validation, ...rest }) => {
+  const hasError = !!formState?.errors?.[name]
+  
+  return (
+    <FieldSet legend={ label ?? name } >
+      {options.map(({ value, label }) => (
+        <Radio 
+          key={ value } 
+          value={ value }
+          invalid={ hasError }
+          { ...(register ? register(name, validation) : {}) } 
+          { ...rest }
+        >
+          { label }
+        </Radio>
+      ))}
+    </FieldSet>
+  )
+}

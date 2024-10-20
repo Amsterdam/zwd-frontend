@@ -1,5 +1,5 @@
 import React from "react"
-import { FieldValues, UseFormRegister, FieldError } from "react-hook-form"
+import type { FieldValues, UseFormRegister, FormState, RegisterOptions } from "react-hook-form"
 import { Field, Label, TextArea } from "@amsterdam/design-system-react"
 
 
@@ -7,11 +7,12 @@ type Props = {
   name: string
   label?: string
   register?: UseFormRegister<FieldValues>
-  errors?: { [key: string]: FieldError }
+  formState?: FormState<FieldValues>
+  validation: RegisterOptions
 }
 
-export const TextAreaField: React.FC<Props> = ({ label, name, register, errors = {}, ...rest }) => {
-  const hasError = !!errors[name]
+export const TextAreaField: React.FC<Props> = ({ name, label, register, formState, validation = {}, ...rest }) => {
+  const hasError = !!formState?.errors?.[name]
 
   return (
     <Field>
@@ -21,8 +22,8 @@ export const TextAreaField: React.FC<Props> = ({ label, name, register, errors =
         id="body"
         rows={4}
         invalid={ hasError }
-        {...(register ? register(name, { required: true, maxLength: 1000 }) : {})} 
-        {...rest}
+        { ...(register ? register(name, validation) : {}) } 
+        { ...rest }
       />
     </Field>
   )
