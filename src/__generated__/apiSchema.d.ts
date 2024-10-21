@@ -98,6 +98,7 @@ declare namespace Components {
             build_year: number;
             number_of_appartments: number;
             contacts: Nested[];
+            message?: string;
         }
         export interface Nested {
             id: number;
