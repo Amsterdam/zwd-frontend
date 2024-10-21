@@ -3,7 +3,7 @@ import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
 
-type CaseApiResponse = Components.Schemas.Case[] | Components.Schemas.Case;
+type CaseApiResponse = Components.Schemas.Case[] | Components.Schemas.CaseCreate
 
 export const useCases = (options?: Options) => {
   const handleError = useErrorHandler()

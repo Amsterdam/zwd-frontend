@@ -17,12 +17,12 @@ export const Form = <T extends FieldValues>({ defaultValues, children, onSubmit 
     <Grid paddingTop="small" paddingBottom="medium" style={{ paddingLeft: 0 }}>
       <Grid.Cell span={{ narrow: 4, medium: 6, wide: 6 }}>
         <form className="ams-gap--md" onSubmit={ withExceptionCapturing(handleSubmit(onSubmit)) }>
-          {React.Children.map(children, (child) =>
+          {React.Children.map(children, (child, key) =>
             React.isValidElement(child) 
               ? React.createElement(child.type, {
                 ...{
                   ...child.props,
-                  key: child.props.name,
+                  key,
                   register,
                   formState
                 }

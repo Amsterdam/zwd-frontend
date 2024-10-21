@@ -29,6 +29,7 @@ export const CaseCreatePage: React.FC = () => {
 
     execPost(values)
       .then((resp) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
         const zaakId = resp?.data?.id
         if (zaakId) {
           navigate(`/zaken/${ zaakId }`)
