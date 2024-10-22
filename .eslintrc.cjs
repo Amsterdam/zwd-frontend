@@ -8,7 +8,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', '__generated__'],
+  ignorePatterns: ['dist', '.eslintrc.cjs', '__generated__', '**/*.test.ts'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
