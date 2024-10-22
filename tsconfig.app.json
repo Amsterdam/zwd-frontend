@@ -28,5 +28,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["src", "scripts", "./.eslintrc.cjs"]
+  "include": ["src", "scripts", "./.eslintrc.cjs"],
+  "exclude": ["**/*.test.ts"]
 }
