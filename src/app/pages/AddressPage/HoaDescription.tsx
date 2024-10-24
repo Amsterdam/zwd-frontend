@@ -2,7 +2,7 @@ import { Button } from "@amsterdam/design-system-react"
 import { styled } from "styled-components"
 import { useNavigate } from "react-router-dom"
 import { PageSpinner, Descriptions } from "app/components"
-import { useHomeownerAssociation } from "app/state/rest"
+import { useHomeownerAssociationByBagId } from "app/state/rest"
 
 
 type Props = {
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `
 
 export const HoaDescription: React.FC<Props> = ({ bagId }) => {
-  const [data, { isBusy }] = useHomeownerAssociation(bagId)
+  const [data, { isBusy }] = useHomeownerAssociationByBagId(bagId)
   const navigate = useNavigate()
 
   if (isBusy) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
-import { PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons } from "app/components"
+import { PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, HoaName } from "app/components"
 import { useCases } from "app/state/rest"
 import { useNavigate, useParams } from "react-router-dom"
 
@@ -12,14 +12,14 @@ const options = [
 ]
 
 export const CaseCreatePage: React.FC = () => {
-  const { vveId } = useParams<{ vveId: string }>()  
+  const { hoaId } = useParams<{ hoaId: string }>()  
   const [loading, setLoading] = useState<boolean>(false)
   const [ ,{ execPost } ] = useCases({ lazy: true })
   const navigate = useNavigate()
   
   const onSubmit = (data: Components.Schemas.CaseCreate) => {
-    if (!vveId) return
-    const homeowner_association = Number(vveId)
+    if (!hoaId) return
+    const homeowner_association = Number(hoaId)
     setLoading(true)
     
     const values = {
@@ -46,9 +46,10 @@ export const CaseCreatePage: React.FC = () => {
   return (
     <>
       <PageHeading label="Nieuwe zaak aanmaken" icon={ EditDocumentIcon } />
+      { hoaId && <HoaName id={ Number(hoaId) } /> }
       <Form onSubmit={ onSubmit } >
         <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
-        <TextAreaField name="description" label="Toelichting" validation={{ maxLength: 1000 }} />
+        <TextAreaField name="description" label="Toelichting" validation={{ required: true, maxLength: 1000 }} />
         <FormActionButtons okText="Zaak aanmaken" onCancel={ () => navigate(-1) } loading={ loading } />
       </Form>
     </>
