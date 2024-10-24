@@ -1,7 +1,7 @@
 import { AspectRatio, Grid, SearchField, Image, Overlap } from "@amsterdam/design-system-react"
 import { SearchResultsTable } from "./SearchResultsTable"
 
-export const SearchVvePage: React.FC = () => (
+export const SearchHoaPage: React.FC = () => (
   <>
     <Overlap>
       <AspectRatio ratio="2x-wide">
@@ -44,5 +44,5 @@ export const SearchVvePage: React.FC = () => (
   </>
 )
 
-export default SearchVvePage
+export default SearchHoaPage
     

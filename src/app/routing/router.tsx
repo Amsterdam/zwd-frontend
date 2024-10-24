@@ -1,7 +1,7 @@
 import { DefaultLayout } from "app/components"
 import { 
   AuthPage, AddressPage, CaseCreatePage, CaseDetailsPage, CasesPage, 
-  NotFoundPage, SearchPage, TasksPage, BpmnPage, SearchVvePage
+  NotFoundPage, SearchPage, TasksPage, BpmnPage, SearchHoaPage
 } from "app/pages"
 import { createBrowserRouter } from "react-router-dom"
 
@@ -29,10 +29,10 @@ const router = createBrowserRouter([
       },
       {
         path: "vve",
-        element: <SearchVvePage />
+        element: <SearchHoaPage />
       },
       {
-        path: "vve/:vveId/zaken/nieuw",
+        path: "vve/:hoaId/zaken/nieuw",
         element: <CaseCreatePage />
       },
       {
