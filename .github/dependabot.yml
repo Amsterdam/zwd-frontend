@@ -8,5 +8,5 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 100
     ignore:
-      - dependency-type: "all" # This will ignore all types of dependencies
-        update-type: "patch" # Ignore all patch updates
+      - dependency-name: "*" # This will ignore all dependencies
+        update-types: ["version-update:semver-patch"]
