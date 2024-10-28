@@ -1,9 +1,16 @@
 import React, { useState } from "react"
 import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
-import { PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, HoaName } from "app/components"
+import { PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, HoaName, SectionDivider } from "app/components"
 import { useCases } from "app/state/rest"
 import { useNavigate, useParams } from "react-router-dom"
+import { Heading } from "@amsterdam/design-system-react"
 
+
+type ExecPostResponse = {
+  data: {
+    id: number
+  }
+}
 
 const options = [
   { value: "Energieadvies", label: "Energieadvies" },
@@ -28,10 +35,8 @@ export const CaseCreatePage: React.FC = () => {
     }
 
     execPost(values)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .then((resp: any) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-        const zaakId = resp?.data?.id
+      .then((resp) => {
+        const zaakId = (resp as ExecPostResponse)?.data?.id
         if (zaakId) {
           navigate(`/zaken/${ zaakId }`)
         }        
@@ -46,7 +51,9 @@ export const CaseCreatePage: React.FC = () => {
   return (
     <>
       <PageHeading label="Nieuwe zaak aanmaken" icon={ EditDocumentIcon } />
+      <Heading level={4} >VVE</Heading>
       { hoaId && <HoaName id={ Number(hoaId) } /> }
+      <SectionDivider text="Gebruik dit formulier om een nieuwe zaak toe te voegen" />
       <Form onSubmit={ onSubmit } >
         <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
         <TextAreaField name="description" label="Toelichting" validation={{ required: true, maxLength: 1000 }} />
