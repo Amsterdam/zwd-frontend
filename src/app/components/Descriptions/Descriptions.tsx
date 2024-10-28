@@ -17,9 +17,9 @@ export const Descriptions: React.FC<DescriptionsProps> = ({ items }) => (
         <DescriptionList.Term>
           {item.label}
         </DescriptionList.Term>
-        <DescriptionList.Details>
+        <DescriptionList.Description>
           {item.children}
-        </DescriptionList.Details>
+        </DescriptionList.Description>
       </Fragment>
     ))}
   </DescriptionList>

@@ -19,7 +19,7 @@ export const DetailsList: React.FC<Props> = ({ data = [] }) => (
     { data.map((item) => ( 
       <React.Fragment key={item?.term}>
         <DescriptionList.Term key={item?.term}>{item?.term}</DescriptionList.Term>
-        <DescriptionList.Details  key={item?.details}>{item?.details}</DescriptionList.Details>
+        <DescriptionList.Description  key={item?.details}>{item?.details}</DescriptionList.Description>
       </React.Fragment>
     ))}
   </Wrapper>
