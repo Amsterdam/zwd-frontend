@@ -1,25 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useCallback, useReducer } from "react"
 import { produce } from "immer"
 
 export type ApiCacheItem = {
   valid: boolean
-  value: unknown
-  errors: unknown[]
+  value: any
+  errors: any[]
 }
 
 export type ApiCache = {
-  getCacheItem: (key: string) => ApiCacheItem
-  setCacheItem: (key: string, value: unknown) => void
-  updateCacheItem: (key: string, updater: (item: unknown) => void) => void
-  addErrorToCacheItem: (key: string, error: unknown) => void
+  getCacheItem: (key: string) => ApiCacheItem | undefined
+  setCacheItem: (key: string, value: any) => void
+  updateCacheItem: (key: string, updater: (item: any) => void) => void
+  addErrorToCacheItem: (key: string, error: any) => void
   clearCache: () => void
 }
 
 type State = Record<string, ApiCacheItem>
 type Action =
-  | { type: "UPDATE_ITEM", key: string, updater: (item: unknown) => void }
-  | { type: "SET_ITEM", key: string, value: unknown }
-  | { type: "ADD_ERROR", key: string, error: unknown }
+  | { type: "UPDATE_ITEM", key: string, updater: (item: any) => void }
+  | { type: "SET_ITEM", key: string, value: any }
+  | { type: "ADD_ERROR", key: string, error: any }
   | { type: "CLEAR" }
 
 const reducer = (state: State, action: Action) => {
@@ -52,20 +54,18 @@ const reducer = (state: State, action: Action) => {
       .reduce((acc, [key, val]) => ({
         ...acc,
         [key]: { valid: false, value: val.value, errors: [] }
-      }), {})
+      }), {} as State)
   }
   }
 }
 
 export const useApiCache = () => {
-  const [ cache, dispatch ] = useReducer(reducer, {})
+  const [ cache, dispatch ] = useReducer(reducer, {} as State)
 
-  // @ts-expect-error Unsafe return and use of any
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  const getCacheItem = useCallback((key: string) => cache[key], [ cache ])
-  const setCacheItem = useCallback((key: string, value: unknown) => dispatch({ type: "SET_ITEM", key, value }), [ dispatch ])
-  const updateCacheItem = useCallback((key: string, updater: (cache: unknown) => void) => dispatch({ type: "UPDATE_ITEM", key, updater }), [ dispatch ])
-  const addErrorToCacheItem = useCallback((key: string, error: unknown) => dispatch({ type: "ADD_ERROR", key, error }), [ dispatch ])
+  const getCacheItem = useCallback((key: string): ApiCacheItem | undefined => cache[key], [ cache ])
+  const setCacheItem = useCallback((key: string, value: any) => dispatch({ type: "SET_ITEM", key, value }), [ dispatch ])
+  const updateCacheItem = useCallback((key: string, updater: (cache: any) => void) => dispatch({ type: "UPDATE_ITEM", key, updater }), [ dispatch ])
+  const addErrorToCacheItem = useCallback((key: string, error: any) => dispatch({ type: "ADD_ERROR", key, error }), [ dispatch ])
   const clearCache = useCallback(() => dispatch({ type: "CLEAR" }), [ dispatch ])
 
   return { getCacheItem, setCacheItem, updateCacheItem, addErrorToCacheItem, clearCache }
