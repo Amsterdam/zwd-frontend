@@ -3,6 +3,7 @@ import { styled } from "styled-components"
 import { useNavigate } from "react-router-dom"
 import { PageSpinner, Descriptions } from "app/components"
 import { useHomeownerAssociationByBagId } from "app/state/rest"
+import HoaCases from "./HoaCases"
 
 
 type Props = {
@@ -33,6 +34,9 @@ export const HoaDescription: React.FC<Props> = ({ bagId }) => {
       <>
         <Wrapper>
           <Descriptions items={ items } />
+        </Wrapper>
+        <Wrapper>
+          { data?.id && <HoaCases hoaId={ data.id } /> }
         </Wrapper>
         <Button onClick={ () => navigate(`/vve/${ data.id }/zaken/nieuw`)} >
           Nieuwe zaak aanmaken  
