@@ -31,9 +31,9 @@ export const TimelineEvent: React.FC<Props> = ({ event }) => {
             <DescriptionList.Term>
               { item.key }
             </DescriptionList.Term>
-            <DescriptionList.Details>
+            <DescriptionList.Description>
               { item.value }
-            </DescriptionList.Details>
+            </DescriptionList.Description>
           </React.Fragment>
         ))}
       </DescriptionList>

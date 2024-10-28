@@ -22,6 +22,7 @@ declare namespace Components {
              */
             AdviceTypeEnum;
             homeowner_association: string;
+            created: string; // date-time
         }
         export interface CaseCreate {
             id: number;
