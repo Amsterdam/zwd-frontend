@@ -1,6 +1,5 @@
-import React from "react"
 import type { FieldValues, UseFormRegister, FormState, RegisterOptions } from "react-hook-form"
-import { Field, Label, TextArea } from "@amsterdam/design-system-react"
+import { Field, Label, TextInput } from "@amsterdam/design-system-react"
 
 
 type Props = {
@@ -11,16 +10,14 @@ type Props = {
   validation: RegisterOptions
 }
 
-export const TextAreaField: React.FC<Props> = ({ name, label, register, formState, validation = {}, ...rest }) => {
+export const TextInputField: React.FC<Props> = ({ name, label, register, formState, validation = {}, ...rest }) => {
   const hasError = !!formState?.errors?.[name]
 
   return (
     <Field>
       <Label htmlFor={ name } >{ label }</Label>
-      <TextArea
-        aria-describedby="bodyDescription"
-        id="body"
-        rows={4}
+      <TextInput
+        id={ name }
         invalid={ hasError }
         { ...(register ? register(name, validation) : {}) } 
         { ...rest }

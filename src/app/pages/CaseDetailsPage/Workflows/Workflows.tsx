@@ -1,5 +1,5 @@
 import { useWorkflows } from "app/state/rest"
-import { Table, SmallSkeleton, PageHeading } from "app/components"
+import { Table, SmallSkeleton } from "app/components"
 import { styled } from "styled-components"
 import getColumns from "./columns"
 
@@ -9,6 +9,7 @@ type Props = {
 }
 
 const Wrapper = styled.div`
+  margin-top: 24px;
   margin-bottom: 32px;
 `
 
@@ -26,7 +27,6 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
   }
   return (
     <Wrapper>
-      <PageHeading label="Open taken" level={ 4 } />
       { workflows?.length > 0 ? (
         workflows.map(({ id, tasks = [] }) => (
           <TableWrapper key={ `${ id }` }>

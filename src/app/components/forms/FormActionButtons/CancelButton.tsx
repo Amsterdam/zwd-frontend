@@ -1,9 +1,9 @@
+import { MouseEvent } from "react"
 import { Button } from "@amsterdam/design-system-react"
-
 
 type Props = {
   label?: string
-  onCancel?: () => void
+  onCancel?: (event: MouseEvent<HTMLButtonElement>) => void
 }
   
 export const CancelButton: React.FC<Props> = ({ label = "Annuleer", onCancel }) => (

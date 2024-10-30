@@ -36,6 +36,12 @@ declare namespace Components {
             homeowner_association?: number | null;
             contacts?: Contact[];
         }
+        export interface CaseDocument {
+            id: number;
+            case: number;
+            document: string; // uri
+            name: string;
+        }
         export interface CaseEvent {
             id: number;
             event_values: {
@@ -53,6 +59,11 @@ declare namespace Components {
             TypeEnum;
             emitter_id: number;
             case: number;
+        }
+        export interface CaseList {
+            id: number;
+            homeowner_association: string;
+            created: string; // date-time
         }
         export interface CaseUserTask {
             id: number;
@@ -180,6 +191,50 @@ declare namespace Paths {
             export type $201 = Components.Schemas.CaseCreate;
         }
     }
+    namespace CasesDocumentsCreate {
+        export type RequestBody = Components.Schemas.CaseDocument;
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseDocument;
+        }
+    }
+    namespace CasesDocumentsDestroy {
+        namespace Parameters {
+            export type DocId = string;
+            export type Id = number;
+        }
+        export interface PathParameters {
+            doc_id: Parameters.DocId;
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export interface $204 {
+            }
+        }
+    }
+    namespace CasesDocumentsDownloadRetrieve {
+        namespace Parameters {
+            export type DocId = string;
+            export type Id = number;
+        }
+        export interface PathParameters {
+            doc_id: Parameters.DocId;
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.Case;
+        }
+    }
+    namespace CasesDocumentsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseDocument;
+        }
+    }
     namespace CasesEventsRetrieve {
         namespace Parameters {
             export type Id = number;
@@ -193,7 +248,7 @@ declare namespace Paths {
     }
     namespace CasesList {
         namespace Responses {
-            export type $200 = Components.Schemas.Case[];
+            export type $200 = Components.Schemas.CaseList[];
         }
     }
     namespace CasesRetrieve {
@@ -223,6 +278,17 @@ declare namespace Paths {
         namespace Responses {
             export interface $200 {
             }
+        }
+    }
+    namespace HomeownerAssociationCasesRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseList;
         }
     }
     namespace HomeownerAssociationList {
