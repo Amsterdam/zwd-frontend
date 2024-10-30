@@ -59,3 +59,26 @@ export const useCaseEvents = (id: Components.Schemas.Case["id"] ,options?: Optio
     isProtected: true
   })
 }
+
+export const useCaseDocuments = (id: Components.Schemas.Case["id"] ,options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseDocument[]>({
+    ...options,
+    url: `${ makeApiUrl("cases", id, "documents") }`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCaseDocumentUpload = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseDocument>({
+    ...options,
+    url: `${ makeApiUrl("cases", "documents") }`,
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}

@@ -1,3 +1,4 @@
+import { MouseEvent } from "react"
 import { Row } from "@amsterdam/design-system-react"
 import { FieldValues, FormState } from "react-hook-form"
 import { CancelButton } from "./CancelButton"
@@ -8,7 +9,7 @@ type Props = {
   okText: string
   onOk?: () => void
   cancelText?: string
-  onCancel?: () => void
+  onCancel?: (event: MouseEvent<HTMLButtonElement>) => void
   loading?: boolean
   formState?: FormState<FieldValues>
 }
