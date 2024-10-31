@@ -21,7 +21,7 @@ export const FileInputField: React.FC<Props> = ({ name, label, register, formSta
         De volgende bestandstypes zijn toegestaan: PDF, Word-documenten, tekstbestanden en afbeeldingen in PNG- en JPEG-formaat.
       </Paragraph>
       <FileInput 
-        style={{ color: hasError ? "#EC0000" : "#000000" }}
+        style={{ color: hasError ? "#EC0000" : "#000000", width: "100%" }}
         id={ name }
         accept={ ACCEPTED_FILE_TYPES }
         { ...(register ? register(name, validation) : {}) } 

@@ -60,7 +60,7 @@ export const useCaseEvents = (id: Components.Schemas.Case["id"] ,options?: Optio
   })
 }
 
-export const useCaseDocuments = (id: Components.Schemas.Case["id"] ,options?: Options) => {
+export const useCaseDocuments = (id: Components.Schemas.Case["id"], options?: Options) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseDocument[]>({
     ...options,
@@ -76,6 +76,22 @@ export const useCaseDocumentUpload = (options?: Options) => {
   return useApiRequest<Components.Schemas.CaseDocument>({
     ...options,
     url: `${ makeApiUrl("cases", "documents") }`,
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCaseDocumentDownload = (
+  id: Components.Schemas.Case["id"], 
+  docId: Components.Schemas.CaseDocument["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseDocument>({
+    ...options,
+    url: `${ makeApiUrl("cases", id, "documents", "download", docId) }`,
     lazy: true,
     groupName: "cases",
     handleError,

@@ -1,12 +1,12 @@
-import { Button, Dialog, Heading, Row } from "@amsterdam/design-system-react"
+import { Button, Dialog, Row } from "@amsterdam/design-system-react"
 import { DownloadIcon } from "@amsterdam/design-system-react-icons"
 import UploadDialog, { UPLOAD_DIALOG_ID } from "./UploadDialog/UploadDialog"
+import DocumentsTable from "./DocumentsTable/DocumentsTable"
 
 
 const Documents: React.FC = () => (
   <>
-    <Row align="between">
-      <Heading level={3}>Documenten</Heading>
+    <Row align="end">
       <Button 
         key="id-document-upload" 
         variant="primary" 
@@ -18,6 +18,7 @@ const Documents: React.FC = () => (
       </Button>
     </Row>
     <UploadDialog />
+    <DocumentsTable />
   </>
 )
 

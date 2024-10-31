@@ -29,7 +29,7 @@ export const UploadDialog: React.FC = () => {
 
   return (
     <Dialog heading="Document uploaden" id={ UPLOAD_DIALOG_ID } >
-      <Form onSubmit={ onSubmit } >
+      <Form onSubmit={ onSubmit } formGrid={{ narrow: 4, medium: 6, wide: 10 }}>
         <TextInputField name="name" label="Titel van het document" validation={{ required: true }} />
         <FileInputField name="upload" validation={{ required: true }} />
         <FormActionButtons okText="Upload" onCancel={ Dialog.close } />

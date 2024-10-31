@@ -15,7 +15,7 @@ type Props = {
 }
   
 export const FormActionButtons: React.FC<Props> = ({ okText, onOk, cancelText, onCancel, loading = false, formState }) => (
-  <Row>
+  <Row style={{ marginTop: 24 }}>
     <CancelButton label={ cancelText } onCancel={ onCancel } />
     <SubmitButton label={ okText } loading={ loading } formState={ formState } onSubmit={ onOk }/>
   </Row>

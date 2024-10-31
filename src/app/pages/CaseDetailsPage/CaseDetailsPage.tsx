@@ -6,11 +6,13 @@ import { PageHeading, PageSpinner, DetailsList } from "app/components"
 import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents/Documents"
+import { useURLState } from "app/hooks"
 
 
 export const CaseDetailsPage: React.FC = () => {
   const { caseId } = useParams()
   const [data, { isBusy }] = useCase(Number(caseId))
+  const [activeTab, setActiveTab] = useURLState("tab", "0")
 
   if (isBusy) {
     return <PageSpinner />
@@ -21,14 +23,19 @@ export const CaseDetailsPage: React.FC = () => {
     { term: "Beschrijving:", details: data?.description }
   ]
 
+  const onClickTab = (e: React.MouseEvent<HTMLElement>) => {
+    const lastChar = (e.target as HTMLElement).id.slice(-1)
+    setActiveTab(lastChar)
+  }
+
   return (
     <>
       <PageHeading label="Zaakdetails" icon={DocumentIcon}/>
       <Heading level={4} style={{ marginBottom: 24 }}>{ data?.homeowner_association }</Heading>
       <DetailsList data={ dataDetailsList } />
-      <Tabs activeTab={0}>
-        <Tabs.List>
-          <Tabs.Button tab={0}>
+      <Tabs activeTab={ Number(activeTab) } >
+        <Tabs.List onClick={ onClickTab }>
+          <Tabs.Button tab={0} >
             Open taken
           </Tabs.Button>
           <Tabs.Button tab={1}>
