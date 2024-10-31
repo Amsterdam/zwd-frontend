@@ -41,6 +41,7 @@ declare namespace Components {
             case: number;
             document: string; // uri
             name: string;
+            created: string; // date-time
         }
         export interface CaseEvent {
             id: number;
