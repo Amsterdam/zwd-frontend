@@ -1,42 +1,47 @@
 import { IconButton, Row } from "@amsterdam/design-system-react"
-import { DownloadIcon,CloseIcon } from "@amsterdam/design-system-react-icons"
-import { ViewSvg } from "app/components"
-import { useCaseDocumentDownload } from "app/state/rest"
-import { downloadFile, viewFile } from "app/utils/files"
+import { DownloadIcon, SearchIcon, TrashBinIcon } from "@amsterdam/design-system-react-icons"
+import { useCaseDocumentDelete } from "app/state/rest"
+import { useFetchFile, viewFile, downloadFile } from "app/utils/files"
+import { makeApiUrl } from "app/state/rest/hooks/utils"
+import { ConfirmationDialog } from "app/components"
+import { useConfirmDialog } from "app/hooks"
 
 
 type Props = {
   record: Components.Schemas.CaseDocument
 }
 
-type ResponseFile = {
-  data: BlobPart
-}
-
 const DoucumentsActions: React.FC<Props> = ({ record }) => {
-  const [, { execGet }] = useCaseDocumentDownload(record.case, record.id)
+  const [, { execDelete }] = useCaseDocumentDelete(record.case, record.id)
+  const fileUrl = `${ makeApiUrl("cases", record.case, "documents", "download", record.id) }`
+  const fetchFile = useFetchFile(fileUrl)
+  const dialogId = `confirmation-dialog-${ record.id }`
+  const { openDialog } = useConfirmDialog(dialogId)
 
   const handleAction = (isDownload = false) => {
-    execGet()
+    fetchFile()
       .then((resp) => {
-        const data = (resp as ResponseFile)?.data
         if (isDownload) {
-          downloadFile(data, record.name)
+          downloadFile(resp, record.name)
         } else {
-          viewFile(data)
+          viewFile(resp)
         }
       })
       .catch((error) => {
-        console.error("Error downloading document", error)  
-      }) 
+        console.error(error)  
+      })
+  }
+
+  const deleteDocument = () => {
+    void execDelete()
   }
 
   return (
     <Row align="between">
       <IconButton
         label="Bekijken"
-        svg={ ViewSvg }
-        onClick={() => handleAction() }
+        svg={ SearchIcon }
+        onClick={() => void handleAction() }
       />
       <IconButton
         label="Downloaden"
@@ -45,7 +50,15 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
       />
       <IconButton
         label="Verwijderen"
-        svg={ CloseIcon }
+        svg={ TrashBinIcon }
+        onClick={ openDialog }
+      />
+      <ConfirmationDialog 
+        id={ dialogId } 
+        title="Document verwijderen" 
+        content={ <span>Weet u zeker dat u het document <strong>&quot;{ record.name }&quot;</strong> wilt verwijderen?</span> }
+        onOk={ deleteDocument } 
+        onOkText="Verwijderen"
       />
     </Row>
   )

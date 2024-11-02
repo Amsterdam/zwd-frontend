@@ -3,19 +3,16 @@ import { useParams } from "react-router-dom"
 import { Form, FormActionButtons, TextInputField, FileInputField } from "app/components/forms"
 import { useCaseDocumentUpload } from "app/state/rest"
 
+type Props = {
+  id: string
+}
 
 type CaseDocumentData = {
   name: string
   upload: FileList
 }
 
-export const UPLOAD_DIALOG_ID = "ams-dialog-form-document-upload"
-/*
- ** const dialog = document.querySelector(`#${ UPLOAD_DIALOG_ID }`) as HTMLDialogElement
- ** dialog.close()
- */
-
-export const UploadDialog: React.FC = () => {
+export const UploadDialog: React.FC<Props> = ({ id }) => {
   const { caseId } = useParams()
   const [, { execPost }] = useCaseDocumentUpload()
   
@@ -28,9 +25,9 @@ export const UploadDialog: React.FC = () => {
   }
 
   return (
-    <Dialog heading="Document uploaden" id={ UPLOAD_DIALOG_ID } >
+    <Dialog heading="Document uploaden" id={ id } >
       <Form onSubmit={ onSubmit } formGrid={{ narrow: 4, medium: 6, wide: 10 }}>
-        <TextInputField name="name" label="Titel van het document" validation={{ required: true }} />
+        <TextInputField name="name" label="Titel van het document" validation={{ required: true, maxLength: 100 }} />
         <FileInputField name="upload" validation={{ required: true }} />
         <FormActionButtons okText="Upload" onCancel={ Dialog.close } />
       </Form>

@@ -1,3 +1,4 @@
+export * from "./ConfirmationDialog/ConfirmationDialog"
 export * from "./Descriptions/Descriptions"
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./DetailsList/DetailsList"
