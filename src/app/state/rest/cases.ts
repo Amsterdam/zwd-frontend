@@ -83,7 +83,7 @@ export const useCaseDocumentUpload = (options?: Options) => {
   })
 }
 
-export const useCaseDocumentDownload = (
+export const useCaseDocumentDelete = (
   id: Components.Schemas.Case["id"], 
   docId: Components.Schemas.CaseDocument["id"],
   options?: Options
@@ -91,7 +91,7 @@ export const useCaseDocumentDownload = (
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseDocument>({
     ...options,
-    url: `${ makeApiUrl("cases", id, "documents", "download", docId) }`,
+    url: `${ makeApiUrl("cases", id, "documents", docId) }`,
     lazy: true,
     groupName: "cases",
     handleError,
