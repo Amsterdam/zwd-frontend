@@ -51,7 +51,7 @@ declare namespace Components {
             event_variables: {
                 [name: string]: any;
             };
-            date_created: string; // date-time
+            created: string; // date-time
             type: /**
              * * `CASE` - CASE
              * * `CASE_CLOSE` - CASE_CLOSE
@@ -111,7 +111,11 @@ declare namespace Components {
             build_year: number;
             number_of_appartments: number;
             contacts: Nested[];
-            message?: string;
+            owners: Nested[];
+            district: string;
+            neighborhood: string;
+            zip_code?: string | null;  
+            message?: string; 
         }
         export interface Nested {
             id: number;
