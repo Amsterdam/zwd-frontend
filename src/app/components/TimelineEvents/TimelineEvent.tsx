@@ -11,15 +11,11 @@ type Props = {
 const Wrapper = styled.div`
   margin-left: 25px;
   padding: 25px;
-  background-color: rgba(0, 0, 0, 0.08);
-  border: 0.5px solid #d4d2d2;
-  border-radius: 4px;
-  box-shadow: 
-    0px 6px 16px -8px rgba(0, 0, 0, 0.08),
-    0px 9px 28px 0px rgba(0, 0, 0, 0.05),
-    0px 12px 48px 16px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid #E6E6E6;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 `
-
 
 export const TimelineEvent: React.FC<Props> = ({ event }) => {
   const data = useValues(event)
