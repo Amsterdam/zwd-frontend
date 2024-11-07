@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { PanoramaPreview, PageHeading, PageSpinner } from "app/components"
 import HoaDescription from "./HoaDescription"
 import { Button, Grid, GridColumnNumbers } from "@amsterdam/design-system-react"
-import { useHomeownerAssociationByBagId } from "app/state/rest"
+import { useHomeownerAssociation, useHomeownerAssociationByBagId } from "app/state/rest"
 import { styled } from "styled-components"
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
@@ -15,15 +15,20 @@ const Wrapper = styled.div`
 `
 
 export const AddressPage: React.FC = () => {
-  const { bagId } = useParams<{ bagId: string }>()  
-  const [hoa, { isBusy }] = useHomeownerAssociationByBagId(bagId)
+  const { bagId, hoaId } = useParams<{ bagId: string, hoaId: string }>()  
+  const [dataByBagId, { isBusy }] = useHomeownerAssociationByBagId(bagId)
+  const [dataByHoaId, { isBusy: isLoading }] = useHomeownerAssociation(Number(hoaId))
   const navigate = useNavigate()
+
+  const hasId = bagId || hoaId
+  const loading = isBusy || isLoading
+  const hoa = bagId ? dataByBagId : dataByHoaId
 
   return (
     <>
       <PageHeading label="Adresoverzicht" icon={ HousingIcon } />
-      { isBusy && <PageSpinner /> }
-      { !isBusy && bagId && (
+      { loading && <PageSpinner /> }
+      { !loading && hasId && (
         <>
           <Grid style={{ paddingLeft: 0 }} paddingTop="small" paddingBottom="large">
             {hoa?.id ? ( 
@@ -35,17 +40,19 @@ export const AddressPage: React.FC = () => {
                 <p>Er zijn geen vve-gegevens gevonden voor dit adres.</p>
               </Grid.Cell>
             )}
-            <Grid.Cell span={ gridSpan } >
-              <PanoramaPreview bagId={ bagId } aspect={ 4 } fov={ 120 } />
-            </Grid.Cell>
+            { bagId && (
+              <Grid.Cell span={ gridSpan } >
+                <PanoramaPreview bagId={ bagId } aspect={ 4 } fov={ 120 } />
+              </Grid.Cell>
+            )}
           </Grid>
           { hoa?.id && (
             <>
               <Wrapper>
-                <HoaOwners hoa={hoa} />
+                <HoaOwners hoa={ hoa } />
               </Wrapper>
               <Wrapper>
-                <HoaCases hoaId={hoa.id} />
+                <HoaCases hoaId={ hoa.id } />
               </Wrapper>
               <Wrapper>
                 <Button onClick={() => navigate(`/vve/${ hoa.id }/zaken/nieuw`)}>

@@ -13,6 +13,7 @@ declare namespace Components {
         }
         export interface Case {
             id: number;
+            created: string; // date-time
             description?: string | null;
             workflows: CaseWorkflow[];
             advice_type?: /**
@@ -21,8 +22,7 @@ declare namespace Components {
              * * `Cursus` - COURSE
              */
             AdviceTypeEnum;
-            homeowner_association: string;
-            created: string; // date-time
+            homeowner_association: CaseHomeownerAssociation;
         }
         export interface CaseCreate {
             id: number;
@@ -61,9 +61,13 @@ declare namespace Components {
             emitter_id: number;
             case: number;
         }
+        export interface CaseHomeownerAssociation {
+            id: number;
+            name: string;
+        }
         export interface CaseList {
             id: number;
-            homeowner_association: string;
+            homeowner_association: CaseHomeownerAssociation;
             created: string; // date-time
         }
         export interface CaseUserTask {
@@ -114,7 +118,7 @@ declare namespace Components {
             owners: Nested[];
             district: string;
             neighborhood: string;
-            zip_code?: string | null;  
+            zip_code?: string | null;
             message?: string; 
         }
         export interface Nested {

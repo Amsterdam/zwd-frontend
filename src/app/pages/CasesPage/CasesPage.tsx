@@ -11,10 +11,14 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     defaultSortOrder: "DESCEND"
   }, {
     header: "Vve statutaire naam",
-    dataIndex: "homeowner_association",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
-      a?.homeowner_association && b?.homeowner_association ? a.homeowner_association.localeCompare(b.homeowner_association) : -1
-    )
+    dataIndex: "homeowner_association.name",
+    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => {
+      const nameA = (a?.homeowner_association?.name as string | undefined) ?? ""
+      const nameB = (b?.homeowner_association?.name as string | undefined) ?? ""
+      return (
+        nameA.localeCompare(nameB)
+      )
+    }
   }, {
     header: "Startdatum",
     dataIndex: "created",

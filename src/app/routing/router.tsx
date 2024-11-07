@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         element: <TasksPage />
       },
       {
+        path: "vve/:hoaId",
+        element: <AddressPage />
+      },
+      {
         path: "vve/:hoaId/zaken/nieuw",
         element: <CaseCreatePage />
       },

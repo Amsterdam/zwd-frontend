@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
+import styled from "styled-components"
 import { DocumentIcon } from "@amsterdam/design-system-react-icons"
 import { Heading, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"
@@ -9,10 +10,19 @@ import Documents from "./Documents/Documents"
 import { useURLState } from "app/hooks"
 
 
+const HeaderLink = styled(Heading)`
+  margin-bottom: 24px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  } 
+`
+
 export const CaseDetailsPage: React.FC = () => {
   const { caseId } = useParams()
   const [data, { isBusy }] = useCase(Number(caseId))
   const [activeTab, setActiveTab] = useURLState("tab", "0")
+  const navigate = useNavigate()
 
   if (isBusy) {
     return <PageSpinner />
@@ -31,7 +41,12 @@ export const CaseDetailsPage: React.FC = () => {
   return (
     <>
       <PageHeading label="Zaakdetails" icon={DocumentIcon}/>
-      <Heading level={4} style={{ marginBottom: 24 }}>{ data?.homeowner_association }</Heading>
+      <HeaderLink 
+        onClick={() => navigate(`/vve/${ data?.homeowner_association?.id }`)} 
+        level={4} 
+      >
+        { data?.homeowner_association?.name }
+      </HeaderLink>
       <DetailsList data={ dataDetailsList } />
       <Tabs activeTab={ Number(activeTab) } >
         <Tabs.List onClick={ onClickTab }>
