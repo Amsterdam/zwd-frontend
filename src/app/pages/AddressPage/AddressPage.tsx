@@ -32,7 +32,7 @@ export const AddressPage: React.FC = () => {
               </Grid.Cell>
             ) : (
               <Grid.Cell span={ gridSpan } >
-                <p>Er zijn geen VVE-gegevens gevonden voor dit adres.</p>
+                <p>Er zijn geen vve-gegevens gevonden voor dit adres.</p>
               </Grid.Cell>
             )}
             <Grid.Cell span={ gridSpan } >
