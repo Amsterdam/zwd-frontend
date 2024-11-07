@@ -8,7 +8,7 @@ type Props = {
 export const HoaDescription: React.FC<Props> = ({ hoa }) => {
   if (hoa?.id) {
     const items = [
-      { label: "VVE statutaire naam", children: hoa?.name },
+      { label: "Vve statutaire naam", children: hoa?.name },
       { label: "Postcode", children: hoa?.zip_code },
       { label: "Buurt", children: hoa?.neighborhood },
       { label: "Stadsdeel", children: hoa?.district },

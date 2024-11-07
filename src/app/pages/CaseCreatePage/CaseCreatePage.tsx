@@ -51,7 +51,7 @@ export const CaseCreatePage: React.FC = () => {
   return (
     <>
       <PageHeading label="Nieuwe zaak aanmaken" icon={ EditDocumentIcon } />
-      <Heading level={4} >VVE</Heading>
+      <Heading level={4} >vve</Heading>
       { hoaId && <HoaName id={ Number(hoaId) } /> }
       <SectionDivider text="Gebruik dit formulier om een nieuwe zaak toe te voegen" />
       <Form onSubmit={ onSubmit } >

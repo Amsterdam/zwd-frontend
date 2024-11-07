@@ -15,7 +15,6 @@ const StyledPageMenuLink = styled(PageMenu.Link)`
 
 const menuItems: MenuItem[] = [
   { label: "Zoeken", path: "/", icon: SearchIcon },
-  { label: "VVE", path: "vve", icon: SearchIcon },
   { label: "Zakenoverzicht", path: "/zaken" },
   { label: "Takenoverzicht", path: "/taken" },
   { label: "BPMN", path: "/bpmn" }
