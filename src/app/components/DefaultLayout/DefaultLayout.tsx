@@ -7,7 +7,7 @@ import { env } from "app/config/env"
 export const DefaultLayout: React.FC = () => (
   <>
     <SkipLink href="#main">Direct naar inhoud</SkipLink>
-    <Screen maxWidth="wide">
+    <Screen>
       <Grid>
         <Grid.Cell span="all">
           <Header
