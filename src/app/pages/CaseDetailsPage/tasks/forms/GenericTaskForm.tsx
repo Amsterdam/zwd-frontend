@@ -79,7 +79,7 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
             </Field>
           )
         default:
-          console.log("Form item must be of type 'select'")
+          console.log("Form item must be of type 'select' or 'text'")
           return null // or handle other field types
         }
       })}
