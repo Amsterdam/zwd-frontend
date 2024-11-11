@@ -1,4 +1,4 @@
-import { Field, Label, Select } from "@amsterdam/design-system-react"
+import { Field, Label, Select, TextArea } from "@amsterdam/design-system-react"
 import { useForm } from "react-hook-form"
 import withExceptionCapturing from "app/utils/withExceptionCapturing"
 import { SubmitButtonRow } from "./SubmitButtonRow"
@@ -64,6 +64,18 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
                   </Select.Option>
                 ))}
               </Select>
+            </Field>
+          )
+        case "text":
+          return (
+            <Field key={index}>
+              <Label htmlFor={formItem.name} >{formItem.label}</Label>
+              <TextArea
+                aria-describedby={ formItem.label }
+                id={ formItem.name }
+                rows={4}
+                {...register(formItem.name, { required: formItem.required })}
+              />
             </Field>
           )
         default:
