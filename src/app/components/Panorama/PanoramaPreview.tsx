@@ -38,7 +38,7 @@ const Img = styled.img`
   height: 100%;
   border-radius: 8px;
   border: 1px solid #E6E6E6;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `
 
 export const PanoramaPreview: React.FC<Props> = ({ bagId, width: w, aspect = 1.5, radius = 180, fov = 80 }) => {
