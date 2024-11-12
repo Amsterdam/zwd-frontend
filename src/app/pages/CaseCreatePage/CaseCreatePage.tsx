@@ -1,9 +1,14 @@
 import React, { useState } from "react"
 import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
-import { PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, HoaName, SectionDivider } from "app/components"
-import { useCases } from "app/state/rest"
-import { useNavigate, useParams } from "react-router-dom"
 import { Heading } from "@amsterdam/design-system-react"
+import { useNavigate, useParams } from "react-router-dom"
+import { 
+  PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, 
+  HoaName, SectionDivider, PageSpinner } from "app/components"
+import { useCases, useHomeownerAssociation } from "app/state/rest"
+import { ContactsFormFields } from "./ContactsFormFields"
+import { optionsForSmallHoa, optionsForBigHoa } from "./formOptions"
+import mapData, { CaseCreateFormTypes } from "./mapData"
 
 
 type ExecPostResponse = {
@@ -12,27 +17,18 @@ type ExecPostResponse = {
   }
 }
 
-const options = [
-  { value: "Energieadvies", label: "Energieadvies" },
-  { value: "Haalbaarheidsonderzoek", label: "Haalbaarheidsonderzoek" },
-  { value: "Cursus", label: "Cursus" }
-]
-
 export const CaseCreatePage: React.FC = () => {
   const { hoaId } = useParams<{ hoaId: string }>()  
   const [loading, setLoading] = useState<boolean>(false)
   const [ ,{ execPost } ] = useCases({ lazy: true })
+  const [hoa, { isBusy }] = useHomeownerAssociation(Number(hoaId))
   const navigate = useNavigate()
   
-  const onSubmit = (data: Components.Schemas.CaseCreate) => {
+  const onSubmit = (data: CaseCreateFormTypes) => {
     if (!hoaId) return
     const homeowner_association = Number(hoaId)
     setLoading(true)
-    
-    const values = {
-      ...data,
-      homeowner_association
-    }
+    const values = mapData(data, homeowner_association)
 
     execPost(values)
       .then((resp) => {
@@ -48,17 +44,21 @@ export const CaseCreatePage: React.FC = () => {
       })
   }
 
+  const options = hoa?.is_small ? optionsForSmallHoa : optionsForBigHoa
   return (
     <>
       <PageHeading label="Nieuwe zaak aanmaken" icon={ EditDocumentIcon } />
-      <Heading level={4} >vve</Heading>
+      <Heading level={3} >Vve</Heading>
       { hoaId && <HoaName id={ Number(hoaId) } /> }
       <SectionDivider text="Gebruik dit formulier om een nieuwe zaak toe te voegen" />
-      <Form onSubmit={ onSubmit } >
-        <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
-        <TextAreaField name="description" label="Toelichting" validation={{ required: true, maxLength: 1000 }} />
-        <FormActionButtons okText="Zaak aanmaken" onCancel={ () => navigate(-1) } loading={ loading } />
-      </Form>
+      { isBusy ? <PageSpinner /> : (
+        <Form onSubmit={ onSubmit } >
+          <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
+          <ContactsFormFields />
+          <TextAreaField name="description" label="Toelichting" validation={{ required: false, maxLength: 1000 }} />
+          <FormActionButtons okText="Zaak aanmaken" onCancel={ () => navigate(-1) } loading={ loading } />
+        </Form>  
+      )}
     </>
   )
 }

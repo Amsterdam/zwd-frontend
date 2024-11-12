@@ -119,6 +119,7 @@ declare namespace Components {
             district: string;
             neighborhood: string;
             zip_code?: string | null;
+            is_small: boolean;
             message?: string; 
         }
         export interface Nested {
