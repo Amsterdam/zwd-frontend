@@ -55,7 +55,7 @@ export const CaseCreatePage: React.FC = () => {
         <Form onSubmit={ onSubmit } >
           <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
           <ContactsFormFields />
-          <TextAreaField name="description" label="Toelichting" validation={{ required: false, maxLength: 1000 }} />
+          <TextAreaField name="description" label="Toelichting" validation={{ required: true, maxLength: 1000 }} />
           <FormActionButtons okText="Zaak aanmaken" onCancel={ () => navigate(-1) } loading={ loading } />
         </Form>  
       )}
