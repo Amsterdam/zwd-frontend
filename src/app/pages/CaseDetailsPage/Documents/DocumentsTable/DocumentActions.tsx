@@ -4,7 +4,7 @@ import { useCaseDocumentDelete } from "app/state/rest"
 import { useFetchFile, viewFile, downloadFile } from "app/utils/files"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
 import { ConfirmationDialog } from "app/components"
-import { useConfirmDialog } from "app/hooks"
+import { useDialog } from "app/hooks"
 
 
 type Props = {
@@ -16,7 +16,7 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
   const fileUrl = `${ makeApiUrl("cases", record.case, "documents", "download", record.id) }`
   const fetchFile = useFetchFile(fileUrl)
   const dialogId = `confirmation-dialog-${ record.id }`
-  const { openDialog } = useConfirmDialog(dialogId)
+  const { openDialog } = useDialog(dialogId)
 
   const handleAction = (isDownload = false) => {
     fetchFile()
