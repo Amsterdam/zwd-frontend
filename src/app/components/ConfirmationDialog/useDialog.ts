@@ -1,13 +1,20 @@
 import { Dialog } from "@amsterdam/design-system-react"
 
-export const useDialog = (id: string) => {
+type VoidFunction = () => void
+
+type DialogHandlers = {
+  openDialog: VoidFunction
+  closeDialog: VoidFunction
+}
+
+
+export const useDialog = (id: string): DialogHandlers => {
   const openDialog = () => {
     Dialog.open(`#${ id }`)
   }
   
-  const closeDialog = () => (
-    Dialog.close
-  )
+  const closeDialog = Dialog.close as VoidFunction
+
     
   return { openDialog, closeDialog }
 }

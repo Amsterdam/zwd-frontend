@@ -18,7 +18,7 @@ export const Form = <T extends FieldValues>({ defaultValues, children, onSubmit,
   const { handleSubmit, register, formState } = methods
 
   return (
-    <Grid paddingTop="small" paddingBottom="medium" style={{ paddingLeft: 0 }}>
+    <Grid paddingTop="medium" paddingBottom="medium" style={{ paddingLeft: 0 }}>
       <Grid.Cell span={ formGrid }>
         <form className="ams-gap--md" onSubmit={ withExceptionCapturing(handleSubmit(onSubmit)) }>
           {React.Children.map(children, (child, key) =>

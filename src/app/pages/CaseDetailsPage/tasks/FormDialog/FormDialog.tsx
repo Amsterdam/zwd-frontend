@@ -1,26 +1,23 @@
 import { useState } from "react"
-import { Modal } from "app/components"
+import { Dialog } from "@amsterdam/design-system-react"
 import { useTaskComplete } from "app/state/rest"
-import { CompletedTaskForm, ComletedTaskFormData } from "../forms/CompletedTaskForm" 
-import { GenericTaskForm, GenericTaskFormData, FormItem } from "../forms/GenericTaskForm"
+import { CompletedTaskForm, ComletedTaskFormData } from "./forms/CompletedTaskForm" 
+import { GenericTaskForm, GenericTaskFormData, FormItem } from "./forms/GenericTaskForm"
 
 
 export type Props = {
-  // task: Components.Schemas.CaseUserTask
+  dialogId: string
   task: Omit<Components.Schemas.CaseUserTask, "form"> & {
     form?: FormItem[] // Form is generated as any
   };
   caseId: Components.Schemas.Case["id"]
-  isOpen: boolean
-  closeModal: () => void
+  closeDialog: () => void
 }
 
-export const FormModal: React.FC<Props> = ({ isOpen, closeModal, task, caseId }) => {
+export const FormDialog: React.FC<Props> = ({ dialogId, task, caseId, closeDialog }) => {
   const [loading, setLoading] = useState(false)
   const [, { execPost }] = useTaskComplete({ lazy: true })
 
-  const { form, name } = task
-  
   const submitForm = (variables: ComletedTaskFormData | GenericTaskFormData ) => {
     setLoading(true)
     const values = {
@@ -40,27 +37,31 @@ export const FormModal: React.FC<Props> = ({ isOpen, closeModal, task, caseId })
       })
   }
 
+  const { form, name } = task
   const hasForm = form && form.length > 0
   const title = hasForm ? `Rond de taak "${ name }" af` : `Is de taak "${ name }" afgerond?`
-
+  
   return (
-    <Modal title={ title } open={ isOpen } onCancel={ closeModal }>
+    <Dialog
+      id={ dialogId }
+      heading={ title }
+    >
       { hasForm ? (
         <GenericTaskForm 
-          closeModal={ closeModal }  
+          closeModal={ closeDialog }  
           loading={ loading } 
           submitForm={ submitForm } 
           form={ form } 
         />
       ) : (
         <CompletedTaskForm 
-          closeModal={ closeModal }  
+          closeModal={ closeDialog }  
           loading={ loading } 
           submitForm={ submitForm } 
         />
       )}
-    </Modal>
+    </Dialog>
   )
 }
 
-export default FormModal
+export default FormDialog

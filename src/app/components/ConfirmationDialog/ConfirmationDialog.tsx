@@ -21,7 +21,7 @@ export const ConfirmationDialog: React.FC<Props> = ({ id, title, content, onOk, 
     )}
     heading={ title ?? "Weet u zeker?"}
   >
-    <Paragraph>
+    <Paragraph className="ams-mb--md">
       { content ?? "Weet u zeker dat u door wilt gaan met het uitvoeren van deze actie?" }
     </Paragraph>
   </Dialog>
