@@ -1,6 +1,6 @@
 import { Dialog } from "@amsterdam/design-system-react"
 
-export const useConfirmDialog = (id: string) => {
+export const useDialog = (id: string) => {
   const openDialog = () => {
     Dialog.open(`#${ id }`)
   }
