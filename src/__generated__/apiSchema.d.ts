@@ -85,6 +85,12 @@ declare namespace Components {
             case: number;
             homeowner_association: string;
         }
+        export interface CaseUserTaskList {
+            id: number;
+            name: string;
+            case: number;
+            homeowner_association: string;
+        }
         export interface CaseWorkflow {
             id: number;
             case?: number | null;
@@ -94,6 +100,7 @@ declare namespace Components {
             workflow_message_name?: string | null;
             data?: null;
             tasks: CaseUserTask[];
+            completed?: boolean;
         }
         export interface Contact {
             fullname: string;
@@ -130,12 +137,20 @@ declare namespace Components {
             role: string;
             homeowner_associations?: number[];
         }
+        export interface StartWorkflow {
+            workflow_option_id: number;
+        }
         /**
          * * `CASE` - CASE
          * * `CASE_CLOSE` - CASE_CLOSE
          * * `GENERIC_TASK` - GENERIC_TASK
          */
         export type TypeEnum = "CASE" | "CASE_CLOSE" | "GENERIC_TASK";
+        export interface WorkflowOption {
+            id: number;
+            name: string;
+            message_name: string;
+        }
     }
 }
 declare namespace Paths {
@@ -261,6 +276,23 @@ declare namespace Paths {
             export type $200 = Components.Schemas.CaseList[];
         }
     }
+    namespace CasesProcessesList {
+        namespace Responses {
+            export type $200 = Components.Schemas.WorkflowOption[];
+        }
+    }
+    namespace CasesProcessesStartCreate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.Case;
+        namespace Responses {
+            export type $200 = Components.Schemas.StartWorkflow;
+        }
+    }
     namespace CasesRetrieve {
         namespace Parameters {
             export type Id = number;
@@ -319,7 +351,7 @@ declare namespace Paths {
     }
     namespace TasksList {
         namespace Responses {
-            export type $200 = Components.Schemas.CaseUserTask[];
+            export type $200 = Components.Schemas.CaseUserTaskList[];
         }
     }
     namespace TasksRetrieve {
@@ -330,7 +362,7 @@ declare namespace Paths {
             id: Parameters.Id;
         }
         namespace Responses {
-            export type $200 = Components.Schemas.CaseUserTask;
+            export type $200 = Components.Schemas.CaseUserTaskList;
         }
     }
 }

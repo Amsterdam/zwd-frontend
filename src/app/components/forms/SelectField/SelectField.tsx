@@ -6,12 +6,13 @@ type Props = {
   name: string
   label?: string
   options?: { value: string, label: string }[]
+  defaultOption?: boolean
   register?: UseFormRegister<FieldValues>
   formState?: FormState<FieldValues>
   validation: RegisterOptions
 }
 
-export const SelectField: React.FC<Props> = ({ name, label, options, register, formState, validation = {}, ...rest }) => {
+export const SelectField: React.FC<Props> = ({ name, label, options, defaultOption = false, register, formState, validation = {}, ...rest }) => {
   const error = formState?.errors?.[name]
   const hasError = !!error
 
@@ -24,6 +25,11 @@ export const SelectField: React.FC<Props> = ({ name, label, options, register, f
         { ...(register ? register(name, validation) : {}) } 
         { ...rest }
       >
+        {defaultOption && (
+          <Select.Option key="default_option" value="default_option">
+            Maak een keuze
+          </Select.Option>
+        )}
         { options?.map((option) => (
           <Select.Option key={option.value} value={option.value}>
             {option.label}

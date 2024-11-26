@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Wrapper = styled.div`
-  margin-top: 24px;
+  margin-top: 16px;
   margin-bottom: 32px;
 `
 
