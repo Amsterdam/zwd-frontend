@@ -4,10 +4,11 @@ import { DocumentIcon } from "@amsterdam/design-system-react-icons"
 import { Heading, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"
 import { PageHeading, PageSpinner, DetailsList } from "app/components"
+import { useURLState } from "app/hooks"
 import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents/Documents"
-import { useURLState } from "app/hooks"
+import AddSubtask from "./AddSubtask/AddSubtask"
 
 
 const HeaderLink = styled(Heading)`
@@ -58,8 +59,13 @@ export const CaseDetailsPage: React.FC = () => {
           </Tabs.Button>
         </Tabs.List>
         <Tabs.Panel tab={0}>
-          { data?.id && <Workflows caseId={ data?.id } /> }
-          { data?.id && <CaseEvents caseId={ data?.id } /> }
+          {data?.id && (
+            <>
+              <AddSubtask />
+              <Workflows caseId={ data?.id } /> 
+              <CaseEvents caseId={ data?.id } /> 
+            </>
+          )}
         </Tabs.Panel>
         <Tabs.Panel tab={1}>
           <Documents />
