@@ -15,6 +15,7 @@ const getColumns = (caseId: Components.Schemas.Case["id"]): ColumnType<Component
   }, {
     header: "Slotdatum",
     dataIndex: "due_date",
+    width: 200,
     render: (text) => formatDate(text)
   }, {
     header: "Verwerking taak",

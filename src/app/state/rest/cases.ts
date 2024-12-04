@@ -49,6 +49,29 @@ export const useTaskComplete = (options?: Options) => {
   })
 }
 
+export const useCaseProcesses = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.WorkflowOption[]>({
+    ...options,
+    url: `${ makeApiUrl("cases", "processes") }`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCaseProcessesStart = (id: Components.Schemas.Case["id"], options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.StartWorkflow>({
+    ...options,
+    url: `${ makeApiUrl("cases", id, "processes", "start") }`,
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useCaseEvents = (id: Components.Schemas.Case["id"] ,options?: Options) => {
   const handleError = useErrorHandler()
   return useApiRequest<CaseEvent[]>({
