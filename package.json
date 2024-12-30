@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.16.0",
-    "@typescript-eslint/parser": "^8.12.2",
+    "@typescript-eslint/parser": "^8.18.2",
     "dtsgenerator": "^3.19.2",
     "env-cmd": "^10.1.0",
     "eslint": "^8.57.0",
