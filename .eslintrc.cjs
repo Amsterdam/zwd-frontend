@@ -39,7 +39,17 @@ module.exports = {
     "space-infix-ops": ["error"],
     "semi": ["error", "never"],
     "indent": ["error", 2],
-    "template-curly-spacing": ["error", "always"],
+    // "template-curly-spacing": ["error", "always"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "off",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never" // No trailing commas in function parameter lists
+      }
+    ],
     "@typescript-eslint/no-unsafe-assignment": "warn",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/no-unsafe-member-access": "warn"
