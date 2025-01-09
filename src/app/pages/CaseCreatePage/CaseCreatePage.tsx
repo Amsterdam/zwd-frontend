@@ -10,7 +10,7 @@ import {
   FormActionButtons,
   HoaName,
   SectionDivider,
-  PageSpinner,
+  PageSpinner
 } from "app/components"
 import { useCases, useHomeownerAssociation } from "app/state/rest"
 import { ContactsFormFields } from "./ContactsFormFields"
@@ -42,7 +42,7 @@ export const CaseCreatePage: React.FC = () => {
       .then((resp) => {
         const zaakId = (resp as ExecPostResponse)?.data?.id
         if (zaakId) {
-          navigate(`/zaken/${zaakId}`)
+          navigate(`/zaken/${ zaakId }`)
         }
       })
       .catch((err) => {

@@ -3,7 +3,7 @@ import {
   useForm,
   UseFormReturn,
   FieldValues,
-  DefaultValues,
+  DefaultValues
 } from "react-hook-form"
 import { Button, Grid, GridColumnNumbers } from "@amsterdam/design-system-react"
 import withExceptionCapturing from "app/utils/withExceptionCapturing"
@@ -25,7 +25,7 @@ export const Form = <T extends FieldValues>({
   onSubmit,
   formGrid = DEFAULT_GRID,
   hasDummyButton,
-  dummyValues,
+  dummyValues
 }: FormProps<T>) => {
   const methods: UseFormReturn<T> = useForm<T>({ defaultValues })
   const { handleSubmit, register, formState, reset } = methods
@@ -34,7 +34,7 @@ export const Form = <T extends FieldValues>({
     if (hasDummyButton && dummyValues) {
       reset(dummyValues)
     }
-  }, [reset, defaultValues, hasDummyButton])
+  }, [reset, dummyValues, hasDummyButton])
 
   return (
     <>
@@ -51,14 +51,14 @@ export const Form = <T extends FieldValues>({
             {React.Children.map(children, (child, key) =>
               React.isValidElement(child)
                 ? React.createElement(child.type, {
-                    ...{
-                      ...child.props,
-                      key,
-                      register,
-                      formState,
-                    },
-                  })
-                : child,
+                  ...{
+                    ...child.props,
+                    key,
+                    register,
+                    formState
+                  }
+                })
+                : child
             )}
           </form>
         </Grid.Cell>
