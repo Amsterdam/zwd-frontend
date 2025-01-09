@@ -2,14 +2,22 @@ import React, { useState } from "react"
 import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
 import { Heading } from "@amsterdam/design-system-react"
 import { useNavigate, useParams } from "react-router-dom"
-import { 
-  PageHeading, Form, RadioGroupFieldSet, TextAreaField, FormActionButtons, 
-  HoaName, SectionDivider, PageSpinner } from "app/components"
+import {
+  PageHeading,
+  Form,
+  RadioGroupFieldSet,
+  TextAreaField,
+  FormActionButtons,
+  HoaName,
+  SectionDivider,
+  PageSpinner
+} from "app/components"
 import { useCases, useHomeownerAssociation } from "app/state/rest"
 import { ContactsFormFields } from "./ContactsFormFields"
 import { optionsForSmallHoa, optionsForBigHoa } from "./formOptions"
-import mapData, { CaseCreateFormTypes } from "./mapData"
-
+import mapData, { defaultDummyValues } from "./mapData"
+import type { CaseCreateFormTypes } from "./mapData"
+import { env } from "app/config/env"
 
 type ExecPostResponse = {
   data: {
@@ -18,12 +26,12 @@ type ExecPostResponse = {
 }
 
 export const CaseCreatePage: React.FC = () => {
-  const { hoaId } = useParams<{ hoaId: string }>()  
+  const { hoaId } = useParams<{ hoaId: string }>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [ ,{ execPost } ] = useCases({ lazy: true })
+  const [, { execPost }] = useCases({ lazy: true })
   const [hoa, { isBusy }] = useHomeownerAssociation(Number(hoaId))
   const navigate = useNavigate()
-  
+
   const onSubmit = (data: CaseCreateFormTypes) => {
     if (!hoaId) return
     const homeowner_association = Number(hoaId)
@@ -35,8 +43,9 @@ export const CaseCreatePage: React.FC = () => {
         const zaakId = (resp as ExecPostResponse)?.data?.id
         if (zaakId) {
           navigate(`/zaken/${ zaakId }`)
-        }        
-      }).catch((err) => {
+        }
+      })
+      .catch((err) => {
         console.log("Error creating case:", err)
       })
       .finally(() => {
@@ -45,19 +54,39 @@ export const CaseCreatePage: React.FC = () => {
   }
 
   const options = hoa?.is_small ? optionsForSmallHoa : optionsForBigHoa
+
   return (
     <>
-      <PageHeading label="Nieuwe zaak aanmaken" icon={ EditDocumentIcon } />
-      <Heading level={3} >Vve</Heading>
-      { hoaId && <HoaName id={ Number(hoaId) } /> }
+      <PageHeading label="Nieuwe zaak aanmaken" icon={EditDocumentIcon} />
+      <Heading level={3}>Vve</Heading>
+      {hoaId && <HoaName id={Number(hoaId)} />}
       <SectionDivider text="Gebruik dit formulier om een nieuwe zaak toe te voegen" />
-      { isBusy ? <PageSpinner /> : (
-        <Form onSubmit={ onSubmit } >
-          <RadioGroupFieldSet name="advice_type" label="Wat is het advies type?" options={ options } validation={{ required: true }}/>
+      {isBusy ? (
+        <PageSpinner />
+      ) : (
+        <Form
+          onSubmit={onSubmit}
+          hasDummyButton={env.VITE_ENV === "LOCAL"}
+          dummyValues={defaultDummyValues}
+        >
+          <RadioGroupFieldSet
+            name="advice_type"
+            label="Wat is het advies type?"
+            options={options}
+            validation={{ required: true }}
+          />
           <ContactsFormFields />
-          <TextAreaField name="description" label="Toelichting" validation={{ required: true, maxLength: 1000 }} />
-          <FormActionButtons okText="Zaak aanmaken" onCancel={ () => navigate(-1) } loading={ loading } />
-        </Form>  
+          <TextAreaField
+            name="description"
+            label="Toelichting"
+            validation={{ required: true, maxLength: 1000 }}
+          />
+          <FormActionButtons
+            okText="Zaak aanmaken"
+            onCancel={() => navigate(-1)}
+            loading={loading}
+          />
+        </Form>
       )}
     </>
   )

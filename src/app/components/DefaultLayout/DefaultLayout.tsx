@@ -9,7 +9,7 @@ export const DefaultLayout: React.FC = () => (
     <SkipLink href="#main">Direct naar inhoud</SkipLink>
     <Screen maxWidth="wide">
       <Header 
-        appName={`${ env.VITE_APP_TITLE }`}
+        appName={`${ env.VITE_APP_TITLE } ${ env.VITE_ENV }`}
         links={(
           <PageMenu alignEnd>
             <li><User/></li>

@@ -6,4 +6,6 @@ const OPTIONS_ADVICE_TYPE = [
 
 export const optionsForBigHoa = OPTIONS_ADVICE_TYPE
 
-export const optionsForSmallHoa = OPTIONS_ADVICE_TYPE.filter(option => option.value !== "Haalbaarheidsonderzoek")
+export const optionsForSmallHoa = OPTIONS_ADVICE_TYPE.filter(
+  (option) => option.value !== "Haalbaarheidsonderzoek"
+)

@@ -15,6 +15,7 @@ module.exports = {
     sourceType: 'module',
     project: ['./tsconfig.json', './tsconfig.app.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
+    warnOnUnsupportedTypeScriptVersion: false,
   },
   plugins: ['react-refresh'],
   settings: {
