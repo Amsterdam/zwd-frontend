@@ -1,4 +1,4 @@
-import { Form, SelectField, TextAreaField, FormActionButtons } from "app/components"
+import { Form, SelectField, TextAreaField, FormActionButtons, FileInputField } from "app/components"
 
 
 export type FormItem = {
@@ -44,6 +44,15 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
     <Form onSubmit={ onSubmit } formGrid={{ narrow: 4, medium: 6, wide: 10 }} >
       { form.map((formItem: FormItem, index: number) => {
         switch(formItem.type) {
+        case "file":
+          return (
+            <FileInputField 
+              key={index}
+              name={ formItem.name } 
+              label={ formItem.label } 
+              validation={{ required: formItem.required }}
+            />
+          )
         case "select":
           return (
             <SelectField
@@ -64,7 +73,7 @@ export const GenericTaskForm: React.FC<Props> = ({ closeModal, submitForm, loadi
             />
           )
         default:
-          console.log("Form item must be of type 'select' or 'text'")
+          console.log(`Form item "${ formItem.type }" not supported. Type must be "select" or "text"` )
           return null // or handle other field types
         }
       })}
