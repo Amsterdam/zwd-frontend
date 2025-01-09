@@ -5,12 +5,12 @@ import {
   FileInputField,
   TextInputField
 } from "app/components"
-import type { FormItem, GenericTaskFormData } from "./types"
+import type { FormItem } from "./types"
 
 type Props = {
   loading?: boolean
   closeModal: () => void
-  submitForm: (variables: GenericTaskFormData) => void
+  submitForm: (variables: { name: string, upload: FileList }) => void
   form: FormItem[]
 }
 

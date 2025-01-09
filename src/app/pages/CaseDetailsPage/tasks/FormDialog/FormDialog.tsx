@@ -51,30 +51,15 @@ export const FormDialog: React.FC<Props> = ({
       })
   }
 
-  const submitFormFile = (variables: GenericTaskFormData) => {
-    if (
-      !(
-        Array.isArray(variables.uploadValue) &&
-        variables.uploadValue[0] instanceof File
-      )
-    ) {
-      console.error("'upload' is not a valid File array.")
-      return
-    }
+  const submitFormFile = (variables: { name: string, upload: FileList }) => {
     setLoading(true)
     const formData = new FormData()
     formData.append("case", caseId.toString())
-    formData.append("name", variables.name as string)
-    formData.append("document", variables.uploadValue[0])
+    formData.append("name", variables.name)
+    formData.append("document", variables.upload[0])
     formData.append("case_user_task_id", task?.id.toString())
-
+    
     void execPostFile(formData as unknown as Partial<GenericTaskFormData>)
-      .then((resp) => {
-        console.log("Succes:", resp)
-      })
-      .catch((err) => {
-        console.log("Error creating task:", err)
-      })
       .finally(() => {
         setLoading(false)
       })
