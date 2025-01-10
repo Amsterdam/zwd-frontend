@@ -49,6 +49,18 @@ export const useTaskComplete = (options?: Options) => {
   })
 }
 
+export const useTaskCompleteFileUpload = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.GenericCompletedTaskCreate>({
+    ...options,
+    url: makeApiUrl("generic-tasks", "complete-file-task"),
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useCaseProcesses = (options?: Options) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.WorkflowOption[]>({
