@@ -18,7 +18,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@amsterdam/design-system-react": "^0.13.1",
+    "@amsterdam/design-system-react": "^0.14.0",
     "@types/lodash.debounce": "^4.0.9",
     "@types/lodash.get": "^4.4.9",
     "@types/qs": "^6.9.16",
