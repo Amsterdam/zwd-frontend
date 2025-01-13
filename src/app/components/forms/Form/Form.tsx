@@ -63,7 +63,7 @@ export const Form = <T extends FieldValues>({
           </form>
         </Grid.Cell>
       </Grid>
-      {dummyValues && (
+      {hasDummyButton && (
         <Button variant="primary" onClick={handleReset}>
           Voer dummy waarden in
         </Button>
