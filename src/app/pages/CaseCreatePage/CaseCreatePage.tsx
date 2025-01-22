@@ -60,7 +60,7 @@ export const CaseCreatePage: React.FC = () => {
       <PageHeading label="Nieuwe zaak aanmaken" icon={EditDocumentIcon} />
       <Heading level={3}>Vve</Heading>
       {hoaId && <HoaName id={Number(hoaId)} />}
-      <SectionDivider text="Gebruik dit formulier om een nieuwe zaak toe te voegen" />
+      <SectionDivider text="Vul dit formulier in om een nieuwe zaak aan te maken" />
       {isBusy ? (
         <PageSpinner />
       ) : (

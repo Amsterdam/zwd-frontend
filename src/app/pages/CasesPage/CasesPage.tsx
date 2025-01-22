@@ -20,7 +20,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
       )
     }
   }, {
-    header: "Startdatum",
+    header: "Startdatum zaak",
     dataIndex: "created",
     sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
       a.created.localeCompare(b.created)

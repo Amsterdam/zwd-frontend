@@ -20,8 +20,8 @@ const requiredValidation = { required: true }
 
 export const ContactsFormFields: React.FC<Props> = ({ register, formState }) => {
   const contacts = [
-    { id: 0, label: "eerste contactpersoon" },
-    { id: 1, label: "tweede contactpersoon" }
+    { id: 0, label: "eerste contactpersoon vve" },
+    { id: 1, label: "tweede contactpersoon vve" }
   ]
 
   return (
