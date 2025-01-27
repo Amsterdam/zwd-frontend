@@ -43,6 +43,14 @@ declare namespace Components {
             name: string;
             created: string; // date-time
         }
+        export interface CaseDocumentWithTask {
+            id: number;
+            case: number;
+            document: string; // uri
+            name: string;
+            created: string; // date-time
+            case_user_task_id?: string | null;
+        }
         export interface CaseEvent {
             id: number;
             event_values: {
@@ -70,6 +78,9 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             created: string; // date-time
         }
+        export interface CaseStateType {
+            name: string;
+        }
         export interface CaseUserTask {
             id: number;
             task_id: string; // uuid
@@ -90,6 +101,7 @@ declare namespace Components {
             name: string;
             case: number;
             homeowner_association: string;
+            created: string; // date-time
         }
         export interface CaseWorkflow {
             id: number;
@@ -101,6 +113,9 @@ declare namespace Components {
             data?: null;
             tasks: CaseUserTask[];
             completed?: boolean;
+            state: {
+                name: string;
+            };
         }
         export interface Contact {
             fullname: string;
@@ -320,6 +335,12 @@ declare namespace Paths {
         namespace Responses {
             export interface $200 {
             }
+        }
+    }
+    namespace GenericTasksCompleteFileTaskCreate {
+        export type RequestBody = Components.Schemas.CaseDocumentWithTask;
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseDocumentWithTask;
         }
     }
     namespace HomeownerAssociationCasesRetrieve {
