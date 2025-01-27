@@ -1,28 +1,37 @@
-import type { FieldValues, UseFormRegister, FormState, RegisterOptions } from "react-hook-form"
+import type {
+  FieldValues,
+  RegisterOptions,
+  UseFormReturn
+} from "react-hook-form"
 import { Field, Checkbox } from "@amsterdam/design-system-react"
-
 
 type Props = {
   name: string
   label?: string
-  register?: UseFormRegister<FieldValues>
-  formState?: FormState<FieldValues>
   validation: RegisterOptions
+  formMethods?: UseFormReturn<FieldValues>
 }
 
-export const CheckboxField: React.FC<Props> = ({ name, label, register, formState, validation = {}, ...rest }) => {
+export const CheckboxField: React.FC<Props> = ({
+  name,
+  label,
+  validation = {},
+  formMethods = {},
+  ...rest
+}) => {
+  const { formState, register } = formMethods as UseFormReturn<FieldValues>
   const error = formState?.errors?.[name]
   const hasError = !!error
 
   return (
     <Field>
       <Checkbox
-        id={ name }
-        invalid={ hasError }
-        { ...(register ? register(name, validation) : {}) } 
-        { ...rest }
+        id={name}
+        invalid={hasError}
+        {...(register ? register(name, validation) : {})}
+        {...rest}
       >
-        { label }
+        {label}
       </Checkbox>
     </Field>
   )
