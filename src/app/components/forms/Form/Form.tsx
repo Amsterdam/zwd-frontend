@@ -27,8 +27,8 @@ export const Form = <T extends FieldValues>({
   hasDummyButton,
   dummyValues
 }: FormProps<T>) => {
-  const methods: UseFormReturn<T> = useForm<T>({ defaultValues })
-  const { handleSubmit, register, formState, reset } = methods
+  const formMethods: UseFormReturn<T> = useForm<T>({ defaultValues })
+  const { handleSubmit, reset } = formMethods
 
   const handleReset = useCallback(() => {
     if (hasDummyButton && dummyValues) {
@@ -54,8 +54,7 @@ export const Form = <T extends FieldValues>({
                   ...{
                     ...child.props,
                     key,
-                    register,
-                    formState
+                    formMethods
                   }
                 })
                 : child
