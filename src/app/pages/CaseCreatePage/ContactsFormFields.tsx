@@ -1,12 +1,11 @@
 import { Column, Row } from "@amsterdam/design-system-react"
-import { FieldValues, FormState, UseFormRegister } from "react-hook-form"
+import type { FieldValues, UseFormReturn } from "react-hook-form"
 import { TextInputField } from "app/components"
 import React from "react"
 
 type Props = {
-  register?: UseFormRegister<FieldValues>;
-  formState?: FormState<FieldValues>;
-};
+  formMethods?: UseFormReturn<FieldValues>
+}
 
 const emailValidation = {
   required: "E-mail is verplicht",
@@ -18,7 +17,7 @@ const emailValidation = {
 
 const requiredValidation = { required: true }
 
-export const ContactsFormFields: React.FC<Props> = ({ register, formState }) => {
+export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
   const contacts = [
     { id: 0, label: "eerste contactpersoon vve" },
     { id: 1, label: "tweede contactpersoon vve" }
@@ -32,16 +31,14 @@ export const ContactsFormFields: React.FC<Props> = ({ register, formState }) => 
             name={`fullname[${ contact.id }]`}
             label={`Naam ${ contact.label }`}
             validation={ requiredValidation }
-            register={ register }
-            formState={ formState }
+            formMethods={ formMethods }
           />
           <TextInputField
             name={`email[${ contact.id }]`}
             label="E-mail"
             type="email"
             validation={ emailValidation }
-            register={ register }
-            formState={ formState }
+            formMethods={ formMethods }
           />
           <Row wrap>
             <TextInputField
@@ -49,15 +46,13 @@ export const ContactsFormFields: React.FC<Props> = ({ register, formState }) => 
               label="Telefoon"
               type="tel"
               validation={ requiredValidation }
-              register={ register }
-              formState={ formState }
+              formMethods={ formMethods }
             />
             <TextInputField
               name={`role[${ contact.id }]`}
               label="Functie in vve"
               validation={ requiredValidation }
-              register={ register }
-              formState={ formState }
+              formMethods={ formMethods }
             />
           </Row>
         </React.Fragment>
