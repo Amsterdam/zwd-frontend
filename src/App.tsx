@@ -16,7 +16,11 @@ const App = () => {
         !auth.isAuthenticated && !auth.activeNavigator && !auth.isLoading &&
         !hasTriedSignin
     ) {
-      void auth.signinRedirect()
+      const currentUrl = new URL(window.location.href)
+      const fullPathWithQuery = `${ currentUrl.pathname }${ currentUrl.search }`
+      void auth.signinRedirect({
+        url_state: fullPathWithQuery 
+      })
       setHasTriedSignin(true)
     }
   }, [auth, hasTriedSignin])
