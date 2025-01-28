@@ -66,7 +66,7 @@ export const CaseCreatePage: React.FC = () => {
       ) : (
         <Form
           onSubmit={onSubmit}
-          hasDummyButton={env.VITE_ENV === "LOCAL"}
+          hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
           dummyValues={defaultDummyValues}
         >
           <RadioGroupFieldSet

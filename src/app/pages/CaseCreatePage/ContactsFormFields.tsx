@@ -8,10 +8,18 @@ type Props = {
 }
 
 const emailValidation = {
-  required: "E-mail is verplicht",
+  required: true,
   pattern: {
     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     message: "Dit is geen geldig e-mailadres"
+  }
+}
+
+const phoneValidation = {
+  required: true,
+  pattern: {
+    value: /^(0031|0)[1-9][0-9]{8,9}$/,
+    message: "Dit is geen geldig telefoonnummer"
   }
 }
 
@@ -40,12 +48,12 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
             validation={ emailValidation }
             formMethods={ formMethods }
           />
-          <Row wrap>
+          <Row wrap alignVertical="end">
             <TextInputField
               name={`phone[${ contact.id }]`}
               label="Telefoon"
               type="tel"
-              validation={ requiredValidation }
+              validation={ phoneValidation }
               formMethods={ formMethods }
             />
             <TextInputField
