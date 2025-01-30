@@ -13,7 +13,7 @@ export const User: React.FC = () => {
     <Header.MenuLink onClick={() => navigate("/auth")} fixed>
       {decodedToken?.given_name}
       <Icon
-        style={{ paddingInlineStart: ".5rem " }}
+        style={{ paddingInlineStart: ".5rem ", blockSize: ".8em" }}
         size="level-5"
         svg={PersonalLoginIcon}
       />
