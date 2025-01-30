@@ -13,6 +13,7 @@ import {
   TextInputProps
 } from "@amsterdam/design-system-react"
 import { getValueByPath } from "app/utils/getValueByPath"
+import styles from "../styles/form.module.css"
 
 type Props = {
   name: string
@@ -41,13 +42,14 @@ export const TextInputField: React.FC<Props> = ({
     const pattern = validation?.pattern as ValidationValueMessage<RegExp>
     const regex = pattern?.value
     const message = pattern?.message || "Ongeldige invoer"
-    if (!value || !regex) return
-    if (regex.test(value)) {
-      clearErrors(name)
-    } else {
-      setError(name, { type: "custom", message })
+    if (value && regex) {
+      if (regex.test(value)) {
+        clearErrors(name)
+      } else {
+        setError(name, { type: "custom", message })
+      }
     }
-    void trigger()
+    void trigger(name)
   }
 
   return (
@@ -58,6 +60,8 @@ export const TextInputField: React.FC<Props> = ({
         id={name}
         invalid={hasError}
         type={type}
+        size={ type === "tel" ? 14 : undefined }
+        className={ type === "tel" ? styles.inputTel : undefined }
         {...(register ? register(name, validation) : {})}
         {...rest}
         onChange={handleValidation}

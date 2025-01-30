@@ -9,7 +9,7 @@ type Props = {
   name: string
   label?: string
   options?: { value: string; label: string }[]
-  defaultOption?: boolean
+  hasDefaultOption?: boolean
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
 }
@@ -18,7 +18,7 @@ export const SelectField: React.FC<Props> = ({
   name,
   label,
   options,
-  defaultOption = false,
+  hasDefaultOption = false,
   validation = {},
   formMethods = {},
   ...rest
@@ -36,8 +36,8 @@ export const SelectField: React.FC<Props> = ({
         {...(register ? register(name, validation) : {})}
         {...rest}
       >
-        {defaultOption && (
-          <Select.Option key="default_option" value="default_option">
+        {hasDefaultOption && (
+          <Select.Option key="default_option" value="">
             Maak een keuze
           </Select.Option>
         )}

@@ -1,7 +1,8 @@
+import React from "react"
 import { Column, Row } from "@amsterdam/design-system-react"
 import type { FieldValues, UseFormReturn } from "react-hook-form"
-import { TextInputField } from "app/components"
-import React from "react"
+import { SelectField, TextInputField } from "app/components"
+import { OPTIONS_ROLE_FUNCTIONS, CUSTOM_ROLE } from "./formOptions"
 
 type Props = {
   formMethods?: UseFormReturn<FieldValues>
@@ -26,10 +27,17 @@ const phoneValidation = {
 const requiredValidation = { required: true }
 
 export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
+  const { watch } = formMethods as UseFormReturn<FieldValues>
+
   const contacts = [
     { id: 0, label: "eerste contactpersoon vve" },
     { id: 1, label: "tweede contactpersoon vve" }
   ]
+
+  const roleName0 = watch("role[0]") as string
+  const roleName1 = watch("role[1]") as string
+  const hasCustomRole0 = roleName0 === CUSTOM_ROLE
+  const hasCustomRole1 = roleName1 === CUSTOM_ROLE
 
   return (
     <Column>
@@ -38,30 +46,41 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
           <TextInputField
             name={`fullname[${ contact.id }]`}
             label={`Naam ${ contact.label }`}
-            validation={ requiredValidation }
-            formMethods={ formMethods }
+            validation={requiredValidation}
+            formMethods={formMethods}
           />
           <TextInputField
             name={`email[${ contact.id }]`}
             label="E-mail"
             type="email"
-            validation={ emailValidation }
-            formMethods={ formMethods }
+            validation={emailValidation}
+            formMethods={formMethods}
+          />
+          <TextInputField
+            name={`phone[${ contact.id }]`}
+            label="Telefoon"
+            type="tel"
+            validation={phoneValidation}
+            formMethods={formMethods}
           />
           <Row wrap alignVertical="end">
-            <TextInputField
-              name={`phone[${ contact.id }]`}
-              label="Telefoon"
-              type="tel"
-              validation={ phoneValidation }
-              formMethods={ formMethods }
-            />
-            <TextInputField
+            <SelectField
               name={`role[${ contact.id }]`}
               label="Functie in vve"
-              validation={ requiredValidation }
-              formMethods={ formMethods }
+              options={OPTIONS_ROLE_FUNCTIONS}
+              validation={{ required: true }}
+              formMethods={formMethods}
+              hasDefaultOption
             />
+            {((hasCustomRole0 && contact.id === 0) ||
+              (hasCustomRole1 && contact.id === 1)) && (
+              <TextInputField
+                label="Specificeer functie"
+                name={`custom_role[${ contact.id }]`}
+                validation={{ required: true }}
+                formMethods={formMethods}
+              />
+            )}
           </Row>
         </React.Fragment>
       ))}

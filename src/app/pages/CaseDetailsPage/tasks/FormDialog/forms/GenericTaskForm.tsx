@@ -48,6 +48,7 @@ export const GenericTaskForm: React.FC<Props> = ({
               label={formItem.label}
               options={formItem.options}
               validation={{ required: formItem.required }}
+              hasDefaultOption
             />
           )
         case "text":

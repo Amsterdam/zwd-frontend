@@ -16,8 +16,6 @@ type Option = {
   label: string 
 }
 
-const DEFAULT_OPTION_VALUE = "default_option"
-
 export const SubtaskDialog: React.FC<Props> = ({ id }) => {
   const { caseId } = useParams()
   const [data] = useCaseProcesses()
@@ -31,11 +29,6 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
   
 
   const onSubmit = (variables: FormData) => {
-    if (variables.workflow_option_id === DEFAULT_OPTION_VALUE) {
-      // No valid option selected.
-      return
-    }
-
     execPost(variables)
       .then((resp) => {
         console.log("Succes:", resp) 
@@ -51,7 +44,7 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
           name="workflow_option_id"
           label="Selecteer een taak"
           options={ options } 
-          defaultOption
+          hasDefaultOption
           validation={{ required: true }}
         />
         <FormActionButtons okText="Taak opvoeren" onCancel={ Dialog.close } />

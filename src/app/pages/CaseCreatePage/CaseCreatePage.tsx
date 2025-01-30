@@ -37,7 +37,6 @@ export const CaseCreatePage: React.FC = () => {
     const homeowner_association = Number(hoaId)
     setLoading(true)
     const values = mapData(data, homeowner_association)
-
     execPost(values)
       .then((resp) => {
         const zaakId = (resp as ExecPostResponse)?.data?.id
@@ -68,6 +67,7 @@ export const CaseCreatePage: React.FC = () => {
           onSubmit={onSubmit}
           hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
           dummyValues={defaultDummyValues}
+          formGrid={{ narrow: 4, medium: 5, wide: 4 }}
         >
           <RadioGroupFieldSet
             name="advice_type"
