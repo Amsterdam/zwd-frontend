@@ -95,6 +95,11 @@ declare namespace Components {
             completed?: boolean;
             case: number;
             homeowner_association: string;
+            initiated_by: string;
+            /**
+             * Indicates whether this task requires review by another user.
+             */
+            requires_review?: boolean;
         }
         export interface CaseUserTaskList {
             id: number;
@@ -106,11 +111,6 @@ declare namespace Components {
         export interface CaseWorkflow {
             id: number;
             case?: number | null;
-            workflow_type?: string | null;
-            workflow_version?: string | null;
-            workflow_theme_name?: string | null;
-            workflow_message_name?: string | null;
-            data?: null;
             tasks: CaseUserTask[];
             completed?: boolean;
             state: {
