@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import { ColumnType, LinkButton, PageHeading, Table } from "app/components"
+import { ColumnType, LinkButton, PageGrid, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
-import { Grid } from "@amsterdam/design-system-react"
 
 const columns: ColumnType<Components.Schemas.CaseUserTask>[] = [
   {
@@ -44,19 +43,15 @@ export const TasksPage: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <Grid>
-      <Grid.Cell span="all">
-        <PageHeading label="Takenoverzicht" />
-      </Grid.Cell>
-      <Grid.Cell span="all">
+    <PageGrid>
+      <PageHeading label="Takenoverzicht" />
       <Table
         columns={ columns }
         data={ data as Components.Schemas.CaseUserTask[] } 
         loading={ isBusy }
         onClickRow={(obj) => navigate(`/zaken/${ obj.case }`)}
       />
-      </Grid.Cell>
-    </Grid>
+    </PageGrid>
   )
 }
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { DocumentIcon } from "@amsterdam/design-system-react-icons"
 import { Heading, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"
-import { PageHeading, PageSpinner, DetailsList } from "app/components"
+import { PageHeading, PageSpinner, DetailsList, PageGrid } from "app/components"
 import { useURLState } from "app/hooks"
 import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
@@ -40,7 +40,7 @@ export const CaseDetailsPage: React.FC = () => {
   }
 
   return (
-    <>
+    <PageGrid>
       <PageHeading label="Zaakdetails" icon={DocumentIcon}/>
       <HeaderLink 
         onClick={() => navigate(`/vve/${ data?.homeowner_association?.id }`)} 
@@ -71,7 +71,7 @@ export const CaseDetailsPage: React.FC = () => {
           <Documents />
         </Tabs.Panel>
       </Tabs>
-    </>
+    </PageGrid>
   )
 }
 

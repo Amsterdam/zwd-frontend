@@ -1,9 +1,17 @@
 import { HousingIcon } from "@amsterdam/design-system-react-icons"
 import { useNavigate, useParams } from "react-router-dom"
-import { PanoramaPreview, PageHeading, PageSpinner } from "app/components"
+import {
+  PanoramaPreview,
+  PageHeading,
+  PageSpinner,
+  PageGrid
+} from "app/components"
 import HoaDescription from "./HoaDescription"
 import { Button, Grid, GridColumnNumbers } from "@amsterdam/design-system-react"
-import { useHomeownerAssociation, useHomeownerAssociationByBagId } from "app/state/rest"
+import {
+  useHomeownerAssociation,
+  useHomeownerAssociationByBagId
+} from "app/state/rest"
 import { styled } from "styled-components"
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
@@ -15,9 +23,11 @@ const Wrapper = styled.div`
 `
 
 export const AddressPage: React.FC = () => {
-  const { bagId, hoaId } = useParams<{ bagId: string, hoaId: string }>()  
+  const { bagId, hoaId } = useParams<{ bagId: string; hoaId: string }>()
   const [dataByBagId, { isBusy }] = useHomeownerAssociationByBagId(bagId)
-  const [dataByHoaId, { isBusy: isLoading }] = useHomeownerAssociation(Number(hoaId))
+  const [dataByHoaId, { isBusy: isLoading }] = useHomeownerAssociation(
+    Number(hoaId)
+  )
   const navigate = useNavigate()
 
   const hasId = bagId || hoaId
@@ -25,34 +35,39 @@ export const AddressPage: React.FC = () => {
   const hoa = bagId ? dataByBagId : dataByHoaId
 
   return (
-    <>
-      <PageHeading label="Adresoverzicht" icon={ HousingIcon } />
-      { loading && <PageSpinner /> }
-      { !loading && hasId && (
+    <PageGrid>
+      <PageHeading label="Adresoverzicht" icon={HousingIcon} />
+      {loading ? (
+        <PageSpinner />
+      ) : hasId ? (
         <>
-          <Grid style={{ paddingLeft: 0 }} paddingTop="small" paddingBottom="large">
-            {hoa?.id ? ( 
-              <Grid.Cell span={ gridSpan } >
-                <HoaDescription hoa={ hoa } /> 
+          <Grid
+            style={{ paddingLeft: 0 }}
+            paddingTop="small"
+            paddingBottom="large"
+          >
+            {hoa?.id ? (
+              <Grid.Cell span={gridSpan}>
+                <HoaDescription hoa={hoa} />
               </Grid.Cell>
             ) : (
-              <Grid.Cell span={ gridSpan } >
+              <Grid.Cell span={gridSpan}>
                 <p>Er zijn geen vve-gegevens gevonden voor dit adres.</p>
               </Grid.Cell>
             )}
-            { bagId && (
-              <Grid.Cell span={ gridSpan } >
-                <PanoramaPreview bagId={ bagId } aspect={ 4 } fov={ 120 } />
+            {bagId && (
+              <Grid.Cell span={gridSpan}>
+                <PanoramaPreview bagId={bagId} aspect={4} fov={120} />
               </Grid.Cell>
             )}
           </Grid>
-          { hoa?.id && (
+          {hoa?.id && (
             <>
               <Wrapper>
-                <HoaOwners hoa={ hoa } />
+                <HoaOwners hoa={hoa} />
               </Wrapper>
               <Wrapper>
-                <HoaCases hoaId={ hoa.id } />
+                <HoaCases hoaId={hoa.id} />
               </Wrapper>
               <Wrapper>
                 <Button onClick={() => navigate(`/vve/${ hoa.id }/zaken/nieuw`)}>
@@ -62,10 +77,9 @@ export const AddressPage: React.FC = () => {
             </>
           )}
         </>
-      )}
-    </>
+      ) : null}
+    </PageGrid>
   )
 }
 
 export default AddressPage
-    

@@ -1,6 +1,6 @@
-import { PageMenu } from "@amsterdam/design-system-react"
+import { Header, Icon, LinkList } from "@amsterdam/design-system-react"
 import { SearchIcon } from "@amsterdam/design-system-react-icons"
-import { useLinkClickHandler, useHref } from "react-router-dom" 
+import { useLinkClickHandler, useHref } from "react-router-dom"
 import { styled } from "styled-components"
 
 type MenuItem = {
@@ -9,10 +9,6 @@ type MenuItem = {
   icon?: React.ComponentType
 }
 
-const StyledPageMenuLink = styled(PageMenu.Link)`
-  font-size: var(--ams-text-level-5-font-size);
-`
-
 const menuItems: MenuItem[] = [
   { label: "Zoeken", path: "/", icon: SearchIcon },
   { label: "Zakenoverzicht", path: "/zaken" },
@@ -20,22 +16,39 @@ const menuItems: MenuItem[] = [
   { label: "BPMN", path: "/bpmn" }
 ]
 
+const StyledIcon = styled(Icon)`
+  padding-inline-start: .5rem;
+`
+
 const NavMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
   const handleClick = useLinkClickHandler(path)
   const href = useHref(path)
   return (
-    <StyledPageMenuLink href={ href } icon={ icon } onClick={ handleClick }>
-      { label }
-    </StyledPageMenuLink>
+    <Header.MenuLink href={href} onClick={handleClick}>
+      {label}
+      {icon && <StyledIcon svg={icon} size="level-5" />}
+    </Header.MenuLink>
   )
 }
 
-export const NavMenu = () => (
-  <PageMenu>
-    { menuItems.map((props) => (
-      <NavMenuItem key={ props.path } {...props} />
-    ))}
-  </PageMenu>
-)
+export const NavMenuItems = menuItems.map((props) => (
+  <NavMenuItem key={props.path} {...props} />
+))
 
-export default NavMenu
+const LinklistMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
+  const handleClick = useLinkClickHandler(path)
+  const href = useHref(path)
+  return (
+    <LinkList.Link href={href} icon={icon} onClick={handleClick}>
+      {label}
+    </LinkList.Link>
+  )
+}
+
+export const LinklistMenu = () => (
+  <LinkList className="ams-mb--lg">
+    {menuItems.map((props) => (
+      <LinklistMenuItem key={props.path} {...props} />
+    ))}
+  </LinkList>
+)

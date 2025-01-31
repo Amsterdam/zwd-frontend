@@ -39,7 +39,7 @@ export const Form = <T extends FieldValues>({
   return (
     <>
       <Grid
-        paddingTop="medium"
+        paddingTop="small"
         paddingBottom="medium"
         style={{ paddingLeft: 0 }}
       >

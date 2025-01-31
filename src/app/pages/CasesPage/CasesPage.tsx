@@ -1,6 +1,6 @@
-import { useCases } from "app/state/rest"
-import { ColumnType, Table, PageHeading, LinkButton } from "app/components"
 import { useNavigate } from "react-router-dom"
+import { useCases } from "app/state/rest"
+import { ColumnType, Table, PageHeading, LinkButton, PageGrid } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 const columns: ColumnType<Components.Schemas.Case>[] = [
@@ -39,7 +39,7 @@ export const CasesPage: React.FC = () => {
   const navigate = useNavigate()
 
   return (
-    <>
+    <PageGrid>
       <PageHeading label="Zakenoverzicht" />
       <Table 
         columns={ columns } 
@@ -47,7 +47,7 @@ export const CasesPage: React.FC = () => {
         loading={ isBusy }
         onClickRow={(obj) => navigate(`/zaken/${ obj.id }`)}
       />
-    </>
+    </PageGrid>
   )
 }
 

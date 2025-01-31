@@ -10,7 +10,8 @@ import {
   FormActionButtons,
   HoaName,
   SectionDivider,
-  PageSpinner
+  PageSpinner,
+  PageGrid
 } from "app/components"
 import { useCases, useHomeownerAssociation } from "app/state/rest"
 import { ContactsFormFields } from "./ContactsFormFields"
@@ -56,38 +57,40 @@ export const CaseCreatePage: React.FC = () => {
   const options = hoa?.is_small ? optionsForSmallHoa : optionsForBigHoa
 
   return (
-    <>
+    <PageGrid>
       <PageHeading label="Nieuwe zaak aanmaken" icon={EditDocumentIcon} />
-      <Heading level={3}>Vve</Heading>
-      {hoaId && <HoaName id={Number(hoaId)} />}
-      <SectionDivider text="Vul dit formulier in om een nieuwe zaak aan te maken" />
-      {isBusy ? (
-        <PageSpinner />
-      ) : (
-        <Form
-          onSubmit={onSubmit}
-          hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
-          dummyValues={defaultDummyValues}
-        >
-          <RadioGroupFieldSet
-            name="advice_type"
-            label="Wat is het advies type?"
-            options={options}
-            validation={{ required: true }}
-          />
-          <ContactsFormFields />
-          <TextAreaField
-            name="description"
-            label="Toelichting"
-            validation={{ required: true, maxLength: 1000 }}
-          />
-          <FormActionButtons
-            okText="Zaak aanmaken"
-            onCancel={() => navigate(-1)}
-            loading={loading}
-          />
-        </Form>
-      )}
-    </>
+      <>
+        <Heading level={3}>Vve</Heading>
+        {hoaId && <HoaName id={Number(hoaId)} />}
+        <SectionDivider text="Vul dit formulier in om een nieuwe zaak aan te maken" />
+        {isBusy ? (
+          <PageSpinner />
+        ) : (
+          <Form
+            onSubmit={onSubmit}
+            hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
+            dummyValues={defaultDummyValues}
+          >
+            <RadioGroupFieldSet
+              name="advice_type"
+              label="Wat is het advies type?"
+              options={options}
+              validation={{ required: true }}
+            />
+            <ContactsFormFields />
+            <TextAreaField
+              name="description"
+              label="Toelichting"
+              validation={{ required: true, maxLength: 1000 }}
+            />
+            <FormActionButtons
+              okText="Zaak aanmaken"
+              onCancel={() => navigate(-1)}
+              loading={loading}
+            />
+          </Form>
+        )}
+      </>
+    </PageGrid>
   )
 }

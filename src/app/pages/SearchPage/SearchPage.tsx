@@ -2,9 +2,9 @@ import { useCallback, useState } from "react"
 import debounce from "lodash.debounce"
 import { SearchField } from "@amsterdam/design-system-react"
 import SearchResults from "./SearchResults/SearchResults"
-import { PageHeading } from "app/components"
+import { PageGrid, PageHeading } from "app/components"
 import { useURLState } from "app/hooks"
-import { Grid } from "@amsterdam/design-system-react"
+
 
 const DELAY = 750
 
@@ -26,11 +26,8 @@ export const SearchPage: React.FC = () => {
   }
 
   return (
-    <Grid>
-      <Grid.Cell span="all">
-        <PageHeading label="Adres zoeken" />
-      </Grid.Cell>
-      <Grid.Cell span="all">
+    <PageGrid>
+      <PageHeading label="Adres zoeken" />
       <SearchField onSubmit={(e) => e.preventDefault() }  style={{ width: 600, marginBottom: "2rem" }}>
         <SearchField.Input
           placeholder="Zoek op postcode of straat"
@@ -41,8 +38,7 @@ export const SearchPage: React.FC = () => {
         <SearchField.Button />
       </SearchField>
       <SearchResults searchString={ debouncedSearchString } />
-      </Grid.Cell>
-    </Grid>
+    </PageGrid>
   )
 }
 
