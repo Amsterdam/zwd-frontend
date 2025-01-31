@@ -38,7 +38,6 @@ export const CaseCreatePage: React.FC = () => {
     const homeowner_association = Number(hoaId)
     setLoading(true)
     const values = mapData(data, homeowner_association)
-
     execPost(values)
       .then((resp) => {
         const zaakId = (resp as ExecPostResponse)?.data?.id

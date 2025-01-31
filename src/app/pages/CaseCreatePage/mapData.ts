@@ -3,6 +3,7 @@ export type FormTypes = {
   email: string[]
   phone: string[]
   role: string[]
+  custom_role?: string[]
 }
 
 export type CaseCreateFormTypes = Components.Schemas.CaseCreate & FormTypes
@@ -19,13 +20,13 @@ const mapData = (
       fullname: data.fullname[0],
       email: data.email[0],
       phone: data.phone[0],
-      role: data.role[0]
+      role: data?.custom_role ? data?.custom_role[0] : data.role[0]
     },
     {
       fullname: data.fullname[1],
       email: data.email[1],
       phone: data.phone[1],
-      role: data.role[1]
+      role: data?.custom_role ? data?.custom_role[1] : data.role[1]
     }
   ]
 })
@@ -38,7 +39,7 @@ export const defaultDummyValues: DefaultDummyValues = {
   advice_type: "Cursus",
   fullname: ["Chewbacca", "Han Solo"],
   email: ["chewbacca@starwars.org", "hansolo@starwars.org"],
-  phone: ["0612345678", "0611112222"],
-  role: ["Voorzitter", "Secretaris"],
+  phone: ["0612345678", "0031611112222"],
+  role: ["Bestuurslid", "Vve-lid"],
   description: "Dit is een toelichting test"
 }
