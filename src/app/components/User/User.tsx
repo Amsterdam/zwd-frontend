@@ -1,18 +1,8 @@
-import styled from "styled-components"
-import { Icon } from "@amsterdam/design-system-react"
+import { Header, Icon } from "@amsterdam/design-system-react"
 import { PersonalLoginIcon } from "@amsterdam/design-system-react-icons"
 import { useAuth } from "react-oidc-context"
-import { useNavigate } from "react-router-dom"  
-import { useDecodedToken } from "app/hooks" 
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-`
-
-const StyledIcon = styled(Icon)`
-  margin-right: 0.5rem;
-`
+import { useNavigate } from "react-router-dom"
+import { useDecodedToken } from "app/hooks"
 
 export const User: React.FC = () => {
   const auth = useAuth()
@@ -20,14 +10,17 @@ export const User: React.FC = () => {
   const navigate = useNavigate()
 
   return auth.isAuthenticated ? (
-    <Wrapper onClick={() => navigate("/auth")} >
-      <StyledIcon
+    <Header.MenuLink onClick={() => navigate("/auth")} fixed>
+      {decodedToken?.given_name}
+      <Icon
+        style={{ paddingInlineStart: ".5rem ", blockSize: ".8em" }}
         size="level-5"
-        svg={ PersonalLoginIcon }
+        svg={PersonalLoginIcon}
       />
-      { decodedToken?.given_name }
-    </Wrapper>
-  ) : <></>
+    </Header.MenuLink>
+  ) : (
+    <></>
+  )
 }
 
 export default User

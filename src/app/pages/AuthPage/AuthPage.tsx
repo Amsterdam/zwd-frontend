@@ -1,6 +1,6 @@
 import { Button, Heading, Icon, Screen } from "@amsterdam/design-system-react"
 import styled from "styled-components"
-import { Spinner } from "app/components"
+import { Spinner, PageHeading, PageGrid } from "app/components"
 import { useDecodedToken } from "app/hooks"
 import { useAuth } from "react-oidc-context"
 import { LogoutIcon } from "@amsterdam/design-system-react-icons"
@@ -31,8 +31,8 @@ export const AuthPage: React.FC = () => {
   const decodedToken = useDecodedToken()
 
   return decodedToken ? (
-    <Wrapper fullHeight align="left">
-      <Heading level={4}>Gebruiker gegevens</Heading>
+    <PageGrid>
+      <PageHeading label="Gebruiker gegevens" />
       {Object.entries(decodedToken).map(([key, value]) => (
         <div key={key}>
           <strong>{key}:</strong> {Array.isArray(value) ? value.join(", ") : value.toString()}
@@ -40,10 +40,10 @@ export const AuthPage: React.FC = () => {
       ))}
       <div>
         <Button variant="primary" onClick={() => void auth.removeUser()}>
-          Uitloggen
+        Uitloggen
           <Icon size="level-5" svg={LogoutIcon} />
         </Button>
       </div>
-    </Wrapper>
+    </PageGrid>
   ) : <></>
 }

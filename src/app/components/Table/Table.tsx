@@ -12,6 +12,8 @@ import { TableType, SortingType, DESCEND } from "./types"
 
 const Wrap = styled.div`
   position: relative;
+  width: 100%;
+  overflow-x: auto;
 `
 
 const StyledTable = styled.table`

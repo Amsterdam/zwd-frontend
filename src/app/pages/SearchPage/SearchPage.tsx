@@ -2,8 +2,9 @@ import { useCallback, useState } from "react"
 import debounce from "lodash.debounce"
 import { SearchField } from "@amsterdam/design-system-react"
 import SearchResults from "./SearchResults/SearchResults"
-import { PageHeading } from "app/components"
+import { PageGrid, PageHeading } from "app/components"
 import { useURLState } from "app/hooks"
+
 
 const DELAY = 750
 
@@ -25,7 +26,7 @@ export const SearchPage: React.FC = () => {
   }
 
   return (
-    <>
+    <PageGrid>
       <PageHeading label="Adres zoeken" />
       <SearchField onSubmit={(e) => e.preventDefault() }  style={{ width: 600, marginBottom: "2rem" }}>
         <SearchField.Input
@@ -37,7 +38,7 @@ export const SearchPage: React.FC = () => {
         <SearchField.Button />
       </SearchField>
       <SearchResults searchString={ debouncedSearchString } />
-    </>
+    </PageGrid>
   )
 }
 

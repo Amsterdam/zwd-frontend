@@ -1,9 +1,11 @@
 import { Outlet } from "react-router-dom"
-import { Header, SkipLink, PageMenu, Screen } from "@amsterdam/design-system-react"
-import { User, NavMenu } from "app/components"
+import { Header, SkipLink, Screen } from "@amsterdam/design-system-react"
+import { User } from "app/components"
 import { env } from "app/config/env"
 import { useRedirectFromState } from "app/hooks"
+import { NavMenuItems, LinklistMenu } from "app/components"
 
+import styles from "./styles.module.css"
 
 export const DefaultLayout: React.FC = () => {
   useRedirectFromState()
@@ -13,15 +15,13 @@ export const DefaultLayout: React.FC = () => {
       <SkipLink href="#main">Direct naar inhoud</SkipLink>
       <Screen maxWidth="wide">
         <Header
-          appName={`${ env.VITE_APP_TITLE } ${ env.VITE_ENV }`}
-          links={(
-            <PageMenu alignEnd>
-              <li><User /></li>
-            </PageMenu>
-          )}
-        />
-        <NavMenu />
-        <br />
+          brandName={`${ env.VITE_APP_TITLE } ${ env.VITE_ENV }`}
+          className={styles.header}
+          menuItems={[...NavMenuItems, <User key="User" />]}
+          noMenuButtonOnWideWindow
+        >
+          <LinklistMenu />
+        </Header>
         <main id="main">
           <Outlet />
         </main>

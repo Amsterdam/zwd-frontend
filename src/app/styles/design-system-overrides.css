@@ -1,5 +1,9 @@
 /* This file is used to override the default design system styles */
 
+body, html {
+  padding: 0;
+}
+
 .ams-dialog {
   --ams-label-font-weight: normal;
 }

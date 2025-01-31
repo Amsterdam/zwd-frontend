@@ -40,11 +40,11 @@ const DocumentsTable: React.FC = () => {
 
   return (
     <Table
-      data={ documents ?? [] } 
+      data={ documents ?? [] }
       columns={ columns }
       emptyPlaceholder="Geen documenten gevonden"
       loading={ isBusy }
-    />    
+    />
   )
 }
 
