@@ -10,13 +10,12 @@ import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents/Documents"
 import AddSubtask from "./AddSubtask/AddSubtask"
 
-
 const HeaderLink = styled(Heading)`
   margin-bottom: 24px;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
-  } 
+  }
 `
 
 export const CaseDetailsPage: React.FC = () => {
@@ -30,40 +29,39 @@ export const CaseDetailsPage: React.FC = () => {
   }
 
   const dataDetailsList = [
-    { term: "Zaak ID:", details: data?.id  },
+    { term: "Zaak ID:", details: data?.id },
     { term: "Beschrijving:", details: data?.description }
   ]
 
   const onClickTab = (e: React.MouseEvent<HTMLElement>) => {
-    const lastChar = (e.target as HTMLElement).id.slice(-1)
-    setActiveTab(lastChar)
+    const button = (e.target as HTMLElement).closest("button")
+    if (button) {
+      const lastChar = button.id.slice(-1)
+      setActiveTab(lastChar)
+    }
   }
 
   return (
     <PageGrid>
-      <PageHeading label="Zaakdetails" icon={DocumentIcon}/>
-      <HeaderLink 
-        onClick={() => navigate(`/vve/${ data?.homeowner_association?.id }`)} 
-        level={4} 
+      <PageHeading label="Zaakdetails" icon={DocumentIcon} />
+      <HeaderLink
+        onClick={() => navigate(`/vve/${ data?.homeowner_association?.id }`)}
+        level={4}
       >
-        { data?.homeowner_association?.name }
+        {data?.homeowner_association?.name}
       </HeaderLink>
-      <DetailsList data={ dataDetailsList } />
-      <Tabs activeTab={ Number(activeTab) } >
-        <Tabs.List onClick={ onClickTab }>
-          <Tabs.Button tab={0} >
-            Open taken
-          </Tabs.Button>
-          <Tabs.Button tab={1}>
-            Documenten
-          </Tabs.Button>
+      <DetailsList data={dataDetailsList} />
+      <Tabs activeTab={Number(activeTab)} onClick={onClickTab}>
+        <Tabs.List>
+          <Tabs.Button tab={0}>Open taken</Tabs.Button>
+          <Tabs.Button tab={1}>Documenten</Tabs.Button>
         </Tabs.List>
         <Tabs.Panel tab={0}>
           {data?.id && (
             <>
               <AddSubtask />
-              <Workflows caseId={ data?.id } /> 
-              <CaseEvents caseId={ data?.id } /> 
+              <Workflows caseId={data?.id} />
+              <CaseEvents caseId={data?.id} />
             </>
           )}
         </Tabs.Panel>
@@ -76,4 +74,3 @@ export const CaseDetailsPage: React.FC = () => {
 }
 
 export default CaseDetailsPage
-    
