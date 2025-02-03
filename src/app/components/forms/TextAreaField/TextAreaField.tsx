@@ -25,7 +25,9 @@ export const TextAreaField: React.FC<Props> = ({
 
   return (
     <Field>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={name} optional={!validation?.required}>
+        {label}
+      </Label>
       <TextArea
         aria-describedby="bodyDescription"
         id="body"
