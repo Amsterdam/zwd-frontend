@@ -21,7 +21,7 @@ export const useHomeownerAssociationCases = (id?: Components.Schemas.HomeownerAs
     ...options,
     url: `${ makeApiUrl("homeowner-association", id, "cases") }`,
     lazy: id === undefined,
-    groupName: "hoa",
+    groupName: "cases",
     handleError,
     isProtected: true
   })
