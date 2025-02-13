@@ -1,3 +1,4 @@
+import { FormEvent } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { DocumentIcon } from "@amsterdam/design-system-react-icons"
@@ -33,11 +34,9 @@ export const CaseDetailsPage: React.FC = () => {
     { term: "Beschrijving:", details: data?.description }
   ]
 
-  const onClickTab = (e: React.MouseEvent<HTMLElement>) => {
-    const button = (e.target as HTMLElement).closest("button")
-    if (button) {
-      const lastChar = button.id.slice(-1)
-      setActiveTab(lastChar)
+  const onChangeTab = (tabId: number | FormEvent<HTMLDivElement>) => {
+    if (typeof tabId === "number") {
+      setActiveTab(tabId.toString())
     }
   }
 
@@ -51,7 +50,7 @@ export const CaseDetailsPage: React.FC = () => {
         {data?.homeowner_association?.name}
       </HeaderLink>
       <DetailsList data={dataDetailsList} />
-      <Tabs activeTab={Number(activeTab)} onClick={onClickTab}>
+      <Tabs activeTab={Number(activeTab)} onChange={onChangeTab}>
         <Tabs.List>
           <Tabs.Button tab={0}>Open taken</Tabs.Button>
           <Tabs.Button tab={1}>Documenten</Tabs.Button>
