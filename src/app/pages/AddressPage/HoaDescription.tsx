@@ -8,12 +8,16 @@ type Props = {
 export const HoaDescription: React.FC<Props> = ({ hoa }) => {
   if (hoa?.id) {
     const items = [
-      { label: "Vve statutaire naam", children: hoa?.name },
-      { label: "Postcode", children: hoa?.zip_code },
-      { label: "Buurt", children: hoa?.neighborhood },
-      { label: "Stadsdeel", children: hoa?.district },
-      { label: "Bouwjaar", children: hoa?.build_year },
-      { label: "Aantal woningen", children: hoa?.number_of_appartments }
+      { label: "Vve statutaire naam", value: hoa?.name },
+      { label: "Postcode", value: hoa?.zip_code },
+      { label: "Wijk", value: hoa?.wijk },
+      { label: "Buurt", value: hoa?.neighborhood },
+      { label: "Stadsdeel", value: hoa?.district },
+      { label: "Bouwjaar", value: hoa?.build_year },
+      { label: "Aantal woningen", value: hoa?.number_of_appartments },
+      { label: "Monument status", value: hoa?.monument_status ?? "-" },
+      { label: "Beschermd stadsdorpsgezicht", value: hoa?.beschermd_stadsdorpsgezicht ?? "-" },
+      { label: "Ligt in beschermd gebied", value: hoa?.ligt_in_beschermd_gebied ?? "-" }
     ]
     return (
       <Descriptions items={ items } />

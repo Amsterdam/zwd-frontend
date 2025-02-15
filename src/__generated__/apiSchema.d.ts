@@ -140,8 +140,12 @@ declare namespace Components {
             owners: Nested[];
             district: string;
             neighborhood: string;
+            wijk: string;
             zip_code?: string | null;
             is_small: boolean;
+            monument_status?: string | null;
+            ligt_in_beschermd_gebied?: string | null;
+            beschermd_stadsdorpsgezicht?: string | null;
             message?: string; 
         }
         export interface Nested {

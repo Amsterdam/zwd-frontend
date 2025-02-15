@@ -3,7 +3,7 @@ import { Fragment } from "react"
 
 type DescriptionItem = {
   label: string;
-  children: React.ReactNode
+  value: React.ReactNode
 }
 
 type DescriptionsProps = {
@@ -18,7 +18,7 @@ export const Descriptions: React.FC<DescriptionsProps> = ({ items }) => (
           {item.label}
         </DescriptionList.Term>
         <DescriptionList.Description>
-          {item.children}
+          {item.value}
         </DescriptionList.Description>
       </Fragment>
     ))}
