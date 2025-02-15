@@ -24,10 +24,10 @@ const Wrapper = styled.div`
 
 export const AddressPage: React.FC = () => {
   const { bagId, hoaId } = useParams<{ bagId: string; hoaId: string }>()
+  const hoaIdNumber = hoaId ? Number(hoaId) : undefined
   const [dataByBagId, { isBusy }] = useHomeownerAssociationByBagId(bagId)
-  const [dataByHoaId, { isBusy: isLoading }] = useHomeownerAssociation(
-    Number(hoaId)
-  )
+  const [dataByHoaId, { isBusy: isLoading }] =
+    useHomeownerAssociation(hoaIdNumber)
   const navigate = useNavigate()
 
   const hasId = bagId || hoaId
@@ -70,7 +70,7 @@ export const AddressPage: React.FC = () => {
                 <HoaCases hoaId={hoa.id} />
               </Wrapper>
               <Wrapper>
-                <Button onClick={() => navigate(`/vve/${ hoa.id }/zaken/nieuw`)}>
+                <Button onClick={() => navigate(`/vve/${hoa.id}/zaken/nieuw`)}>
                   Nieuwe zaak aanmaken
                 </Button>
               </Wrapper>
