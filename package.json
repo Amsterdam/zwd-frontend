@@ -13,6 +13,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
     "test": "vitest",
     "preview": "vite preview"
@@ -54,7 +56,7 @@
     "eslint-plugin-react": "^7.37.1",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.13",
-    "prettier": "3.5.0",
+    "prettier": "^3.5.0",
     "vitest": "^3.0.4"
   }
 }
