@@ -80,7 +80,7 @@ export const CaseCreatePage: React.FC = () => {
             <TextAreaField
               name="description"
               label="Toelichting"
-              validation={{ required: true, maxLength: 1000 }}
+              validation={{ required: false, maxLength: 1000 }}
             />
             <FormActionButtons
               okText="Zaak aanmaken"

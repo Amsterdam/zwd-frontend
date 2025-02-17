@@ -36,7 +36,7 @@ export const AddressPage: React.FC = () => {
 
   return (
     <PageGrid>
-      <PageHeading label="Adresoverzicht" icon={HousingIcon} />
+      <PageHeading label="Overzicht vve" icon={HousingIcon} />
       {loading ? (
         <PageSpinner />
       ) : hasId ? (
