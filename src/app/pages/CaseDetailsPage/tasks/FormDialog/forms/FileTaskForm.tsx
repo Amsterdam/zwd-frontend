@@ -5,12 +5,11 @@ import {
   FileInputField,
   TextInputField
 } from "app/components"
-import type { FormItem } from "./types"
 
 type Props = {
   loading?: boolean
   closeModal: () => void
-  submitForm: (variables: { name: string, upload: FileList }) => void
+  submitForm: (variables: { name: string; upload: FileList }) => void
   form: FormItem[]
 }
 
@@ -23,7 +22,7 @@ export const FileTaskForm: React.FC<Props> = ({
   const formItem = form[0]
 
   return (
-    <Form onSubmit={submitForm} formGrid={{ narrow: 4, medium: 6, wide: 10 }}>
+    <Form onSubmit={submitForm}>
       <TextInputField
         key="key-name"
         name="name"

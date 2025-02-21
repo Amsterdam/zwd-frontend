@@ -4,7 +4,8 @@ import {
   TextAreaField,
   FormActionButtons
 } from "app/components"
-import type { FormItem, GenericTaskFormData } from "./types"
+import type { GenericTaskFormData } from "../helpers/types"
+import formatGenericData from "../helpers/formatGenericData"
 
 type Props = {
   loading?: boolean
@@ -13,18 +14,6 @@ type Props = {
   form: FormItem[]
 }
 
-const formatData = (form: FormItem[], data: GenericTaskFormData) =>
-  form.reduce<GenericTaskFormData>((acc, item) => {
-    const key = item.name
-    const value = data[key]
-    if (value) {
-      acc[key] = {
-        value: value
-      }
-    }
-    return acc
-  }, {})
-
 export const GenericTaskForm: React.FC<Props> = ({
   closeModal,
   submitForm,
@@ -32,12 +21,12 @@ export const GenericTaskForm: React.FC<Props> = ({
   form
 }) => {
   const onSubmit = (data: GenericTaskFormData) => {
-    const formattedData = formatData(form, data)
+    const formattedData = formatGenericData(form, data)
     submitForm(formattedData)
   }
 
   return (
-    <Form onSubmit={onSubmit} formGrid={{ narrow: 4, medium: 6, wide: 10 }}>
+    <Form onSubmit={onSubmit}>
       {form.map((formItem: FormItem, index: number) => {
         switch (formItem.type) {
         case "select":

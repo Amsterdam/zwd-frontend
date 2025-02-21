@@ -24,6 +24,10 @@ declare namespace Components {
             AdviceTypeEnum;
             homeowner_association: CaseHomeownerAssociation;
         }
+        export interface CaseAdvisor {
+            id: number;
+            name: string;
+        }
         export interface CaseCreate {
             id: number;
             description?: string | null;
@@ -86,7 +90,7 @@ declare namespace Components {
             task_id: string; // uuid
             task_name: string;
             name: string;
-            form?: any;
+            form?: null;
             roles?: string[] | null;
             due_date: string; // date-time
             owner?: number | null;
@@ -146,7 +150,6 @@ declare namespace Components {
             monument_status?: string | null;
             ligt_in_beschermd_gebied?: string | null;
             beschermd_stadsdorpsgezicht?: string | null;
-            message?: string; 
         }
         export interface Nested {
             id: number;
@@ -155,6 +158,9 @@ declare namespace Components {
             fullname: string;
             role: string;
             homeowner_associations?: number[];
+        }
+        export interface PatchedUpdateCaseAdvisor {
+            advisor?: number;
         }
         export interface StartWorkflow {
             workflow_option_id: number;
@@ -227,6 +233,29 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.BpmnModel[];
+        }
+    }
+    namespace CasesAdvisorPartialUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.PatchedUpdateCaseAdvisor;
+        namespace Responses {
+            export type $200 = string;
+        }
+    }
+    namespace CasesAdvisorsList {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseAdvisor[];
         }
     }
     namespace CasesCreate {
