@@ -33,7 +33,7 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
             {state?.name ? <Heading level={4}>{state.name}</Heading> : <></>}
             <Table
               columns={columns}
-              data={tasks}
+              data={tasks as CustomCaseUserTask[]}
               pagination={false}
               emptyPlaceholder="Geen taken beschikbaar."
             />

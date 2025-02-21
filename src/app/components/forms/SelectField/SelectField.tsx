@@ -5,10 +5,12 @@ import type {
 } from "react-hook-form"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
 
+export type Option = { value: string | number; label: string }
+
 type Props = {
   name: string
   label?: string
-  options?: { value: string; label: string }[]
+  options?: Option[]
   hasDefaultOption?: boolean
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>

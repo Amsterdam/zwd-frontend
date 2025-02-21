@@ -5,7 +5,7 @@ import { formatDate } from "app/utils/dates"
 
 const getColumns = (
   caseId: Components.Schemas.Case["id"]
-): ColumnType<Components.Schemas.CaseUserTask>[] => [
+): ColumnType<CustomCaseUserTask>[] => [
   {
     header: "",
     dataIndex: "id",

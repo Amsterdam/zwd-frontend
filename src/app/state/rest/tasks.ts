@@ -5,7 +5,7 @@ import useApiRequest from "./hooks/useApiRequest"
 
 export const useTasks = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseUserTask[]>({
+  return useApiRequest<CustomCaseUserTask[]>({
     ...options,
     url: `${ makeApiUrl("tasks") }`,
     groupName: "tasks",
@@ -14,9 +14,9 @@ export const useTasks = (options?: Options) => {
   })
 }
 
-export const useTask = (id: Components.Schemas.CaseUserTask["id"] ,options?: Options) => {
+export const useTask = (id: CustomCaseUserTask["id"] ,options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseUserTask>({
+  return useApiRequest<CustomCaseUserTask>({
     ...options,
     url: `${ makeApiUrl("tasks", id) }`,
     groupName: "tasks",

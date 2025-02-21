@@ -3,7 +3,7 @@ import { AlertIcon } from "@amsterdam/design-system-react-icons"
 import { useDecodedToken } from "app/hooks"
 
 type Props = {
-  task: Components.Schemas.CaseUserTask
+  task: CustomCaseUserTask
   children: React.ReactNode | React.ReactNode[]
   displayMode?: "text" | "icon"
 }

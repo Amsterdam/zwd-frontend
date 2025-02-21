@@ -1,5 +1,6 @@
 export type ApiGroup =
   | "address" 
+  | "advisors"
   | "bagPdok"
   | "bpmn"
   | "cases"
@@ -14,6 +15,7 @@ export type Options = {
 }
 
 export * from "./address"
+export * from "./advisors"
 export * from "./bagPdok"
 export * from "./bpmn"
 export * from "./cases"
