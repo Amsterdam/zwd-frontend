@@ -69,6 +69,7 @@ export const CaseCreatePage: React.FC = () => {
             onSubmit={onSubmit}
             hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
             dummyValues={defaultDummyValues}
+            formGrid={{ narrow: 4, medium: 6, wide: 6 }}
           >
             <RadioGroupFieldSet
               name="advice_type"
@@ -80,7 +81,7 @@ export const CaseCreatePage: React.FC = () => {
             <TextAreaField
               name="description"
               label="Toelichting"
-              validation={{ required: true, maxLength: 1000 }}
+              validation={{ required: false, maxLength: 1000 }}
             />
             <FormActionButtons
               okText="Zaak aanmaken"

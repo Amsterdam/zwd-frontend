@@ -33,7 +33,7 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
 
   return (
     <Dialog heading="Document uploaden" id={id}>
-      <Form onSubmit={onSubmit} formGrid={{ narrow: 4, medium: 6, wide: 10 }}>
+      <Form onSubmit={onSubmit}>
         <TextInputField
           name="name"
           label="Titel van het document"

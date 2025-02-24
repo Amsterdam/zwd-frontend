@@ -15,7 +15,7 @@ export const CompletedTaskForm: React.FC<Props> = ({ closeModal, submitForm, loa
   const onSubmit = (data: ComletedTaskFormData) => submitForm(data)
 
   return (
-    <Form onSubmit={ onSubmit } formGrid={{ narrow: 4, medium: 6, wide: 10 }} >
+    <Form onSubmit={ onSubmit }>
       <CheckboxField 
         name="completed"
         label="Ja, deze taak is afgerond"
