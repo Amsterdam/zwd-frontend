@@ -30,8 +30,9 @@ export const CaseDetailsPage: React.FC = () => {
   }
 
   const dataDetailsList = [
-    { term: "Zaak ID:", details: data?.id },
-    { term: "Beschrijving:", details: data?.description }
+    { term: "Zaak ID", details: data?.id },
+    { term: "Advies type", details: data?.advice_type },
+    { term: "Beschrijving", details: data?.description }
   ]
 
   const onChangeTab = (tabId: number | FormEvent<HTMLDivElement>) => {
