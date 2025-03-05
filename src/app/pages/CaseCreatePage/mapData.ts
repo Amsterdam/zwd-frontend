@@ -42,7 +42,7 @@ export default mapData
 export type DefaultDummyValues = Omit<CaseCreateFormTypes, "id">
 
 export const defaultDummyValues: DefaultDummyValues = {
-  advice_type: "Cursus",
+  advice_type: "Energieadvies",
   fullname: ["Chewbacca", "Han Solo"],
   email: ["chewbacca@starwars.org", "hansolo@starwars.org"],
   phone: ["0612345678", "0031611112222"],
