@@ -150,7 +150,7 @@ declare namespace Components {
             monument_status?: string | null;
             ligt_in_beschermd_gebied?: string | null;
             beschermd_stadsdorpsgezicht?: string | null;
-            is_priority_neighborhood: string;
+            is_priority_neighborhood: boolean;
         }
         export interface Nested {
             id: number;
