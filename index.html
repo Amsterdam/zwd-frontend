@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/amsterdam.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaken Woningkwaliteit en Duurzaamheid</title>
-    <script src='/config/env.js'></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+   <head>
+      <meta charset="UTF-8" />
+      <link rel="icon" type="image/svg+xml" href="/amsterdam.svg" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Zaken Woningkwaliteit en Duurzaamheid</title>
+      <script src='/config/env.js'></script>
+      <meta http-equiv="Content-Security-Policy" content="
+        script-src 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+        style-src 'self' 'unsafe-inline';
+        img-src https: data:;
+        ">
+   </head>
+   <body>
+      <div id="root"></div>
+      <script type="module" src="/src/main.tsx"></script>
+   </body>
 </html>
