@@ -25,7 +25,7 @@ export const TimelineEvent: React.FC<Props> = ({ event }) => {
         {data.map((item, index) => (
           <React.Fragment key={ `event_values-${ index }` }>
             <DescriptionList.Term>
-              { item.key }
+              { item.label }
             </DescriptionList.Term>
             <DescriptionList.Description>
               { item.value }

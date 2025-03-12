@@ -1,11 +1,6 @@
 import dayjs from "dayjs"
 
-export const isValidDate = (dateString: string): boolean => {
-  // Parse the date string with dayjs
-  const date = dayjs(dateString)
-  // Check if the parsed date is valid
-  return date.isValid()
-}
+export const isValidDate = (dateString: string): boolean => dayjs(dateString).isValid()
 
 const DEFAULT_DATE_FORMAT = "DD-MM-YYYY"
 const DEFAULT_DATE_FORMAT_TIME = "DD-MM-YYYY HH:mm"

@@ -3,24 +3,36 @@ import { isValidDate, formatDate } from "app/utils/dates"
 import { EVENT_TYPES, getEventValueName } from "./dictionaries"
 
 type Value = {
-  key: string
+  label: string
   value: string | number
 }
 
+// Helper function to process date values
+const getFormattedValue = (
+  value: unknown,
+  includeTime = false
+): string | number =>
+  isValidDate(String(value))
+    ? formatDate(String(value), includeTime)
+    : String(value)
+
 export const useValues = (event: CaseEvent) => {
-  const { event_values, event_variables } = event
+  const { event_values = {}, event_variables } = event
   const values: Value[] = []
 
-  // Map event_variables if a form has been submitted.
-  // There must be data (event_variables) and it cannot be a generic boolean (completed)
-  if (event_variables && !event_variables?.completed) {
-    Object.entries(event_variables).forEach(([, event]) => {
-      const eventValue = String(event?.value ?? "")
-      const value = isValidDate(eventValue)
-        ? formatDate(eventValue)
-        : eventValue
-      const key = String(event?.label ?? "")
-      values.push({ key, value })
+  // Always start with Datum
+  if (event_values.date_added) {
+    values.push({
+      label: getEventValueName("date_added"),
+      value: getFormattedValue(event_values.date_added, true)
+    })
+  }
+
+  // Uitvoerder (author) is always second
+  if (event_values.author) {
+    values.push({
+      label: getEventValueName("author"),
+      value: event_values.author
     })
   }
 
@@ -30,11 +42,25 @@ export const useValues = (event: CaseEvent) => {
     if (event.type === EVENT_TYPES["GENERIC_TASK"] && key === "description") {
       return
     }
+    // Don't return date_added and author because they are already added.
+    if (key === "date_added" || key === "author") {
+      return
+    }
     // Translate the key and the value to readable dutch.
     const label = getEventValueName(key)
-    const keyValue = isValidDate(value) ? formatDate(value, true) : value
-    values.push({ key: label, value: keyValue })
+    const keyValue = getFormattedValue(value)
+    values.push({ label, value: keyValue })
   })
+
+  // Map event_variables if applicable
+  if (event_variables && !event_variables?.completed) {
+    Object.entries(event_variables).forEach(([, event]) => {
+      values.push({
+        label: String(event?.label ?? ""),
+        value: getFormattedValue(event.value)
+      })
+    })
+  }
 
   return values
 }
