@@ -1,4 +1,5 @@
 export * from "./CheckboxField/CheckboxField"
+export * from "./DateInputField/DateInputField"
 export * from "./FileInputField/FileInputField"
 export * from "./FormActionButtons/CancelButton"
 export * from "./FormActionButtons/FormActionButtons"

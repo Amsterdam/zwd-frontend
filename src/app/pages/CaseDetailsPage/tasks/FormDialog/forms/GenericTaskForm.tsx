@@ -1,5 +1,6 @@
 import {
   Form,
+  DateInputField,
   SelectField,
   TextAreaField,
   FormActionButtons
@@ -29,6 +30,15 @@ export const GenericTaskForm: React.FC<Props> = ({
     <Form onSubmit={onSubmit}>
       {form.map((formItem: FormItem, index: number) => {
         switch (formItem.type) {
+        case "date":
+          return (
+            <DateInputField
+              key={index}
+              name={formItem.name}
+              label={formItem.label}
+              validation={{ required: formItem.required }}
+            />
+          )
         case "select":
           return (
             <SelectField
