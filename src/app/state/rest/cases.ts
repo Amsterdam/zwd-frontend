@@ -31,6 +31,18 @@ export const useCase = (id: Components.Schemas.Case["id"], options?: Options) =>
   })
 }
 
+export const useCaseCreate = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseCreate>({
+    lazy: true,
+    ...options,
+    url: `${makeApiUrl("cases")}`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useWorkflows = (id: Components.Schemas.Case["id"], options?: Options) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseWorkflow[]>({

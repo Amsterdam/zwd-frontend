@@ -13,7 +13,7 @@ import {
   PageSpinner,
   PageGrid
 } from "app/components"
-import { useCases, useHomeownerAssociation } from "app/state/rest"
+import { useCaseCreate, useHomeownerAssociation } from "app/state/rest"
 import { ContactsFormFields } from "./ContactsFormFields"
 import { optionsForSmallHoa, optionsForBigHoa } from "./formOptions"
 import mapData, { defaultDummyValues } from "./mapData"
@@ -29,7 +29,7 @@ type ExecPostResponse = {
 export const CaseCreatePage: React.FC = () => {
   const { hoaId } = useParams<{ hoaId: string }>()
   const [loading, setLoading] = useState<boolean>(false)
-  const [, { execPost }] = useCases({ lazy: true })
+  const [, { execPost }] = useCaseCreate()
   const [hoa, { isBusy }] = useHomeownerAssociation(Number(hoaId))
   const navigate = useNavigate()
 
