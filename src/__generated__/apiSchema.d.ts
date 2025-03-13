@@ -160,6 +160,60 @@ declare namespace Components {
             role: string;
             homeowner_associations?: number[];
         }
+        export interface PaginatedCaseListList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=4
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=2
+             */
+            previous?: string | null; // uri
+            results: CaseList[];
+        }
+        export interface PaginatedCaseUserTaskListList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=4
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=2
+             */
+            previous?: string | null; // uri
+            results: CaseUserTaskList[];
+        }
+        export interface PaginatedHomeownerAssociationList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=400&limit=100
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=200&limit=100
+             */
+            previous?: string | null; // uri
+            results: HomeownerAssociation[];
+        }
         export interface PatchedUpdateCaseAdvisor {
             advisor?: number;
         }
@@ -321,8 +375,16 @@ declare namespace Paths {
         }
     }
     namespace CasesList {
+        namespace Parameters {
+            export type Page = number;
+            export type PageSize = number;
+        }
+        export interface QueryParameters {
+            page?: Parameters.Page;
+            page_size?: Parameters.PageSize;
+        }
         namespace Responses {
-            export type $200 = Components.Schemas.CaseList[];
+            export type $200 = Components.Schemas.PaginatedCaseListList;
         }
     }
     namespace CasesProcessesList {
@@ -389,8 +451,22 @@ declare namespace Paths {
         }
     }
     namespace HomeownerAssociationList {
+        namespace Parameters {
+            export type Limit = number;
+            export type Offset = number;
+        }
+        export interface QueryParameters {
+            limit?: Parameters.Limit;
+            offset?: Parameters.Offset;
+        }
         namespace Responses {
-            export type $200 = Components.Schemas.HomeownerAssociation[];
+            export type $200 = Components.Schemas.PaginatedHomeownerAssociationList;
+        }
+    }
+    namespace HomeownerAssociationPriorityZipcodeCreate {
+        export type RequestBody = Components.Schemas.HomeownerAssociation;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
         }
     }
     namespace HomeownerAssociationRetrieve {
@@ -405,8 +481,16 @@ declare namespace Paths {
         }
     }
     namespace TasksList {
+        namespace Parameters {
+            export type Page = number;
+            export type PageSize = number;
+        }
+        export interface QueryParameters {
+            page?: Parameters.Page;
+            page_size?: Parameters.PageSize;
+        }
         namespace Responses {
-            export type $200 = Components.Schemas.CaseUserTaskList[];
+            export type $200 = Components.Schemas.PaginatedCaseUserTaskListList;
         }
     }
     namespace TasksRetrieve {

@@ -1,55 +1,47 @@
 import { useNavigate } from "react-router-dom"
-import { ColumnType, LinkButton, PageGrid, PageHeading, Table } from "app/components"
+import { PageGrid, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
-import { formatDate } from "app/utils/dates"
+import columns from "./columns"
+import { ContextValues } from "app/state/context/ValueProvider"
+import { useContext, useEffect } from "react"
 
-const columns: ColumnType<CustomCaseUserTask>[] = [
-  {
-    header: "Taak ID",
-    dataIndex: "id",
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) =>  a?.id - b?.id,    
-    defaultSortOrder: "DESCEND",
-    width: 100
-  }, {
-    header: "Vve statutaire naam",
-    dataIndex: "homeowner_association",
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) => (
-      a?.homeowner_association && b?.homeowner_association ? a.homeowner_association.localeCompare(b.homeowner_association) : -1
-    )
-  }, {
-    header: "Open taak",
-    dataIndex: "name",
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) => (
-      a.name.localeCompare(b.name)
-    )
-  }, {
-    header: "Aangemaakt",
-    dataIndex: "created",
-    width: 130,
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) => (
-      a.created.localeCompare(b.created)
-    ),
-    render: (text) => formatDate(text, true)
-  }, {
-    header: "",
-    dataIndex: "case",
-    width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
-  }
-]
 
 export const TasksPage: React.FC = () => {
-  const [data, { isBusy }] = useTasks()
+  const {
+    count, pagination, results, updateContextTasks
+  } = useContext(ContextValues)["tasks"]
+  const [dataSource, { isBusy }] = useTasks(pagination)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (dataSource?.results) {
+      updateContextTasks({ results: dataSource?.results, count: dataSource.count })
+    } else {
+      updateContextTasks({
+        results: [],
+        count: 0
+      })
+    }
+  }, [dataSource, updateContextTasks])
+
+  const onChangeTable = (pagination: Pagination) => {
+    updateContextTasks({ pagination })
+  }
 
   return (
     <PageGrid>
-      <PageHeading label="Takenoverzicht" />
+      <PageHeading label={`Takenoverzicht (${ count })`} />
       <Table
         columns={ columns }
-        data={ data as CustomCaseUserTask[] } 
+        data={ results } 
         loading={ isBusy }
         onClickRow={(obj) => navigate(`/zaken/${ obj.case }`)}
+        onChange={onChangeTable}
+        pagination={{
+          page: pagination.page,
+          pageSize: pagination.pageSize,
+          collectionSize: count || 1
+        }}
       />
     </PageGrid>
   )

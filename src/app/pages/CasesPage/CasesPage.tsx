@@ -1,55 +1,59 @@
+import { useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCases } from "app/state/rest"
-import { ColumnType, Table, PageHeading, LinkButton, PageGrid } from "app/components"
-import { formatDate } from "app/utils/dates"
-
-const columns: ColumnType<Components.Schemas.Case>[] = [
-  {
-    header: "ID",
-    dataIndex: "id",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>  a?.id - b?.id,    
-    defaultSortOrder: "DESCEND"
-  }, {
-    header: "Vve statutaire naam",
-    dataIndex: "homeowner_association.name",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => {
-      const nameA = (a?.homeowner_association?.name as string | undefined) ?? ""
-      const nameB = (b?.homeowner_association?.name as string | undefined) ?? ""
-      return (
-        nameA.localeCompare(nameB)
-      )
-    }
-  }, {
-    header: "Startdatum zaak",
-    dataIndex: "created",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
-      a.created.localeCompare(b.created)
-    ),
-    render: (text) => formatDate(text)
-  }, {
-    header: "",
-    dataIndex: "id",
-    width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
-  }
-]
+import { Table, PageHeading, PageGrid } from "app/components"
+import { ContextValues } from "app/state/context/ValueProvider"
+import columns from "./columns"
 
 export const CasesPage: React.FC = () => {
-  const [data, { isBusy }] = useCases()
+  const {
+    count, pagination, results, updateContextCases
+  } = useContext(ContextValues)["cases"]
   const navigate = useNavigate()
+  const [dataSource, { isBusy }] = useCases(pagination)
+
+  useEffect(() => {
+    if (dataSource?.results) {
+      updateContextCases({ results: dataSource?.results, count: dataSource.count })
+    } else {
+      updateContextCases({
+        results: [],
+        count: 0
+      })
+    }
+  }, [dataSource, updateContextCases])
+
+  // const onChangePageSize = (pageSize: string) => {
+  //   updateContextCases({
+  //     pagination: {
+  //       ...pagination,
+  //       pageSize: parseInt(pageSize),
+  //       page: 1
+  //     }
+  //   })
+  // }
+
+  const onChangeTable = (pagination: Pagination) => {
+    updateContextCases({ pagination })
+  }
 
   return (
     <PageGrid>
-      <PageHeading label="Zakenoverzicht" />
-      <Table 
-        columns={ columns } 
-        data={ data as Components.Schemas.Case[] } 
-        loading={ isBusy }
-        onClickRow={(obj) => navigate(`/zaken/${ obj.id }`)}
+      <PageHeading label={`Zakenoverzicht (${ count })`} />
+      <Table
+        columns={columns}
+        data={results}
+        loading={isBusy}
+        onClickRow={(obj) => navigate(`/zaken/${obj.id}`)}
+        onChange={onChangeTable}
+        pagination={{
+          page: pagination.page,
+          pageSize: pagination.pageSize,
+          collectionSize: count || 1
+        }}
       />
     </PageGrid>
   )
 }
 
 export default CasesPage
-    
