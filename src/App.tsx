@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom"
 import router from "app/routing/router"
 import { LoggingInPage, LoggingInErrorPage } from "app/pages"
 import ApiProvider from "app/state/rest/provider/ApiProvider"
+import ValueProvider from "app/state/context/ValueProvider"
 
 
 const App = () => {
@@ -36,7 +37,9 @@ const App = () => {
 
   return (
     <ApiProvider>
-      <RouterProvider router={router} />
+      <ValueProvider>
+        <RouterProvider router={router} />
+      </ValueProvider>
     </ApiProvider>
   )
 }
