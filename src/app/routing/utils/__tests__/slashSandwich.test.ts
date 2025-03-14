@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { slashSandwich, stripDoubleSlashes, stripTrailingSlash, stripLeadingSlash } from "./slashSandwich"
+import { slashSandwich, stripDoubleSlashes, stripTrailingSlash, stripLeadingSlash } from "../slashSandwich"
 
 describe("slashSandwich", () => {
   it("should glue parts together with leading and trailing slashes", () => {

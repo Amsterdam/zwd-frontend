@@ -1,7 +1,7 @@
 import type { Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
-import stringifyQueryParams from "app/utils/stringifyQueryParams"
+import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 
 export const useTasks = (pagination: Pagination, options?: Options) => {
   const handleError = useErrorHandler()
