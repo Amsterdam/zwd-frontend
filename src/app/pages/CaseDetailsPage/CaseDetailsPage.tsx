@@ -10,6 +10,7 @@ import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents/Documents"
 import AddSubtask from "./AddSubtask/AddSubtask"
+import DownloadPdf from "./DownloadPdf/DownloadPdf"
 
 const HeaderLink = styled(Heading)`
   margin-bottom: 24px;
@@ -17,6 +18,12 @@ const HeaderLink = styled(Heading)`
   &:hover {
     text-decoration: underline;
   }
+`
+
+const SpaceBetweenWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 `
 
 export const CaseDetailsPage: React.FC = () => {
@@ -50,7 +57,10 @@ export const CaseDetailsPage: React.FC = () => {
       >
         {data?.homeowner_association?.name}
       </HeaderLink>
-      <DetailsList data={dataDetailsList} />
+      <SpaceBetweenWrapper>
+        <DetailsList data={dataDetailsList} />
+        <DownloadPdf caseId={Number(caseId)} />
+      </SpaceBetweenWrapper>
       <Tabs activeTab={Number(activeTab)} onChange={onChangeTab}>
         <Tabs.List>
           <Tabs.Button tab={0}>Open taken</Tabs.Button>
