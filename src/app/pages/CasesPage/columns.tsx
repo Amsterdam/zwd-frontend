@@ -1,5 +1,5 @@
 import type { ColumnType } from "app/components"
-import { LinkButton } from "app/components"
+import { LinkButton, StatusTag } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 type DataType = Components.Schemas.CaseList
@@ -8,7 +8,7 @@ const columns: ColumnType<DataType>[] = [
   {
     header: "ID",
     dataIndex: "id",
-    sorter: (a: DataType, b: DataType) =>  a?.id - b?.id,    
+    sorter: (a: DataType, b: DataType) => a?.id - b?.id,
     defaultSortOrder: "DESCEND"
   }, {
     header: "Vve statutaire naam",
@@ -20,6 +20,10 @@ const columns: ColumnType<DataType>[] = [
         nameA.localeCompare(nameB)
       )
     }
+  }, {
+    header: "Status",
+    dataIndex: "case_state_type",
+    render: (text) => <StatusTag status={text}/>
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",
