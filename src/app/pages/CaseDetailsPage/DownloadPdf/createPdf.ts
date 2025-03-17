@@ -14,6 +14,11 @@ type Data = {
   value?: string | number
 }[]
 
+// Calculate the Y position for the next row to start.
+// Two extra lines are added; one for the title and one for margin-top
+const calculateYPos = (startY: number, prevRowLength: number) =>
+  startY + (prevRowLength + 2) * LINE_HEIGHT
+
 const addDescription = (doc: jsPDF, title: string, data: Data, startY: number) => {
   // Header
   doc.setFont("Amsterdam-Bold", "bold")
@@ -77,28 +82,31 @@ const createPdf = (
     { label: "Ligt in beschermd gebied:", value: hoaData.ligt_in_beschermd_gebied ?? "-" }
   ]
 
-  addDescription(doc, "Vve-gegevens", hoaDescriptionFields, 80)
+  let startY = 80
+  addDescription(doc, "Vve-gegevens", hoaDescriptionFields, startY)
 
   // -------------------- Contactpersonen -------------------- //
+  startY = calculateYPos(startY, hoaDescriptionFields.length)
   const contacts = hoaData.contacts.map((contact) => ({
     label: `- ${contact.fullname} (${contact.role}) - ${contact.email} - ${contact.phone}`
   }))
 
-  addDescription(doc, "Contactpersonen", contacts, 152)
+  addDescription(doc, "Contactpersonen", contacts, startY)
 
   // -------------------- Zaakdetails -------------------- //
+  startY = calculateYPos(startY, contacts.length)
   const caseDescriptionFields = [
     { label: "Zaak ID:", value: caseData.id },
     { label: "Advies type:", value: caseData.advice_type },
     { label: "Beschrijving:", value: caseData.description ?? "-" }
   ]
 
-  addDescription(doc, "Zaakdetails", caseDescriptionFields, 176)
+  addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
 
   // PDF downloaden
   // doc.save("voorbeeld.pdf")
 
-  doc.output("dataurlnewwindow")
+  doc.output("dataurlnewwindow", { filename: `ZWD-ZAAK-${caseData.id}.pdf` })
 }
 
 export default createPdf
