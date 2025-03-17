@@ -81,6 +81,7 @@ declare namespace Components {
             id: number;
             homeowner_association: CaseHomeownerAssociation;
             created: string; // date-time
+            case_state_type: string;
         }
         export interface CaseStateType {
             name: string;

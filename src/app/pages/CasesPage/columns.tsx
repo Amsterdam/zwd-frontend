@@ -8,7 +8,7 @@ const columns: ColumnType<DataType>[] = [
   {
     header: "ID",
     dataIndex: "id",
-    sorter: (a: DataType, b: DataType) =>  a?.id - b?.id,    
+    sorter: (a: DataType, b: DataType) => a?.id - b?.id,
     defaultSortOrder: "DESCEND"
   }, {
     header: "Vve statutaire naam",
@@ -20,6 +20,9 @@ const columns: ColumnType<DataType>[] = [
         nameA.localeCompare(nameB)
       )
     }
+  }, {
+    header: "Status",
+    dataIndex: "case_state_type"
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",

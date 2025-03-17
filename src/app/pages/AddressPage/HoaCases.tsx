@@ -15,12 +15,15 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>  a?.id - b?.id,    
     defaultSortOrder: "DESCEND"
   }, {
-    header: "Startdatum",
+    header: "Status",
+    dataIndex: "case_state_type"
+  }, {
+    header: "Startdatum zaak",
     dataIndex: "created",
     sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) => (
       a.created.localeCompare(b.created)
     ),
-    render: (text) => formatDate(text, true)
+    render: (text) => formatDate(text)
   }, {
     header: "",
     dataIndex: "id",
