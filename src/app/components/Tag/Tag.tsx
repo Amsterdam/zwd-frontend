@@ -29,6 +29,7 @@ const lightenColor = (hex: string, factor: number = 0.05): string =>
   `rgba(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)}, ${factor})`
 
 const Tag: React.FC<TagProps> = ({ color, children }) => {
+  if (!children) return null
   const hexColor = getColorHex(color)
   const backgroundColor = lightenColor(hexColor)
 

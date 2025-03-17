@@ -1,5 +1,5 @@
 import { Heading } from "@amsterdam/design-system-react"
-import { ColumnType, LinkButton, StatusTag, Table } from "app/components"
+import { ColumnType, LinkButton, Table } from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
 import { useNavigate } from "react-router-dom"
@@ -16,8 +16,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     defaultSortOrder: "DESCEND"
   }, {
     header: "Status",
-    dataIndex: "case_state_type",
-    render: (text) => <StatusTag status={text}/>
+    dataIndex: "case_state_type"
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",

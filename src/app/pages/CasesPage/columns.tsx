@@ -1,5 +1,5 @@
 import type { ColumnType } from "app/components"
-import { LinkButton, StatusTag } from "app/components"
+import { LinkButton } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 type DataType = Components.Schemas.CaseList
@@ -22,8 +22,7 @@ const columns: ColumnType<DataType>[] = [
     }
   }, {
     header: "Status",
-    dataIndex: "case_state_type",
-    render: (text) => <StatusTag status={text}/>
+    dataIndex: "case_state_type"
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",
