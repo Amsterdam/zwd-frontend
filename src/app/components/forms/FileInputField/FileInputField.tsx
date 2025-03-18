@@ -72,7 +72,7 @@ export const FileInputField: React.FC<Props> = ({
         {...(register
           ? register(name, {
             required: validation.required ?? false,
-            validate: validateFile
+            validate: validation.required ? validateFile : undefined
           })
           : {})}
         {...rest}
