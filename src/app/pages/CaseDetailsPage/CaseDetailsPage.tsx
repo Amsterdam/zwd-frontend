@@ -42,7 +42,7 @@ export const CaseDetailsPage: React.FC = () => {
     { term: "Beschrijving", details: data?.description && data?.description !== "" ? data?.description : "-" }
   ]
   if (data?.legacy_id && data.legacy_id !== "") {
-    dataDetailsList.push({ term: "Dossiernummer (Excel)", details: data.legacy_id as string })
+    dataDetailsList.push({ term: "Dossiernummer (Excel)", details: `${data.legacy_id}` })
   }
 
   const onChangeTab = (tabId: number | FormEvent<HTMLDivElement>) => {
