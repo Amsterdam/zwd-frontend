@@ -48,17 +48,20 @@ export const Form = <T extends FieldValues>({
             className="ams-gap--md"
             onSubmit={withExceptionCapturing(handleSubmit(onSubmit))}
           >
-            {React.Children.map(children, (child, key) =>
-              React.isValidElement(child)
-                ? React.createElement(child.type, {
-                  ...{
+            {React.Children.map(children, (child, key) => {
+              if (React.isValidElement(child)) {
+                const childProps = child.props as { name?: string } 
+                // Add formMethods to all fields with the "name" prop
+                if (childProps.name) {
+                  return React.createElement(child.type, {
                     ...child.props,
                     key,
                     formMethods
-                  }
-                })
-                : child
-            )}
+                  })
+                }
+              }
+              return child
+            })}
           </form>
         </Grid.Cell>
       </Grid>

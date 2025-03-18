@@ -29,7 +29,8 @@ export const FormDialogContent: React.FC<{
       <FileTaskForm
         closeModal={closeDialog}
         loading={loading}
-        submitForm={submitFormFile}
+        submitForm={submitForm}
+        submitFormFile={submitFormFile}
         form={form}
       />
     )

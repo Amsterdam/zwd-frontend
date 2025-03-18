@@ -23,6 +23,7 @@ declare namespace Components {
              */
             AdviceTypeEnum;
             homeowner_association: CaseHomeownerAssociation;
+            legacy_id?: string | null;
         }
         export interface CaseAdvisor {
             id: number;
@@ -39,6 +40,7 @@ declare namespace Components {
             AdviceTypeEnum;
             homeowner_association?: number | null;
             contacts?: Contact[];
+            legacy_id?: string | null;
         }
         export interface CaseDocument {
             id: number;
@@ -373,6 +375,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseEvent;
+        }
+    }
+    namespace CasesLegacyRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseList;
         }
     }
     namespace CasesList {

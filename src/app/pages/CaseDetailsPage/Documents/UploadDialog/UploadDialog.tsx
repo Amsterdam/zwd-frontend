@@ -40,7 +40,11 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
           validation={{ required: true, maxLength: 100 }}
         />
         <FileInputField name="upload" validation={{ required: true }} />
-        <FormActionButtons okText="Upload" onCancel={Dialog.close} />
+        <FormActionButtons
+          okText="Upload"
+          onCancel={Dialog.close}
+          name="ACTION_BUTTONS"
+        />
       </Form>
     </Dialog>
   )

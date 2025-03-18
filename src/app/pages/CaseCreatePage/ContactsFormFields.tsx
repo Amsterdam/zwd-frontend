@@ -6,6 +6,7 @@ import { OPTIONS_ROLE_FUNCTIONS, CUSTOM_ROLE } from "./formOptions"
 
 type Props = {
   formMethods?: UseFormReturn<FieldValues>
+  name: string // This prop is required for passing the formMethods to the children
 }
 
 const emailValidation = {

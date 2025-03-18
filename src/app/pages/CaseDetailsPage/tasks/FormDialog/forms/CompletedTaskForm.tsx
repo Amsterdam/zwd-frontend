@@ -25,6 +25,7 @@ export const CompletedTaskForm: React.FC<Props> = ({ closeModal, submitForm, loa
         okText="Taak afronden" 
         onCancel={ closeModal } 
         loading={ loading }
+        name="ACTION_BUTTONS"
       />
     </Form>
   )

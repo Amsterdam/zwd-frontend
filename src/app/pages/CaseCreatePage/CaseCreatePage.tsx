@@ -77,7 +77,7 @@ export const CaseCreatePage: React.FC = () => {
               options={options}
               validation={{ required: true }}
             />
-            <ContactsFormFields />
+            <ContactsFormFields name="CONTACTS_FORM" />
             <TextAreaField
               name="description"
               label="Toelichting"
@@ -87,6 +87,7 @@ export const CaseCreatePage: React.FC = () => {
               okText="Zaak aanmaken"
               onCancel={() => navigate(-1)}
               loading={loading}
+              name="ACTION_BUTTONS"
             />
           </Form>
         )}
