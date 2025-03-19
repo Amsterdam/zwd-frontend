@@ -7,7 +7,8 @@ export const useCases = (pagination: Pagination, options?: Options) => {
   const handleError = useErrorHandler()
   const urlParams = {
     page: pagination?.page ?? 1,
-    page_size: pagination?.pageSize
+    page_size: pagination?.pageSize,
+    closed: true
   }
   const queryString = stringifyQueryParams(urlParams)
 
@@ -77,11 +78,12 @@ export const useTaskCompleteFileUpload = (options?: Options) => {
   })
 }
 
-export const useCaseProcesses = (options?: Options) => {
+export const useCaseProcesses = (id: Components.Schemas.Case["id"], options?: Options) => {
   const handleError = useErrorHandler()
+  console.log("useCaseProcesses", id)
   return useApiRequest<Components.Schemas.WorkflowOption[]>({
     ...options,
-    url: `${makeApiUrl("cases", "processes")}`,
+    url: `${makeApiUrl("cases", id, "processes")}`,
     groupName: "cases",
     handleError,
     isProtected: true
