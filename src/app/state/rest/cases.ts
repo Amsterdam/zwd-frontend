@@ -8,7 +8,7 @@ export const useCases = (pagination: Pagination, options?: Options) => {
   const urlParams = {
     page: pagination?.page ?? 1,
     page_size: pagination?.pageSize,
-    closed: "false"
+    closed: "true"
   }
   const queryString = stringifyQueryParams(urlParams)
 
