@@ -1,9 +1,9 @@
 import { IconButton, Row } from "@amsterdam/design-system-react"
-import { DownloadIcon, SearchIcon, TrashBinIcon } from "@amsterdam/design-system-react-icons"
+import { DownloadIcon, TrashBinIcon } from "@amsterdam/design-system-react-icons"
 import { useCaseDocumentDelete } from "app/state/rest"
 import { useFetchFile, viewFile, downloadFile } from "app/utils/files"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
-import { ConfirmationDialog } from "app/components"
+import { ConfirmationDialog, ViewSvg } from "app/components"
 import { useDialog } from "app/hooks"
 
 
@@ -39,17 +39,20 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
   return (
     <Row align="between">
       <IconButton
-        label="Bekijken"
-        svg={ SearchIcon }
+        label="Bekijk document"
+        title="Bekijk document"
+        svg={ ViewSvg }
         onClick={() => void handleAction() }
       />
       <IconButton
-        label="Downloaden"
+        label="Download document"
+        title="Download document"
         svg={ DownloadIcon }
         onClick={() => handleAction(true) }
       />
       <IconButton
-        label="Verwijderen"
+        label="Verwijder document"
+        title="Verwijder document"
         svg={ TrashBinIcon }
         onClick={ openDialog }
       />
