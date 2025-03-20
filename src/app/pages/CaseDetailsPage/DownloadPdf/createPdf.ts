@@ -16,8 +16,7 @@ type Data = {
 
 // Calculate the Y position for the next row to start.
 // Two extra lines are added; one for the title and one for margin-top
-const calculateYPos = (startY: number, prevRowLength: number) =>
-  startY + (prevRowLength + 2) * LINE_HEIGHT
+const calculateYPos = (startY: number, prevRowLength: number) => startY + (prevRowLength + 2) * LINE_HEIGHT
 
 const addDescription = (doc: jsPDF, title: string, data: Data, startY: number) => {
   // Header
@@ -29,13 +28,20 @@ const addDescription = (doc: jsPDF, title: string, data: Data, startY: number) =
   doc.setFont("Amsterdam-Regular", "normal")
   doc.setFontSize(FONT_SIZE_NORMAL)
 
+  const MaxPageWidthRight = doc.internal.pageSize.width - MARGIN_RIGHT - MARGIN_LEFT_VALUE
+
   data.forEach((field, index) => {
     const yPos = startY + (index + 1) * LINE_HEIGHT
     doc.text(field.label, MARGIN_LEFT, yPos)
     if (field.value) {
-      doc.text(`${field.value}`, MARGIN_LEFT_VALUE, yPos)
+      doc.text(`${field.value}`, MARGIN_LEFT_VALUE, yPos, { maxWidth: MaxPageWidthRight })
     }
   })
+}
+
+const formatValue = (value: string | number | undefined | null, defaultValue = "-") => {
+  if (value === undefined) return defaultValue
+  return String(value).charAt(0).toUpperCase() + String(value).slice(1)
 }
 
 const createPdf = (
@@ -70,16 +76,16 @@ const createPdf = (
 
   // -------------------- Vve gegevens -------------------- //
   const hoaDescriptionFields = [
-    { label: "Postcode:", value: hoaData.zip_code ?? "-" },
-    { label: "Wijk:", value: hoaData.wijk ?? "-" },
-    { label: "Buurt:", value: hoaData.neighborhood ?? "-" },
+    { label: "Postcode:", value: formatValue(hoaData.zip_code) },
+    { label: "Wijk:", value: formatValue(hoaData.wijk) },
+    { label: "Buurt:", value: formatValue(hoaData.neighborhood) },
     { label: "Prioriteitsbuurt:", value: hoaData.is_priority_neighborhood ? "Ja" : "Nee" },
-    { label: "Stadsdeel:", value: hoaData.district ?? "-" },
-    { label: "Bouwjaar:", value: hoaData.build_year ?? "-" },
-    { label: "Aantal woningen:", value: hoaData.number_of_appartments ?? "-" },
-    { label: "Monument status:", value: hoaData.monument_status ?? "-" },
-    { label: "Beschermd stadsdorpsgezicht:", value: hoaData.beschermd_stadsdorpsgezicht ?? "-" },
-    { label: "Ligt in beschermd gebied:", value: hoaData.ligt_in_beschermd_gebied ?? "-" }
+    { label: "Stadsdeel:", value: formatValue(hoaData.district) },
+    { label: "Bouwjaar:", value: formatValue(hoaData.build_year) },
+    { label: "Aantal woningen:", value: formatValue(hoaData.number_of_appartments) },
+    { label: "Monument status:", value: formatValue(hoaData.monument_status) },
+    { label: "Beschermd stadsdorpsgezicht:", value: formatValue(hoaData.beschermd_stadsdorpsgezicht) },
+    { label: "Ligt in beschermd gebied:", value: formatValue(hoaData.ligt_in_beschermd_gebied) }
   ]
 
   let startY = 80
@@ -96,9 +102,9 @@ const createPdf = (
   // -------------------- Zaakdetails -------------------- //
   startY = calculateYPos(startY, contacts.length)
   const caseDescriptionFields = [
-    { label: "Zaak ID:", value: caseData.id },
-    { label: "Advies type:", value: caseData.advice_type },
-    { label: "Beschrijving:", value: caseData.description ?? "-" }
+    { label: "Zaak ID:", value: formatValue(caseData.id) },
+    { label: "Advies type:", value: formatValue(caseData.advice_type) },
+    { label: "Beschrijving:", value: formatValue(caseData.description) }
   ]
 
   addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
