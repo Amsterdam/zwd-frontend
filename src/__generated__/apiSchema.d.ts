@@ -24,7 +24,7 @@ declare namespace Components {
             AdviceTypeEnum;
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
-            case_state_type?: string | null;
+            status?: string | null;
         }
         export interface CaseAdvisor {
             id: number;
@@ -84,7 +84,7 @@ declare namespace Components {
             id: number;
             homeowner_association: CaseHomeownerAssociation;
             created: string; // date-time
-            case_state_type: string;
+            status: string;
         }
         export interface CaseStateType {
             name: string;

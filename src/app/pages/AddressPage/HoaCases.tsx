@@ -16,7 +16,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     defaultSortOrder: "DESCEND"
   }, {
     header: "Status",
-    dataIndex: "case_state_type"
+    dataIndex: "status"
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",
