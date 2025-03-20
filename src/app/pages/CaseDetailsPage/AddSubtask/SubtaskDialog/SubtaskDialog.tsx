@@ -18,7 +18,7 @@ type Option = {
 
 export const SubtaskDialog: React.FC<Props> = ({ id }) => {
   const { caseId } = useParams()
-  const [data] = useCaseProcesses()
+  const [data] = useCaseProcesses(Number(caseId))
   const [, { execPost }] = useCaseProcessesStart(Number(caseId))
 
   const options: Option[] = useMemo(() => {

@@ -22,7 +22,7 @@ const columns: ColumnType<DataType>[] = [
     }
   }, {
     header: "Status",
-    dataIndex: "case_state_type"
+    dataIndex: "status"
   }, {
     header: "Startdatum zaak",
     dataIndex: "created",
