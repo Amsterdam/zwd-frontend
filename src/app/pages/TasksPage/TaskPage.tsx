@@ -35,7 +35,7 @@ export const TasksPage: React.FC = () => {
         columns={ columns }
         data={ results } 
         loading={ isBusy }
-        onClickRow={(obj) => navigate(`/zaken/${ obj.case }`)}
+        onClickRow={(obj) => void navigate(`/zaken/${ obj.case }`)}
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,

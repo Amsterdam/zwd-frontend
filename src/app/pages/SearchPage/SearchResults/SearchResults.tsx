@@ -18,17 +18,22 @@ const SearchResults: React.FC<Props> = ({ searchString }) => {
   const [bagData, { isBusy: loading }] = useBagPdok(searchStringBagPdok)
 
   // Only show addresses with a bagId
-  const dataSource = bagData?.response?.docs?.filter((obj) => obj.adresseerbaarobject_id) || []
+  const dataSource =
+    bagData?.response?.docs?.filter((obj) => obj.adresseerbaarobject_id) || []
 
   return (
     <Table
-      columns={ columns }
-      data={ dataSource }
-      loading={ loading }
-      numLoadingRows={ 1 }
-      onClickRow={({ adresseerbaarobject_id }) => navigate(`adres/${ adresseerbaarobject_id }`)}
-      emptyPlaceholder={ isValid ? "Geen resultaten gevonden" : "Voer minimaal 3 karakters in" }
-      pagination={ false }
+      columns={columns}
+      data={dataSource}
+      loading={loading}
+      numLoadingRows={1}
+      onClickRow={({ adresseerbaarobject_id }) =>
+        void navigate(`adres/${adresseerbaarobject_id}`)
+      }
+      emptyPlaceholder={
+        isValid ? "Geen resultaten gevonden" : "Voer minimaal 3 karakters in"
+      }
+      pagination={false}
     />
   )
 }

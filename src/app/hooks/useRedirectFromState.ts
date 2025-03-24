@@ -33,7 +33,7 @@ export const useRedirectFromState = () => {
           // Remove the OIDC parameters from the URL without reloading
           window.history.replaceState({}, document.title, window.location.pathname)
           // Redirect to the decoded URL
-          navigate(decodedUrl)
+          void navigate(decodedUrl)
         }
       }
     }

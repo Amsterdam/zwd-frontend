@@ -10,7 +10,7 @@ export const User: React.FC = () => {
   const navigate = useNavigate()
 
   return auth.isAuthenticated ? (
-    <Header.MenuLink onClick={() => navigate("/auth")} fixed>
+    <Header.MenuLink onClick={() => void navigate("/auth")} fixed>
       {decodedToken?.given_name}
       <Icon
         style={{ paddingInlineStart: ".5rem ", blockSize: ".8em" }}

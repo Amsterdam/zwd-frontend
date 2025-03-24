@@ -44,7 +44,7 @@ export const CasesPage: React.FC = () => {
         columns={columns}
         data={results}
         loading={isBusy}
-        onClickRow={(obj) => navigate(`/zaken/${obj.id}`)}
+        onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,

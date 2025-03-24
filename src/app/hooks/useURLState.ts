@@ -17,7 +17,7 @@ export const useURLState = (key: string, defaultValue: string): [string, (value:
     } else {
       params.delete(key)
     }
-    navigate({ search: params.toString() }, { replace: true })
+    void navigate({ search: params.toString() }, { replace: true })
   }
 
   const [state, setState] = useState<string>(() => getQueryParam(key) || defaultValue)
