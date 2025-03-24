@@ -19,6 +19,11 @@ type FormProps<T extends FieldValues> = {
 
 const DEFAULT_GRID: GridColumnNumbers = { narrow: 4, medium: 6, wide: 10 }
 
+type ChildProps = {
+  name?: string;
+  [key: string]: Value; 
+}
+
 export const Form = <T extends FieldValues>({
   defaultValues,
   children,
@@ -49,10 +54,9 @@ export const Form = <T extends FieldValues>({
             onSubmit={withExceptionCapturing(handleSubmit(onSubmit))}
           >
             {React.Children.map(children, (child, key) => {
-              if (React.isValidElement(child)) {
-                const childProps = child.props as { name?: string } 
+              if (React.isValidElement<ChildProps>(child)) {
                 // Add formMethods to all fields with the "name" prop
-                if (childProps.name) {
+                if (child.props.name) {
                   return React.createElement(child.type, {
                     ...child.props,
                     key,

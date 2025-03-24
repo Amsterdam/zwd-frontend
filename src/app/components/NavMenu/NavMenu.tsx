@@ -1,7 +1,6 @@
 import { Header, Icon, LinkList } from "@amsterdam/design-system-react"
 import { SearchIcon } from "@amsterdam/design-system-react-icons"
 import { useLinkClickHandler, useHref } from "react-router-dom"
-import { styled } from "styled-components"
 
 type MenuItem = {
   label: string
@@ -16,17 +15,13 @@ const menuItems: MenuItem[] = [
   { label: "BPMN", path: "/bpmn" }
 ]
 
-const StyledIcon = styled(Icon)`
-  padding-inline-start: .5rem;
-`
-
 const NavMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
   const handleClick = useLinkClickHandler(path)
   const href = useHref(path)
   return (
     <Header.MenuLink href={href} onClick={handleClick}>
+      {icon && <Icon svg={icon} size="level-5" style={{ verticalAlign: "middle", marginRight: "0.5rem" }}/>}
       {label}
-      {icon && <StyledIcon svg={icon} size="level-5" />}
     </Header.MenuLink>
   )
 }
