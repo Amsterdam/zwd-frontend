@@ -23,8 +23,8 @@ const getRect = <T extends HTMLElement>(element?: T): RectResult => {
   return rect
 }
 
-export default <T extends HTMLElement>(
-  ref: React.RefObject<T>,
+export default <T extends HTMLDivElement>(
+  ref: React.RefObject<T | null>,
   delay = 0
 ): RectResult => {
   const [rect, setRect] = useState<RectResult>(
