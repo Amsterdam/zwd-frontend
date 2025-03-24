@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import BpmnViewer from "bpmn-js/lib/Viewer"
+import BpmnViewer from "bpmn-js/lib/NavigatedViewer"
 import styled from "styled-components"
 
 type Props = {

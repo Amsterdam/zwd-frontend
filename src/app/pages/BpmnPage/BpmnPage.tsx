@@ -1,14 +1,10 @@
 import { useState } from "react"
-import styled from "styled-components"
 import { Row } from "@amsterdam/design-system-react"
 import { PageGrid, PageHeading } from "app/components"
 import SelectBpmnModelName from "./forms/SelectBpmnModelName"
 import SelectBpmnModel from "./forms/SelectBpmnModel"
 import BpmnDiagram from "./BpmnDiagram"
 
-const StyledRow = styled(Row)`
-  margin-bottom: 2rem;
-`
 
 export const BpmnPage: React.FC = () => {
   const [bpmnModelName, setBpmnModelName] = useState<undefined | string>()
@@ -17,14 +13,13 @@ export const BpmnPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label="BPMN" />
-      <StyledRow wrap>
+      <Row wrap style={{ marginBottom: "0.5rem" }}>
         <SelectBpmnModelName onSelect={ setBpmnModelName } />
         { bpmnModelName ? <SelectBpmnModel bpmnModelName={ bpmnModelName } onSelect={ setBpmnModel }/> : <></> }
-      </StyledRow>
+      </Row>
       { bpmnModel ? <BpmnDiagram bpmnModel={ bpmnModel } /> : <></> } 
     </PageGrid>
   )
 }
 
 export default BpmnPage
-    
