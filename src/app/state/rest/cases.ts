@@ -80,7 +80,6 @@ export const useTaskCompleteFileUpload = (options?: Options) => {
 
 export const useCaseProcesses = (id: Components.Schemas.Case["id"], options?: Options) => {
   const handleError = useErrorHandler()
-  console.log("useCaseProcesses", id)
   return useApiRequest<Components.Schemas.WorkflowOption[]>({
     ...options,
     url: `${makeApiUrl("cases", id, "processes")}`,
