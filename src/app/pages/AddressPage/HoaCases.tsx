@@ -39,7 +39,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
 
   return (
     <>
-      <Heading level={2}>Open zaken{ numCases > 0 && ` (${ numCases })` }</Heading>
+      <Heading level={2}>Zaken{ numCases > 0 && ` (${ numCases })` }</Heading>
       <Table
         data={ cases } 
         columns={ columns }
