@@ -56,7 +56,7 @@ export const CaseDetailsPage: React.FC = () => {
     <PageGrid>
       <PageHeading label="Zaakdetails" icon={DocumentIcon} />
       <HeaderLink
-        onClick={() => navigate(`/vve/${ data?.homeowner_association?.id }`)}
+        onClick={() => void navigate(`/vve/${ data?.homeowner_association?.id }`)}
         level={4}
       >
         {data?.homeowner_association?.name}

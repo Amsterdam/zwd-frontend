@@ -42,7 +42,7 @@ export const CaseCreatePage: React.FC = () => {
       .then((resp) => {
         const zaakId = (resp as ExecPostResponse)?.data?.id
         if (zaakId) {
-          navigate(`/zaken/${ zaakId }`)
+          void navigate(`/zaken/${ zaakId }`)
         }
       })
       .catch((err) => {
@@ -85,7 +85,7 @@ export const CaseCreatePage: React.FC = () => {
             />
             <FormActionButtons
               okText="Zaak aanmaken"
-              onCancel={() => navigate(-1)}
+              onCancel={() => void navigate(-1)}
               loading={loading}
               name="ACTION_BUTTONS"
             />

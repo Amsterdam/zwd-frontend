@@ -45,7 +45,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
         columns={ columns }
         emptyPlaceholder="Geen open zaken gevonden"
         loading={ isBusy }
-        onClickRow={(obj) => navigate(`/zaken/${ obj.id }`)}
+        onClickRow={(obj) => void navigate(`/zaken/${ obj.id }`)}
       />    
     </>
   )
