@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { isValidDate, formatDate } from "app/utils/dates"
 import { EVENT_TYPES, getEventValueName } from "./dictionaries"
 
