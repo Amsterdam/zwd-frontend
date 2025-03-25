@@ -13,7 +13,6 @@ export const SearchPage: React.FC = () => {
   const [debouncedSearchString, setDebouncedSearchString] = useState<string>(searchString)
   
   // Memoize the debounced function to prevent recreation on every render
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetValue = useCallback(
     debounce((value: string) => setDebouncedSearchString(value), DELAY),
     []

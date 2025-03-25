@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     type MyWindow = Window & { "env": any }

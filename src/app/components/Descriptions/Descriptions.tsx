@@ -2,7 +2,7 @@ import { DescriptionList } from "@amsterdam/design-system-react"
 import { Fragment } from "react"
 
 type DescriptionItem = {
-  label: string;
+  label: string
   value: React.ReactNode
 }
 

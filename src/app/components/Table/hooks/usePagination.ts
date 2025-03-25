@@ -3,15 +3,14 @@ import { PaginationType } from "../types"
 
 export const DEFAULT_PAGE_SIZE = 10
 
-const extendsObject = <T extends object>(...list: T[]): T => {
+const extendsObject = <T extends Record<string, Value>>(...list: T[]): T => {
   const result = {} as T
 
   list.forEach(obj => {
     if (obj) {
       Object.entries(obj).forEach(([key, val]) => {
         if (val !== undefined) {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-          (result as any)[key] = val
+          result[key as keyof T] = val
         }
       })
     }
