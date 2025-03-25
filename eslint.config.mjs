@@ -28,10 +28,6 @@ export default defineConfig([
       "space-infix-ops": ["error"],
       "semi": ["error", "never"],
       "indent": ["error", 2]
-      // "@typescript-eslint/no-unsafe-assignment": "warn",
-      // "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-      // "@typescript-eslint/no-unsafe-member-access": "warn"
     }
   }
-
 ])
