@@ -9,11 +9,8 @@ import { AxiosError } from "axios"
 export const useErrorHandler = () =>
   useCallback((error: AxiosError) => console.error(error), [])
 
-
 /**
  * Suppress error handler:
  */
 export const useSuppressErrorHandler = () =>
   useCallback((error: AxiosError) => console.error(error), [])
-
-

@@ -1,20 +1,22 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useMemo } from "react"
 import { useNavigate } from "react-router-dom"
 import { useCases } from "app/state/rest"
 import { Table, PageHeading, PageGrid } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
-import columns from "./columns"
+import getColumns from "./columns"
 
 export const CasesPage: React.FC = () => {
-  const {
-    count, pagination, results, updateContextCases
-  } = useContext(ContextValues)["cases"]
+  const { count, results, pagination, sorting, updateContextCases } =
+    useContext(ContextValues)["cases"]
   const navigate = useNavigate()
-  const [dataSource, { isBusy }] = useCases(pagination)
+  const [dataSource, { isBusy }] = useCases(pagination, sorting)
 
   useEffect(() => {
     if (dataSource?.results) {
-      updateContextCases({ results: dataSource?.results, count: dataSource.count })
+      updateContextCases({
+        results: dataSource?.results,
+        count: dataSource.count
+      })
     } else {
       updateContextCases({
         results: [],
@@ -33,13 +35,18 @@ export const CasesPage: React.FC = () => {
   //   })
   // }
 
-  const onChangeTable = (pagination: Pagination) => {
-    updateContextCases({ pagination })
+  const onChangeTable = (
+    pagination: TABLE.Pagination,
+    sorting: TABLE.Sorting
+  ) => {
+    updateContextCases({ pagination, sorting })
   }
+
+  const columns = useMemo(() => getColumns(sorting), [sorting])
 
   return (
     <PageGrid>
-      <PageHeading label={`Zakenoverzicht (${ count })`} />
+      <PageHeading label={`Zakenoverzicht (${count})`} />
       <Table
         columns={columns}
         data={results}

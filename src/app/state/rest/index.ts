@@ -1,5 +1,5 @@
 export type ApiGroup =
-  | "address" 
+  | "address"
   | "advisors"
   | "bagPdok"
   | "bpmn"

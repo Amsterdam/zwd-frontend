@@ -33,7 +33,14 @@ type Config = {
   handleError?: (error: RequestError) => void
 }
 
-const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, isProtected, handleError, lazy, keepUsingInvalidCache }: Config) => {
+const useApiRequest = <Schema, Payload = Partial<Schema>>({
+  url,
+  groupName,
+  isProtected,
+  handleError,
+  lazy,
+  keepUsingInvalidCache
+}: Config) => {
   const {
     getCacheItem,
     setCacheItem,
@@ -49,71 +56,99 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, isPr
   /**
    * Executes an API request
    */
-  const execRequest = useCallback(async (options: Options, payload?: Payload) => {
-    try {
-      if (isMutateOptions(options) && !options.skipCacheClear) {
-        clearCache()
-      }
+  const execRequest = useCallback(
+    async (options: Options, payload?: Payload) => {
+      try {
+        if (isMutateOptions(options) && !options.skipCacheClear) {
+          clearCache()
+        }
 
-      const response: unknown = await request<Schema>(options.method, url, payload) //TODO any used to be unknown
+        const response: unknown = await request<Schema>(
+          options.method,
+          url,
+          payload
+        ) //TODO any used to be unknown
 
-      if (isGetOptions(options) || (isMutateOptions(options) && options.useResponseAsCache)) {
-        if (response && typeof response === "object" && "data" in response) {
-          setCacheItem(url, response?.data)
+        if (
+          isGetOptions(options) ||
+          (isMutateOptions(options) && options.useResponseAsCache)
+        ) {
+          if (response && typeof response === "object" && "data" in response) {
+            setCacheItem(url, response?.data)
+          }
+        }
+
+        return response
+      } catch (error) {
+        addErrorToCacheItem(url, error)
+        if (handleError) {
+          handleError(error as RequestError)
+        } else {
+          throw error
         }
       }
-
-      return response
-    } catch (error) {
-      addErrorToCacheItem(url, error)
-      if (handleError) {
-        handleError(error as RequestError)
-      } else {
-        throw error
-      }
-    }
-  }, [request, url, clearCache, setCacheItem, handleError, addErrorToCacheItem])
+    },
+    [request, url, clearCache, setCacheItem, handleError, addErrorToCacheItem]
+  )
 
   /**
    * Queues an API request
    */
-  const queueRequest = useCallback(async (options: Options, payload?: Payload) => new Promise(
-    (resolve, reject) =>
-      pushRequestInQueue(url, options.method, () => execRequest(options, payload)
-        .then(resolve)
-        .catch(reject)
-      )
-  ), [ execRequest, url, pushRequestInQueue ])
+  const queueRequest = useCallback(
+    async (options: Options, payload?: Payload) =>
+      new Promise((resolve, reject) =>
+        pushRequestInQueue(url, options.method, () =>
+          execRequest(options, payload).then(resolve).catch(reject)
+        )
+      ),
+    [execRequest, url, pushRequestInQueue]
+  )
 
   /**
    * Define HTTP methods
    */
-  const execGet = useCallback((options?: Omit<GetOptions, "method">) =>
-    queueRequest({ method: "get", ...options }), [ queueRequest ])
+  const execGet = useCallback(
+    (options?: Omit<GetOptions, "method">) =>
+      queueRequest({ method: "get", ...options }),
+    [queueRequest]
+  )
 
-  const execPost = useCallback((payload?: Payload, options?: Omit<MutateOptions, "method">) =>
-    queueRequest({ method: "post", ...options }, payload), [ queueRequest ])
+  const execPost = useCallback(
+    (payload?: Payload, options?: Omit<MutateOptions, "method">) =>
+      queueRequest({ method: "post", ...options }, payload),
+    [queueRequest]
+  )
 
-  const execPut = useCallback((payload?: Payload, options?: Omit<MutateOptions, "method">) =>
-    queueRequest({ method: "put", ...options }, payload), [ queueRequest ])
+  const execPut = useCallback(
+    (payload?: Payload, options?: Omit<MutateOptions, "method">) =>
+      queueRequest({ method: "put", ...options }, payload),
+    [queueRequest]
+  )
 
-  const execPatch = useCallback((payload?: Payload, options?: Omit<MutateOptions, "method">) =>
-    queueRequest({ method: "patch", ...options }, payload), [ queueRequest ])
+  const execPatch = useCallback(
+    (payload?: Payload, options?: Omit<MutateOptions, "method">) =>
+      queueRequest({ method: "patch", ...options }, payload),
+    [queueRequest]
+  )
 
-  const execDelete = useCallback((options?: Omit<MutateOptions, "method">) =>
-    queueRequest({ method: "delete", ...options }), [ queueRequest ])
+  const execDelete = useCallback(
+    (options?: Omit<MutateOptions, "method">) =>
+      queueRequest({ method: "delete", ...options }),
+    [queueRequest]
+  )
 
   const updateCache = useCallback(
     (updater: (item: unknown) => void) => updateCacheItem(url, updater),
-    [ updateCacheItem, url ]
+    [updateCacheItem, url]
   )
 
   // reFetch whenever our cache is invalidated
   const cacheItem = getCacheItem(url)
 
-  const data = cacheItem && (cacheItem.valid || keepUsingInvalidCache)
-    ? cacheItem.value as Schema
-    : undefined
+  const data =
+    cacheItem && (cacheItem.valid || keepUsingInvalidCache)
+      ? (cacheItem.value as Schema)
+      : undefined
 
   const errors = cacheItem?.errors ?? []
 
@@ -121,7 +156,7 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({ url, groupName, isPr
     if ((!cacheItem || !cacheItem.valid) && !lazy) {
       void execGet()
     }
-  }, [ execGet, cacheItem, lazy ])
+  }, [execGet, cacheItem, lazy])
 
   return [
     data,

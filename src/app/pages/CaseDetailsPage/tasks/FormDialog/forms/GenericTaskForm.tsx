@@ -30,40 +30,40 @@ export const GenericTaskForm: React.FC<Props> = ({
     <Form onSubmit={onSubmit}>
       {form.map((formItem: FormItem, index: number) => {
         switch (formItem.type) {
-        case "date":
-          return (
-            <DateInputField
-              key={index}
-              name={formItem.name}
-              label={formItem.label}
-              validation={{ required: formItem.required }}
-            />
-          )
-        case "select":
-          return (
-            <SelectField
-              key={index}
-              name={formItem.name}
-              label={formItem.label}
-              options={formItem.options}
-              validation={{ required: formItem.required }}
-              hasDefaultOption
-            />
-          )
-        case "text":
-          return (
-            <TextAreaField
-              key={index}
-              name={formItem.name}
-              label={formItem.label}
-              validation={{ required: formItem.required }}
-            />
-          )
-        default:
-          console.log(
-            `Form item "${ formItem.type }" not supported. Type must be "select" or "text"`
-          )
-          return null // or handle other field types
+          case "date":
+            return (
+              <DateInputField
+                key={index}
+                name={formItem.name}
+                label={formItem.label}
+                validation={{ required: formItem.required }}
+              />
+            )
+          case "select":
+            return (
+              <SelectField
+                key={index}
+                name={formItem.name}
+                label={formItem.label}
+                options={formItem.options}
+                validation={{ required: formItem.required }}
+                hasDefaultOption
+              />
+            )
+          case "text":
+            return (
+              <TextAreaField
+                key={index}
+                name={formItem.name}
+                label={formItem.label}
+                validation={{ required: formItem.required }}
+              />
+            )
+          default:
+            console.log(
+              `Form item "${ formItem.type }" not supported. Type must be "select" or "text"`
+            )
+            return null // or handle other field types
         }
       })}
       <FormActionButtons

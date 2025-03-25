@@ -3,12 +3,23 @@ import type { Options } from "./"
 import { useSuppressErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
-export const usePanorama = (lat?: number, lon?: number, width?: number, aspect?: number, radius?: number, fov?: number, options?: Options) => {
+export const usePanorama = (
+  lat?: number,
+  lon?: number,
+  width?: number,
+  aspect?: number,
+  radius?: number,
+  fov?: number,
+  options?: Options
+) => {
   const handleError = useSuppressErrorHandler()
-  const queryString = qs.stringify({ lat, lon, width, fov, aspect, radius }, { addQueryPrefix: true })
+  const queryString = qs.stringify(
+    { lat, lon, width, fov, aspect, radius },
+    { addQueryPrefix: true }
+  )
   return useApiRequest<{ url: string }>({
     ...options,
-    url: `https://api.data.amsterdam.nl/panorama/thumbnail/${ queryString }`,
+    url: `https://api.data.amsterdam.nl/panorama/thumbnail/${queryString}`,
     groupName: "dataPunt",
     handleError
   })

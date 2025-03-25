@@ -2,13 +2,29 @@ import type { Options } from "./"
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
+import getOrderingQueryParam from "./utils/getOrderingQueryParam"
 
-export const useCases = (pagination: Pagination, options?: Options) => {
+// You can add multiple sorting options here like `created: "created, id"`
+const SORTING_INDEX_MAPPING: Record<string, string> = {
+  created: "created",
+  id: "id",
+  updated: "updated"
+}
+
+export const useCases = (
+  pagination: TABLE.Pagination,
+  sorting?: TABLE.Sorting,
+  options?: Options
+) => {
   const handleError = useErrorHandler()
-  const urlParams = {
+
+  const urlParams: Record<string, string | number> = {
     page: pagination?.page ?? 1,
-    page_size: pagination?.pageSize,
+    page_size: pagination?.pageSize ?? 25,
     closed: "false"
+  }
+  if (sorting) {
+    urlParams.ordering = getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
   }
   const queryString = stringifyQueryParams(urlParams)
 
@@ -21,7 +37,10 @@ export const useCases = (pagination: Pagination, options?: Options) => {
   })
 }
 
-export const useCase = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useCase = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.Case>({
     ...options,
@@ -44,7 +63,10 @@ export const useCaseCreate = (options?: Options) => {
   })
 }
 
-export const useWorkflows = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useWorkflows = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseWorkflow[]>({
     ...options,
@@ -78,7 +100,10 @@ export const useTaskCompleteFileUpload = (options?: Options) => {
   })
 }
 
-export const useCaseProcesses = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useCaseProcesses = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.WorkflowOption[]>({
     ...options,
@@ -89,7 +114,10 @@ export const useCaseProcesses = (id: Components.Schemas.Case["id"], options?: Op
   })
 }
 
-export const useCaseProcessesStart = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useCaseProcessesStart = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.StartWorkflow>({
     ...options,
@@ -101,7 +129,10 @@ export const useCaseProcessesStart = (id: Components.Schemas.Case["id"], options
   })
 }
 
-export const useCaseEvents = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useCaseEvents = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<CaseEvent[]>({
     ...options,
@@ -112,7 +143,10 @@ export const useCaseEvents = (id: Components.Schemas.Case["id"], options?: Optio
   })
 }
 
-export const useCaseDocuments = (id: Components.Schemas.Case["id"], options?: Options) => {
+export const useCaseDocuments = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseDocument[]>({
     ...options,
