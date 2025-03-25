@@ -59,11 +59,7 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
     }
   }
 
-  return (
-    <ApiContext.Provider value={ value }>
-      { children }
-    </ApiContext.Provider>
-  )
+  return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>
 }
 
 export default ApiProvider

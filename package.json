@@ -9,12 +9,13 @@
   "scripts": {
     "start": "vite",
     "ont": "env-cmd -f .env.ontwikkel vite",
+    "acc": "env-cmd -f .env.acceptatie vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
+    "prettier": "prettier --check src",
+    "prettier:fix": "prettier --write src",
     "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
     "test": "vitest",
     "preview": "vite preview"

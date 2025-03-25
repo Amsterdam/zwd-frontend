@@ -7,18 +7,26 @@ export const initialState: StateType = {
     count: 0,
     pagination: {
       page: 1,
-      pageSize: 25
+      pageSize: 10
     },
     results: [],
+    sorting: {
+      dataIndex: "created",
+      order: "DESCEND"
+    },
     updateContextCases: noop
   },
   tasks: {
     count: 0,
     pagination: {
       page: 1,
-      pageSize: 25
+      pageSize: 10
     },
     results: [],
+    sorting: {
+      dataIndex: "created",
+      order: "DESCEND"
+    },
     updateContextTasks: noop
   }
 }

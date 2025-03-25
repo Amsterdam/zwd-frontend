@@ -10,14 +10,16 @@ export type ActionType = {
 export type StateType = {
   cases: {
     count: number
-    pagination: Pagination
+    pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]
+    sorting: TABLE.Sorting
     updateContextCases: (payload: Payload) => void
   }
   tasks: {
     count: number
-    pagination: Pagination
+    pagination: TABLE.Pagination
     results: CustomCaseUserTask[]
+    sorting: TABLE.Sorting
     updateContextTasks: (payload: Payload) => void
   }
 }

@@ -4,33 +4,35 @@ import { formatDate } from "app/utils/dates"
 
 type DataType = Components.Schemas.CaseList
 
-const columns: ColumnType<DataType>[] = [
+const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
     header: "ID",
     dataIndex: "id",
     sorter: (a: DataType, b: DataType) => a?.id - b?.id,
-    defaultSortOrder: "DESCEND"
-  }, {
+    sortOrder:
+      sorting.dataIndex === "id" && sorting.order ? sorting.order : undefined
+  },
+  {
     header: "Vve statutaire naam",
-    dataIndex: "homeowner_association.name",
-    sorter: (a: DataType, b: DataType) => {
-      const nameA = (a?.homeowner_association?.name as string | undefined) ?? ""
-      const nameB = (b?.homeowner_association?.name as string | undefined) ?? ""
-      return (
-        nameA.localeCompare(nameB)
-      )
-    }
-  }, {
+    dataIndex: "homeowner_association.name"
+  },
+  {
     header: "Status",
     dataIndex: "status"
-  }, {
+  },
+  {
     header: "Startdatum zaak",
     dataIndex: "created",
-    sorter: (a: DataType, b: DataType) => (
-      a.created.localeCompare(b.created)
-    ),
+    sorter: (a: DataType, b: DataType) =>
+      new Date(a.created).getTime() - new Date(b.created).getTime(),
+    defaultSortOrder: "DESCEND" as const,
+    sortOrder:
+      sorting.dataIndex === "created" && sorting.order
+        ? sorting.order
+        : undefined,
     render: (text) => formatDate(text)
-  }, {
+  },
+  {
     header: "",
     dataIndex: "id",
     width: 100,
@@ -38,4 +40,4 @@ const columns: ColumnType<DataType>[] = [
   }
 ]
 
-export default columns
+export default getColumns

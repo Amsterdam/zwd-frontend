@@ -16,21 +16,21 @@ const extractLatLng = (point?: BAGPdokAddress["centroide_ll"]) => {
   return null
 }
 
-export const usePanoramaByBagId = (bagId: string, width: number | undefined, aspect: number | undefined, radius: number, fov: number | undefined) => {
+export const usePanoramaByBagId = (
+  bagId: string,
+  width: number | undefined,
+  aspect: number | undefined,
+  radius: number,
+  fov: number | undefined
+) => {
   const [data] = useBagPdokByBagId(bagId)
   const docs = data?.response?.docs
   const foundAddress = docs && docs[0] ? docs[0] : undefined
   const latLng = extractLatLng(foundAddress?.centroide_ll)
 
-  return usePanorama(
-    latLng?.lat,
-    latLng?.lng,
-    width,
-    aspect,
-    radius,
-    fov,
-    { lazy: foundAddress === undefined || width === undefined }
-  )
+  return usePanorama(latLng?.lat, latLng?.lng, width, aspect, radius, fov, {
+    lazy: foundAddress === undefined || width === undefined
+  })
 }
 
 export default usePanoramaByBagId
