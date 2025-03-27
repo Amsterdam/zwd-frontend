@@ -1,0 +1,6 @@
+.tableHeader {
+  text-align: left;
+  border-bottom: 1px solid #b4b4b4;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
