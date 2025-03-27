@@ -13,6 +13,10 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
       sorting.dataIndex === "id" && sorting.order ? sorting.order : undefined
   },
   {
+    header: "Excel ID",
+    dataIndex: "legacy_id"
+  },
+  {
     header: "Vve statutaire naam",
     dataIndex: "homeowner_association.name"
   },

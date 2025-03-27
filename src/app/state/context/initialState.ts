@@ -7,7 +7,7 @@ export const initialState: StateType = {
     count: 0,
     pagination: {
       page: 1,
-      pageSize: 10
+      pageSize: 100
     },
     results: [],
     sorting: {
@@ -20,7 +20,7 @@ export const initialState: StateType = {
     count: 0,
     pagination: {
       page: 1,
-      pageSize: 10
+      pageSize: 100
     },
     results: [],
     sorting: {

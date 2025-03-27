@@ -1,0 +1,48 @@
+.label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.label:hover {
+  opacity: 0.5;
+}
+
+.label:hover .icon {
+  visibility: visible;
+}
+
+.label:active[data-sortorder="DESCEND"] .icon {
+  animation: rotate-back 0.3s ease 0s;
+}
+
+.label:active[data-sortorder="ASCEND"] .icon {
+  animation: rotate 0.3s ease 0s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotate-back {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+
+.icon {
+  margin-left: 4px;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
