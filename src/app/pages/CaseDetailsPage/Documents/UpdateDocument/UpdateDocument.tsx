@@ -13,7 +13,7 @@ type CaseDocumentData = {
 }
 
 export const UpdateDocument: React.FC<Props> = ({ record }) => {
-  const dialogId = "ams-dialog-form-document-update"
+  const dialogId = `ams-dialog-form-document-update-${record.id}`
   const { openDialog } = useDialog(dialogId)
   const [, { execPatch }] = useCaseDocumentUpdate(record.case, record.id)
 
