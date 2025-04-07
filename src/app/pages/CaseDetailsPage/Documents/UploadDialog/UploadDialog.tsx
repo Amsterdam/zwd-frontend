@@ -36,7 +36,7 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
       <Form onSubmit={onSubmit}>
         <TextInputField
           name="name"
-          label="Titel van het document"
+          label="Naam van het document"
           validation={{ required: true, maxLength: 100 }}
         />
         <FileInputField name="upload" validation={{ required: true }} />
