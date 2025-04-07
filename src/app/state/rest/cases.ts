@@ -169,6 +169,22 @@ export const useCaseDocumentUpload = (options?: Options) => {
   })
 }
 
+export const useCaseDocumentUpdate = (
+  id: Components.Schemas.Case["id"],
+  docId: Components.Schemas.CaseDocument["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseDocument>({
+    ...options,
+    url: `${makeApiUrl("cases", id, "documents", docId, "update-name")}`,
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useCaseDocumentDelete = (
   id: Components.Schemas.Case["id"],
   docId: Components.Schemas.CaseDocument["id"],
