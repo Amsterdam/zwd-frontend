@@ -21,8 +21,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@amsterdam/design-system-react": "^0.14.1",
-    "@amsterdam/design-system-react-icons": "^0.1.13",
+    "@amsterdam/design-system-react": "^0.15.0",
+    "@amsterdam/design-system-react-icons": "^0.1.14",
     "@types/lodash.debounce": "^4.0.9",
     "@types/lodash.get": "^4.4.9",
     "@types/qs": "^6.9.18",
@@ -47,7 +47,7 @@
     "styled-components": "^6.1.13",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
-    "vite": "^6.2.3"
+    "vite": "^6.2.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",

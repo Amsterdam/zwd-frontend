@@ -18,6 +18,7 @@ type Size =
 
 const Wrapper = styled.div<{ $isBorder: boolean }>`
   display: flex;
+  align-items: center;
   padding-bottom: 8px;
   margin-top: 2rem;
   border-bottom: ${ ({ $isBorder }) =>
@@ -42,7 +43,7 @@ export const PageHeading: React.FC<Props> = ({
   return (
     <Wrapper $isBorder={border}>
       {icon && <StyledIcon svg={icon} level={level} />}
-      <Heading size={size}>{label}</Heading>
+      <Heading size={size} level={1}>{label}</Heading>
     </Wrapper>
   )
 }

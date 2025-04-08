@@ -1,0 +1,5 @@
+/* ADS Overrides – To override the Amsterdam Design System */
+
+.accordionOverride :global(.ams-accordion__button) {
+  font-size: var(--ams-typography-body-text-font-size);
+}
