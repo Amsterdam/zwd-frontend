@@ -1,4 +1,3 @@
-import { FormEvent } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { DocumentIcon } from "@amsterdam/design-system-react-icons"
@@ -29,7 +28,7 @@ const SpaceBetweenWrapper = styled.div`
 export const CaseDetailsPage: React.FC = () => {
   const { caseId } = useParams()
   const [data, { isBusy }] = useCase(Number(caseId))
-  const [activeTab, setActiveTab] = useURLState("tab", "0")
+  const [activeTab, setActiveTab] = useURLState("tab", "taken")
   const navigate = useNavigate()
 
   if (isBusy) {
@@ -45,12 +44,6 @@ export const CaseDetailsPage: React.FC = () => {
     dataDetailsList.push({ term: "Dossiernummer (Excel)", details: `${data.legacy_id}` })
   }
 
-  const onChangeTab = (tabId: number | FormEvent<HTMLDivElement>) => {
-    if (typeof tabId === "number") {
-      setActiveTab(tabId.toString())
-    }
-  }
-
   return (
     <PageGrid>
       <PageHeading label="Zaakdetails" icon={DocumentIcon} />
@@ -64,12 +57,12 @@ export const CaseDetailsPage: React.FC = () => {
         <DetailsList data={dataDetailsList} />
         <DownloadPdf caseId={Number(caseId)} />
       </SpaceBetweenWrapper>
-      <Tabs activeTab={Number(activeTab)} onChange={onChangeTab}>
+      <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
         <Tabs.List>
-          <Tabs.Button tab={0}>Open taken</Tabs.Button>
-          <Tabs.Button tab={1}>Documenten</Tabs.Button>
+          <Tabs.Button tab="taken">Open taken</Tabs.Button>
+          <Tabs.Button tab="documenten">Documenten</Tabs.Button>
         </Tabs.List>
-        <Tabs.Panel tab={0}>
+        <Tabs.Panel tab="taken">
           {data?.id && (
             <>
               <AddSubtask />
@@ -78,7 +71,7 @@ export const CaseDetailsPage: React.FC = () => {
             </>
           )}
         </Tabs.Panel>
-        <Tabs.Panel tab={1}>
+        <Tabs.Panel tab="documenten">
           <Documents />
         </Tabs.Panel>
       </Tabs>
