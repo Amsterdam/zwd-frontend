@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { Row } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
-import Search from "app/components/Filters/Search/Search"
-import PageSizeFilter from "app/components/Filters/PageSizeFilter/PageSizeFilter"
-import StatusFilter from "app/components/Filters/StatusFilter/StatusFilter"
-import DistrictFilter from "app/components/Filters/DistrictFilter/DistrictFilter"
-import WijkenFilter from "app/components/Filters/WijkenFilter/WijkenFilter"
-import NeighborhoodFilter from "app/components/Filters/NeighborhoodFilter/NeighborhoodFilter"
+import {
+  Search,
+  PageSizeFilter,
+  StatusFilter,
+  DistrictFilter,
+  WijkenFilter,
+  NeighborhoodFilter
+} from "app/components"
 
 export const CasesFilters = () => {
   const { pagination, updateContextCases } = useContext(ContextValues)["cases"]
