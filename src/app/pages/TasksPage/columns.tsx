@@ -5,14 +5,6 @@ export const getColumns = (
   sorting: TABLE.Sorting
 ): ColumnType<CustomCaseUserTask>[] => [
   {
-    header: "Taak ID",
-    dataIndex: "id",
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) => a?.id - b?.id,
-    sortOrder:
-      sorting.dataIndex === "id" && sorting.order ? sorting.order : undefined,
-    width: 100
-  },
-  {
     header: "Vve statutaire naam",
     dataIndex: "homeowner_association"
   },
