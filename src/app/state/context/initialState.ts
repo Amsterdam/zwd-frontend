@@ -1,20 +1,25 @@
 import type { StateType } from "./types"
 
-const noop = () => { }
+const noop = () => {}
 
 export const initialState: StateType = {
   cases: {
     count: 0,
+    district: "",
+    neighborhood: "",
     pagination: {
       page: 1,
       pageSize: 100
     },
     results: [],
+    searchString: "",
     sorting: {
       dataIndex: "created",
       order: "DESCEND"
     },
-    updateContextCases: noop
+    status: "",
+    updateContextCases: noop,
+    wijk: ""
   },
   tasks: {
     count: 0,

@@ -10,14 +10,17 @@ const StyledPagination = styled(Pagination)`
 `
 
 const TablePagination: React.FC<PaginationType> = ({
-  page = 1, pageSize = 10, collectionSize = 10, onPageChange
+  page = 1,
+  pageSize = 10,
+  collectionSize = 10,
+  onPageChange
 }) => {
-  const totalPages = Math.ceil(collectionSize / pageSize) 
+  const totalPages = Math.ceil(collectionSize / pageSize)
   return (
     <StyledPagination
-      page={ page }
-      onPageChange={ onPageChange }
-      totalPages={ totalPages }
+      page={page}
+      onPageChange={onPageChange}
+      totalPages={totalPages}
     />
   )
 }

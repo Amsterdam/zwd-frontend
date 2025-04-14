@@ -4,12 +4,31 @@ import { useCases } from "app/state/rest"
 import { Table, PageHeading, PageGrid } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
 import getColumns from "./columns"
+import Filters from "./Filters"
 
 export const CasesPage: React.FC = () => {
-  const { count, results, pagination, sorting, updateContextCases } =
-    useContext(ContextValues)["cases"]
+  const {
+    count,
+    district,
+    neighborhood,
+    results,
+    pagination,
+    searchString,
+    sorting,
+    status,
+    wijk,
+    updateContextCases
+  } = useContext(ContextValues)["cases"]
   const navigate = useNavigate()
-  const [dataSource, { isBusy }] = useCases(pagination, sorting)
+  const [dataSource, { isBusy }] = useCases(
+    pagination,
+    district,
+    neighborhood,
+    searchString,
+    sorting,
+    status,
+    wijk
+  )
 
   useEffect(() => {
     if (dataSource?.results) {
@@ -25,16 +44,6 @@ export const CasesPage: React.FC = () => {
     }
   }, [dataSource, updateContextCases])
 
-  // const onChangePageSize = (pageSize: string) => {
-  //   updateContextCases({
-  //     pagination: {
-  //       ...pagination,
-  //       pageSize: parseInt(pageSize),
-  //       page: 1
-  //     }
-  //   })
-  // }
-
   const onChangeTable = (
     pagination: TABLE.Pagination,
     sorting: TABLE.Sorting
@@ -47,6 +56,7 @@ export const CasesPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label={`Zakenoverzicht (${count})`} />
+      <Filters />
       <Table
         columns={columns}
         data={results}

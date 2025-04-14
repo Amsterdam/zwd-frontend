@@ -1,7 +1,14 @@
 import { DefaultLayout } from "app/components"
-import { 
-  AuthPage, AddressPage, CaseCreatePage, CaseDetailsPage, CasesPage, 
-  NotFoundPage, SearchPage, TasksPage, BpmnPage
+import {
+  AuthPage,
+  AddressPage,
+  CaseCreatePage,
+  CaseDetailsPage,
+  CasesPage,
+  NotFoundPage,
+  SearchPage,
+  TasksPage,
+  BpmnPage
 } from "app/pages"
 import { createBrowserRouter } from "react-router-dom"
 
@@ -52,4 +59,3 @@ const router = createBrowserRouter([
 ])
 
 export default router
-

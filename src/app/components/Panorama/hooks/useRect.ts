@@ -8,7 +8,7 @@ type RectResult = {
   right: number
   top: number
   width: number
-};
+}
 
 const getRect = <T extends HTMLElement>(element?: T): RectResult => {
   let rect: RectResult = {

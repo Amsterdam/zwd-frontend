@@ -29,7 +29,7 @@ export const Workflows: React.FC<Props> = ({ caseId }) => {
     <Wrapper>
       {workflows?.length > 0 ? (
         workflows.map(({ id, state, tasks = [] }) => (
-          <TableWrapper key={`${ id }`}>
+          <TableWrapper key={`${id}`}>
             {state?.name ? <Heading level={4}>{state.name}</Heading> : <></>}
             <Table
               columns={columns}

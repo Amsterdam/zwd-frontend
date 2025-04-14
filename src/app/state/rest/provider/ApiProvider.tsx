@@ -14,7 +14,9 @@ export const ApiContext = createContext<GroupedContext>({
   bagPdok: noopContext,
   bpmn: noopContext,
   cases: noopContext,
+  caseStatuses: noopContext,
   dataPunt: noopContext,
+  districts: noopContext,
   hoa: noopContext,
   tasks: noopContext
 })
@@ -45,7 +47,15 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
       ...useApiCache(),
       ...useRequestQueue()
     },
+    caseStatuses: {
+      ...useApiCache(),
+      ...useRequestQueue()
+    },
     dataPunt: {
+      ...useApiCache(),
+      ...useRequestQueue()
+    },
+    districts: {
       ...useApiCache(),
       ...useRequestQueue()
     },

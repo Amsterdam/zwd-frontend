@@ -20,8 +20,8 @@ type FormProps<T extends FieldValues> = {
 const DEFAULT_GRID: GridColumnNumbers = { narrow: 4, medium: 6, wide: 10 }
 
 type ChildProps = {
-  name?: string;
-  [key: string]: Value; 
+  name?: string
+  [key: string]: Value
 }
 
 export const Form = <T extends FieldValues>({

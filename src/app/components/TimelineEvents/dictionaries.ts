@@ -1,9 +1,8 @@
 // Event types
 export const EVENT_TYPES: Record<CaseEvent["type"], string> = {
-  "CASE": "Aanleiding",
-  "GENERIC_TASK": "GENERIC_TASK"
+  CASE: "Aanleiding",
+  GENERIC_TASK: "GENERIC_TASK"
 }
-
 
 export const getEventTitle = (event: CaseEvent): string => {
   const { type, event_values } = event
@@ -17,12 +16,11 @@ export const getEventTitle = (event: CaseEvent): string => {
 }
 
 export const EVENT_VALUES: Record<string, string> = {
-  "advice_type": "Advies",
-  "author": "Uitvoerder",
-  "date_added": "Datum",
-  "description": "Toelichting"
+  advice_type: "Advies",
+  author: "Uitvoerder",
+  date_added: "Datum",
+  description: "Toelichting"
 }
 
-export const getEventValueName = (value: string): string => (
+export const getEventValueName = (value: string): string =>
   EVENT_VALUES[value] ?? value
-)

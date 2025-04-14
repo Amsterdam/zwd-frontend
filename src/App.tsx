@@ -6,27 +6,28 @@ import { LoggingInPage, LoggingInErrorPage } from "app/pages"
 import ApiProvider from "app/state/rest/provider/ApiProvider"
 import ValueProvider from "app/state/context/ValueProvider"
 
-
 const App = () => {
   const auth = useAuth()
   const [hasTriedSignin, setHasTriedSignin] = useState(false)
 
   // automatically sign-in
   useEffect(() => {
-    if (!hasAuthParams() &&
-        !auth.isAuthenticated && !auth.activeNavigator && !auth.isLoading &&
-        !hasTriedSignin
+    if (
+      !hasAuthParams() &&
+      !auth.isAuthenticated &&
+      !auth.activeNavigator &&
+      !auth.isLoading &&
+      !hasTriedSignin
     ) {
       const currentUrl = new URL(window.location.href)
-      const fullPathWithQuery = `${ currentUrl.pathname }${ currentUrl.search }`
+      const fullPathWithQuery = `${currentUrl.pathname}${currentUrl.search}`
       void auth.signinRedirect({
-        url_state: fullPathWithQuery 
+        url_state: fullPathWithQuery
       })
       setHasTriedSignin(true)
     }
   }, [auth, hasTriedSignin])
 
- 
   if (auth.isLoading) {
     return <LoggingInPage />
   }

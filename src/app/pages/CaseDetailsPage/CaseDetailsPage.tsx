@@ -42,7 +42,10 @@ export const CaseDetailsPage: React.FC = () => {
     { term: "Status", details: data?.status }
   ]
   if (data?.legacy_id && data.legacy_id !== "") {
-    dataDetailsList.push({ term: "Dossiernummer (Excel)", details: `${data.legacy_id}` })
+    dataDetailsList.push({
+      term: "Dossiernummer (Excel)",
+      details: `${data.legacy_id}`
+    })
   }
 
   const onChangeTab = (tabId: number | FormEvent<HTMLDivElement>) => {
@@ -55,7 +58,7 @@ export const CaseDetailsPage: React.FC = () => {
     <PageGrid>
       <PageHeading label="Zaakdetails" icon={DocumentIcon} />
       <HeaderLink
-        onClick={() => void navigate(`/vve/${ data?.homeowner_association?.id }`)}
+        onClick={() => void navigate(`/vve/${data?.homeowner_association?.id}`)}
         level={4}
       >
         {data?.homeowner_association?.name}

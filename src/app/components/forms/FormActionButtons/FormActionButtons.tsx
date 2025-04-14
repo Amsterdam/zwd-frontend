@@ -11,7 +11,7 @@ type Props = {
   onCancel?: (event: MouseEvent<HTMLButtonElement>) => void
   loading?: boolean
   formMethods?: UseFormReturn<FieldValues>
-  name: string  // This prop is required for passing the formMethods to the children
+  name: string // This prop is required for passing the formMethods to the children
 }
 
 export const FormActionButtons: React.FC<Props> = ({

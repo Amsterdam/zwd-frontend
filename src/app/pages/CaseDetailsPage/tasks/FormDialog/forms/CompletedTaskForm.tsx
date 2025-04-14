@@ -5,26 +5,29 @@ export type ComletedTaskFormData = {
 }
 
 type Props = {
-  loading?: boolean 
-  closeModal: () => void 
+  loading?: boolean
+  closeModal: () => void
   submitForm: (variables: ComletedTaskFormData) => void
 }
 
-export const CompletedTaskForm: React.FC<Props> = ({ closeModal, submitForm, loading = false }) => {
-
+export const CompletedTaskForm: React.FC<Props> = ({
+  closeModal,
+  submitForm,
+  loading = false
+}) => {
   const onSubmit = (data: ComletedTaskFormData) => submitForm(data)
 
   return (
-    <Form onSubmit={ onSubmit }>
-      <CheckboxField 
+    <Form onSubmit={onSubmit}>
+      <CheckboxField
         name="completed"
         label="Ja, deze taak is afgerond"
         validation={{ required: true }}
       />
-      <FormActionButtons 
-        okText="Taak afronden" 
-        onCancel={ closeModal } 
-        loading={ loading }
+      <FormActionButtons
+        okText="Taak afronden"
+        onCancel={closeModal}
+        loading={loading}
         name="ACTION_BUTTONS"
       />
     </Form>

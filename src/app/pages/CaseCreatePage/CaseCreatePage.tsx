@@ -42,7 +42,7 @@ export const CaseCreatePage: React.FC = () => {
       .then((resp) => {
         const zaakId = (resp as ExecPostResponse)?.data?.id
         if (zaakId) {
-          void navigate(`/zaken/${ zaakId }`)
+          void navigate(`/zaken/${zaakId}`)
         }
       })
       .catch((err) => {
