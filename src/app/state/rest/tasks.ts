@@ -11,7 +11,12 @@ const SORTING_INDEX_MAPPING: Record<string, string> = {
 
 export const useTasks = (
   pagination: TABLE.Pagination,
+  district?: string,
+  neighborhood?: string,
+  searchString?: string,
   sorting?: TABLE.Sorting,
+  status?: string,
+  wijk?: string,
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -20,8 +25,23 @@ export const useTasks = (
     page: pagination?.page ?? 1,
     page_size: pagination?.pageSize ?? 25
   }
+  if (district) {
+    urlParams.district = district
+  }
+  if (neighborhood) {
+    urlParams.neighborhood = neighborhood
+  }
+  if (searchString) {
+    urlParams.homeowner_association_name = searchString
+  }
   if (sorting) {
     urlParams.ordering = getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+  }
+  if (status) {
+    urlParams.status = status
+  }
+  if (wijk) {
+    urlParams.wijk = wijk
   }
   const queryString = stringifyQueryParams(urlParams)
 

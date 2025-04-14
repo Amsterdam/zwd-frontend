@@ -5,10 +5,11 @@ import { useCaseStatuses } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
+  contextName: "cases" | "tasks"
 }
 
-export const StatusFilter: React.FC<Props> = ({ onChangeFilter }) => {
-  const { status } = useContext(ContextValues)["cases"]
+export const StatusFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+  const { status } = useContext(ContextValues)[contextName]
   const [caseStatuses] = useCaseStatuses()
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

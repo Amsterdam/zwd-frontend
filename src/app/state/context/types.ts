@@ -17,14 +17,19 @@ export type StateType = {
     searchString: string
     sorting: TABLE.Sorting
     status: string
-    updateContextCases: (payload: Payload) => void
     wijk: string
+    updateContextCases: (payload: Payload) => void
   }
   tasks: {
     count: number
+    district: string
+    neighborhood: string
     pagination: TABLE.Pagination
     results: CustomCaseUserTask[]
+    searchString: string
     sorting: TABLE.Sorting
+    status: string
+    wijk: string
     updateContextTasks: (payload: Payload) => void
   }
 }

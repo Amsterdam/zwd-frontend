@@ -4,7 +4,7 @@ import { useCases } from "app/state/rest"
 import { Table, PageHeading, PageGrid } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
 import getColumns from "./columns"
-import Filters from "./Filters"
+import CasesFilters from "./CasesFilters"
 
 export const CasesPage: React.FC = () => {
   const {
@@ -56,7 +56,7 @@ export const CasesPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label={`Zakenoverzicht (${count})`} />
-      <Filters />
+      <CasesFilters />
       <Table
         columns={columns}
         data={results}

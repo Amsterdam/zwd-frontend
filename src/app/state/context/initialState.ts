@@ -9,7 +9,7 @@ export const initialState: StateType = {
     neighborhood: "",
     pagination: {
       page: 1,
-      pageSize: 100
+      pageSize: 25
     },
     results: [],
     searchString: "",
@@ -18,20 +18,25 @@ export const initialState: StateType = {
       order: "DESCEND"
     },
     status: "",
-    updateContextCases: noop,
-    wijk: ""
+    wijk: "",
+    updateContextCases: noop
   },
   tasks: {
     count: 0,
+    district: "",
+    neighborhood: "",
     pagination: {
       page: 1,
-      pageSize: 100
+      pageSize: 25
     },
     results: [],
+    searchString: "",
     sorting: {
       dataIndex: "created",
       order: "DESCEND"
     },
+    status: "",
+    wijk: "",
     updateContextTasks: noop
   }
 }

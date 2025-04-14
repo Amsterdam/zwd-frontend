@@ -1,15 +1,16 @@
 import React, { useContext } from "react"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
-import { useWijken } from "app/state/rest"
+import { useDistricts } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
+  contextName: "cases" | "tasks"
 }
 
-export const WijkenFilter: React.FC<Props> = ({ onChangeFilter }) => {
-  const { wijk } = useContext(ContextValues)["cases"]
-  const [wijken] = useWijken()
+export const DistrictFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+  const { district } = useContext(ContextValues)[contextName]
+  const [districts] = useDistricts()
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChangeFilter(e.currentTarget.value)
@@ -17,12 +18,12 @@ export const WijkenFilter: React.FC<Props> = ({ onChangeFilter }) => {
 
   return (
     <Field>
-      <Label htmlFor="wijken">Wijken</Label>
-      <Select onChange={onChange} value={wijk}>
+      <Label htmlFor="stadsdeel">Stadsdeel</Label>
+      <Select onChange={onChange} value={district}>
         <Select.Option key="" value="">
-          Alle wijken
+          Alle stadsdelen
         </Select.Option>
-        {wijken?.map((name) => (
+        {districts?.map((name) => (
           <Select.Option key={`${name}`} value={`${name}`}>
             {`${name}`}
           </Select.Option>
@@ -32,4 +33,4 @@ export const WijkenFilter: React.FC<Props> = ({ onChangeFilter }) => {
   )
 }
 
-export default WijkenFilter
+export default DistrictFilter

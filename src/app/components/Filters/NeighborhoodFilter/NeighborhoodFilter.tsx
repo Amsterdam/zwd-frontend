@@ -5,10 +5,11 @@ import { useNeighborhoods } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
+  contextName: "cases" | "tasks"
 }
 
-export const NeighborhoodFilter: React.FC<Props> = ({ onChangeFilter }) => {
-  const { neighborhood } = useContext(ContextValues)["cases"]
+export const NeighborhoodFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+  const { neighborhood } = useContext(ContextValues)[contextName]
   const [neighborhoods] = useNeighborhoods()
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
