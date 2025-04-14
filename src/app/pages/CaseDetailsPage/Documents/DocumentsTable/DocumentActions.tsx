@@ -1,22 +1,18 @@
 import { IconButton, Row } from "@amsterdam/design-system-react"
-import { DownloadIcon, TrashBinIcon } from "@amsterdam/design-system-react-icons"
-import { useCaseDocumentDelete } from "app/state/rest"
+import { DownloadIcon } from "@amsterdam/design-system-react-icons"
 import { useFetchFile, viewFile, downloadFile } from "app/utils/files"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
-import { ConfirmationDialog, ViewSvg } from "app/components"
-import { useDialog } from "app/hooks"
-
+import { ViewSvg } from "app/components"
+import UpdateDocument from "../UpdateDocument/UpdateDocument"
+import DeleteDocument from "../DeleteDocument/DeleteDocument"
 
 type Props = {
   record: Components.Schemas.CaseDocument
 }
 
 const DoucumentsActions: React.FC<Props> = ({ record }) => {
-  const [, { execDelete }] = useCaseDocumentDelete(record.case, record.id)
-  const fileUrl = `${ makeApiUrl("cases", record.case, "documents", "download", record.id) }`
+  const fileUrl = `${makeApiUrl("cases", record.case, "documents", "download", record.id)}`
   const fetchFile = useFetchFile(fileUrl)
-  const dialogId = `confirmation-dialog-${ record.id }`
-  const { openDialog } = useDialog(dialogId)
 
   const handleAction = (isDownload = false) => {
     fetchFile()
@@ -28,12 +24,8 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
         }
       })
       .catch((error) => {
-        console.error(error)  
+        console.error(error)
       })
-  }
-
-  const deleteDocument = () => {
-    void execDelete()
   }
 
   return (
@@ -41,28 +33,17 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
       <IconButton
         label="Bekijk document"
         title="Bekijk document"
-        svg={ ViewSvg }
-        onClick={() => void handleAction() }
+        svg={ViewSvg}
+        onClick={() => void handleAction()}
       />
+      <UpdateDocument record={record} />
       <IconButton
         label="Download document"
         title="Download document"
-        svg={ DownloadIcon }
-        onClick={() => handleAction(true) }
+        svg={DownloadIcon}
+        onClick={() => handleAction(true)}
       />
-      <IconButton
-        label="Verwijder document"
-        title="Verwijder document"
-        svg={ TrashBinIcon }
-        onClick={ openDialog }
-      />
-      <ConfirmationDialog 
-        id={ dialogId } 
-        title="Document verwijderen" 
-        content={ <span>Weet u zeker dat u het document <strong>&quot;{ record.name }&quot;</strong> wilt verwijderen?</span> }
-        onOk={ deleteDocument } 
-        onOkText="Verwijderen"
-      />
+      <DeleteDocument record={record} />
     </Row>
   )
 }

@@ -49,19 +49,19 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
             label={`Naam ${ contact.label }`}
             validation={requiredValidation}
             formMethods={formMethods}
+          />    
+          <TextInputField
+            name={`phone[${ contact.id }]`}
+            label="Telefoon"
+            type="tel"
+            validation={phoneValidation}
+            formMethods={formMethods}
           />
           <TextInputField
             name={`email[${ contact.id }]`}
             label="E-mail"
             type="email"
             validation={emailValidation}
-            formMethods={formMethods}
-          />
-          <TextInputField
-            name={`phone[${ contact.id }]`}
-            label="Telefoon"
-            type="tel"
-            validation={phoneValidation}
             formMethods={formMethods}
           />
           <Row wrap alignVertical="end">

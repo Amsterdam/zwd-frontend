@@ -62,7 +62,7 @@ export const FileTaskForm: React.FC<Props> = ({
       <TextInputField
         key="key-name"
         name="name"
-        label="Titel van het document"
+        label="Naam van het document"
         validation={{ required }}
       />
       <FileInputField
