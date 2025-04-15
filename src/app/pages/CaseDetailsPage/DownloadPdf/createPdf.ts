@@ -52,7 +52,7 @@ const formatValue = (
   value: string | number | undefined | null,
   defaultValue = "-"
 ) => {
-  if (value === undefined) return defaultValue
+  if (!value) return defaultValue
   return String(value).charAt(0).toUpperCase() + String(value).slice(1)
 }
 
@@ -86,6 +86,15 @@ const createPdf = (
   doc.setFontSize(FONT_SIZE_NORMAL)
   doc.text(hoaData.name, MARGIN_LEFT, 60, { maxWidth: pageWidth })
 
+  // -------------------- Zaakdetails -------------------- //
+  const caseDescriptionFields = [
+    { label: "Zaak ID:", value: formatValue(caseData.id) },
+    { label: "Advies type:", value: formatValue(caseData.advice_type) }
+  ]
+
+  let startY = 80
+  addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
+
   // -------------------- Vve gegevens -------------------- //
   const hoaDescriptionFields = [
     { label: "Postcode:", value: formatValue(hoaData.zip_code) },
@@ -112,7 +121,7 @@ const createPdf = (
     }
   ]
 
-  let startY = 80
+  startY = calculateYPos(startY, caseDescriptionFields.length)
   addDescription(doc, "Vve-gegevens", hoaDescriptionFields, startY)
 
   // -------------------- Contactpersonen -------------------- //
@@ -123,15 +132,13 @@ const createPdf = (
 
   addDescription(doc, "Contactpersonen", contacts, startY)
 
-  // -------------------- Zaakdetails -------------------- //
+  // -------------------- Eigenaren -------------------- //
   startY = calculateYPos(startY, contacts.length)
-  const caseDescriptionFields = [
-    { label: "Zaak ID:", value: formatValue(caseData.id) },
-    { label: "Advies type:", value: formatValue(caseData.advice_type) },
-    { label: "Beschrijving:", value: formatValue(caseData.description) }
-  ]
-
-  addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
+  const hoaDataOwners = hoaData?.owners ?? []
+  const owners = hoaDataOwners.map((owner) => ({
+    label: `- ${owner.name} (${owner.type}) - ${owner.number_of_appartments} ${owner.number_of_appartments === 1 ? "woning" : "woningen"}`
+  }))
+  addDescription(doc, "Eigenaren", owners, startY)
 
   // PDF downloaden
   // doc.save("voorbeeld.pdf")
