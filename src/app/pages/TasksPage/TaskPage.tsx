@@ -4,11 +4,30 @@ import { PageGrid, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
 import getColumns from "./columns"
 import { ContextValues } from "app/state/context/ValueProvider"
+import TasksFilters from "./TasksFilters"
 
 export const TasksPage: React.FC = () => {
-  const { count, pagination, results, sorting, updateContextTasks } =
-    useContext(ContextValues)["tasks"]
-  const [dataSource, { isBusy }] = useTasks(pagination, sorting)
+  const {
+    count,
+    district,
+    neighborhood,
+    results,
+    pagination,
+    searchString,
+    sorting,
+    status,
+    wijk,
+    updateContextTasks
+  } = useContext(ContextValues)["tasks"]
+  const [dataSource, { isBusy }] = useTasks(
+    pagination,
+    district,
+    neighborhood,
+    searchString,
+    sorting,
+    status,
+    wijk
+  )
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -37,6 +56,7 @@ export const TasksPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label={`Takenoverzicht (${count})`} />
+      <TasksFilters />
       <Table
         columns={columns}
         data={results}

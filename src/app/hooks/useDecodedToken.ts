@@ -2,9 +2,9 @@ import { useAuth } from "react-oidc-context"
 import { jwtDecode } from "jwt-decode"
 
 type DecodedToken = {
-  given_name: string  // firstname
+  given_name: string // firstname
   family_name: string // lastname
-  name: string        // lastname, firstname
+  name: string // lastname, firstname
   unique_name: string // email
   [key: string]: number | string | string[]
 }

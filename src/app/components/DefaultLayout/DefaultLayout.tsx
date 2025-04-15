@@ -15,7 +15,7 @@ export const DefaultLayout: React.FC = () => {
       <SkipLink href="#main">Direct naar inhoud</SkipLink>
       <Screen maxWidth="wide">
         <Header
-          brandName={`${ env.VITE_APP_TITLE } ${ env.VITE_ENV }`}
+          brandName={`${env.VITE_APP_TITLE} ${env.VITE_ENV}`}
           className={styles.header}
           menuItems={[...NavMenuItems, <User key="User" />]}
           noMenuButtonOnWideWindow

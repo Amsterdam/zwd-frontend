@@ -1,7 +1,10 @@
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 
-export const useURLState = (key: string, defaultValue: string): [string, (value: string) => void] => {
+export const useURLState = (
+  key: string,
+  defaultValue: string
+): [string, (value: string) => void] => {
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -20,7 +23,9 @@ export const useURLState = (key: string, defaultValue: string): [string, (value:
     void navigate({ search: params.toString() }, { replace: true })
   }
 
-  const [state, setState] = useState<string>(() => getQueryParam(key) || defaultValue)
+  const [state, setState] = useState<string>(
+    () => getQueryParam(key) || defaultValue
+  )
 
   useEffect(() => {
     setQueryParam(key, state)

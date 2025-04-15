@@ -13,7 +13,12 @@ const SORTING_INDEX_MAPPING: Record<string, string> = {
 
 export const useCases = (
   pagination: TABLE.Pagination,
+  district?: string,
+  neighborhood?: string,
+  searchString?: string,
   sorting?: TABLE.Sorting,
+  status?: string,
+  wijk?: string,
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -23,8 +28,23 @@ export const useCases = (
     page_size: pagination?.pageSize ?? 25,
     closed: "false"
   }
+  if (district) {
+    urlParams.district = district
+  }
+  if (neighborhood) {
+    urlParams.neighborhood = neighborhood
+  }
+  if (searchString) {
+    urlParams.homeowner_association_name = searchString
+  }
   if (sorting) {
     urlParams.ordering = getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+  }
+  if (status) {
+    urlParams.status = status
+  }
+  if (wijk) {
+    urlParams.wijk = wijk
   }
   const queryString = stringifyQueryParams(urlParams)
 

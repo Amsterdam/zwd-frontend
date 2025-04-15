@@ -13,13 +13,9 @@ type DescriptionsProps = {
 export const Descriptions: React.FC<DescriptionsProps> = ({ items }) => (
   <DescriptionList>
     {items.map((item, index) => (
-      <Fragment key={ index }>
-        <DescriptionList.Term>
-          {item.label}
-        </DescriptionList.Term>
-        <DescriptionList.Description>
-          {item.value}
-        </DescriptionList.Description>
+      <Fragment key={index}>
+        <DescriptionList.Term>{item.label}</DescriptionList.Term>
+        <DescriptionList.Description>{item.value}</DescriptionList.Description>
       </Fragment>
     ))}
   </DescriptionList>

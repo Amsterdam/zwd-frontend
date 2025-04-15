@@ -1,11 +1,13 @@
 import { Descriptions } from "app/components"
 
-
 type Props = {
   hoa: Components.Schemas.HomeownerAssociation
 }
 
-const capitalizeFirstLetter = (value?: string | null, fallback: string = "-"): string => {
+const capitalizeFirstLetter = (
+  value?: string | null,
+  fallback: string = "-"
+): string => {
   if (typeof value === "string" && value.length > 0) {
     return value.charAt(0).toUpperCase() + value.slice(1)
   }
@@ -17,19 +19,29 @@ export const HoaDescription: React.FC<Props> = ({ hoa }) => {
     const items = [
       { label: "Vve statutaire naam", value: hoa?.name },
       { label: "Postcode", value: hoa?.zip_code },
+      { label: "Stadsdeel", value: hoa?.district },
       { label: "Wijk", value: hoa?.wijk },
       { label: "Buurt", value: hoa?.neighborhood },
-      { label: "Prioriteitsbuurt", value: hoa?.is_priority_neighborhood ? "Ja" : "Nee" },
-      { label: "Stadsdeel", value: hoa?.district },
+      {
+        label: "Prioriteitsbuurt",
+        value: hoa?.is_priority_neighborhood ? "Ja" : "Nee"
+      },
       { label: "Bouwjaar", value: hoa?.build_year },
       { label: "Aantal woningen", value: hoa?.number_of_appartments },
-      { label: "Monument status", value: capitalizeFirstLetter(hoa?.monument_status) },
-      { label: "Beschermd stadsdorpsgezicht", value: capitalizeFirstLetter(hoa?.beschermd_stadsdorpsgezicht) },
-      { label: "Ligt in beschermd gebied", value: capitalizeFirstLetter(hoa?.ligt_in_beschermd_gebied) }
+      {
+        label: "Monument status",
+        value: capitalizeFirstLetter(hoa?.monument_status)
+      },
+      {
+        label: "Beschermd stadsdorpsgezicht",
+        value: capitalizeFirstLetter(hoa?.beschermd_stadsdorpsgezicht)
+      },
+      {
+        label: "Ligt in beschermd gebied",
+        value: capitalizeFirstLetter(hoa?.ligt_in_beschermd_gebied)
+      }
     ]
-    return (
-      <Descriptions items={items} />
-    )
+    return <Descriptions items={items} />
   }
   return null
 }

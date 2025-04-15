@@ -20,7 +20,13 @@ const NavMenuItem: React.FC<MenuItem> = ({ label, path, icon }) => {
   const href = useHref(path)
   return (
     <Header.MenuLink href={href} onClick={handleClick}>
-      {icon && <Icon svg={icon} size="level-5" style={{ verticalAlign: "middle", marginRight: "0.5rem" }}/>}
+      {icon && (
+        <Icon
+          svg={icon}
+          size="level-5"
+          style={{ verticalAlign: "middle", marginRight: "0.5rem" }}
+        />
+      )}
       {label}
     </Header.MenuLink>
   )

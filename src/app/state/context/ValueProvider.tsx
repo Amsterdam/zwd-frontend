@@ -30,7 +30,9 @@ const ValueProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
-  return <ContextValues.Provider value={value}>{children}</ContextValues.Provider>
+  return (
+    <ContextValues.Provider value={value}>{children}</ContextValues.Provider>
+  )
 }
 
 export default ValueProvider

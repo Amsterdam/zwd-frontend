@@ -2,7 +2,7 @@ import { StrictMode } from "react"
 import ReactDOM from "react-dom/client"
 import { AuthProvider } from "react-oidc-context"
 import App from "./App.tsx"
-import { oidcConfig } from "./app/utils/authConst.ts" 
+import { oidcConfig } from "./app/utils/authConst.ts"
 
 import "@amsterdam/design-system-assets/font/index.css"
 import "@amsterdam/design-system-css/dist/index.css"

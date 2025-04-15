@@ -3,17 +3,17 @@ import BpmnViewer from "bpmn-js/lib/NavigatedViewer"
 import styled from "styled-components"
 
 type Props = {
-  xml: string;  // The BPMN XML content to display
+  xml: string // The BPMN XML content to display
 }
 
 type CustomCanvas = {
-  zoom: (zoomLevel: string) => void;
+  zoom: (zoomLevel: string) => void
 }
 
 const Wrapper = styled.div`
   width: 100%;
   height: 500px;
-` 
+`
 
 const BpmnDiagramViewer: React.FC<Props> = ({ xml }) => {
   const bpmnViewerRef = useRef<HTMLDivElement>(null) // Reference to the container div
@@ -43,7 +43,9 @@ const BpmnDiagramViewer: React.FC<Props> = ({ xml }) => {
       viewerInstanceRef.current
         .importXML(xml)
         .then(() => {
-          const canvas = viewerInstanceRef.current?.get("canvas") as CustomCanvas
+          const canvas = viewerInstanceRef.current?.get(
+            "canvas"
+          ) as CustomCanvas
           if (canvas) {
             canvas.zoom("fit-viewport")
           }

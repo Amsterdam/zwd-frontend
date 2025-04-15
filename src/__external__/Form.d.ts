@@ -3,7 +3,7 @@ type FormItem = {
   name: string
   label: string
   required?: boolean
-  options?: { value: string | number, label: string }[]
+  options?: { value: string | number; label: string }[]
   tooltip?: string
 }
 

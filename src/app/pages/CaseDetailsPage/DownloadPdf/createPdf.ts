@@ -16,9 +16,15 @@ type Data = {
 
 // Calculate the Y position for the next row to start.
 // Two extra lines are added; one for the title and one for margin-top
-const calculateYPos = (startY: number, prevRowLength: number) => startY + (prevRowLength + 2) * LINE_HEIGHT
+const calculateYPos = (startY: number, prevRowLength: number) =>
+  startY + (prevRowLength + 2) * LINE_HEIGHT
 
-const addDescription = (doc: jsPDF, title: string, data: Data, startY: number) => {
+const addDescription = (
+  doc: jsPDF,
+  title: string,
+  data: Data,
+  startY: number
+) => {
   // Header
   doc.setFont("Amsterdam-Bold", "bold")
   doc.setFontSize(FONT_SIZE_NORMAL)
@@ -28,18 +34,24 @@ const addDescription = (doc: jsPDF, title: string, data: Data, startY: number) =
   doc.setFont("Amsterdam-Regular", "normal")
   doc.setFontSize(FONT_SIZE_NORMAL)
 
-  const MaxPageWidthRight = doc.internal.pageSize.width - MARGIN_RIGHT - MARGIN_LEFT_VALUE
+  const MaxPageWidthRight =
+    doc.internal.pageSize.width - MARGIN_RIGHT - MARGIN_LEFT_VALUE
 
   data.forEach((field, index) => {
     const yPos = startY + (index + 1) * LINE_HEIGHT
     doc.text(field.label, MARGIN_LEFT, yPos)
     if (field.value) {
-      doc.text(`${field.value}`, MARGIN_LEFT_VALUE, yPos, { maxWidth: MaxPageWidthRight })
+      doc.text(`${field.value}`, MARGIN_LEFT_VALUE, yPos, {
+        maxWidth: MaxPageWidthRight
+      })
     }
   })
 }
 
-const formatValue = (value: string | number | undefined | null, defaultValue = "-") => {
+const formatValue = (
+  value: string | number | undefined | null,
+  defaultValue = "-"
+) => {
   if (value === undefined) return defaultValue
   return String(value).charAt(0).toUpperCase() + String(value).slice(1)
 }
@@ -77,15 +89,27 @@ const createPdf = (
   // -------------------- Vve gegevens -------------------- //
   const hoaDescriptionFields = [
     { label: "Postcode:", value: formatValue(hoaData.zip_code) },
+    { label: "Stadsdeel:", value: formatValue(hoaData.district) },
     { label: "Wijk:", value: formatValue(hoaData.wijk) },
     { label: "Buurt:", value: formatValue(hoaData.neighborhood) },
-    { label: "Prioriteitsbuurt:", value: hoaData.is_priority_neighborhood ? "Ja" : "Nee" },
-    { label: "Stadsdeel:", value: formatValue(hoaData.district) },
+    {
+      label: "Prioriteitsbuurt:",
+      value: hoaData.is_priority_neighborhood ? "Ja" : "Nee"
+    },
     { label: "Bouwjaar:", value: formatValue(hoaData.build_year) },
-    { label: "Aantal woningen:", value: formatValue(hoaData.number_of_appartments) },
+    {
+      label: "Aantal woningen:",
+      value: formatValue(hoaData.number_of_appartments)
+    },
     { label: "Monument status:", value: formatValue(hoaData.monument_status) },
-    { label: "Beschermd stadsdorpsgezicht:", value: formatValue(hoaData.beschermd_stadsdorpsgezicht) },
-    { label: "Ligt in beschermd gebied:", value: formatValue(hoaData.ligt_in_beschermd_gebied) }
+    {
+      label: "Beschermd stadsdorpsgezicht:",
+      value: formatValue(hoaData.beschermd_stadsdorpsgezicht)
+    },
+    {
+      label: "Ligt in beschermd gebied:",
+      value: formatValue(hoaData.ligt_in_beschermd_gebied)
+    }
   ]
 
   let startY = 80

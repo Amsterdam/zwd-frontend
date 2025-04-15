@@ -7,14 +7,12 @@ type DialogHandlers = {
   closeDialog: VoidFunction
 }
 
-
 export const useDialog = (id: string): DialogHandlers => {
   const openDialog = () => {
-    Dialog.open(`#${ id }`)
+    Dialog.open(`#${id}`)
   }
-  
+
   const closeDialog = Dialog.close as VoidFunction
 
-    
   return { openDialog, closeDialog }
 }

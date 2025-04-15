@@ -45,20 +45,20 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
       {contacts.map((contact) => (
         <React.Fragment key={contact.id}>
           <TextInputField
-            name={`fullname[${ contact.id }]`}
-            label={`Naam ${ contact.label }`}
+            name={`fullname[${contact.id}]`}
+            label={`Naam ${contact.label}`}
             validation={requiredValidation}
             formMethods={formMethods}
-          />    
+          />
           <TextInputField
-            name={`phone[${ contact.id }]`}
+            name={`phone[${contact.id}]`}
             label="Telefoon"
             type="tel"
             validation={phoneValidation}
             formMethods={formMethods}
           />
           <TextInputField
-            name={`email[${ contact.id }]`}
+            name={`email[${contact.id}]`}
             label="E-mail"
             type="email"
             validation={emailValidation}
@@ -66,7 +66,7 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
           />
           <Row wrap alignVertical="end">
             <SelectField
-              name={`role[${ contact.id }]`}
+              name={`role[${contact.id}]`}
               label="Functie in vve"
               options={OPTIONS_ROLE_FUNCTIONS}
               validation={{ required: true }}
@@ -77,7 +77,7 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
               (hasCustomRole1 && contact.id === 1)) && (
               <TextInputField
                 label="Specificeer functie"
-                name={`custom_role[${ contact.id }]`}
+                name={`custom_role[${contact.id}]`}
                 validation={{ required: true }}
                 formMethods={formMethods}
               />

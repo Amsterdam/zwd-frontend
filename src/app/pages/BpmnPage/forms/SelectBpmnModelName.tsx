@@ -13,19 +13,22 @@ export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
   return (
     <Field style={{ width: 300 }}>
       <Label htmlFor="bpmn-model">Naam</Label>
-      { isBusy ? <Spinner/> : (
-        <Select onChange={ (e) => onSelect(e.target.value) }>
-          <Select.Option key={ "default" } value="">Selecteer naam</Select.Option>
-          { models?.map((model) => (
-            <Select.Option key={ model } value={ model }>
-              { model }
+      {isBusy ? (
+        <Spinner />
+      ) : (
+        <Select onChange={(e) => onSelect(e.target.value)}>
+          <Select.Option key={"default"} value="">
+            Selecteer naam
+          </Select.Option>
+          {models?.map((model) => (
+            <Select.Option key={model} value={model}>
+              {model}
             </Select.Option>
           ))}
         </Select>
       )}
-    </Field>      
+    </Field>
   )
 }
 
 export default SelectBpmnModelName
-    

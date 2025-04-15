@@ -20,15 +20,15 @@ const Wrapper = styled.div<{ $isBorder: boolean }>`
   display: flex;
   padding-bottom: 8px;
   margin-top: 2rem;
-  border-bottom: ${ ({ $isBorder }) =>
-    $isBorder ? "1px solid #b4b4b4" : "none" };
+  border-bottom: ${({ $isBorder }) =>
+    $isBorder ? "1px solid #b4b4b4" : "none"};
 `
 
 const StyledIcon = styled(Icon)<{ level: number }>`
   margin-right: 8px;
   svg {
-    height: ${ ({ level }) => `${ 40 - level * 4 }px` };
-    width: ${ ({ level }) => `${ 40 - level * 4 }px` };
+    height: ${({ level }) => `${40 - level * 4}px`};
+    width: ${({ level }) => `${40 - level * 4}px`};
   }
 `
 
@@ -38,7 +38,7 @@ export const PageHeading: React.FC<Props> = ({
   icon,
   border = false
 }) => {
-  const size: Size = `level-${ level }`
+  const size: Size = `level-${level}`
   return (
     <Wrapper $isBorder={border}>
       {icon && <StyledIcon svg={icon} level={level} />}
