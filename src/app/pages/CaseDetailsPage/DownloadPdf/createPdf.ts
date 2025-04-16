@@ -136,7 +136,7 @@ const createPdf = (
   startY = calculateYPos(startY, contacts.length)
   const hoaDataOwners = hoaData?.owners ?? []
   const owners = hoaDataOwners.map((owner) => ({
-    label: `- ${owner.name} (${owner.type}) - ${owner.number_of_appartments} ${owner.number_of_appartments === 1 ? "woning" : "woningen"}`
+    label: `- ${owner?.name ?? "Onbekend"} (${owner.type}) - ${owner.number_of_appartments} ${owner.number_of_appartments === 1 ? "woning" : "woningen"}`
   }))
   addDescription(doc, "Eigenaren", owners, startY)
 
