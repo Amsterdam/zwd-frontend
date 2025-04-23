@@ -72,7 +72,7 @@ export const FileTaskForm: React.FC<Props> = ({
         validation={{ required }}
       />
       <FormActionButtons
-        okText="Taak afronden"
+        okText="Taak uitvoeren"
         onCancel={closeModal}
         loading={loading}
         name="ACTION_BUTTONS"

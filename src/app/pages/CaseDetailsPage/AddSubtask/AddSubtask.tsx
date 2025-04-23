@@ -7,8 +7,8 @@ const AddSubtask: React.FC = () => {
   const { openDialog } = useDialog(dialogId)
   return (
     <Row align="end">
-      <Button key="id-subtask-add" onClick={openDialog}>
-        Taak opvoeren
+      <Button key="id-subtask-add" onClick={openDialog} variant="secondary">
+        Extra taak opvoeren
       </Button>
       <SubtaskDialog id={dialogId} />
     </Row>

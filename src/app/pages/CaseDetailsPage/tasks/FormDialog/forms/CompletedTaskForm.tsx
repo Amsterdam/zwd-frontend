@@ -25,7 +25,7 @@ export const CompletedTaskForm: React.FC<Props> = ({
         validation={{ required: true }}
       />
       <FormActionButtons
-        okText="Taak afronden"
+        okText="Taak uitvoeren"
         onCancel={closeModal}
         loading={loading}
         name="ACTION_BUTTONS"

@@ -67,7 +67,7 @@ export const GenericTaskForm: React.FC<Props> = ({
         }
       })}
       <FormActionButtons
-        okText="Taak afronden"
+        okText="Taak uitvoeren"
         onCancel={closeModal}
         loading={loading}
         name="ACTION_BUTTONS"

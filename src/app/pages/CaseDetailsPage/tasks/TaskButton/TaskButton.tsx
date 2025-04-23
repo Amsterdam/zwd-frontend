@@ -13,7 +13,7 @@ export const TaskButton: React.FC<Props> = ({ task, caseId }) => {
 
   return (
     <>
-      <LinkButton label="Taak afronden" onClick={openDialog} />
+      <LinkButton label="Taak uitvoeren" onClick={openDialog} />
       <FormDialog
         dialogId={dialogId}
         task={task}

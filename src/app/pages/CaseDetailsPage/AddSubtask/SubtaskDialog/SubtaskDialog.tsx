@@ -37,7 +37,7 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
   }
 
   return (
-    <Dialog heading="Taak opvoeren" id={id}>
+    <Dialog heading="Extra taak opvoeren" id={id}>
       <Form onSubmit={onSubmit}>
         <SelectField
           name="workflow_option_id"
@@ -47,7 +47,7 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
           validation={{ required: true }}
         />
         <FormActionButtons
-          okText="Taak opvoeren"
+          okText="Extra taak opvoeren"
           onCancel={Dialog.close}
           name="ACTION_BUTTONS"
         />
