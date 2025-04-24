@@ -6,7 +6,6 @@ import {
   PageSizeFilter,
   StatusFilter,
   DistrictFilter,
-  WijkenFilter,
   NeighborhoodFilter
 } from "app/components"
 
@@ -47,10 +46,6 @@ export const TasksFilters = () => {
       <DistrictFilter
         contextName="tasks"
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
-      />
-      <WijkenFilter
-        contextName="tasks"
-        onChangeFilter={(value: string) => onChangeFilter("wijk", value)}
       />
       <NeighborhoodFilter
         contextName="tasks"

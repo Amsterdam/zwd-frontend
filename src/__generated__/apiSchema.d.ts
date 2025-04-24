@@ -763,28 +763,4 @@ declare namespace Paths {
             export type $200 = Components.Schemas.CaseUserTaskList;
         }
     }
-    namespace WijkenList {
-        namespace Parameters {
-            export type Limit = number;
-            export type Offset = number;
-        }
-        export interface QueryParameters {
-            limit?: Parameters.Limit;
-            offset?: Parameters.Offset;
-        }
-        namespace Responses {
-            export type $200 = Components.Schemas.PaginatedWijkList;
-        }
-    }
-    namespace WijkenRetrieve {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        namespace Responses {
-            export type $200 = Components.Schemas.Wijk;
-        }
-    }
 }
