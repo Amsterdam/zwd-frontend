@@ -13,17 +13,6 @@ export const useDistricts = (options?: Options) => {
   })
 }
 
-export const useWijken = (options?: Options) => {
-  const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Wijk[]>({
-    ...options,
-    url: `${makeApiUrl("wijken")}`,
-    groupName: "districts",
-    handleError,
-    isProtected: true
-  })
-}
-
 export const useNeighborhoods = (options?: Options) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.Neighborhood[]>({
