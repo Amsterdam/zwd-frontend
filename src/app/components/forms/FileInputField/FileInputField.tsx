@@ -16,6 +16,7 @@ const ACCEPTED_FILE_TYPES =
 const MAX_MB = 100
 const MAX_FILE_SIZE = MAX_MB * 1024 * 1024
 const ERROR_MESSAGE = `De maximale bestandsgrootte mag niet groter zijn dan ${MAX_FILE_SIZE / 1024 / 1024} MB.`
+const FILE_ERROR_MESSAGE = "Het slepen van bestanden is niet toegestaan."
 
 type Props = {
   name: string
@@ -37,6 +38,12 @@ export const FileInputField: React.FC<Props> = ({
     formMethods as UseFormReturn<FieldValues>
   const hasError = !!formState?.errors?.[name]
 
+  const onDrop = (event: React.DragEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    event.stopPropagation()
+    setFileError(FILE_ERROR_MESSAGE)
+    setError(name, { type: "custom", message: FILE_ERROR_MESSAGE })
+  }
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     setUploadedFile(file)
@@ -77,6 +84,7 @@ export const FileInputField: React.FC<Props> = ({
           : {})}
         {...rest}
         onChange={handleFileChange}
+        onDrop={onDrop}
       />
       {fileError && (
         <Paragraph style={{ color: "#EC0000" }}>{fileError}</Paragraph>
