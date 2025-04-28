@@ -13,7 +13,7 @@ import { useState } from "react"
 
 const ACCEPTED_FILE_TYPES =
   "application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, image/png, image/jpeg"
-const MAX_MB = 20
+const MAX_MB = 100
 const MAX_FILE_SIZE = MAX_MB * 1024 * 1024
 const ERROR_MESSAGE = `De maximale bestandsgrootte mag niet groter zijn dan ${MAX_FILE_SIZE / 1024 / 1024} MB.`
 
