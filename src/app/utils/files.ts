@@ -33,7 +33,6 @@ export const downloadFile = (data: unknown, filename: string): void => {
 
 export const viewFile = (data: unknown): void => {
   if (!isValidBlob(data)) return
-  console.log("viewFile type", data?.type)
   const blobUrl = URL.createObjectURL(data)
 
   try {
