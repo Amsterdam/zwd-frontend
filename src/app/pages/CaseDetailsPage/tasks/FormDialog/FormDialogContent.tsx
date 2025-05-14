@@ -13,7 +13,7 @@ export const FormDialogContent: React.FC<{
   closeDialog: () => void
   loading: boolean
   submitForm: (variables: ComletedTaskFormData | GenericTaskFormData) => void
-  submitFormFile: (variables: { name: string; upload: FileList }) => void
+  submitFormFile: (variables: { upload: FileList }) => void
 }> = ({ form, closeDialog, loading, submitForm, submitFormFile }) => {
   if (!form || form.length === 0) {
     return (

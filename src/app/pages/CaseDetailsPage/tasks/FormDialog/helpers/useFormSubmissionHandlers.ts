@@ -29,13 +29,13 @@ export const useFormSubmissionHandlers = (
   }
 
   const submitFormFile = async (variables: {
-    name: string
+    name?: string
     upload: FileList
   }) => {
     setLoading(true)
     const formData = new FormData()
     formData.append("case", caseId.toString())
-    formData.append("name", variables.name)
+    formData.append("name", variables?.name ?? variables.upload[0]?.name)
     formData.append("document", variables.upload[0])
     formData.append("case_user_task_id", taskId)
 

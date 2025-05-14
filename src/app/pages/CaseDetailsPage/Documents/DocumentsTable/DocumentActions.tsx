@@ -1,6 +1,11 @@
 import { IconButton, Row } from "@amsterdam/design-system-react"
 import { DownloadIcon } from "@amsterdam/design-system-react-icons"
-import { useFetchFile, viewFile, downloadFile } from "app/utils/files"
+import {
+  useFetchFile,
+  viewFile,
+  downloadFile,
+  canViewInline
+} from "app/utils/files"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
 import { ViewSvg } from "app/components"
 import UpdateDocument from "../UpdateDocument/UpdateDocument"
@@ -29,13 +34,15 @@ const DoucumentsActions: React.FC<Props> = ({ record }) => {
   }
 
   return (
-    <Row align="between">
-      <IconButton
-        label="Bekijk document"
-        title="Bekijk document"
-        svg={ViewSvg}
-        onClick={() => void handleAction()}
-      />
+    <Row align="end">
+      {canViewInline(record.document) && (
+        <IconButton
+          label="Bekijk document"
+          title="Bekijk document"
+          svg={ViewSvg}
+          onClick={() => void handleAction()}
+        />
+      )}
       <UpdateDocument record={record} />
       <IconButton
         label="Download document"

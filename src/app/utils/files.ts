@@ -2,45 +2,58 @@ import { useCallback } from "react"
 import { useAuth } from "react-oidc-context"
 import axios, { AxiosError, AxiosResponse } from "axios"
 
-export const downloadFile = (data: Blob, name: string) => {
-  if (!(data instanceof Blob)) {
+/**
+ * Validates that the input is a Blob.
+ */
+const isValidBlob = (data: unknown): data is Blob => {
+  const valid = data instanceof Blob
+  if (!valid) {
     console.error("Invalid data provided. Expected a Blob.")
-    return
   }
-  const url = URL.createObjectURL(data)
-  const link = document.createElement("a")
-  link.href = url
-  link.setAttribute("download", name)
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
+  return valid
 }
 
-export const viewFile = (data: Blob) => {
-  if (!(data instanceof Blob)) {
-    console.error("Invalid data provided. Expected a Blob.")
-    return
-  }
+
+export const downloadFile = (data: unknown, filename: string): void => {
+  if (!isValidBlob(data)) return
+
+  const blobUrl = URL.createObjectURL(data)
+  const anchor = document.createElement("a")
+
+  anchor.href = blobUrl
+  anchor.download = filename
+  document.body.appendChild(anchor)
+  anchor.click()
+  anchor.remove()
+
+  // Clean up the blob URL after a short delay to ensure the download starts
+  setTimeout(() => URL.revokeObjectURL(blobUrl), 1000)
+}
+
+
+export const viewFile = (data: unknown): void => {
+  if (!isValidBlob(data)) return
+  console.log("viewFile type", data?.type)
+  const blobUrl = URL.createObjectURL(data)
 
   try {
-    // Create a URL for the blob
-    const url = URL.createObjectURL(data)
-    const newWindow = window.open(url, "_blank")
+    const newTab = window.open(blobUrl, "_blank")
 
-    if (!newWindow) {
+    if (!newTab) {
       console.error(
         "Failed to open the file in a new tab. Please check your browser's pop-up settings."
       )
-      URL.revokeObjectURL(url) // Clean up immediately if the window couldn't be opened
+      URL.revokeObjectURL(blobUrl) // Clean up if tab didn't open
       return
     }
 
-    // Revoke the object URL after some time to free up memory
-    newWindow.onload = () => {
-      setTimeout(() => URL.revokeObjectURL(url), 1000)
+    // Clean up after the new tab has loaded
+    newTab.onload = () => {
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000)
     }
-  } catch (error) {
-    console.error("Error viewing file:", error)
+  } catch (err) {
+    URL.revokeObjectURL(blobUrl)
+    console.error("Error viewing file:", err)
   }
 }
 
@@ -64,4 +77,35 @@ export const useFetchFile = (fileUrl: string) => {
   }, [token, fileUrl])
 
   return fetchFile
+}
+
+/**
+ * Determines whether a file can be opened inline in the browser based on its file extension.
+ * Supports common types like pdf, images, text files, etc.
+ */
+export const canViewInline = (url: string): boolean => {
+  const extension = url
+    .split("?")[0]             
+    .split("#")[0]              
+    .split(".")
+    .pop()
+    ?.toLowerCase()
+
+  if (!extension) {
+    return false
+  }
+
+  const viewableExtensions = [
+    "pdf",
+    "png",
+    "jpg",
+    "jpeg",
+    "gif",
+    "txt",
+    "html",
+    "svg",
+    "webp"
+  ]
+
+  return viewableExtensions.includes(extension)
 }

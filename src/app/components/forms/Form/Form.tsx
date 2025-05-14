@@ -32,7 +32,7 @@ export const Form = <T extends FieldValues>({
   hasDummyButton,
   dummyValues
 }: FormProps<T>) => {
-  const formMethods: UseFormReturn<T> = useForm<T>({ defaultValues })
+  const formMethods: UseFormReturn<T> = useForm<T>({ defaultValues, mode: "onChange" })
   const { handleSubmit, reset } = formMethods
 
   const handleReset = useCallback(() => {

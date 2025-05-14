@@ -9,14 +9,12 @@ import {
   FileInput,
   Paragraph
 } from "@amsterdam/design-system-react"
-import { useState } from "react"
 
 const ACCEPTED_FILE_TYPES =
   "application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, text/plain, image/png, image/jpeg"
 const MAX_MB = 100
 const MAX_FILE_SIZE = MAX_MB * 1024 * 1024
 const ERROR_MESSAGE = `De maximale bestandsgrootte mag niet groter zijn dan ${MAX_FILE_SIZE / 1024 / 1024} MB.`
-const FILE_ERROR_MESSAGE = "Het slepen van bestanden is niet toegestaan."
 
 type Props = {
   name: string
@@ -29,40 +27,11 @@ export const FileInputField: React.FC<Props> = ({
   name,
   label,
   validation = {},
-  formMethods = {},
-  ...rest
+  formMethods = {}
 }) => {
-  const [fileError, setFileError] = useState<string | null>(null)
-  const [uploadedFile, setUploadedFile] = useState<File | undefined>(undefined)
-  const { formState, register, setError, trigger } =
-    formMethods as UseFormReturn<FieldValues>
+  const { formState, register } = formMethods as UseFormReturn<FieldValues>
   const hasError = !!formState?.errors?.[name]
-
-  const onDrop = (event: React.DragEvent<HTMLInputElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    setFileError(FILE_ERROR_MESSAGE)
-    setError(name, { type: "custom", message: FILE_ERROR_MESSAGE })
-  }
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    setUploadedFile(file)
-    if (file) {
-      if (file.size > MAX_FILE_SIZE) {
-        setFileError(ERROR_MESSAGE)
-        setError(name, { type: "custom", message: ERROR_MESSAGE })
-      } else {
-        setFileError(null)
-      }
-    }
-    void trigger()
-  }
-
-  const validateFile = () => {
-    if (!uploadedFile) return "File is required."
-    if (uploadedFile.size > MAX_FILE_SIZE) return ERROR_MESSAGE
-    return true
-  }
+  const errrorMessage = formState?.errors?.[name]?.message as string
 
   return (
     <Field>
@@ -78,17 +47,25 @@ export const FileInputField: React.FC<Props> = ({
         accept={ACCEPTED_FILE_TYPES}
         {...(register
           ? register(name, {
-            required: validation.required ?? false,
-            validate: validation.required ? validateFile : undefined
+            validate: {
+              required: (files) =>
+                !validation.required ||
+                  (files && files.length > 0) ||
+                  "Bestand is verplicht",
+              maxSize: (files) =>
+                !files ||
+                  !files[0] ||
+                  files[0].size <= MAX_FILE_SIZE ||
+                  ERROR_MESSAGE
+            }
           })
           : {})}
-        {...rest}
-        onChange={handleFileChange}
-        onDrop={onDrop}
       />
-      {fileError && (
-        <Paragraph style={{ color: "#EC0000" }}>{fileError}</Paragraph>
+      {hasError && (
+        <Paragraph style={{ color: "#EC0000" }}>{errrorMessage}</Paragraph>
       )}
     </Field>
   )
 }
+
+export default FileInputField
