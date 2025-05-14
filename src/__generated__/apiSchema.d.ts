@@ -14,6 +14,7 @@ declare namespace Components {
         export interface Case {
             id: number;
             created: string; // date-time
+            end_date: string; // date-time
             description?: string | null;
             workflows: CaseWorkflow[];
             advice_type?: /**

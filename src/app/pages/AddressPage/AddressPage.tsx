@@ -12,15 +12,11 @@ import {
   useHomeownerAssociation,
   useHomeownerAssociationByBagId
 } from "app/state/rest"
-import { styled } from "styled-components"
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
+import Section from "./Section"
 
 const gridSpan: GridColumnNumbers = { narrow: 4, medium: 8, wide: 6 }
-
-const Wrapper = styled.div`
-  margin-bottom: 40px;
-`
 
 export const AddressPage: React.FC = () => {
   const { bagId, hoaId } = useParams<{ bagId: string; hoaId: string }>()
@@ -44,7 +40,7 @@ export const AddressPage: React.FC = () => {
           <Grid
             style={{ paddingLeft: 0 }}
             paddingTop="small"
-            paddingBottom="large"
+            paddingBottom="small"
           >
             {hoa?.id ? (
               <Grid.Cell span={gridSpan}>
@@ -63,19 +59,19 @@ export const AddressPage: React.FC = () => {
           </Grid>
           {hoa?.id && (
             <>
-              <Wrapper>
+              <Section>
                 <HoaOwners hoa={hoa} />
-              </Wrapper>
-              <Wrapper>
+              </Section>
+              <Section>
                 <HoaCases hoaId={hoa.id} />
-              </Wrapper>
-              <Wrapper>
+              </Section>
+              <Section>
                 <Button
                   onClick={() => void navigate(`/vve/${hoa.id}/zaken/nieuw`)}
                 >
                   Nieuwe zaak aanmaken
                 </Button>
-              </Wrapper>
+              </Section>
             </>
           )}
         </>
