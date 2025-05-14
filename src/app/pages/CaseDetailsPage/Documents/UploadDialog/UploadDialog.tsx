@@ -1,11 +1,6 @@
 import { Dialog } from "@amsterdam/design-system-react"
 import { useParams } from "react-router-dom"
-import {
-  Form,
-  FormActionButtons,
-  TextInputField,
-  FileInputField
-} from "app/components/forms"
+import { Form, FormActionButtons, FileInputField } from "app/components/forms"
 import { useCaseDocumentUpload } from "app/state/rest"
 
 type Props = {
@@ -24,7 +19,7 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
   const onSubmit = (data: CaseDocumentData) => {
     const formData = new FormData()
     formData.append("case", caseId as string)
-    formData.append("name", data.name)
+    formData.append("name", data.upload[0]?.name ?? "Onbekend")
     formData.append("document", data.upload[0])
     void execPost(
       formData as unknown as Partial<Components.Schemas.CaseDocument>
@@ -34,11 +29,6 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
   return (
     <Dialog heading="Document uploaden" id={id}>
       <Form onSubmit={onSubmit}>
-        <TextInputField
-          name="name"
-          label="Naam van het document"
-          validation={{ required: true, maxLength: 100 }}
-        />
         <FileInputField name="upload" validation={{ required: true }} />
         <FormActionButtons
           okText="Upload"

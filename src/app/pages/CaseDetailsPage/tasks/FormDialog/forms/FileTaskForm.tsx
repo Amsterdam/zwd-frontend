@@ -1,12 +1,7 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 import { Paragraph } from "@amsterdam/design-system-react"
-import {
-  Form,
-  FormActionButtons,
-  FileInputField,
-  TextInputField
-} from "app/components"
+import { Form, FormActionButtons, FileInputField } from "app/components"
 import { useCase } from "app/state/rest"
 import type { ComletedTaskFormData } from "./CompletedTaskForm"
 
@@ -41,7 +36,7 @@ export const FileTaskForm: React.FC<Props> = ({
   const required = caseData?.legacy_id ? false : formItem.required
 
   const onSubmitData = (data: FileVariables) => {
-    if (data.upload?.length > 0 && data.name) {
+    if (data.upload?.length > 0) {
       submitFormFile(data)
     } else {
       submitForm({ completed: true })
@@ -59,12 +54,6 @@ export const FileTaskForm: React.FC<Props> = ({
           </strong>
         </Paragraph>
       )}
-      <TextInputField
-        key="key-name"
-        name="name"
-        label="Naam van het document"
-        validation={{ required }}
-      />
       <FileInputField
         key="key-upload"
         name="upload"
