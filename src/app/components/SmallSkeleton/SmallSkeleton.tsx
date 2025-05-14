@@ -13,12 +13,12 @@ const backgroundAnimation = keyframes`
 `
 
 const StyledDiv = styled.div<StyledDivProps>`
-  height: ${ props => props.height * 4 }px;
-  width: ${ props => props.width }px;
+  height: ${(props) => props.height * 4}px;
+  width: ${(props) => props.width}px;
   max-width: 100%;
-  background: linear-gradient(270deg, #E6E6E6, #B4B4B4);
+  background: linear-gradient(270deg, #e6e6e6, #b4b4b4);
   background-size: 400% 400%;
-  animation: ${ backgroundAnimation } 4s linear infinite;
+  animation: ${backgroundAnimation} 4s linear infinite;
 `
 
 type Props = {
@@ -27,15 +27,20 @@ type Props = {
   maxRandomWidth?: number
 }
 
-export const SmallSkeleton: React.FC<Props> = ({ loading = true, maxRandomWidth = 100, height = 5 }) => {
-  const width = useMemo(() => Math.round(Math.random() * (maxRandomWidth - 50) ) + 50, [maxRandomWidth])
+export const SmallSkeleton: React.FC<Props> = ({
+  loading = true,
+  maxRandomWidth = 100,
+  height = 5
+}) => {
+  const width = useMemo(
+    () => Math.round(Math.random() * (maxRandomWidth - 50)) + 50,
+    [maxRandomWidth]
+  )
   return loading ? (
-    <StyledDiv 
-      width={ width } 
-      height={ height } 
-      data-testid="small-skeleton"
-    />
-  ) : <></>
+    <StyledDiv width={width} height={height} data-testid="small-skeleton" />
+  ) : (
+    <></>
+  )
 }
 
 export default SmallSkeleton

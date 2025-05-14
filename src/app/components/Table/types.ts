@@ -46,5 +46,8 @@ export type TableType<T> = {
   showHeadWhenEmpty?: boolean
   onClickRow?: (record: T, index: number, event: React.MouseEvent) => void
   pagination?: false | PaginationType
-  onChange?: (pagination: PaginationType, sorting: OnChangeSortingType<T>) => void
+  onChange?: (
+    pagination: PaginationType,
+    sorting: OnChangeSortingType<T>
+  ) => void
 }

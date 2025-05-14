@@ -6,7 +6,7 @@ export const DEFAULT_PAGE_SIZE = 10
 const extendsObject = <T extends Record<string, Value>>(...list: T[]): T => {
   const result = {} as T
 
-  list.forEach(obj => {
+  list.forEach((obj) => {
     if (obj) {
       Object.entries(obj).forEach(([key, val]) => {
         if (val !== undefined) {
@@ -24,9 +24,8 @@ const usePagination = (
   pagination: PaginationType | false | undefined,
   onPageChange: (page: number) => void
 ): [PaginationType] => {
-
-  const { collectionSize: paginationTotal = 0, ...paginationObj }
-    = pagination && typeof pagination === "object" ? pagination : {}
+  const { collectionSize: paginationTotal = 0, ...paginationObj } =
+    pagination && typeof pagination === "object" ? pagination : {}
 
   const [innerPagination, setInnerPagination] = useState<{
     page?: number

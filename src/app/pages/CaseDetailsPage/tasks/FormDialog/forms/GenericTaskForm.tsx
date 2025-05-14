@@ -61,13 +61,13 @@ export const GenericTaskForm: React.FC<Props> = ({
             )
           default:
             console.log(
-              `Form item "${ formItem.type }" not supported. Type must be "select" or "text"`
+              `Form item "${formItem.type}" not supported. Type must be "select" or "text"`
             )
             return null // or handle other field types
         }
       })}
       <FormActionButtons
-        okText="Taak afronden"
+        okText="Taak uitvoeren"
         onCancel={closeModal}
         loading={loading}
         name="ACTION_BUTTONS"

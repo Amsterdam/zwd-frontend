@@ -4,24 +4,23 @@ import UploadDialog from "./UploadDialog/UploadDialog"
 import DocumentsTable from "./DocumentsTable/DocumentsTable"
 import { useDialog } from "app/hooks"
 
-
 const Documents: React.FC = () => {
   const dialogId = "ams-dialog-form-document-upload"
   const { openDialog } = useDialog(dialogId)
   return (
     <>
       <Row align="end">
-        <Button 
-          key="id-document-upload" 
-          variant="primary" 
-          icon={ EnlargeIcon } 
-          iconBefore 
-          onClick={ openDialog } 
+        <Button
+          key="id-document-upload"
+          variant="primary"
+          icon={EnlargeIcon}
+          iconBefore
+          onClick={openDialog}
         >
-          Document toevoegen 
+          Document toevoegen
         </Button>
       </Row>
-      <UploadDialog id={ dialogId }/>
+      <UploadDialog id={dialogId} />
       <DocumentsTable />
     </>
   )

@@ -22,14 +22,16 @@ const StyledTable = styled.table`
 `
 
 const Row = styled.tr<{ $isClickable?: boolean }>`
-  ${ ({ $isClickable }) => $isClickable && css`
-    cursor: pointer;
-    &:hover td {
-      background-color: #F5F5F5;
-    }
-  ` }
+  ${({ $isClickable }) =>
+    $isClickable &&
+    css`
+      cursor: pointer;
+      &:hover td {
+        background-color: #f5f5f5;
+      }
+    `}
   td {
-    border-bottom: 1px solid #E6E6E6;
+    border-bottom: 1px solid #e6e6e6;
   }
 `
 
@@ -38,9 +40,10 @@ const NoValuesPlaceholder = styled(TableCell)`
 `
 
 // Create dummydata for loading skeleton based on the columns.length and numLoadingRows property.
-const createLoadingData = (numColumns: number, numRows: number): string[][] => (
-  Array.from({ length: numRows }, () => Array.from({ length: numColumns }, () => ""))
-)
+const createLoadingData = (numColumns: number, numRows: number): string[][] =>
+  Array.from({ length: numRows }, () =>
+    Array.from({ length: numColumns }, () => "")
+  )
 
 export const Table = <R extends object = object>(props: TableType<R>) => {
   const {
@@ -59,13 +62,13 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
 
   // ============================ Sorter =============================
   const onSortingTrigger = (sortingObj: SortingType) => {
-    onChange?.(
-      getPaginationData(),
-      {
-        dataIndex: sortingObj?.index !== undefined ? columns?.[sortingObj?.index].dataIndex : undefined,
-        order: sortingObj?.order
-      }
-    )
+    onChange?.(getPaginationData(), {
+      dataIndex:
+        sortingObj?.index !== undefined
+          ? columns?.[sortingObj?.index].dataIndex
+          : undefined,
+      order: sortingObj?.order
+    })
   }
 
   const [mergedSorting, sorter, onChangeSorting, getSortingObj] = useSorter(
@@ -85,16 +88,26 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
       return [...sortedDataAscend].reverse()
     }
     return sortedDataAscend
-  },[sortedDataAscend, mergedSorting?.order])
+  }, [sortedDataAscend, mergedSorting?.order])
 
   // ========================== Pagination ==========================
   const onPaginationTrigger = (page: number) => {
-    onChange?.({ page, pageSize: mergedPagination.pageSize, collectionSize: mergedPagination.collectionSize  }, getSortingObj())
+    onChange?.(
+      {
+        page,
+        pageSize: mergedPagination.pageSize,
+        collectionSize: mergedPagination.collectionSize
+      },
+      getSortingObj()
+    )
   }
 
   // Set warning if pagination prop page is given but not higher than 0.
   devWarning(
-    pagination !== false && pagination?.page !== undefined  && typeof pagination.page == "number" && !(pagination.page > 0),
+    pagination !== false &&
+      pagination?.page !== undefined &&
+      typeof pagination.page == "number" &&
+      !(pagination.page > 0),
     "Table",
     "`page` of `pagination` must be greater than 0."
   )
@@ -117,7 +130,11 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
       return sortedData
     }
 
-    const { page = 1, collectionSize, pageSize = DEFAULT_PAGE_SIZE } = mergedPagination
+    const {
+      page = 1,
+      collectionSize,
+      pageSize = DEFAULT_PAGE_SIZE
+    } = mergedPagination
 
     // Dynamic table data
     if (sortedData.length < collectionSize!) {
@@ -133,11 +150,7 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
     }
 
     return sortedData.slice((page - 1) * pageSize, page * pageSize)
-  }, [
-    pagination,
-    sortedData,
-    mergedPagination
-  ])
+  }, [pagination, sortedData, mergedPagination])
 
   // ============================ Render ============================
   return (
@@ -145,48 +158,66 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
       <StyledTable>
         {(showHeadWhenEmpty || !isEmpty) && (
           <TableHeader
-            columns={ columns }
-            onChangeSorting={ onChangeSorting }
-            sorting={ mergedSorting }
+            columns={columns}
+            onChangeSorting={onChangeSorting}
+            sorting={mergedSorting}
           />
         )}
         <tbody>
-          {!loading && pageData?.map((rowData, index) => (
-            <Row
-              key={ index }
-              onClick={ (event: React.MouseEvent) => onClickRow?.(rowData, index, event) }
-              $isClickable={ onClickRow !== undefined }
-            >
-              {columns.map((column, index) => {
-                const text: string = column.dataIndex ? _get(rowData, column.dataIndex) as string : ""
-                const node = column.render ? column.render(text, rowData) : text
-                return (
-                  <TableCell key={ index } $borderLeft={ column.borderLeft } data-testid="table-cell">
-                    { node }
-                  </TableCell>
-                )
-              })}
-            </Row>
-          ))}
-          {loading && createLoadingData(columns.length, numLoadingRows).map((row, index) => (
-            <Row key={ index }>
-              {row.map((_, index) => (
-                <TableCell data-testid="table-cell" key={ index }>
-                  <SmallSkeleton maxRandomWidth={ columns[index].width ?? 30 } />
-                </TableCell>
-              ))}
-            </Row>
-          ))}
+          {!loading &&
+            pageData?.map((rowData, index) => (
+              <Row
+                key={index}
+                onClick={(event: React.MouseEvent) =>
+                  onClickRow?.(rowData, index, event)
+                }
+                $isClickable={onClickRow !== undefined}
+              >
+                {columns.map((column, index) => {
+                  const text: string = column.dataIndex
+                    ? (_get(rowData, column.dataIndex) as string)
+                    : ""
+                  const node = column.render
+                    ? column.render(text, rowData)
+                    : text
+                  return (
+                    <TableCell
+                      key={index}
+                      $borderLeft={column.borderLeft}
+                      data-testid="table-cell"
+                    >
+                      {node}
+                    </TableCell>
+                  )
+                })}
+              </Row>
+            ))}
+          {loading &&
+            createLoadingData(columns.length, numLoadingRows).map(
+              (row, index) => (
+                <Row key={index}>
+                  {row.map((_, index) => (
+                    <TableCell data-testid="table-cell" key={index}>
+                      <SmallSkeleton
+                        maxRandomWidth={columns[index].width ?? 30}
+                      />
+                    </TableCell>
+                  ))}
+                </Row>
+              )
+            )}
           {!loading && isEmpty && (
             <tr>
-              <NoValuesPlaceholder colSpan={ columns.length }>
-                { emptyPlaceholder }
+              <NoValuesPlaceholder colSpan={columns.length}>
+                {emptyPlaceholder}
               </NoValuesPlaceholder>
             </tr>
           )}
         </tbody>
       </StyledTable>
-      {pagination !== false && !isEmpty && <TablePagination { ...mergedPagination } />}
+      {pagination !== false && !isEmpty && (
+        <TablePagination {...mergedPagination} />
+      )}
     </Wrap>
   )
 }

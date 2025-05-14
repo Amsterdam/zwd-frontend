@@ -1,14 +1,14 @@
 /**
  * Returns a value from an object by following a given path, which can be a string or array.
- * 
+ *
  * Example:
- * 
+ *
  * const obj = { user: { name: "Alice", age: 25, addresses: [{ city: "Wonderland" } } };
  * const result = getValueByPath(obj, "user.address.city"); // Returns "Wonderland"
- * 
+ *
  * const obj = { users: [{ name: "Alice" }, { name: "Bob" }] };
  * const result = getValueByPath(obj, "users[1].name"); // Returns "Bob"
- * 
+ *
  * COPY of Lodash GET function
  */
 

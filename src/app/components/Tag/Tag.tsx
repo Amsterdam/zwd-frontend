@@ -23,7 +23,8 @@ type TagProps = {
   color: keyof typeof colorMap
 }
 
-const getColorHex = (colorName: string): string => colorMap[colorName] || colorMap["black"]
+const getColorHex = (colorName: string): string =>
+  colorMap[colorName] || colorMap["black"]
 
 const lightenColor = (hex: string, factor: number = 0.05): string =>
   `rgba(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)}, ${factor})`

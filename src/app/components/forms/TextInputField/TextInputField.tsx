@@ -60,8 +60,8 @@ export const TextInputField: React.FC<Props> = ({
         id={name}
         invalid={hasError}
         type={type}
-        size={ type === "tel" ? 14 : undefined }
-        className={ type === "tel" ? styles.inputTel : undefined }
+        size={type === "tel" ? 14 : undefined}
+        className={type === "tel" ? styles.inputTel : undefined}
         {...(register ? register(name, validation) : {})}
         {...rest}
         onChange={handleValidation}

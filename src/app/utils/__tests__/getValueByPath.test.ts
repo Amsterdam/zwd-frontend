@@ -20,7 +20,7 @@ describe("getValueByPath", () => {
     expect(result).toBe("Bob")
   })
 
-  it("should return undefined for a path that doesn\"t exist", () => {
+  it('should return undefined for a path that doesn"t exist', () => {
     const obj = { user: { name: "Alice" } }
     const result = getValueByPath(obj, "user.age")
     expect(result).toBeUndefined()

@@ -2,7 +2,6 @@ import { useCallback } from "react"
 import { useAuth } from "react-oidc-context"
 import axios, { AxiosError, AxiosResponse } from "axios"
 
-
 export const downloadFile = (data: Blob, name: string) => {
   if (!(data instanceof Blob)) {
     console.error("Invalid data provided. Expected a Blob.")
@@ -14,7 +13,7 @@ export const downloadFile = (data: Blob, name: string) => {
   link.setAttribute("download", name)
   document.body.appendChild(link)
   link.click()
-  document.body.removeChild(link)  
+  document.body.removeChild(link)
 }
 
 export const viewFile = (data: Blob) => {
@@ -29,7 +28,9 @@ export const viewFile = (data: Blob) => {
     const newWindow = window.open(url, "_blank")
 
     if (!newWindow) {
-      console.error("Failed to open the file in a new tab. Please check your browser's pop-up settings.")
+      console.error(
+        "Failed to open the file in a new tab. Please check your browser's pop-up settings."
+      )
       URL.revokeObjectURL(url) // Clean up immediately if the window couldn't be opened
       return
     }
@@ -38,7 +39,6 @@ export const viewFile = (data: Blob) => {
     newWindow.onload = () => {
       setTimeout(() => URL.revokeObjectURL(url), 1000)
     }
-
   } catch (error) {
     console.error("Error viewing file:", error)
   }
@@ -53,7 +53,7 @@ export const useFetchFile = (fileUrl: string) => {
       const response: AxiosResponse = await axios.get(fileUrl, {
         responseType: "blob", // Important to ensure the file is received as a blob
         headers: {
-          Authorization: `Bearer ${ token }`
+          Authorization: `Bearer ${token}`
         }
       })
       return response.data as Blob

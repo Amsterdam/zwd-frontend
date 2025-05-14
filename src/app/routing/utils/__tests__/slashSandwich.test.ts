@@ -1,5 +1,10 @@
 import { describe, it, expect } from "vitest"
-import { slashSandwich, stripDoubleSlashes, stripTrailingSlash, stripLeadingSlash } from "../slashSandwich"
+import {
+  slashSandwich,
+  stripDoubleSlashes,
+  stripTrailingSlash,
+  stripLeadingSlash
+} from "../slashSandwich"
 
 describe("slashSandwich", () => {
   it("should glue parts together with leading and trailing slashes", () => {
@@ -8,17 +13,24 @@ describe("slashSandwich", () => {
   })
 
   it("should glue parts together without trailing slash", () => {
-    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], { trailingSlash: false })
+    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], {
+      trailingSlash: false
+    })
     expect(result).toBe("/foo/zoo/bar/moo")
   })
 
   it("should glue parts together without leading slash", () => {
-    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], { leadingSlash: false })
+    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], {
+      leadingSlash: false
+    })
     expect(result).toBe("foo/zoo/bar/moo/")
   })
 
   it("should glue parts together without leading and trailing slashes", () => {
-    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], { leadingSlash: false, trailingSlash: false })
+    const result = slashSandwich(["foo", "/zoo/bar/", "/moo"], {
+      leadingSlash: false,
+      trailingSlash: false
+    })
     expect(result).toBe("foo/zoo/bar/moo")
   })
 

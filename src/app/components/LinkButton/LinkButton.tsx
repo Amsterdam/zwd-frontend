@@ -1,6 +1,5 @@
 import { LinkList } from "@amsterdam/design-system-react"
-import { useLinkClickHandler, useHref } from "react-router-dom" 
-
+import { useLinkClickHandler, useHref } from "react-router-dom"
 
 type Props = {
   label: string
@@ -13,7 +12,7 @@ export const LinkButton: React.FC<Props> = ({ label, path = "", onClick }) => {
   const href = useHref(path)
 
   const onHandleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-    event. preventDefault()
+    event.preventDefault()
     if (onClick) {
       onClick()
     }
@@ -24,11 +23,8 @@ export const LinkButton: React.FC<Props> = ({ label, path = "", onClick }) => {
 
   return (
     <LinkList>
-      <LinkList.Link
-        href={ href } 
-        onClick={ onClickLink }
-      >
-        { label }
+      <LinkList.Link href={href} onClick={onClickLink}>
+        {label}
       </LinkList.Link>
     </LinkList>
   )

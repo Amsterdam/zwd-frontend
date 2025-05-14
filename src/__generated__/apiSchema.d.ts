@@ -24,7 +24,7 @@ declare namespace Components {
             AdviceTypeEnum;
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
-            status?: string | null;
+            status: string;
         }
         export interface CaseAdvisor {
             id: number;
@@ -49,6 +49,9 @@ declare namespace Components {
             document: string; // uri
             name: string;
             created: string; // date-time
+        }
+        export interface CaseDocumentNameUpdate {
+            name: string;
         }
         export interface CaseDocumentWithTask {
             id: number;
@@ -82,11 +85,12 @@ declare namespace Components {
         }
         export interface CaseList {
             id: number;
-            homeowner_association: CaseHomeownerAssociation;
             created: string; // date-time
+            homeowner_association: CaseHomeownerAssociation;
+            legacy_id?: string | null;
             status: string;
         }
-        export interface CaseStateType {
+        export interface CaseStatus {
             name: string;
         }
         export interface CaseUserTask {
@@ -121,15 +125,17 @@ declare namespace Components {
             case?: number | null;
             tasks: CaseUserTask[];
             completed?: boolean;
-            state: {
-                name: string;
-            };
         }
         export interface Contact {
             fullname: string;
             email: string; // email
             phone: string;
             role: string;
+        }
+        export interface District {
+            id: number;
+            name: string;
+            neighborhoods: Neighborhood[];
         }
         export interface GenericCompletedTaskCreate {
             id: number;
@@ -145,7 +151,7 @@ declare namespace Components {
             build_year: number;
             number_of_appartments: number;
             contacts: Nested[];
-            owners: Nested[];
+            owners?: Owner[];
             district: string;
             neighborhood: string;
             wijk: string;
@@ -156,6 +162,10 @@ declare namespace Components {
             beschermd_stadsdorpsgezicht?: string | null;
             is_priority_neighborhood: boolean;
         }
+        export interface Neighborhood {
+            id: number;
+            name: string;
+        }
         export interface Nested {
             id: number;
             email: string; // email
@@ -163,6 +173,11 @@ declare namespace Components {
             fullname: string;
             role: string;
             homeowner_associations?: number[];
+        }
+        export interface Owner {
+            type: string;
+            name?: string | null;
+            number_of_appartments: number;
         }
         export interface PaginatedCaseListList {
             /**
@@ -182,6 +197,24 @@ declare namespace Components {
             previous?: string | null; // uri
             results: CaseList[];
         }
+        export interface PaginatedCaseStatusList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=400&limit=100
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=200&limit=100
+             */
+            previous?: string | null; // uri
+            results: CaseStatus[];
+        }
         export interface PaginatedCaseUserTaskListList {
             /**
              * example:
@@ -199,6 +232,24 @@ declare namespace Components {
              */
             previous?: string | null; // uri
             results: CaseUserTaskList[];
+        }
+        export interface PaginatedDistrictList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=400&limit=100
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=200&limit=100
+             */
+            previous?: string | null; // uri
+            results: District[];
         }
         export interface PaginatedHomeownerAssociationList {
             /**
@@ -218,6 +269,45 @@ declare namespace Components {
             previous?: string | null; // uri
             results: HomeownerAssociation[];
         }
+        export interface PaginatedNeighborhoodList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=400&limit=100
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=200&limit=100
+             */
+            previous?: string | null; // uri
+            results: Neighborhood[];
+        }
+        export interface PaginatedWijkList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=400&limit=100
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?offset=200&limit=100
+             */
+            previous?: string | null; // uri
+            results: Wijk[];
+        }
+        export interface PatchedCaseDocumentNameUpdate {
+            name?: string;
+        }
         export interface PatchedUpdateCaseAdvisor {
             advisor?: number;
         }
@@ -230,6 +320,10 @@ declare namespace Components {
          * * `GENERIC_TASK` - GENERIC_TASK
          */
         export type TypeEnum = "CASE" | "CASE_CLOSE" | "GENERIC_TASK";
+        export interface Wijk {
+            id: number;
+            name: string;
+        }
         export interface WorkflowOption {
             id: number;
             name: string;
@@ -294,6 +388,30 @@ declare namespace Paths {
             export type $200 = Components.Schemas.BpmnModel[];
         }
     }
+    namespace CaseStatusesList {
+        namespace Parameters {
+            export type Limit = number;
+            export type Offset = number;
+        }
+        export interface QueryParameters {
+            limit?: Parameters.Limit;
+            offset?: Parameters.Offset;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.PaginatedCaseStatusList;
+        }
+    }
+    namespace CaseStatusesRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseStatus;
+        }
+    }
     namespace CasesAdvisorPartialUpdate {
         namespace Parameters {
             export type Id = number;
@@ -308,10 +426,26 @@ declare namespace Paths {
     }
     namespace CasesAdvisorsList {
         namespace Parameters {
+            export type Closed = boolean;
+            export type District = string[];
+            export type HomeownerAssociationName = string;
             export type Id = number;
+            export type Neighborhood = string[];
+            export type Ordering = string;
+            export type Status = number[];
+            export type Wijk = string[];
         }
         export interface PathParameters {
             id: Parameters.Id;
+        }
+        export interface QueryParameters {
+            closed?: Parameters.Closed;
+            district?: Parameters.District;
+            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            neighborhood?: Parameters.Neighborhood;
+            ordering?: Parameters.Ordering;
+            status?: Parameters.Status;
+            wijk?: Parameters.Wijk;
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseAdvisor[];
@@ -367,6 +501,20 @@ declare namespace Paths {
             export type $200 = Components.Schemas.CaseDocument;
         }
     }
+    namespace CasesDocumentsUpdateNamePartialUpdate {
+        namespace Parameters {
+            export type DocId = string;
+            export type Id = number;
+        }
+        export interface PathParameters {
+            doc_id: Parameters.DocId;
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.PatchedCaseDocumentNameUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseDocumentNameUpdate;
+        }
+    }
     namespace CasesEventsRetrieve {
         namespace Parameters {
             export type Id = number;
@@ -391,18 +539,54 @@ declare namespace Paths {
     }
     namespace CasesList {
         namespace Parameters {
+            export type Closed = boolean;
+            export type District = string[];
+            export type HomeownerAssociationName = string;
+            export type Neighborhood = string[];
+            export type Ordering = string;
             export type Page = number;
             export type PageSize = number;
+            export type Status = string[];
+            export type Wijk = string[];
         }
         export interface QueryParameters {
+            closed?: Parameters.Closed;
+            district?: Parameters.District;
+            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            neighborhood?: Parameters.Neighborhood;
+            ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            status?: Parameters.Status;
+            wijk?: Parameters.Wijk;
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedCaseListList;
         }
     }
     namespace CasesProcessesList {
+        namespace Parameters {
+            export type Closed = boolean;
+            export type District = string[];
+            export type HomeownerAssociationName = string;
+            export type Id = number;
+            export type Neighborhood = string[];
+            export type Ordering = string;
+            export type Status = number[];
+            export type Wijk = string[];
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export interface QueryParameters {
+            closed?: Parameters.Closed;
+            district?: Parameters.District;
+            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            neighborhood?: Parameters.Neighborhood;
+            ordering?: Parameters.Ordering;
+            status?: Parameters.Status;
+            wijk?: Parameters.Wijk;
+        }
         namespace Responses {
             export type $200 = Components.Schemas.WorkflowOption[];
         }
@@ -439,6 +623,30 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.Case;
+        }
+    }
+    namespace DistrictsList {
+        namespace Parameters {
+            export type Limit = number;
+            export type Offset = number;
+        }
+        export interface QueryParameters {
+            limit?: Parameters.Limit;
+            offset?: Parameters.Offset;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.PaginatedDistrictList;
+        }
+    }
+    namespace DistrictsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.District;
         }
     }
     namespace GenericTasksCompleteCreate {
@@ -495,14 +703,50 @@ declare namespace Paths {
             export type $200 = Components.Schemas.HomeownerAssociation;
         }
     }
-    namespace TasksList {
+    namespace NeighborhoodsList {
         namespace Parameters {
-            export type Page = number;
-            export type PageSize = number;
+            export type Limit = number;
+            export type Offset = number;
         }
         export interface QueryParameters {
+            limit?: Parameters.Limit;
+            offset?: Parameters.Offset;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.PaginatedNeighborhoodList;
+        }
+    }
+    namespace NeighborhoodsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.Neighborhood;
+        }
+    }
+    namespace TasksList {
+        namespace Parameters {
+            export type District = string[];
+            export type HomeownerAssociationName = string;
+            export type Neighborhood = string[];
+            export type Ordering = string;
+            export type Page = number;
+            export type PageSize = number;
+            export type Status = string[];
+            export type Wijk = string[];
+        }
+        export interface QueryParameters {
+            district?: Parameters.District;
+            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            neighborhood?: Parameters.Neighborhood;
+            ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            status?: Parameters.Status;
+            wijk?: Parameters.Wijk;
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedCaseUserTaskListList;

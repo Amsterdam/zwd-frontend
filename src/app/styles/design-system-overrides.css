@@ -1,6 +1,7 @@
 /* This file is used to override the default design system styles */
 
-body, html {
+body,
+html {
   padding: 0;
 }
 

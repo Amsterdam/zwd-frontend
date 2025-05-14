@@ -33,5 +33,4 @@ describe("formatDate", () => {
     const result = formatDate(date, true)
     expect(result).toBe("14-03-2025 10:30")
   })
-
 })

@@ -70,7 +70,9 @@ export const AddressPage: React.FC = () => {
                 <HoaCases hoaId={hoa.id} />
               </Wrapper>
               <Wrapper>
-                <Button onClick={() => void navigate(`/vve/${hoa.id}/zaken/nieuw`)}>
+                <Button
+                  onClick={() => void navigate(`/vve/${hoa.id}/zaken/nieuw`)}
+                >
                   Nieuwe zaak aanmaken
                 </Button>
               </Wrapper>
