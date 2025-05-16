@@ -1,0 +1,30 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.styledTable {
+  border-spacing: 0px;
+  width: 100%;
+}
+
+.row {
+  /* base row styles */
+}
+
+.rowClickable {
+  cursor: pointer;
+}
+
+.rowClickable:hover td {
+  background-color: #f5f5f5;
+}
+
+.row td {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.noValuesPlaceholder {
+  font-style: italic;
+}

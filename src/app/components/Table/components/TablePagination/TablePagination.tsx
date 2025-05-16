@@ -1,13 +1,7 @@
 import React from "react"
-import styled from "styled-components"
 import { PaginationType } from "../../types"
 import { Pagination } from "@amsterdam/design-system-react"
-
-const StyledPagination = styled(Pagination)`
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-`
+import styles from "./TablePagination.module.css"
 
 const TablePagination: React.FC<PaginationType> = ({
   page = 1,
@@ -16,8 +10,10 @@ const TablePagination: React.FC<PaginationType> = ({
   onPageChange
 }) => {
   const totalPages = Math.ceil(collectionSize / pageSize)
+
   return (
-    <StyledPagination
+    <Pagination
+      className={styles.pagination}
       page={page}
       onPageChange={onPageChange}
       totalPages={totalPages}

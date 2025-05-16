@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react"
 import BpmnViewer from "bpmn-js/lib/NavigatedViewer"
-import styled from "styled-components"
 
 type Props = {
   xml: string // The BPMN XML content to display
@@ -9,11 +8,6 @@ type Props = {
 type CustomCanvas = {
   zoom: (zoomLevel: string) => void
 }
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 500px;
-`
 
 const BpmnDiagramViewer: React.FC<Props> = ({ xml }) => {
   const bpmnViewerRef = useRef<HTMLDivElement>(null) // Reference to the container div
@@ -56,7 +50,7 @@ const BpmnDiagramViewer: React.FC<Props> = ({ xml }) => {
     }
   }, [xml])
 
-  return <Wrapper ref={bpmnViewerRef} />
+  return <div ref={bpmnViewerRef} style={{ width: "100%", height: 500 }}/>
 }
 
 export default BpmnDiagramViewer

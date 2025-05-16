@@ -1,6 +1,5 @@
 import React from "react"
 import { DescriptionList } from "@amsterdam/design-system-react"
-import { styled } from "styled-components"
 
 type Props = {
   data?: {
@@ -9,12 +8,8 @@ type Props = {
   }[]
 }
 
-const Wrapper = styled(DescriptionList)`
-  margin-bottom: 32px;
-`
-
 export const DetailsList: React.FC<Props> = ({ data = [] }) => (
-  <Wrapper>
+  <DescriptionList style={{ marginBottom: "32px" }}>
     {data.map((item) => (
       <React.Fragment key={item?.term}>
         <DescriptionList.Term key={item?.term}>
@@ -25,7 +20,7 @@ export const DetailsList: React.FC<Props> = ({ data = [] }) => (
         </DescriptionList.Description>
       </React.Fragment>
     ))}
-  </Wrapper>
+  </DescriptionList>
 )
 
 export default DetailsList

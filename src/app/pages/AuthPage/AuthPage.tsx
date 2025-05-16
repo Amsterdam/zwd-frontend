@@ -1,19 +1,26 @@
 import { Button, Heading, Icon, Screen } from "@amsterdam/design-system-react"
-import styled from "styled-components"
 import { Spinner, PageHeading, PageGrid } from "app/components"
 import { useDecodedToken } from "app/hooks"
 import { useAuth } from "react-oidc-context"
 import { LogoutIcon } from "@amsterdam/design-system-react-icons"
+import styles from "./AuthPage.module.css"
 
-const Wrapper = styled(Screen)<{ align?: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: ${(props) => props.align ?? "center"};
-  flex-direction: column;
-`
+interface WrapperProps {
+  align?: "flex-start"
+  children: React.ReactNode
+}
+
+const Wrapper: React.FC<WrapperProps> = ({ align, children }) => {
+  const alignClass = align === "flex-start" ? styles.alignTop : ""
+  return (
+    <Screen fullHeight className={`${styles.wrapper} ${alignClass}`}>
+      {children}
+    </Screen>
+  )
+}
 
 export const LoggingInPage: React.FC = () => (
-  <Wrapper fullHeight>
+  <Wrapper>
     <Heading level={4}>U wordt automatisch aangemeld...</Heading>
     <br />
     <Spinner size={48} />
@@ -21,7 +28,7 @@ export const LoggingInPage: React.FC = () => (
 )
 
 export const LoggingInErrorPage: React.FC = () => (
-  <Wrapper fullHeight>
+  <Wrapper>
     <Heading level={4}>
       Sorry, er is iets fout gegaan tijdens het inloggen.
     </Heading>

@@ -1,5 +1,6 @@
 import { Heading, Icon, IconProps } from "@amsterdam/design-system-react"
-import styled from "styled-components"
+import styles from "./PageHeading.module.css"
+import clsx from "clsx"
 
 type Props = {
   label: string
@@ -16,22 +17,6 @@ type Size =
   | "level-5"
   | "level-6"
 
-const Wrapper = styled.div<{ $isBorder: boolean }>`
-  display: flex;
-  padding-bottom: 8px;
-  margin-top: 2rem;
-  border-bottom: ${({ $isBorder }) =>
-    $isBorder ? "1px solid #b4b4b4" : "none"};
-`
-
-const StyledIcon = styled(Icon)<{ level: number }>`
-  margin-right: 8px;
-  svg {
-    height: ${({ level }) => `${40 - level * 4}px`};
-    width: ${({ level }) => `${40 - level * 4}px`};
-  }
-`
-
 export const PageHeading: React.FC<Props> = ({
   label,
   level = 2,
@@ -39,11 +24,18 @@ export const PageHeading: React.FC<Props> = ({
   border = false
 }) => {
   const size: Size = `level-${level}`
+  const iconSize = 40 - level * 4
   return (
-    <Wrapper $isBorder={border}>
-      {icon && <StyledIcon svg={icon} level={level} />}
+    <div className={clsx(styles.wrapper, border && styles.withBorder)}>
+      {icon && (
+        <Icon
+          className={styles.icon}
+          svg={icon}
+          style={{ width: iconSize, height: iconSize }}
+        />
+      )}
       <Heading size={size}>{label}</Heading>
-    </Wrapper>
+    </div>
   )
 }
 
