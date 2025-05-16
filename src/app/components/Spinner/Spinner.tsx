@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components"
+import styles from "./Spinner.module.css"
 
 type Props = {
   loading?: boolean
@@ -6,55 +6,30 @@ type Props = {
   color?: string
 }
 
-const rotate = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-`
-
-const SpinnerWrapper = styled.div<{ size: number }>`
-  display: inline-block;
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
-  svg {
-    width: 100%;
-    height: 100%;
-    animation: ${rotate} 1s linear infinite;
-  }
-`
-
 export const Spinner: React.FC<Props> = ({
   loading = true,
   size = 32,
   color = "#000000"
 }) =>
   loading ? (
-    <SpinnerWrapper size={size}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-        <path
-          d="M16.3 5c2.2 0 4.3.7 6.1 1.9 1.8 1.2 3.2 3 4 5 .8 2 1 4.2.6 6.4-.4 2.1-1.5 4.1-3.1 5.6s-3.5 2.6-5.7 3c-2.1.4-4.3.2-6.3-.7-2-.9-3.7-2.3-4.9-4.1-1.2-1.8-1.8-4-1.8-6.1"
-          fill="none"
-          stroke={color}
-          strokeWidth="3"
-        />
-      </svg>
-    </SpinnerWrapper>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      aria-hidden="true"
+      focusable="false"
+      width={size}
+      height={size}
+      fill={color}
+      className={styles.spinner}
+    >
+      <path d="M50 100C22.4 99.967.033 77.6 0 50h10c0 22.091 17.909 40 40 40s40-17.909 40-40-17.909-40-40-40V0c27.614 0 50 22.386 50 50s-22.386 50-50 50"></path>
+    </svg>
   ) : (
     <></>
   )
 
-const PageSpinnerWraper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 400px;
-`
-
 export const PageSpinner: React.FC = () => (
-  <PageSpinnerWraper>
+  <div className={styles.pageSpinner}>
     <Spinner size={48} />
-  </PageSpinnerWraper>
+  </div>
 )
