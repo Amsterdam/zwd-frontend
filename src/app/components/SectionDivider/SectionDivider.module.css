@@ -1,0 +1,8 @@
+.wrapper {
+  margin: 32px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #b4b4b4;
+  color: rgb(118, 118, 118);
+  font-size: 14px;
+  font-weight: 700;
+}

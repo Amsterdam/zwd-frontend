@@ -1,13 +1,15 @@
-import styled, { css } from "styled-components"
+import React from "react"
+import styles from "./TableCell.module.css"
 
-const TableCell = styled.td<{ $borderLeft?: boolean }>`
-  padding: 16px 12px;
-  vertical-align: middle;
-  ${({ $borderLeft }) =>
-    $borderLeft &&
-    css`
-      border-left: 1px solid #b4b4b4;
-    `}
-`
+type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
+  borderLeft?: boolean
+}
+
+const TableCell: React.FC<TableCellProps> = ({ borderLeft, className, ...props }) => (
+  <td
+    className={`${styles.cell} ${borderLeft ? styles.borderLeft : ""} ${className || ""}`}
+    {...props}
+  />
+)
 
 export default TableCell

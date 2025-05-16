@@ -1,5 +1,4 @@
 import React, { useMemo } from "react"
-import styled, { css } from "styled-components"
 import _get from "lodash.get"
 import { SmallSkeleton } from "app/components"
 import TableCell from "./components/TableCell/TableCell"
@@ -9,35 +8,8 @@ import devWarning from "app/utils/devWarning"
 import usePagination, { DEFAULT_PAGE_SIZE } from "./hooks/usePagination"
 import useSorter from "./hooks/useSorter"
 import { TableType, SortingType, DESCEND } from "./types"
+import styles from "./Table.module.css"
 
-const Wrap = styled.div`
-  position: relative;
-  width: 100%;
-  overflow-x: auto;
-`
-
-const StyledTable = styled.table`
-  border-spacing: 0px;
-  width: 100%;
-`
-
-const Row = styled.tr<{ $isClickable?: boolean }>`
-  ${({ $isClickable }) =>
-    $isClickable &&
-    css`
-      cursor: pointer;
-      &:hover td {
-        background-color: #f5f5f5;
-      }
-    `}
-  td {
-    border-bottom: 1px solid #e6e6e6;
-  }
-`
-
-const NoValuesPlaceholder = styled(TableCell)`
-  font-style: italic;
-`
 
 // Create dummydata for loading skeleton based on the columns.length and numLoadingRows property.
 const createLoadingData = (numColumns: number, numRows: number): string[][] =>
@@ -154,8 +126,8 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
 
   // ============================ Render ============================
   return (
-    <Wrap data-testid="table">
-      <StyledTable>
+    <div className={styles.wrap} data-testid="table">
+      <table className={styles.styledTable}>
         {(showHeadWhenEmpty || !isEmpty) && (
           <TableHeader
             columns={columns}
@@ -166,12 +138,12 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
         <tbody>
           {!loading &&
             pageData?.map((rowData, index) => (
-              <Row
+              <tr
                 key={index}
                 onClick={(event: React.MouseEvent) =>
                   onClickRow?.(rowData, index, event)
                 }
-                $isClickable={onClickRow !== undefined}
+                className={`${styles.row} ${onClickRow !== undefined ? styles.rowClickable : ""}`.trim()}
               >
                 {columns.map((column, index) => {
                   const text: string = column.dataIndex
@@ -183,19 +155,19 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
                   return (
                     <TableCell
                       key={index}
-                      $borderLeft={column.borderLeft}
+                      borderLeft={column.borderLeft}
                       data-testid="table-cell"
                     >
                       {node}
                     </TableCell>
                   )
                 })}
-              </Row>
+              </tr>
             ))}
           {loading &&
             createLoadingData(columns.length, numLoadingRows).map(
               (row, index) => (
-                <Row key={index}>
+                <tr key={index} className={styles.row}>
                   {row.map((_, index) => (
                     <TableCell data-testid="table-cell" key={index}>
                       <SmallSkeleton
@@ -203,22 +175,25 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
                       />
                     </TableCell>
                   ))}
-                </Row>
+                </tr>
               )
             )}
           {!loading && isEmpty && (
             <tr>
-              <NoValuesPlaceholder colSpan={columns.length}>
+              <TableCell
+                className={styles.noValuesPlaceholder}
+                colSpan={columns.length}
+              >
                 {emptyPlaceholder}
-              </NoValuesPlaceholder>
+              </TableCell>
             </tr>
           )}
         </tbody>
-      </StyledTable>
+      </table>
       {pagination !== false && !isEmpty && (
         <TablePagination {...mergedPagination} />
       )}
-    </Wrap>
+    </div>
   )
 }
 
