@@ -14,7 +14,7 @@ declare namespace Components {
         export interface Case {
             id: number;
             created: string; // date-time
-            end_date?: string | null; // date
+            end_date: string; // date
             description?: string | null;
             workflows: CaseWorkflow[];
             advice_type?: /**
@@ -90,7 +90,7 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
             status: string;
-            end_date?: string | null; // date
+            end_date: string; // date
         }
         export interface CaseStatus {
             name: string;
