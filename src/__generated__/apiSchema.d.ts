@@ -14,7 +14,7 @@ declare namespace Components {
         export interface Case {
             id: number;
             created: string; // date-time
-            end_date: string; // date-time
+            end_date?: string | null; // date
             description?: string | null;
             workflows: CaseWorkflow[];
             advice_type?: /**
@@ -90,6 +90,7 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
             status: string;
+            end_date?: string | null; // date
         }
         export interface CaseStatus {
             name: string;
@@ -704,6 +705,11 @@ declare namespace Paths {
             export type $200 = Components.Schemas.HomeownerAssociation;
         }
     }
+    namespace HomeownerAssociationSearchRetrieve {
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
     namespace NeighborhoodsList {
         namespace Parameters {
             export type Limit = number;
@@ -762,6 +768,30 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseUserTaskList;
+        }
+    }
+    namespace WijkenList {
+        namespace Parameters {
+            export type Limit = number;
+            export type Offset = number;
+        }
+        export interface QueryParameters {
+            limit?: Parameters.Limit;
+            offset?: Parameters.Offset;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.PaginatedWijkList;
+        }
+    }
+    namespace WijkenRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.Wijk;
         }
     }
 }
