@@ -1,9 +1,12 @@
 import { useCallback, useState } from "react"
 import debounce from "lodash.debounce"
-import { SearchField } from "@amsterdam/design-system-react"
+import { Label, SearchField, Switch } from "@amsterdam/design-system-react"
+import { SearchIcon } from "@amsterdam/design-system-react-icons"
 import SearchResults from "./SearchResults/SearchResults"
 import { PageGrid, PageHeading } from "app/components"
 import { useURLState } from "app/hooks"
+import styles from "./SearchPage.module.css"
+import SearchResultsVve from "./SearchResultsHoa/SearchResultsHoa"
 
 const DELAY = 750
 
@@ -11,6 +14,7 @@ export const SearchPage: React.FC = () => {
   const [searchString, setSearchString] = useURLState("q", "")
   const [debouncedSearchString, setDebouncedSearchString] =
     useState<string>(searchString)
+  const [isVveSearch, setIsVveSearch] = useURLState("isVve", "false")
 
   // Memoize the debounced function to prevent recreation on every render
   const debouncedSetValue = useCallback(
@@ -24,22 +28,42 @@ export const SearchPage: React.FC = () => {
     debouncedSetValue(value)
   }
 
+  const isSearchVve = isVveSearch === "true"
+  const label = isSearchVve ? "Vve zoeken" : "Adres zoeken"
+  const placeholder = isSearchVve
+    ? "Zoek op vve naam"
+    : "Zoek op postcode of straat"
   return (
     <PageGrid>
-      <PageHeading label="Adres zoeken" />
-      <SearchField
-        onSubmit={(e) => e.preventDefault()}
-        style={{ width: 600, marginBottom: "2rem" }}
-      >
-        <SearchField.Input
-          placeholder="Zoek op postcode of straat"
-          name="search-box"
-          onChange={onChange}
-          value={searchString}
-        />
-        <SearchField.Button />
-      </SearchField>
-      <SearchResults searchString={debouncedSearchString} />
+      <PageHeading label={label} icon={SearchIcon} />
+      <div className={styles.searchContainer}>
+        <SearchField
+          onSubmit={(e) => e.preventDefault()}
+          className={styles.searchField}
+        >
+          <SearchField.Input
+            placeholder={placeholder}
+            name="search-box"
+            onChange={onChange}
+            value={searchString}
+          />
+          <SearchField.Button />
+        </SearchField>
+        <div className={styles.switchContainer}>
+          <Label htmlFor="switch-voor-zoeken-op-vve-naam">
+            Zoek op vve naam
+          </Label>
+          <Switch
+            checked={isSearchVve}
+            onChange={(el) => setIsVveSearch(el.target.checked.toString())}
+          />
+        </div>
+      </div>
+      {isSearchVve ? (
+        <SearchResultsVve searchString={debouncedSearchString} />
+      ) : (
+        <SearchResults searchString={debouncedSearchString} />
+      )}
     </PageGrid>
   )
 }

@@ -1,0 +1,15 @@
+.searchContainer {
+  display: flex;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
+.searchField {
+  width: 600px;
+}
+
+.switchContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

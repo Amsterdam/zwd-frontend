@@ -24,14 +24,14 @@ export const PageHeading: React.FC<Props> = ({
   border = false
 }) => {
   const size: Size = `level-${level}`
-  const iconSize = 40 - level * 4
+
   return (
     <div className={clsx(styles.wrapper, border && styles.withBorder)}>
       {icon && (
         <Icon
+          size="level-3"
           className={styles.icon}
           svg={icon}
-          style={{ width: iconSize, height: iconSize }}
         />
       )}
       <Heading size={size}>{label}</Heading>
