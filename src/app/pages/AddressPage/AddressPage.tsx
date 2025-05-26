@@ -15,6 +15,7 @@ import {
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
 import Section from "./Section"
+import HoaContacts from "./HoaContacts"
 
 const gridSpan: GridColumnNumbers = { narrow: 4, medium: 8, wide: 6 }
 
@@ -59,6 +60,9 @@ export const AddressPage: React.FC = () => {
           </Grid>
           {hoa?.id && (
             <>
+              <Section>
+                <HoaContacts hoaId={hoa.id}/>
+              </Section>
               <Section>
                 <HoaOwners hoa={hoa} />
               </Section>
