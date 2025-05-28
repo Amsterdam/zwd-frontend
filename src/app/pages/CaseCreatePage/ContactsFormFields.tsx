@@ -44,10 +44,10 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
   const hasCustomRole0 = roleName0 === CUSTOM_ROLE
   const hasCustomRole1 = roleName1 === CUSTOM_ROLE
 
-  const adviseType = watch("advice_type")
+  const adviceType = watch("advice_type")
   const showContacts =
-    adviseType === ADVICE_TYPES.ENERGIEADVIES ||
-    adviseType === ADVICE_TYPES.HAALBAARHEIDSONDERZOEK
+    adviceType === ADVICE_TYPES.ENERGIEADVIES ||
+    adviceType === ADVICE_TYPES.HAALBAARHEIDSONDERZOEK
 
   if (!showContacts) {
     return null // Return null if contacts should not be shown
