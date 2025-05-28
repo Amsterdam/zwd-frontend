@@ -1,22 +1,35 @@
-const OPTIONS_ADVICE_TYPE = [
-  { value: "Cursus", label: "Cursus" },
-  { value: "Energieadvies", label: "Energieadvies" },
-  { value: "Haalbaarheidsonderzoek", label: "Haalbaarheidsonderzoek" }
-]
+export const ADVICE_TYPES = {
+  CURSUS: "Cursus",
+  ENERGIEADVIES: "Energieadvies",
+  HAALBAARHEIDSONDERZOEK: "Haalbaarheidsonderzoek"
+}
 
-export const optionsForBigHoa = OPTIONS_ADVICE_TYPE
+const OPTIONS_ADVICE_TYPE = Object.entries(ADVICE_TYPES).map(([, value]) => ({
+  value,
+  label: value
+}))
 
-export const optionsForSmallHoa = OPTIONS_ADVICE_TYPE.filter(
-  (option) => option.value !== "Haalbaarheidsonderzoek"
+export const adviceOptionsForLargeHoa = OPTIONS_ADVICE_TYPE
+
+export const adviceOptionsForSmallHoa = OPTIONS_ADVICE_TYPE.filter(
+  (option) => option.value !== ADVICE_TYPES.HAALBAARHEIDSONDERZOEK
 )
 
 export const CUSTOM_ROLE = "CUSTOM_ROLE"
 
-export const OPTIONS_ROLE_FUNCTIONS = [
-  { value: "Bestuurslid", label: "Bestuurslid" },
-  { value: "Commissielid duurzaam", label: "Commissielid duurzaam" },
-  { value: "Commissielid technisch", label: "Commissielid technisch" },
-  { value: "Vve-lid", label: "Vve-lid" },
-  { value: "Vve-beheerder", label: "Vve-beheerder" },
-  { value: CUSTOM_ROLE, label: "Anders, namelijk:" }
-]
+export const ROLE_FUNCTIONS = {
+  BESTUURSLID: "Bestuurslid",
+  COMMISSIELID_DUURZAAM: "Commissielid duurzaam",
+  COMMISSIELID_TECHNISCH: "Commissielid technisch",
+  VVE_LID: "Vve-lid",
+  VVE_BEHEERDER: "Vve-beheerder",
+  CUSTOM: "Anders, namelijk:"
+}
+
+// Dynamisch genereren van opties voor rollen
+export const OPTIONS_ROLE_FUNCTIONS = Object.entries(ROLE_FUNCTIONS).map(
+  ([key, label]) => ({
+    value: key === "CUSTOM" ? CUSTOM_ROLE : label,
+    label
+  })
+)
