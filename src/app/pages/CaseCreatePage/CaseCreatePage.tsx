@@ -15,7 +15,10 @@ import {
 } from "app/components"
 import { useCaseCreate, useHomeownerAssociation } from "app/state/rest"
 import { ContactsFormFields } from "./ContactsFormFields"
-import { optionsForSmallHoa, optionsForBigHoa } from "./formOptions"
+import {
+  adviceOptionsForSmallHoa,
+  adviceOptionsForLargeHoa
+} from "./formOptions"
 import mapData, { defaultDummyValues } from "./mapData"
 import type { CaseCreateFormTypes } from "./mapData"
 import { env } from "app/config/env"
@@ -53,7 +56,9 @@ export const CaseCreatePage: React.FC = () => {
       })
   }
 
-  const options = hoa?.is_small ? optionsForSmallHoa : optionsForBigHoa
+  const adviceOptions = hoa?.is_small
+    ? adviceOptionsForSmallHoa
+    : adviceOptionsForLargeHoa
 
   return (
     <PageGrid>
@@ -74,7 +79,7 @@ export const CaseCreatePage: React.FC = () => {
             <RadioGroupFieldSet
               name="advice_type"
               label="Wat is het advies type?"
-              options={options}
+              options={adviceOptions}
               validation={{ required: true }}
             />
             <ContactsFormFields name="CONTACTS_FORM" />
