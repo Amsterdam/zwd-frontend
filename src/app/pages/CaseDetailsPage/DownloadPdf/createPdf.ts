@@ -88,7 +88,7 @@ const createPdf = (
 
   // -------------------- Zaakdetails -------------------- //
   const caseDescriptionFields = [
-    { label: "Zaak ID:", value: formatValue(caseData.id) },
+    { label: "Zaak ID:", value: formatValue(caseData.prefixed_dossier_id) },
     { label: "Advies type:", value: formatValue(caseData.advice_type) }
   ]
 

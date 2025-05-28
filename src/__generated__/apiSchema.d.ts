@@ -26,6 +26,7 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
             status: string;
+            prefixed_dossier_id: string;
         }
         export interface CaseAdvisor {
             id: number;
@@ -90,7 +91,8 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             legacy_id?: string | null;
             status: string;
-            end_date: string; // date
+            end_date?: string | null; // date
+            prefixed_dossier_id: string;
         }
         export interface CaseStatus {
             name: string;
@@ -133,6 +135,7 @@ declare namespace Components {
             email: string; // email
             phone: string;
             role: string;
+            id: number;
         }
         export interface District {
             id: number;
@@ -673,6 +676,43 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseList;
+        }
+    }
+    namespace HomeownerAssociationContactsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace HomeownerAssociationContactsUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.HomeownerAssociation;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace HomeownerAssociationDeleteContactDestroy {
+        namespace Parameters {
+            export type ContactId = string;
+            export type Id = number;
+        }
+        export interface PathParameters {
+            contact_id: Parameters.ContactId;
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export interface $204 {
+            }
         }
     }
     namespace HomeownerAssociationList {

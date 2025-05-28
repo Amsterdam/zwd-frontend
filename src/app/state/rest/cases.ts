@@ -8,7 +8,11 @@ import getOrderingQueryParam from "./utils/getOrderingQueryParam"
 const SORTING_INDEX_MAPPING: Record<string, string> = {
   created: "created",
   id: "id",
-  updated: "updated"
+  updated: "updated",
+  prefixed_dossier_id: "id",
+  status: "status",
+  "homeowner_association.name": "homeowner_association__name",
+  legacy_id: "legacy_id"
 }
 
 export const useCases = (
@@ -46,6 +50,7 @@ export const useCases = (
   if (wijk) {
     urlParams.wijk = wijk
   }
+
   const queryString = stringifyQueryParams(urlParams)
 
   return useApiRequest<Components.Schemas.PaginatedCaseListList>({
