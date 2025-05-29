@@ -1,5 +1,10 @@
 import { useParams } from "react-router-dom"
-import { ColumnType, Table } from "app/components"
+import {
+  ColumnType,
+  createDateSorter,
+  createStringSorter,
+  Table
+} from "app/components"
 import { useCaseDocuments } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
 import DoucumentsActions from "./DocumentActions"
@@ -8,26 +13,12 @@ const columns: ColumnType<Components.Schemas.CaseDocument>[] = [
   {
     header: "Naam",
     dataIndex: "name",
-    sorter: (
-      a: Components.Schemas.CaseDocument,
-      b: Components.Schemas.CaseDocument
-    ): number => {
-      const nameA = (a?.name as string | undefined) ?? ""
-      const nameB = (b?.name as string | undefined) ?? ""
-      return nameA.localeCompare(nameB)
-    }
+    sorter: createStringSorter<Components.Schemas.CaseDocument>("name")
   },
   {
     header: "Aangemaakt op",
     dataIndex: "created",
-    sorter: (
-      a: Components.Schemas.CaseDocument,
-      b: Components.Schemas.CaseDocument
-    ): number => {
-      const createdA = (a?.created as string | undefined) ?? ""
-      const createdB = (b?.created as string | undefined) ?? ""
-      return createdA.localeCompare(createdB)
-    },
+    sorter: createDateSorter<Components.Schemas.CaseDocument>("created"),
     render: (text) => formatDate(text, true),
     defaultSortOrder: "DESCEND"
   },

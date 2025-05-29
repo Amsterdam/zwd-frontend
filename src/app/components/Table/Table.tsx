@@ -1,5 +1,4 @@
 import React, { useMemo } from "react"
-import _get from "lodash.get"
 import { SmallSkeleton } from "app/components"
 import TableCell from "./components/TableCell/TableCell"
 import TableHeader from "./components/TableHeader/TableHeader"
@@ -8,6 +7,7 @@ import devWarning from "app/utils/devWarning"
 import usePagination, { DEFAULT_PAGE_SIZE } from "./hooks/usePagination"
 import useSorter from "./hooks/useSorter"
 import { TableType, SortingType, DESCEND } from "./types"
+import { getValueByPath } from "app/utils/getValueByPath"
 import styles from "./Table.module.css"
 
 
@@ -147,7 +147,7 @@ export const Table = <R extends object = object>(props: TableType<R>) => {
               >
                 {columns.map((column, index) => {
                   const text: string = column.dataIndex
-                    ? (_get(rowData, column.dataIndex) as string)
+                    ? (getValueByPath(rowData, column.dataIndex) as string)
                     : ""
                   const node = column.render
                     ? column.render(text, rowData)

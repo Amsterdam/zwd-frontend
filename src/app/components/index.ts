@@ -1,4 +1,5 @@
 export * from "./ConfirmationDialog/ConfirmationDialog"
+export * from "./Table/utils/createSorters"
 export * from "./Descriptions/Descriptions"
 export * from "./DefaultLayout/DefaultLayout"
 export * from "./DetailsList/DetailsList"
