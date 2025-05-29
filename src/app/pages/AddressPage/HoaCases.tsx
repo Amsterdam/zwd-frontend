@@ -1,6 +1,13 @@
 import { Heading } from "@amsterdam/design-system-react"
 import { useNavigate } from "react-router-dom"
-import { ColumnType, LinkButton, Table } from "app/components"
+import {
+  ColumnType,
+  createDateSorter,
+  createnumberSorter,
+  createStringSorter,
+  LinkButton,
+  Table
+} from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
 import Section from "./Section"
@@ -13,28 +20,24 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
   {
     header: "ID",
     dataIndex: "id",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>
-      a?.id - b?.id,
+    sorter: createnumberSorter<Components.Schemas.Case>("id"),
     defaultSortOrder: "DESCEND"
   },
   {
     header: "Status",
     dataIndex: "status",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>
-      a.status.localeCompare(b.status)
+    sorter: createStringSorter<Components.Schemas.Case>("status")
   },
   {
     header: "Startdatum zaak",
     dataIndex: "created",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>
-      a.created.localeCompare(b.created),
+    sorter: createDateSorter<Components.Schemas.Case>("created"),
     render: (text) => formatDate(text)
   },
   {
     header: "Einddatum zaak",
     dataIndex: "end_date",
-    sorter: (a: Components.Schemas.Case, b: Components.Schemas.Case) =>
-      a.end_date.localeCompare(b.end_date),
+    sorter: createDateSorter<Components.Schemas.Case>("end_date"),
     render: (text) => formatDate(text)
   },
   {
@@ -53,7 +56,9 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
     (caseItem) => caseItem.status !== "Afgesloten"
   )
   const numberOfOpenCases = openCases?.length || 0
-  const openColumns = columns.filter((column) => column.dataIndex !== "end_date")
+  const openColumns = columns.filter(
+    (column) => column.dataIndex !== "end_date"
+  )
   const closedCases = cases?.filter(
     (caseItem) => caseItem.status === "Afgesloten"
   )

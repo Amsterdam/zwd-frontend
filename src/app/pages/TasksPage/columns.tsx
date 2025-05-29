@@ -1,4 +1,4 @@
-import { ColumnType, LinkButton } from "app/components"
+import { ColumnType, createDateSorter, LinkButton } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 export const getColumns = (
@@ -16,8 +16,7 @@ export const getColumns = (
     header: "Aangemaakt",
     dataIndex: "created",
     width: 130,
-    sorter: (a: CustomCaseUserTask, b: CustomCaseUserTask) =>
-      new Date(a.created).getTime() - new Date(b.created).getTime(),
+    sorter: createDateSorter<CustomCaseUserTask>("created"),
     defaultSortOrder: "DESCEND" as const,
     sortOrder:
       sorting.dataIndex === "created" && sorting.order

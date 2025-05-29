@@ -1,5 +1,5 @@
 import { Heading } from "@amsterdam/design-system-react"
-import { ColumnType, Table } from "app/components"
+import { ColumnType, createStringSorter, Table } from "app/components"
 import { useHoaContacts } from "app/state/rest"
 
 type Props = {
@@ -12,36 +12,23 @@ const columns: ColumnType<Contact>[] = [
   {
     header: "Naam",
     dataIndex: "fullname",
-    sorter: (a: Contact, b: Contact) =>
-      a.fullname.localeCompare(b.fullname),
+    sorter: createStringSorter<Contact>("fullname"),
     defaultSortOrder: "DESCEND"
   },
   {
     header: "E-mail",
     dataIndex: "email",
-    sorter: (a: Contact, b: Contact) => {
-      const nameA = (a?.email as string | undefined) ?? ""
-      const nameB = (b?.email as string | undefined) ?? ""
-      return nameA.localeCompare(nameB)
-    }
+    sorter: createStringSorter<Contact>("email")
   },
   {
     header: "Telefoon",
     dataIndex: "phone",
-    sorter: (a: Contact, b: Contact) => {
-      const nameA = (a?.phone as string | undefined) ?? ""
-      const nameB = (b?.phone as string | undefined) ?? ""
-      return nameA.localeCompare(nameB)
-    }
+    sorter: createStringSorter<Contact>("phone")
   },
   {
     header: "Functie in vve",
     dataIndex: "role",
-    sorter: (a: Contact, b: Contact) => {
-      const nameA = (a?.role as string | undefined) ?? ""
-      const nameB = (b?.role as string | undefined) ?? ""
-      return nameA.localeCompare(nameB)
-    }
+    sorter: createStringSorter<Contact>("role")
   }
 ] as ColumnType<Contact>[]
 

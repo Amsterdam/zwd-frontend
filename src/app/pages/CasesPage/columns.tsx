@@ -1,5 +1,5 @@
 import type { ColumnType } from "app/components"
-import { LinkButton } from "app/components"
+import { LinkButton, createStringSorter, createDateSorter, createnumberSorter } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 type DataType = Components.Schemas.CaseList
@@ -7,28 +7,28 @@ type DataType = Components.Schemas.CaseList
 const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
     header: "ID",
-    dataIndex: "id",
-    sorter: (a: DataType, b: DataType) => a?.id - b?.id,
-    sortOrder:
-      sorting.dataIndex === "id" && sorting.order ? sorting.order : undefined
+    dataIndex: "prefixed_dossier_id",
+    sorter: createnumberSorter<DataType>("id")
   },
   {
     header: "Excel ID",
-    dataIndex: "legacy_id"
+    dataIndex: "legacy_id",
+    sorter: createStringSorter<DataType>("legacy_id")
   },
   {
     header: "Vve statutaire naam",
-    dataIndex: "homeowner_association.name"
+    dataIndex: "homeowner_association.name",
+    sorter: createStringSorter<DataType>("homeowner_association.name")
   },
   {
     header: "Status",
-    dataIndex: "status"
+    dataIndex: "status",
+    sorter: createStringSorter<DataType>("status")
   },
   {
     header: "Startdatum zaak",
     dataIndex: "created",
-    sorter: (a: DataType, b: DataType) =>
-      new Date(a.created).getTime() - new Date(b.created).getTime(),
+    sorter: createDateSorter<DataType>("created"),
     defaultSortOrder: "DESCEND" as const,
     sortOrder:
       sorting.dataIndex === "created" && sorting.order

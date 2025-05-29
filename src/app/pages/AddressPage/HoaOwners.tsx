@@ -1,5 +1,10 @@
 import { Heading } from "@amsterdam/design-system-react"
-import { ColumnType, Table } from "app/components"
+import {
+  ColumnType,
+  createnumberSorter,
+  createStringSorter,
+  Table
+} from "app/components"
 
 type HomeownerAssociationOwner = {
   homeowner_association: number
@@ -21,30 +26,27 @@ const getColumns = (total: number) =>
     {
       header: "Type",
       dataIndex: "type",
-      sorter: (a: HomeownerAssociationOwner, b: HomeownerAssociationOwner) =>
-        a.type.localeCompare(b.type),
+      sorter: createStringSorter<HomeownerAssociationOwner>("type"),
       defaultSortOrder: "DESCEND"
     },
     {
       header: "Naam",
       dataIndex: "name",
-      sorter: (a: HomeownerAssociationOwner, b: HomeownerAssociationOwner) => {
-        const nameA = (a?.name as string | undefined) ?? ""
-        const nameB = (b?.name as string | undefined) ?? ""
-        return nameA.localeCompare(nameB)
-      }
+      sorter: createStringSorter<HomeownerAssociationOwner>("name")
     },
     {
       header: "Aantal woningen",
       dataIndex: "number_of_appartments",
-      sorter: (a: HomeownerAssociationOwner, b: HomeownerAssociationOwner) =>
-        a.number_of_appartments - b.number_of_appartments
+      sorter: createnumberSorter<HomeownerAssociationOwner>(
+        "number_of_appartments"
+      )
     },
     {
       header: "Percentage woningen",
       dataIndex: "number_of_appartments",
-      sorter: (a: HomeownerAssociationOwner, b: HomeownerAssociationOwner) =>
-        a.number_of_appartments - b.number_of_appartments,
+      sorter: createnumberSorter<HomeownerAssociationOwner>(
+        "number_of_appartments"
+      ),
       render: (_, obj) => `${getPercentage(obj.number_of_appartments, total)}%`
     }
   ] as ColumnType<HomeownerAssociationOwner>[]
