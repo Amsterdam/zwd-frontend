@@ -1,3 +1,5 @@
+import { ADVICE_TYPES } from "./formOptions"
+
 export type FormTypes = {
   fullname: string[]
   email: string[]
@@ -11,30 +13,21 @@ export type CaseCreateFormTypes = Components.Schemas.CaseCreate & FormTypes
 const mapData = (
   data: CaseCreateFormTypes,
   homeowner_association: Components.Schemas.HomeownerAssociation["id"]
-): Omit<Components.Schemas.CaseCreate, "id"> => ({
+): CaseCreateInput => ({
   description: data.description,
   advice_type: data.advice_type,
   homeowner_association,
-  contacts: data?.fullname
-    ? [{
-      fullname: data.fullname[0],
-      email: data.email[0],
-      phone: data.phone[0],
-      role:
-        data?.custom_role && data?.custom_role[0]
-          ? data?.custom_role[0]
-          : data.role[0]
-    }, {
-      fullname: data.fullname[1],
-      email: data.email[1],
-      phone: data.phone[1],
-      role:
-        data?.custom_role && data?.custom_role[1]
-          ? data?.custom_role[1]
-          : data.role[1]
-    }]
-    : []
+  contacts:
+    data.advice_type === ADVICE_TYPES.CURSUS
+      ? []
+      : data?.fullname?.map((_, index) => ({
+        fullname: data.fullname[index],
+        email: data.email[index],
+        phone: data.phone[index],
+        role: data?.custom_role?.[index] || data.role[index]
+      })) || []
 })
+
 
 export default mapData
 

@@ -11,3 +11,7 @@ type CaseEvent = {
   emitter_id: number
   case: number
 }
+
+type CaseCreateInput = Omit<CaseCreate, "id" | "contacts"> & {
+  contacts: Omit<Contact, "id">[]
+}
