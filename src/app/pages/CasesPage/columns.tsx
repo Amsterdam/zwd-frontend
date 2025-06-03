@@ -37,6 +37,12 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     render: (text) => formatDate(text)
   },
   {
+    header: "Laatst gewijzigd",
+    dataIndex: "updated",
+    sorter: createDateSorter<DataType>("updated"),
+    render: (text) => formatDate(text)
+  },
+  {
     header: "",
     dataIndex: "id",
     width: 100,
