@@ -1,4 +1,4 @@
-import { ColumnType, createDateSorter, LinkButton } from "app/components"
+import { ColumnType, createDateSorter, createStringSorter, LinkButton } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 export const getColumns = (
@@ -6,11 +6,13 @@ export const getColumns = (
 ): ColumnType<CustomCaseUserTask>[] => [
   {
     header: "Vve statutaire naam",
-    dataIndex: "homeowner_association"
+    dataIndex: "homeowner_association",
+    sorter: createStringSorter<CustomCaseUserTask>("homeowner_association")
   },
   {
     header: "Open taak",
-    dataIndex: "name"
+    dataIndex: "name",
+    sorter: createStringSorter<CustomCaseUserTask>("name")
   },
   {
     header: "Aangemaakt",
