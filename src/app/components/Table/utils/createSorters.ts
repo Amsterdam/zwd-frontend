@@ -34,3 +34,10 @@ export function createnumberSorter<T>(path: string): (a: T, b: T) => number {
     return valA - valB
   }
 }
+
+export function getSortOrder(
+  sorting: TABLE.Sorting,
+  targetDataIndex: string
+): TABLE.SortOrder | undefined {
+  return sorting.dataIndex === targetDataIndex ? sorting.order : undefined
+}
