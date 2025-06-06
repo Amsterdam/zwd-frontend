@@ -78,7 +78,7 @@ export const CaseCreatePage: React.FC = () => {
           >
             <RadioGroupFieldSet
               name="advice_type"
-              label="Wat is het advies type?"
+              label="Wat is het adviestype?"
               options={adviceOptions}
               validation={{ required: true }}
             />
