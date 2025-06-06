@@ -25,7 +25,7 @@ export const CaseDetailsPage: React.FC = () => {
 
   const dataDetailsList = [
     { term: "Zaak ID", details: data?.prefixed_dossier_id },
-    { term: "Advies type", details: data?.advice_type },
+    { term: "Adviestype", details: data?.advice_type },
     { term: "Status", details: data?.status }
   ]
   if (data?.end_date) {
