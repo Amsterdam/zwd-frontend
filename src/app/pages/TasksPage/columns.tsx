@@ -1,4 +1,10 @@
-import { ColumnType, createDateSorter, createStringSorter, LinkButton } from "app/components"
+import {
+  ColumnType,
+  createDateSorter,
+  createStringSorter,
+  getSortOrder,
+  LinkButton
+} from "app/components"
 import { formatDate } from "app/utils/dates"
 
 export const getColumns = (
@@ -7,12 +13,14 @@ export const getColumns = (
   {
     header: "Vve statutaire naam",
     dataIndex: "homeowner_association",
-    sorter: createStringSorter<CustomCaseUserTask>("homeowner_association")
+    sorter: createStringSorter<CustomCaseUserTask>("homeowner_association"),
+    sortOrder: getSortOrder(sorting, "homeowner_association")
   },
   {
     header: "Open taak",
     dataIndex: "name",
-    sorter: createStringSorter<CustomCaseUserTask>("name")
+    sorter: createStringSorter<CustomCaseUserTask>("name"),
+    sortOrder: getSortOrder(sorting, "name")
   },
   {
     header: "Aangemaakt",
@@ -20,10 +28,7 @@ export const getColumns = (
     width: 130,
     sorter: createDateSorter<CustomCaseUserTask>("created"),
     defaultSortOrder: "DESCEND" as const,
-    sortOrder:
-      sorting.dataIndex === "created" && sorting.order
-        ? sorting.order
-        : undefined,
+    sortOrder: getSortOrder(sorting, "created"),
     render: (text) => formatDate(text, true)
   },
   {
