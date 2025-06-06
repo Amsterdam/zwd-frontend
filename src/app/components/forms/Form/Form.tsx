@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback } from "react"
+import React, { ReactNode, useCallback, useEffect } from "react"
 import {
   useForm,
   UseFormReturn,
@@ -32,8 +32,17 @@ export const Form = <T extends FieldValues>({
   hasDummyButton,
   dummyValues
 }: FormProps<T>) => {
-  const formMethods: UseFormReturn<T> = useForm<T>({ defaultValues, mode: "onChange" })
+  const formMethods: UseFormReturn<T> = useForm<T>({
+    defaultValues,
+    mode: "onChange"
+  })
   const { handleSubmit, reset } = formMethods
+
+  useEffect(() => {
+    if (defaultValues) {
+      reset(defaultValues) // Reset the form with default values when they change
+    }
+  }, [defaultValues, reset])
 
   const handleReset = useCallback(() => {
     if (hasDummyButton && dummyValues) {
