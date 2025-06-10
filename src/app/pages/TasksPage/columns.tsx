@@ -35,7 +35,7 @@ export const getColumns = (
     header: "",
     dataIndex: "case",
     width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
+    render: (caseId) => <LinkButton label="Zaakdetails" to={`/zaken/${caseId}`}/>
   }
 ]
 
