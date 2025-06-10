@@ -1,6 +1,6 @@
-import { LinkButton } from "app/components"
+import { ColumnType, LinkButton } from "app/components"
 
-const columns = [
+const columns: ColumnType<HomeownerAssociationSearch>[] = [
   {
     header: "Vve statutaire naam",
     dataIndex: "brkVveStatutaireNaam"
@@ -9,7 +9,9 @@ const columns = [
     header: "",
     dataIndex: "votIdentificatie",
     width: 80,
-    render: () => <LinkButton label="Bekijk" path="" /> // onClickRow is overruling the  link
+    render: (votIdentificatie) => (
+      <LinkButton label="Bekijk" to={`adres/${votIdentificatie}`} />
+    ) // onClickRow is overruling the  link
   }
 ]
 

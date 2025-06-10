@@ -1,8 +1,9 @@
+import { useMemo } from "react"
 import type { Options } from "./"
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
-import getOrderingQueryParam from "./utils/getOrderingQueryParam"
+import { getOrderingQueryParam, cleanParamObject } from "./utils"
 
 // You can add multiple sorting options here like `created: "created, id"`
 const SORTING_INDEX_MAPPING: Record<string, string> = {
@@ -27,31 +28,31 @@ export const useCases = (
 ) => {
   const handleError = useErrorHandler()
 
-  const urlParams: Record<string, string | number> = {
-    page: pagination?.page ?? 1,
-    page_size: pagination?.pageSize ?? 25,
-    closed: "false"
-  }
-  if (district) {
-    urlParams.district = district
-  }
-  if (neighborhood) {
-    urlParams.neighborhood = neighborhood
-  }
-  if (searchString) {
-    urlParams.homeowner_association_name = searchString
-  }
-  if (sorting) {
-    urlParams.ordering = getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
-  }
-  if (status) {
-    urlParams.status = status
-  }
-  if (wijk) {
-    urlParams.wijk = wijk
-  }
-
-  const queryString = stringifyQueryParams(urlParams)
+  const queryString = useMemo(() => {
+    const params: Record<string, Value> = {
+      page: pagination?.page ?? 1,
+      page_size: pagination?.pageSize ?? 25,
+      closed: "false",
+      district,
+      neighborhood,
+      homeowner_association_name: searchString,
+      status,
+      wijk,
+      ordering: sorting
+        ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+        : undefined
+    }
+    return stringifyQueryParams(cleanParamObject(params))
+  }, [
+    pagination.page,
+    pagination.pageSize,
+    district,
+    neighborhood,
+    searchString,
+    status,
+    wijk,
+    sorting
+  ])
 
   return useApiRequest<Components.Schemas.PaginatedCaseListList>({
     ...options,

@@ -19,7 +19,7 @@ type Props = {
 const columns: ColumnType<Components.Schemas.Case>[] = [
   {
     header: "ID",
-    dataIndex: "id",
+    dataIndex: "prefixed_dossier_id",
     sorter: createnumberSorter<Components.Schemas.Case>("id"),
     defaultSortOrder: "DESCEND"
   },
@@ -35,6 +35,12 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     render: (text) => formatDate(text)
   },
   {
+    header: "Laatst gewijzigd",
+    dataIndex: "updated",
+    sorter: createDateSorter<Components.Schemas.Case>("updated"),
+    render: (text) => formatDate(text)
+  },
+  {
     header: "Einddatum zaak",
     dataIndex: "end_date",
     sorter: createDateSorter<Components.Schemas.Case>("end_date"),
@@ -44,7 +50,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     header: "",
     dataIndex: "id",
     width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
+    render: (id) => <LinkButton label="Zaakdetails" to={`/zaken/${id}`} />
   }
 ]
 
@@ -58,6 +64,9 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
   const numberOfOpenCases = openCases?.length || 0
   const openColumns = columns.filter(
     (column) => column.dataIndex !== "end_date"
+  )
+  const closedColumns = columns.filter(
+    (column) => column.dataIndex !== "updated"
   )
   const closedCases = cases?.filter(
     (caseItem) => caseItem.status === "Afgesloten"
@@ -82,7 +91,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           </Heading>
           <Table
             data={closedCases}
-            columns={columns}
+            columns={closedColumns}
             onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
           />
         </Section>

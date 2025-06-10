@@ -1,29 +1,27 @@
 import { LinkList } from "@amsterdam/design-system-react"
-import { useLinkClickHandler, useHref } from "react-router-dom"
+import { useHref, useLinkClickHandler } from "react-router-dom"
 
 type Props = {
   label: string
-  path?: string
+  to?: string
   onClick?: () => void
 }
 
-export const LinkButton: React.FC<Props> = ({ label, path = "", onClick }) => {
-  const onRouterClick = useLinkClickHandler(path)
-  const href = useHref(path)
+export const LinkButton: React.FC<Props> = ({ label, to = "", onClick }) => {
+  const href = useHref(to)
+  const routerClickHandler = useLinkClickHandler(to)
 
-  const onHandleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick  = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
-    if (onClick) {
-      onClick()
-    }
+    onClick?.()
   }
 
   // If onClick is passed. Link must be used as button.
-  const onClickLink = onClick ? onHandleButtonClick : onRouterClick
+  const clickHandler = onClick ? handleClick  : routerClickHandler
 
   return (
     <LinkList>
-      <LinkList.Link href={href} onClick={onClickLink}>
+      <LinkList.Link href={href} onClick={clickHandler}>
         {label}
       </LinkList.Link>
     </LinkList>
