@@ -54,7 +54,7 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     header: "",
     dataIndex: "id",
     width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
+    render: (id) => <LinkButton label="Zaakdetails" to={`/zaken/${id}`} />
   }
 ]
 

@@ -1,6 +1,6 @@
-import { LinkButton } from "app/components"
+import { ColumnType, LinkButton } from "app/components"
 
-const columns = [
+const columns: ColumnType<BAGPdokAddress>[] = [
   {
     header: "Adres",
     dataIndex: "weergavenaam"
@@ -9,7 +9,9 @@ const columns = [
     header: "",
     dataIndex: "adresseerbaarobject_id",
     width: 80,
-    render: () => <LinkButton label="Bekijk" path="" /> // onClickRow is overruling the  link
+    render: (adresseerbaarobject_id) => (
+      <LinkButton label="Bekijk" to={`adres/${adresseerbaarobject_id}`} />
+    ) // onClickRow is overruling the  link
   }
 ]
 

@@ -19,7 +19,7 @@ type Props = {
 const columns: ColumnType<Components.Schemas.Case>[] = [
   {
     header: "ID",
-    dataIndex: "id",
+    dataIndex: "prefixed_dossier_id",
     sorter: createnumberSorter<Components.Schemas.Case>("id"),
     defaultSortOrder: "DESCEND"
   },
@@ -50,7 +50,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     header: "",
     dataIndex: "id",
     width: 100,
-    render: () => <LinkButton label="Zaakdetails" />
+    render: (id) => <LinkButton label="Zaakdetails" to={`/zaken/${id}`} />
   }
 ]
 
