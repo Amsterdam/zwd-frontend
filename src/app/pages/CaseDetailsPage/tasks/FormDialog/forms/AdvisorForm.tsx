@@ -62,7 +62,7 @@ export const AdvisorForm: React.FC<Props> = ({
         hasDefaultOption
       />
       <FormActionButtons
-        okText="Taak afronden"
+        okText="Taak uitvoeren"
         onCancel={closeModal}
         loading={loading}
         name="ACTION_BUTTONS"
