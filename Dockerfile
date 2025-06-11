@@ -4,7 +4,7 @@ ARG NODE_VERSION=20
 # known for its small size and efficiency.
 FROM node:$NODE_VERSION-alpine AS builder
 
-ENV DIR /var/www
+ENV DIR=/var/www
 COPY . $DIR/
 RUN ls -la $DIR
 
@@ -31,4 +31,4 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
-CMD nginx -g 'daemon off;'
+CMD ["nginx", "-g", "daemon off;"]
