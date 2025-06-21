@@ -14,12 +14,17 @@ import {
   PageGrid
 } from "app/components"
 import { useCaseCreate, useHomeownerAssociation } from "app/state/rest"
-import { ContactsFormFields } from "./ContactsFormFields"
+import ContactsFormFields from "./ContactsFormFields"
+import ActivationTeamFormFields from "./ActivationTeamFormFields"
 import {
+  optionsApplicationTypes,
   adviceOptionsForSmallHoa,
-  adviceOptionsForLargeHoa
+  adviceOptionsForLargeHoa,
+  ADVIES_TYPES,
+  APPLICATION_TYPES,
+  ACTIVATIETEAM_TYPES
 } from "./formOptions"
-import mapData, { defaultDummyValues } from "./mapData"
+import mapData, { dummyValuesActivationTeam } from "./mapData"
 import type { CaseCreateFormTypes } from "./mapData"
 import { env } from "app/config/env"
 
@@ -73,16 +78,42 @@ export const CaseCreatePage: React.FC = () => {
           <Form
             onSubmit={onSubmit}
             hasDummyButton={env.VITE_ENV === "LOCAL" || env.VITE_ENV === "ONT"}
-            dummyValues={defaultDummyValues}
+            dummyValues={dummyValuesActivationTeam}
             formGrid={{ narrow: 4, medium: 6, wide: 6 }}
           >
+            <RadioGroupFieldSet
+              name="application_type"
+              label="Waarvoor is de aanvraag?"
+              options={optionsApplicationTypes}
+              validation={{ required: true }}
+            />
             <RadioGroupFieldSet
               name="advice_type"
               label="Wat is het adviestype?"
               options={adviceOptions}
               validation={{ required: true }}
+              shouldShow={(formValues) =>
+                formValues.application_type === APPLICATION_TYPES.ADVIES
+              }
             />
-            <ContactsFormFields name="CONTACTS_FORM" />
+            <ActivationTeamFormFields
+              name="ACTIVATION_TEAM_FORM"
+              shouldShow={(formValues) =>
+                formValues.application_type === APPLICATION_TYPES.ACTIVATIETEAM
+              }
+            />
+            <ContactsFormFields
+              name="CONTACTS_FORM"
+              shouldShow={(formValues) =>
+                formValues.advice_type === ADVIES_TYPES.ENERGIEADVIES ||
+                formValues.advice_type ===
+                  ADVIES_TYPES.HAALBAARHEIDSONDERZOEK ||
+                formValues.activationteam_type ===
+                  ACTIVATIETEAM_TYPES.INFORMATIEBIJEENKOMST ||
+                formValues.activationteam_type ===
+                  ACTIVATIETEAM_TYPES.LEDENVERGADERING
+              }
+            />
             <TextAreaField
               name="description"
               label="Toelichting"

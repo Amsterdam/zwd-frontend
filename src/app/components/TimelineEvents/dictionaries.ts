@@ -16,10 +16,14 @@ export const getEventTitle = (event: CaseEvent): string => {
 }
 
 export const EVENT_VALUES: Record<string, string> = {
+  application_type: "Aanvraag",
   advice_type: "Advies",
   author: "Uitvoerder",
   date_added: "Datum",
-  description: "Toelichting"
+  description: "Toelichting",
+  activation_team_meeting_date: "Datum bijeenkomst",
+  activation_team_subject: "Onderwerp",
+  activation_team_type: "Soort bijeenkomst"
 }
 
 export const getEventValueName = (value: string): string =>

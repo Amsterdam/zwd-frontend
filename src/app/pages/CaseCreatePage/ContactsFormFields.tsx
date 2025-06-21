@@ -2,15 +2,12 @@ import React from "react"
 import { Column, Row } from "@amsterdam/design-system-react"
 import type { FieldValues, UseFormReturn } from "react-hook-form"
 import { SelectField, TextInputField } from "app/components"
-import {
-  OPTIONS_ROLE_FUNCTIONS,
-  CUSTOM_ROLE,
-  ADVICE_TYPES
-} from "./formOptions"
+import { OPTIONS_ROLE_FUNCTIONS, CUSTOM_ROLE } from "./formOptions"
 
 type Props = {
   formMethods?: UseFormReturn<FieldValues>
   name: string // This prop is required for passing the formMethods to the children
+  shouldShow: (formValues: FieldValues) => boolean
 }
 
 const validationRequired = { required: true }
@@ -31,27 +28,23 @@ const validationPhone = {
   }
 }
 
-export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
+const contacts = [
+  { id: 0, label: "eerste contactpersoon vve" },
+  { id: 1, label: "tweede contactpersoon vve" }
+]
+
+export const ContactsFormFields: React.FC<Props> = ({
+  formMethods,
+  shouldShow
+}) => {
   const { watch } = formMethods as UseFormReturn<FieldValues>
+  const formValues = watch()
+  const isVisible = shouldShow ? shouldShow(formValues) : true
 
-  const contacts = [
-    { id: 0, label: "eerste contactpersoon vve" },
-    { id: 1, label: "tweede contactpersoon vve" }
-  ]
-
-  const roleName0 = watch("role[0]") as string
-  const roleName1 = watch("role[1]") as string
-  const hasCustomRole0 = roleName0 === CUSTOM_ROLE
-  const hasCustomRole1 = roleName1 === CUSTOM_ROLE
-
-  const adviceType = watch("advice_type")
-  const showContacts =
-    adviceType === ADVICE_TYPES.ENERGIEADVIES ||
-    adviceType === ADVICE_TYPES.HAALBAARHEIDSONDERZOEK
-
-  if (!showContacts) {
-    return null // Return null if contacts should not be shown
+  if (!isVisible) {
+    return null
   }
+
   return (
     <Column>
       {contacts.map((contact) => (
@@ -85,15 +78,15 @@ export const ContactsFormFields: React.FC<Props> = ({ formMethods }) => {
               formMethods={formMethods}
               hasDefaultOption
             />
-            {((hasCustomRole0 && contact.id === 0) ||
-              (hasCustomRole1 && contact.id === 1)) && (
-              <TextInputField
-                label="Specificeer functie"
-                name={`custom_role[${contact.id}]`}
-                validation={{ required: true }}
-                formMethods={formMethods}
-              />
-            )}
+            <TextInputField
+              label="Specificeer functie"
+              name={`custom_role[${contact.id}]`}
+              validation={{ required: true }}
+              formMethods={formMethods}
+              shouldShow={(formValues) =>
+                formValues.role[contact.id] === CUSTOM_ROLE
+              }
+            />
           </Row>
         </React.Fragment>
       ))}
