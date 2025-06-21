@@ -17,6 +17,7 @@ type Props = {
   options: Option[]
   validation?: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
+  shouldShow?: (formValues: FieldValues) => boolean
 }
 
 export const RadioGroupFieldSet: React.FC<Props> = ({
@@ -25,10 +26,17 @@ export const RadioGroupFieldSet: React.FC<Props> = ({
   options,
   validation,
   formMethods = {},
+  shouldShow,
   ...rest
 }) => {
-  const { formState, register } = formMethods as UseFormReturn<FieldValues>
+  const { formState, register, watch } = formMethods as UseFormReturn<FieldValues>
   const hasError = !!formState?.errors?.[name]
+  const formValues = watch()
+  const isVisible = shouldShow ? shouldShow(formValues) : true
+
+  if (!isVisible) {
+    return null
+  }
 
   return (
     <FieldSet legend={label ?? name}>

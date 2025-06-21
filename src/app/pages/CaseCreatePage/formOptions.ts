@@ -1,18 +1,51 @@
-export const ADVICE_TYPES = {
+export const APPLICATION_TYPES = {
+  ADVIES: "Advies",
+  ACTIVATIETEAM: "Activatieteam"
+}
+
+export const ADVIES_TYPES = {
   CURSUS: "Cursus",
   ENERGIEADVIES: "Energieadvies",
   HAALBAARHEIDSONDERZOEK: "Haalbaarheidsonderzoek"
 }
 
-const OPTIONS_ADVICE_TYPE = Object.entries(ADVICE_TYPES).map(([, value]) => ({
-  value,
-  label: value
-}))
+export const ACTIVATIETEAM_TYPES = {
+  INFORMATIEBIJEENKOMST: "Informatiebijeenkomst",
+  LEDENVERGADERING: "Ledenvergadering"
+}
 
-export const adviceOptionsForLargeHoa = OPTIONS_ADVICE_TYPE
+export const ACTIVATIETEAM_SUBJECTS = {
+  ADVIES_PRESENTATIE:
+    "In de informatiebijeenkomst worden de uitkomsten van het advies of haalbaarheidsadvies gepresenteerd.",
+  OPTIE_KEUZE:
+    "U wilt een keuze maken voor een van de verduurzamingsopties op de ledenvergadering. Op basis van deze keuze kunt u plannen gaan maken voor de uitvoering.",
+  UITVOERINGS_BESLUIT:
+    "U heeft de plannen voor het verduurzamingsscenario gemaakt en bent klaar om deze uit te voeren. U wilt op de ledenvergadering besluiten een opdracht te verlenen (aan bijvoorbeeld een aannemer).",
+  FINANCIEEL_BESLUIT:
+    "In de ledenvergadering nemen we het besluit om met de vve een financiering af te sluiten om de verduurzamingsmaatregelen te kunnen betalen.",
+  ANDERS: "Anders, namelijk:"
+}
 
-export const adviceOptionsForSmallHoa = OPTIONS_ADVICE_TYPE.filter(
-  (option) => option.value !== ADVICE_TYPES.HAALBAARHEIDSONDERZOEK
+const createOptions = (record: Record<string, string>) =>
+  Object.entries(record).map(([, value]) => ({
+    value,
+    label: value
+  }))
+
+export const optionsApplicationTypes = createOptions(APPLICATION_TYPES)
+
+export const optionsActivatieteamTypes = createOptions(ACTIVATIETEAM_TYPES)
+
+export const optionsActivatieteamSubjects = createOptions(
+  ACTIVATIETEAM_SUBJECTS
+)
+
+const allAdviceOptions = createOptions(ADVIES_TYPES)
+
+export const adviceOptionsForLargeHoa = allAdviceOptions
+
+export const adviceOptionsForSmallHoa = allAdviceOptions.filter(
+  (option) => option.value !== ADVIES_TYPES.HAALBAARHEIDSONDERZOEK
 )
 
 export const CUSTOM_ROLE = "CUSTOM_ROLE"
