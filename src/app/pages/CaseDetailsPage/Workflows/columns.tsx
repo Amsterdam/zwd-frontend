@@ -1,5 +1,6 @@
 import { Icon } from "@amsterdam/design-system-react"
-import { ColumnType, TaskOutlined, TaskReviewGuard } from "app/components"
+import { DocumentCheckMarkIcon } from "@amsterdam/design-system-react-icons"
+import { ColumnType, TaskReviewGuard } from "app/components"
 import TaskButton from "../tasks/TaskButton/TaskButton"
 import { formatDate } from "app/utils/dates"
 
@@ -12,7 +13,7 @@ const getColumns = (
     width: 60,
     render: (_, task) => (
       <TaskReviewGuard task={task} displayMode="icon">
-        <Icon svg={TaskOutlined} />
+        <Icon svg={DocumentCheckMarkIcon} size="heading-3" />
       </TaskReviewGuard>
     )
   },

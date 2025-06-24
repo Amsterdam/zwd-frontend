@@ -40,8 +40,7 @@ export const AddressPage: React.FC = () => {
         <>
           <Grid
             style={{ paddingLeft: 0 }}
-            paddingTop="small"
-            paddingBottom="small"
+            paddingBottom="large"
           >
             {hoa?.id ? (
               <Grid.Cell span={gridSpan}>
