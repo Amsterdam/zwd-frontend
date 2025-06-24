@@ -1,4 +1,4 @@
-import { HousingIcon } from "@amsterdam/design-system-react-icons"
+import { HouseIcon } from "@amsterdam/design-system-react-icons"
 import { useNavigate, useParams } from "react-router-dom"
 import {
   PanoramaPreview,
@@ -33,7 +33,7 @@ export const AddressPage: React.FC = () => {
 
   return (
     <PageGrid>
-      <PageHeading label="Overzicht vve" icon={HousingIcon} />
+      <PageHeading label="Overzicht vve" icon={HouseIcon} />
       {loading ? (
         <PageSpinner />
       ) : hasId ? (

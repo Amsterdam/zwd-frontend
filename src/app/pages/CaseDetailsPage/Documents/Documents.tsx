@@ -1,5 +1,5 @@
 import { Button, Row } from "@amsterdam/design-system-react"
-import { EnlargeIcon } from "@amsterdam/design-system-react-icons"
+import { PlusIcon } from "@amsterdam/design-system-react-icons"
 import UploadDialog from "./UploadDialog/UploadDialog"
 import DocumentsTable from "./DocumentsTable/DocumentsTable"
 import { useDialog } from "app/hooks"
@@ -13,7 +13,7 @@ const Documents: React.FC = () => {
         <Button
           key="id-document-upload"
           variant="primary"
-          icon={EnlargeIcon}
+          icon={PlusIcon}
           iconBefore
           onClick={openDialog}
         >
