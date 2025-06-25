@@ -53,13 +53,13 @@ export const Form = <T extends FieldValues>({
   return (
     <>
       <Grid
-        paddingTop="small"
-        paddingBottom="medium"
+        paddingTop="large"
+        paddingBottom="x-large"
         style={{ paddingLeft: 0 }}
       >
         <Grid.Cell span={formGrid}>
           <form
-            className="ams-gap--md"
+            className="ams-gap-m"
             onSubmit={withExceptionCapturing(handleSubmit(onSubmit))}
           >
             {React.Children.map(children, (child, key) => {

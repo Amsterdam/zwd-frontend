@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { EditDocumentIcon } from "@amsterdam/design-system-react-icons"
+import { PencilIcon } from "@amsterdam/design-system-react-icons"
 import { Heading } from "@amsterdam/design-system-react"
 import { useNavigate, useParams } from "react-router-dom"
 import {
@@ -62,7 +62,7 @@ export const CaseCreatePage: React.FC = () => {
 
   return (
     <PageGrid>
-      <PageHeading label="Nieuwe zaak aanmaken" icon={EditDocumentIcon} />
+      <PageHeading label="Nieuwe zaak aanmaken" icon={PencilIcon} />
       <>
         <Heading level={3}>Vve</Heading>
         {hoaId && <HoaName id={Number(hoaId)} />}

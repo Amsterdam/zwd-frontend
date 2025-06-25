@@ -29,12 +29,12 @@ export const PageHeading: React.FC<Props> = ({
     <div className={clsx(styles.wrapper, border && styles.withBorder)}>
       {icon && (
         <Icon
-          size="level-3"
+          size="heading-3"
           className={styles.icon}
           svg={icon}
         />
       )}
-      <Heading size={size}>{label}</Heading>
+      <Heading size={size} level={1}>{label}</Heading>
     </div>
   )
 }

@@ -1,7 +1,6 @@
-import React from "react"
 import { Icon } from "@amsterdam/design-system-react"
+import { ArrowDownIcon, ArrowUpIcon } from "@amsterdam/design-system-react-icons"
 import { SortingType, ASCEND, DESCEND } from "../../types"
-import { ArrowDownward, ArrowUpward } from "app/components"
 import styles from "./Sorter.module.css"
 
 type Props = {
@@ -20,7 +19,7 @@ const Sorter: React.FC<Props> = ({
   const isSelected = sorting?.index === index
   // Only show arrow down icon when order is DESCEND and sorting is already selected.
   const iconSvg =
-    isSelected && sorting?.order === DESCEND ? ArrowDownward : ArrowUpward
+    isSelected && sorting?.order === DESCEND ? ArrowDownIcon : ArrowUpIcon
 
   const onSorterClick = () => {
     const newOrder = isSelected && sorting?.order === ASCEND ? DESCEND : ASCEND
@@ -37,7 +36,7 @@ const Sorter: React.FC<Props> = ({
       <Icon
         className={`${styles.icon} ${isSelected ? styles.visible : ""}`}
         svg={iconSvg}
-        size="level-3"
+        size="heading-4"
       />
     </div>
   )

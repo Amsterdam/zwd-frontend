@@ -1,7 +1,6 @@
 import { Row } from "@amsterdam/design-system-react"
-import { DownloadIcon } from "@amsterdam/design-system-react-icons"
+import { DownloadIcon, EyeOpenIcon } from "@amsterdam/design-system-react-icons"
 import { viewFile, downloadFile, canViewInline } from "app/utils/files"
-import { ViewSvg } from "app/components"
 import UpdateDocument from "../UpdateDocument/UpdateDocument"
 import DeleteDocument from "../DeleteDocument/DeleteDocument"
 import DocumentActionButton from "./DocumentActionButton"
@@ -15,7 +14,7 @@ const DocumentsActions: React.FC<Props> = ({ record }) => (
     {canViewInline(record.document) && (
       <DocumentActionButton
         record={record}
-        icon={ViewSvg}
+        icon={EyeOpenIcon}
         label="Bekijk document"
         onFile={viewFile}
       />

@@ -25,7 +25,7 @@ const SearchResultsHoa: React.FC<Props> = ({ searchString }) => {
       loading={loading}
       numLoadingRows={1}
       onClickRow={({ votIdentificatie }) =>
-        void navigate(`adres/${votIdentificatie}`)
+        void navigate(`/adres/${votIdentificatie}`)
       }
       emptyPlaceholder={
         isValid ? "Geen resultaten gevonden" : "Voer minimaal 3 karakters in"

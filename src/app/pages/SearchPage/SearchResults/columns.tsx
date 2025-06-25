@@ -10,7 +10,11 @@ const columns: ColumnType<BAGPdokAddress>[] = [
     dataIndex: "adresseerbaarobject_id",
     width: 80,
     render: (adresseerbaarobject_id) => (
-      <LinkButton label="Bekijk" to={`adres/${adresseerbaarobject_id}`} />
+      <LinkButton
+        label="Bekijk"
+        to={`/adres/${adresseerbaarobject_id}`}
+        onClick={() => {}}
+      />
     ) // onClickRow is overruling the  link
   }
 ]

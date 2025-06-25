@@ -10,7 +10,11 @@ const columns: ColumnType<HomeownerAssociationSearch>[] = [
     dataIndex: "votIdentificatie",
     width: 80,
     render: (votIdentificatie) => (
-      <LinkButton label="Bekijk" to={`adres/${votIdentificatie}`} />
+      <LinkButton
+        label="Bekijk"
+        to={`/adres/${votIdentificatie}`}
+        onClick={() => {}}
+      />
     ) // onClickRow is overruling the  link
   }
 ]
