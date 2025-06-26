@@ -7,8 +7,8 @@ type Props = {
 }
 
 export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
-  const [bpmnModels, { isBusy }] = useBpmnModelNames()
-  const models = bpmnModels ?? []
+  const [modelNames, { isBusy }] = useBpmnModelNames()
+  const names = modelNames ?? []
 
   return (
     <Field style={{ width: 300 }}>
@@ -16,13 +16,17 @@ export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
       {isBusy ? (
         <Spinner />
       ) : (
-        <Select onChange={(e) => onSelect(e.target.value)}>
-          <Select.Option key={"default"} value="">
+        <Select
+          id="bpmn-model"
+          onChange={(e) => onSelect(e.target.value)}
+          defaultValue=""
+        >
+          <Select.Option key="placeholder" value="">
             Selecteer naam
           </Select.Option>
-          {models?.map((model) => (
-            <Select.Option key={model} value={model}>
-              {model}
+          {names.map((name) => (
+            <Select.Option key={name} value={name}>
+              {name}
             </Select.Option>
           ))}
         </Select>
