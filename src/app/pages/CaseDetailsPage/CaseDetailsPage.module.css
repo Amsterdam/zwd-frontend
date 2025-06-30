@@ -1,8 +1,0 @@
-.heading {
-  margin-bottom: 24px;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}

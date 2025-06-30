@@ -4,7 +4,7 @@ import { DescriptionList } from "@amsterdam/design-system-react"
 type Props = {
   data?: {
     term: string
-    details?: string | number | null
+    details?: React.ReactNode | string | number | null
   }[]
 }
 
@@ -15,11 +15,15 @@ export const DetailsList: React.FC<Props> = ({ data = [] }) => (
         <DescriptionList.Term key={item?.term}>
           {item?.term}
         </DescriptionList.Term>
-        <DescriptionList.Description key={item?.details}>
-          {item?.details}
+        <DescriptionList.Description>
+          {React.isValidElement(item?.details) ? (
+            item.details
+          ) : (
+            <>{item?.details}</>
+          )}
         </DescriptionList.Description>
       </React.Fragment>
-    ))}
+    ) )}
   </DescriptionList>
 )
 

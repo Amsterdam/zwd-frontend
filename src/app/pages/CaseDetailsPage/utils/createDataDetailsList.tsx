@@ -1,7 +1,16 @@
+import { RouterLink } from "app/components"
 import { formatDate } from "app/utils/dates"
 
 function createDataDetailsList(data?: Components.Schemas.Case) {
   const dataDetailsList = [
+    {
+      term: "Naam",
+      details: (
+        <RouterLink to={`/vve/${data?.homeowner_association?.id}`}>
+          {data?.homeowner_association?.name}
+        </RouterLink>
+      )
+    },
     { term: "Zaak ID", details: data?.prefixed_dossier_id },
     { term: "Aanvraag", details: data?.application_type }
   ]
