@@ -50,7 +50,9 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     header: "",
     dataIndex: "id",
     width: 100,
-    render: (id) => <LinkButton label="Zaakdetails" to={`/zaken/${id}`} />
+    render: (id) => (
+      <LinkButton label="Zaakdetails" to={`/zaken/${id}`} onClick={() => {}} />
+    )
   }
 ]
 

@@ -11,12 +11,30 @@ const TablePagination: React.FC<PaginationType> = ({
 }) => {
   const totalPages = Math.ceil(collectionSize / pageSize)
 
+  const CustomLinkComponent: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
+    const href = props.href || ""
+    const match = href.match(/page=(\d+)/)
+    const targetPage = match ? Number(match[1]) : undefined
+
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      if (typeof targetPage === "number") {
+        onPageChange?.(targetPage)
+      }
+    }
+
+    return (
+      <a {...props} onClick={handleClick} />
+    )
+  }
+
   return (
     <Pagination
-      className={styles.pagination}
       page={page}
-      onPageChange={onPageChange}
       totalPages={totalPages}
+      linkTemplate={(page) => `zaken?page=${page}`} // required :(
+      linkComponent={CustomLinkComponent}
+      className={styles.pagination}
     />
   )
 }

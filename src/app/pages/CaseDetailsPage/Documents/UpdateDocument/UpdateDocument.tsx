@@ -1,5 +1,5 @@
 import { Dialog, IconButton } from "@amsterdam/design-system-react"
-import { DocumentEditIcon } from "@amsterdam/design-system-react-icons"
+import { PencilIcon } from "@amsterdam/design-system-react-icons"
 import { Form, FormActionButtons, TextInputField } from "app/components/forms"
 import { useCaseDocumentUpdate } from "app/state/rest"
 import { useDialog } from "app/hooks"
@@ -26,7 +26,7 @@ export const UpdateDocument: React.FC<Props> = ({ record }) => {
       <IconButton
         label="Wijzig naam document"
         title="Wijzig naam document"
-        svg={DocumentEditIcon}
+        svg={PencilIcon}
         onClick={openDialog}
       />
       <Dialog heading={`Wijzig documentnaam "${record.name}"`} id={dialogId}>

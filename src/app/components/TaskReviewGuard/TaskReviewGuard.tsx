@@ -1,5 +1,5 @@
 import { Icon } from "@amsterdam/design-system-react"
-import { AlertIcon } from "@amsterdam/design-system-react-icons"
+import { WarningIcon } from "@amsterdam/design-system-react-icons"
 import { useDecodedToken } from "app/hooks"
 
 type Props = {
@@ -20,7 +20,7 @@ export const TaskReviewGuard: React.FC<Props> = ({
 
   if (requiresReviewer) {
     return displayMode === "icon" ? (
-      <Icon svg={AlertIcon} style={{ color: "#FF9100" }} />
+      <Icon svg={WarningIcon} style={{ color: "#FF9100" }} />
     ) : (
       <span>Deze taak moet door iemand anders worden afgerond</span>
     )

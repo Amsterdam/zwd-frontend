@@ -6,24 +6,22 @@ import SelectBpmnModel from "./forms/SelectBpmnModel"
 import BpmnDiagram from "./BpmnDiagram"
 
 export const BpmnPage: React.FC = () => {
-  const [bpmnModelName, setBpmnModelName] = useState<undefined | string>()
-  const [bpmnModel, setBpmnModel] = useState<Components.Schemas.BpmnModel>()
+  const [bpmnModelName, setBpmnModelName] = useState<string | undefined>()
+  const [bpmnModel, setBpmnModel] = useState<Components.Schemas.BpmnModel | undefined>()
 
   return (
     <PageGrid>
       <PageHeading label="BPMN" />
       <Row wrap style={{ marginBottom: "0.5rem" }}>
         <SelectBpmnModelName onSelect={setBpmnModelName} />
-        {bpmnModelName ? (
+        {bpmnModelName && (
           <SelectBpmnModel
             bpmnModelName={bpmnModelName}
             onSelect={setBpmnModel}
           />
-        ) : (
-          <></>
         )}
       </Row>
-      {bpmnModel ? <BpmnDiagram bpmnModel={bpmnModel} /> : <></>}
+      {bpmnModel && <BpmnDiagram bpmnModel={bpmnModel} />}
     </PageGrid>
   )
 }
