@@ -21,6 +21,7 @@ type Props = {
   type?: TextInputProps["type"]
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
+  shouldShow?: (formValues: FieldValues) => boolean
 }
 
 export const TextInputField: React.FC<Props> = ({
@@ -29,12 +30,27 @@ export const TextInputField: React.FC<Props> = ({
   type,
   validation = {},
   formMethods = {},
+  shouldShow,
   ...rest
 }) => {
-  const { formState, register, setError, clearErrors, trigger, setValue } =
-    formMethods as UseFormReturn<FieldValues>
+  const {
+    formState,
+    register,
+    setError,
+    clearErrors,
+    trigger,
+    setValue,
+    watch
+  } = formMethods as UseFormReturn<FieldValues>
   const error = getValueByPath(formState?.errors, name) as FieldError
   const hasError = !!error
+
+  const formValues = watch()
+  const isVisible = shouldShow ? shouldShow(formValues) : true
+
+  if (!isVisible) {
+    return null
+  }
 
   const handleValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value

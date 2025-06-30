@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { FolderIcon } from "@amsterdam/design-system-react-icons"
 import { Heading, Row, Tabs } from "@amsterdam/design-system-react"
@@ -9,7 +10,7 @@ import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents/Documents"
 import AddSubtask from "./AddSubtask/AddSubtask"
 import DownloadPdf from "./DownloadPdf/DownloadPdf"
-import { formatDate } from "app/utils/dates"
+import createDataDetailsList from "./utils/createDataDetailsList"
 import styles from "./CaseDetailsPage.module.css"
 
 export const CaseDetailsPage: React.FC = () => {
@@ -17,27 +18,10 @@ export const CaseDetailsPage: React.FC = () => {
   const [data, { isBusy }] = useCase(Number(caseId))
   const [activeTab, setActiveTab] = useURLState("tab", "taken")
   const navigate = useNavigate()
+  const dataDetailsList = useMemo(() => createDataDetailsList(data), [data])
 
   if (isBusy) {
     return <PageSpinner />
-  }
-
-  const dataDetailsList = [
-    { term: "Zaak ID", details: data?.prefixed_dossier_id },
-    { term: "Adviestype", details: data?.advice_type },
-    { term: "Status", details: data?.status }
-  ]
-  if (data?.end_date) {
-    dataDetailsList.push({
-      term: "Einddatum",
-      details: formatDate(data.end_date)
-    })
-  }
-  if (data?.legacy_id && data.legacy_id !== "") {
-    dataDetailsList.push({
-      term: "Dossiernummer (Excel)",
-      details: `${data.legacy_id}`
-    })
   }
 
   return (

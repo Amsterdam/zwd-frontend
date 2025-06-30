@@ -1,49 +1,76 @@
 declare namespace Components {
     namespace Schemas {
+        export interface ActivationTeam {
+            type?: /**
+             * * `Informatiebijeenkomst` - INFORMATIEBIJEENKOMST
+             * * `Ledenvergadering` - LEDENVERGADERING
+             */
+            ActivationTeamTypeEnum;
+            subject?: string | null;
+            meeting_date?: string | null; // date
+        }
+        /**
+         * * `Informatiebijeenkomst` - INFORMATIEBIJEENKOMST
+         * * `Ledenvergadering` - LEDENVERGADERING
+         */
+        export type ActivationTeamTypeEnum = "Informatiebijeenkomst" | "Ledenvergadering";
         /**
          * * `Energieadvies` - ENERGY_ADVICE
          * * `Haalbaarheidsonderzoek` - HBO
          * * `Cursus` - COURSE
          */
         export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek" | "Cursus";
+        /**
+         * * `Advies` - ADVICE
+         * * `Activatieteam` - ACTIVATIONTEAM
+         */
+        export type ApplicationTypeEnum = "Advies" | "Activatieteam";
+        export type BlankEnum = "";
         export interface BpmnModel {
             version: string;
             file_name: string;
             model: string;
         }
         export interface Case {
-            id: number;
-            created: string; // date-time
-            end_date: string; // date
-            description?: string | null;
-            workflows: CaseWorkflow[];
-            advice_type?: /**
+            activation_team?: ActivationTeam;
+            advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
              * * `Cursus` - COURSE
              */
-            AdviceTypeEnum;
+            AdviceTypeEnum | BlankEnum | NullEnum);
+            application_type?: /**
+             * * `Advies` - ADVICE
+             * * `Activatieteam` - ACTIVATIONTEAM
+             */
+            ApplicationTypeEnum;
+            created: string; // date-time
+            description?: string | null;
+            end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
+            id: number;
             legacy_id?: string | null;
-            status: string;
             prefixed_dossier_id: string;
+            status: string;
+            workflows: CaseWorkflow[];
         }
         export interface CaseAdvisor {
             id: number;
             name: string;
         }
         export interface CaseCreate {
-            id: number;
-            description?: string | null;
-            advice_type?: /**
-             * * `Energieadvies` - ENERGY_ADVICE
-             * * `Haalbaarheidsonderzoek` - HBO
-             * * `Cursus` - COURSE
+            advice_type?: null | AdviceTypeEnum | BlankEnum | NullEnum;
+            application_type?: /**
+             * * `Advies` - ADVICE
+             * * `Activatieteam` - ACTIVATIONTEAM
              */
-            AdviceTypeEnum;
-            homeowner_association?: number | null;
+            ApplicationTypeEnum;
             contacts?: Contact[];
+            description?: string | null;
+            homeowner_association?: number | null;
+            id: number;
             legacy_id?: string | null;
+            activation_team?: ActivationTeam;
         }
         export interface CaseDocument {
             id: number;
@@ -77,22 +104,29 @@ declare namespace Components {
              * * `CASE_CLOSE` - CASE_CLOSE
              * * `GENERIC_TASK` - GENERIC_TASK
              */
-            TypeEnum;
+            CaseEventTypeEnum;
             emitter_id: number;
             case: number;
         }
+        /**
+         * * `CASE` - CASE
+         * * `CASE_CLOSE` - CASE_CLOSE
+         * * `GENERIC_TASK` - GENERIC_TASK
+         */
+        export type CaseEventTypeEnum = "CASE" | "CASE_CLOSE" | "GENERIC_TASK";
         export interface CaseHomeownerAssociation {
             id: number;
             name: string;
         }
         export interface CaseList {
-            id: number;
             created: string; // date-time
-            homeowner_association: CaseHomeownerAssociation;
-            legacy_id?: string | null;
-            status: string;
             end_date?: string | null; // date
+            homeowner_association: CaseHomeownerAssociation;
+            id: number;
+            legacy_id?: string | null;
             prefixed_dossier_id: string;
+            status: string;
+            updated: string; // date-time
         }
         export interface CaseStatus {
             name: string;
@@ -179,6 +213,7 @@ declare namespace Components {
             role: string;
             homeowner_associations?: number[];
         }
+        export type NullEnum = null;
         export interface Owner {
             type: string;
             name?: string | null;
@@ -319,12 +354,6 @@ declare namespace Components {
         export interface StartWorkflow {
             workflow_option_id: number;
         }
-        /**
-         * * `CASE` - CASE
-         * * `CASE_CLOSE` - CASE_CLOSE
-         * * `GENERIC_TASK` - GENERIC_TASK
-         */
-        export type TypeEnum = "CASE" | "CASE_CLOSE" | "GENERIC_TASK";
         export interface Wijk {
             id: number;
             name: string;
