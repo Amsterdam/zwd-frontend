@@ -1,7 +1,7 @@
 import { useMemo } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { FolderIcon } from "@amsterdam/design-system-react-icons"
-import { Heading, Row, Tabs } from "@amsterdam/design-system-react"
+import { Row, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"
 import { PageHeading, PageSpinner, DetailsList, PageGrid } from "app/components"
 import { useURLState } from "app/hooks"
@@ -11,13 +11,11 @@ import Documents from "./Documents/Documents"
 import AddSubtask from "./AddSubtask/AddSubtask"
 import DownloadPdf from "./DownloadPdf/DownloadPdf"
 import createDataDetailsList from "./utils/createDataDetailsList"
-import styles from "./CaseDetailsPage.module.css"
 
 export const CaseDetailsPage: React.FC = () => {
   const { caseId } = useParams()
   const [data, { isBusy }] = useCase(Number(caseId))
   const [activeTab, setActiveTab] = useURLState("tab", "taken")
-  const navigate = useNavigate()
   const dataDetailsList = useMemo(() => createDataDetailsList(data), [data])
 
   if (isBusy) {
@@ -27,14 +25,7 @@ export const CaseDetailsPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label="Zaakdetails" icon={FolderIcon} />
-      <Heading
-        onClick={() => void navigate(`/vve/${data?.homeowner_association?.id}`)}
-        level={4}
-        className={styles.heading}
-      >
-        {data?.homeowner_association?.name}
-      </Heading>
-      <Row align="between" alignVertical="start">
+      <Row align="between" alignVertical="start" wrap>
         <DetailsList data={dataDetailsList} />
         <DownloadPdf caseId={Number(caseId)} />
       </Row>
