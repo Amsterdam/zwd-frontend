@@ -2,9 +2,10 @@ import { Field, Label, SearchField } from "@amsterdam/design-system-react"
 
 type Props = {
   onSearch: (value: string) => void
+  placeholder?: string
 }
 
-export const Search: React.FC<Props> = ({ onSearch }) => {
+export const Search: React.FC<Props> = ({ onSearch, placeholder }) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -21,10 +22,10 @@ export const Search: React.FC<Props> = ({ onSearch }) => {
 
   return (
     <Field>
-      <Label htmlFor="vve zoeken">Vve zoeken</Label>
+      <Label htmlFor="vve zoeken">Zoeken</Label>
       <SearchField onSubmit={onSubmit} style={{ width: 400 }}>
         <SearchField.Input
-          placeholder="Zoek op vve statutaire naam"
+          placeholder={placeholder}
           name="search-box"
           onChange={onChange}
         />
