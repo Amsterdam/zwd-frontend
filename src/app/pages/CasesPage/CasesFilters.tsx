@@ -37,6 +37,7 @@ export const CasesFilters = () => {
     <Row wrap>
       <Search
         onSearch={(value: string) => onChangeFilter("searchString", value)}
+        placeholder="Zoek op ID, Excel ID of statutaire naam"
       />
       <PageSizeFilter contextName="cases" onChangePageSize={onChangePageSize} />
       <StatusFilter

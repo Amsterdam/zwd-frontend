@@ -37,6 +37,7 @@ export const TasksFilters = () => {
     <Row wrap>
       <Search
         onSearch={(value: string) => onChangeFilter("searchString", value)}
+        placeholder="Zoek op vve statutaire naam"
       />
       <PageSizeFilter contextName="tasks" onChangePageSize={onChangePageSize} />
       <StatusFilter

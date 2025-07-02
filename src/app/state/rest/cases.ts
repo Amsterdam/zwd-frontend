@@ -35,7 +35,7 @@ export const useCases = (
       closed: "false",
       district,
       neighborhood,
-      homeowner_association_name: searchString,
+      search: searchString,
       status,
       wijk,
       ordering: sorting
