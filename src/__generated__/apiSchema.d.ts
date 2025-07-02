@@ -58,6 +58,19 @@ declare namespace Components {
             id: number;
             name: string;
         }
+        export interface CaseClose {
+            id: number;
+            case_user_task_id?: string;
+            description?: string | null;
+            created: string; // date-time
+            case: number;
+            reason: number;
+        }
+        export interface CaseCloseReason {
+            id: number;
+            name: string;
+            is_successful: boolean;
+        }
         export interface CaseCreate {
             advice_type?: null | AdviceTypeEnum | BlankEnum | NullEnum;
             application_type?: /**
@@ -218,6 +231,24 @@ declare namespace Components {
             type: string;
             name?: string | null;
             number_of_appartments: number;
+        }
+        export interface PaginatedCaseCloseList {
+            /**
+             * example:
+             * 123
+             */
+            count: number;
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=4
+             */
+            next?: string | null; // uri
+            /**
+             * example:
+             * http://api.example.org/accounts/?page=2
+             */
+            previous?: string | null; // uri
+            results: CaseClose[];
         }
         export interface PaginatedCaseListList {
             /**
@@ -420,6 +451,41 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.BpmnModel[];
+        }
+    }
+    namespace CaseCloseCreate {
+        export type RequestBody = Components.Schemas.CaseClose;
+        namespace Responses {
+            export type $201 = Components.Schemas.CaseClose;
+        }
+    }
+    namespace CaseCloseList {
+        namespace Parameters {
+            export type Page = number;
+            export type PageSize = number;
+        }
+        export interface QueryParameters {
+            page?: Parameters.Page;
+            page_size?: Parameters.PageSize;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.PaginatedCaseCloseList;
+        }
+    }
+    namespace CaseCloseReasonsRetrieve {
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseCloseReason;
+        }
+    }
+    namespace CaseCloseRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseClose;
         }
     }
     namespace CaseStatusesList {

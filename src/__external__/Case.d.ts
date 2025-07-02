@@ -1,4 +1,4 @@
-type EventType = "CASE" | "GENERIC_TASK"
+type EventType = "CASE" | "GENERIC_TASK" | "CASE_CLOSE"
 
 type Value = Record<string, Value> | string
 

@@ -11,17 +11,26 @@ type Props = {
   label?: string
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
+  shouldShow?: (formValues: FieldValues) => boolean
 }
 
 export const TextAreaField: React.FC<Props> = ({
   name,
   label,
-  formMethods = {},
   validation = {},
+  formMethods = {},
+  shouldShow,
   ...rest
 }) => {
-  const { formState, register } = formMethods as UseFormReturn<FieldValues>
+  const { formState, register, watch } =
+    formMethods as UseFormReturn<FieldValues>
   const hasError = !!formState?.errors?.[name]
+  const formValues = watch()
+  const isVisible = shouldShow ? shouldShow(formValues) : true
+
+  if (!isVisible) {
+    return null
+  }
 
   return (
     <Field>

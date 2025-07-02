@@ -1,6 +1,7 @@
 // Event types
 export const EVENT_TYPES: Record<CaseEvent["type"], string> = {
   CASE: "Aanleiding",
+  CASE_CLOSE: "Zaak afgerond",
   GENERIC_TASK: "GENERIC_TASK"
 }
 
@@ -16,14 +17,15 @@ export const getEventTitle = (event: CaseEvent): string => {
 }
 
 export const EVENT_VALUES: Record<string, string> = {
+  activation_team_meeting_date: "Datum bijeenkomst",
+  activation_team_subject: "Onderwerp",
+  activation_team_type: "Soort bijeenkomst",
+  advice_type: "Adviestype",
   application_type: "Aanvraag",
-  advice_type: "Advies",
   author: "Uitvoerder",
   date_added: "Datum",
   description: "Toelichting",
-  activation_team_meeting_date: "Datum bijeenkomst",
-  activation_team_subject: "Onderwerp",
-  activation_team_type: "Soort bijeenkomst"
+  reason: "Reden"
 }
 
 export const getEventValueName = (value: string): string =>

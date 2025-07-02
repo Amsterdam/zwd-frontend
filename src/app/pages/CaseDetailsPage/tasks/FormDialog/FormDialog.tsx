@@ -15,10 +15,8 @@ export const FormDialog: React.FC<Props> = ({
   caseId,
   closeDialog
 }) => {
-  const { loading, submitForm, submitFormFile } = useFormSubmissionHandlers(
-    task.id.toString(),
-    caseId
-  )
+  const { loading, submitForm, submitFormFile, submitFormCaseClose } =
+    useFormSubmissionHandlers(task.id.toString(), caseId)
 
   const { form, name } = task
   const hasForm = form && form.length > 0
@@ -37,6 +35,9 @@ export const FormDialog: React.FC<Props> = ({
         }}
         submitFormFile={(variables) => {
           void submitFormFile(variables)
+        }}
+        submitFormCaseClose={(variables) => {
+          void submitFormCaseClose(variables)
         }}
       />
     </Dialog>
