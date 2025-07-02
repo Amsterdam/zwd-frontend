@@ -1,5 +1,9 @@
 import { useState } from "react"
-import { useTaskComplete, useTaskCompleteFileUpload } from "app/state/rest"
+import {
+  useCaseClose,
+  useTaskComplete,
+  useTaskCompleteFileUpload
+} from "app/state/rest"
 import { ComletedTaskFormData } from "../forms/CompletedTaskForm"
 import type { GenericTaskFormData } from "./types"
 
@@ -10,6 +14,7 @@ export const useFormSubmissionHandlers = (
   const [loading, setLoading] = useState(false)
   const [, { execPost }] = useTaskComplete({ lazy: true })
   const [, { execPost: execPostFile }] = useTaskCompleteFileUpload()
+  const [, { execPost: execPostCaseClose }] = useCaseClose({ lazy: true })
 
   const submitForm = async (
     variables: ComletedTaskFormData | GenericTaskFormData
@@ -46,5 +51,22 @@ export const useFormSubmissionHandlers = (
     }
   }
 
-  return { loading, submitForm, submitFormFile }
+  const submitFormCaseClose = async (
+    variables: Pick<Components.Schemas.CaseClose, "reason" | "description">
+  ) => {
+    setLoading(true)
+    try {
+      await execPostCaseClose({
+        ...variables,
+        case_user_task_id: taskId,
+        case: caseId
+      })
+    } catch (err) {
+      console.error("Error closing case:", err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return { loading, submitForm, submitFormFile, submitFormCaseClose }
 }

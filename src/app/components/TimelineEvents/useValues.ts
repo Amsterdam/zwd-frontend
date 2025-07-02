@@ -45,10 +45,12 @@ export const useValues = (event: CaseEvent) => {
     if (key === "date_added" || key === "author") {
       return
     }
-    // Translate the key and the value to readable dutch.
-    const label = getEventValueName(key)
-    const keyValue = getFormattedValue(value)
-    values.push({ label, value: keyValue })
+    if (value) {
+      // Translate the key and the value to readable dutch.
+      const label = getEventValueName(key)
+      const keyValue = getFormattedValue(value)
+      values.push({ label, value: keyValue })
+    }
   })
 
   // Map event_variables if applicable

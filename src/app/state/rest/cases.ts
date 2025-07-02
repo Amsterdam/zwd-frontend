@@ -226,3 +226,26 @@ export const useCaseDocumentDelete = (
     isProtected: true
   })
 }
+
+export const useCaseCloseReasons = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseCloseReason[]>({
+    ...options,
+    url: makeApiUrl("case-close", "reasons"),
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCaseClose = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseClose>({
+    ...options,
+    url: makeApiUrl("case-close"),
+    lazy: true,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
