@@ -10,7 +10,13 @@ import {
   TasksPage,
   BpmnPage
 } from "app/pages"
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
+
+const RedirectToSearch = () => {
+  const location = useLocation()
+  const searchParams = location.search
+  return <Navigate to={`/zoeken${searchParams}`} replace />
+}
 
 const router = createBrowserRouter([
   {
@@ -19,7 +25,11 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
     children: [
       {
-        path: "/",
+        index: true,
+        element: <RedirectToSearch />
+      },
+      {
+        path: "zoeken",
         element: <SearchPage />
       },
       {
