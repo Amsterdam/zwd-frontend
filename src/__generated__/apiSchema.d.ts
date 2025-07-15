@@ -210,6 +210,7 @@ declare namespace Components {
             zip_code?: string | null;
             is_small: boolean;
             monument_status?: string | null;
+            kvk_nummer?: string | null;
             ligt_in_beschermd_gebied?: string | null;
             beschermd_stadsdorpsgezicht?: string | null;
             is_priority_neighborhood: boolean;
