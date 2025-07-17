@@ -5,7 +5,11 @@ const noop = () => {}
 export const initialState: StateType = {
   cases: {
     count: 0,
+    createdRangeAfter: "",
+    createdRangeBefore: "",
     district: "",
+    endDateRangeAfter: "",
+    endDateRangeBefore: "",
     neighborhood: "",
     pagination: {
       page: 1,

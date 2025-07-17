@@ -2,6 +2,7 @@ import { useContext } from "react"
 import { Row } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
 import {
+  DateFilter,
   Search,
   PageSizeFilter,
   StatusFilter,
@@ -10,7 +11,15 @@ import {
 } from "app/components"
 
 export const CasesFilters = () => {
-  const { pagination, updateContextCases } = useContext(ContextValues)["cases"]
+  const {
+    createdRangeAfter,
+    createdRangeBefore,
+    endDateRangeAfter,
+    endDateRangeBefore,
+    pagination,
+    status,
+    updateContextCases
+  } = useContext(ContextValues)["cases"]
 
   const onChangeFilter = (key: string, item: string) => {
     const casesContextItem = {
@@ -54,6 +63,38 @@ export const CasesFilters = () => {
           onChangeFilter("neighborhood", value)
         }
       />
+      <DateFilter
+        value={createdRangeAfter}
+        label="Startdatum na"
+        onChangeFilter={(value: string) =>
+          onChangeFilter("createdRangeAfter", value)
+        }
+      />
+      <DateFilter
+        value={createdRangeBefore}
+        label="Startdatum voor"
+        onChangeFilter={(value: string) =>
+          onChangeFilter("createdRangeBefore", value)
+        }
+      />
+      {status === "Afgesloten" && (
+        <>
+          <DateFilter
+            value={endDateRangeAfter}
+            label="Einddatum na"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("endDateRangeAfter", value)
+            }
+          />
+          <DateFilter
+            value={endDateRangeBefore}
+            label="Einddatum voor"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("endDateRangeBefore", value)
+            }
+          />
+        </>
+      )}
     </Row>
   )
 }

@@ -8,7 +8,10 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-export const StatusFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+export const StatusFilter: React.FC<Props> = ({
+  contextName,
+  onChangeFilter
+}) => {
   const { status } = useContext(ContextValues)[contextName]
   const [caseStatuses] = useCaseStatuses()
 
@@ -19,7 +22,7 @@ export const StatusFilter: React.FC<Props> = ({ contextName, onChangeFilter }) =
   return (
     <Field>
       <Label htmlFor="status">Status</Label>
-      <Select onChange={onChange} value={status}>
+      <Select id="status" onChange={onChange} value={status}>
         <Select.Option key="" value="">
           Alle statussen
         </Select.Option>

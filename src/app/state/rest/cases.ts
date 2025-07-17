@@ -18,7 +18,11 @@ const SORTING_INDEX_MAPPING: Record<string, string> = {
 
 export const useCases = (
   pagination: TABLE.Pagination,
+  createdRangeAfter?: string,
+  createdRangeBefore?: string,
   district?: string,
+  endDateRangeAfter?: string,
+  endDateRangeBefore?: string,
   neighborhood?: string,
   searchString?: string,
   sorting?: TABLE.Sorting,
@@ -32,6 +36,10 @@ export const useCases = (
     const params: Record<string, Value> = {
       page: pagination?.page ?? 1,
       page_size: pagination?.pageSize ?? 25,
+      created_range_after: createdRangeAfter,
+      created_range_before: createdRangeBefore,
+      end_date_range_after: endDateRangeAfter,
+      end_date_range_before: endDateRangeBefore,
       closed: "false",
       district,
       neighborhood,
@@ -46,7 +54,11 @@ export const useCases = (
   }, [
     pagination.page,
     pagination.pageSize,
+    createdRangeAfter,
+    createdRangeBefore,
     district,
+    endDateRangeAfter,
+    endDateRangeBefore,
     neighborhood,
     searchString,
     status,
