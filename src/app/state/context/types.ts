@@ -10,7 +10,11 @@ export type ActionType = {
 export type StateType = {
   cases: {
     count: number
+    createdRangeAfter?: string
+    createdRangeBefore?: string
     district: string
+    endDateRangeAfter?: string
+    endDateRangeBefore?: string
     neighborhood: string
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]

@@ -9,7 +9,11 @@ import CasesFilters from "./CasesFilters"
 export const CasesPage: React.FC = () => {
   const {
     count,
+    createdRangeAfter,
+    createdRangeBefore,
     district,
+    endDateRangeAfter,
+    endDateRangeBefore,
     neighborhood,
     results,
     pagination,
@@ -22,7 +26,11 @@ export const CasesPage: React.FC = () => {
   const navigate = useNavigate()
   const [dataSource, { isBusy }] = useCases(
     pagination,
+    createdRangeAfter,
+    createdRangeBefore,
     district,
+    endDateRangeAfter,
+    endDateRangeBefore,
     neighborhood,
     searchString,
     sorting,
