@@ -28,7 +28,7 @@ const SearchResults: React.FC<Props> = ({ searchString }) => {
       loading={loading}
       numLoadingRows={1}
       onClickRow={({ adresseerbaarobject_id }) =>
-        void navigate(`adres/${adresseerbaarobject_id}`)
+        void navigate(`/adres/${adresseerbaarobject_id}`)
       }
       emptyPlaceholder={
         isValid ? "Geen resultaten gevonden" : "Voer minimaal 3 karakters in"
