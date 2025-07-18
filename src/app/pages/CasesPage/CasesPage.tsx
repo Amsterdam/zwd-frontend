@@ -8,12 +8,15 @@ import CasesFilters from "./CasesFilters"
 
 export const CasesPage: React.FC = () => {
   const {
+    adviceType,
+    applicationType,
     count,
     createdRangeAfter,
     createdRangeBefore,
     district,
     endDateRangeAfter,
     endDateRangeBefore,
+    isClosedFilter,
     neighborhood,
     results,
     pagination,
@@ -26,11 +29,14 @@ export const CasesPage: React.FC = () => {
   const navigate = useNavigate()
   const [dataSource, { isBusy }] = useCases(
     pagination,
+    adviceType,
+    applicationType,
     createdRangeAfter,
     createdRangeBefore,
     district,
     endDateRangeAfter,
     endDateRangeBefore,
+    isClosedFilter,
     neighborhood,
     searchString,
     sorting,
