@@ -1,11 +1,6 @@
 import { HouseIcon } from "@amsterdam/design-system-react-icons"
 import { useNavigate, useParams } from "react-router-dom"
-import {
-  PanoramaPreview,
-  PageHeading,
-  PageSpinner,
-  PageGrid
-} from "app/components"
+import { PageHeading, PageSpinner, PageGrid } from "app/components"
 import HoaDescription from "./HoaDescription"
 import { Button, Grid, GridColumnNumbers } from "@amsterdam/design-system-react"
 import {
@@ -16,6 +11,7 @@ import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
 import Section from "./Section"
 import HoaContacts from "./HoaContacts"
+import MapView from "app/components/MapView/MapView"
 
 const gridSpan: GridColumnNumbers = { narrow: 4, medium: 8, wide: 6 }
 
@@ -38,10 +34,7 @@ export const AddressPage: React.FC = () => {
         <PageSpinner />
       ) : hasId ? (
         <>
-          <Grid
-            style={{ paddingLeft: 0 }}
-            paddingBottom="large"
-          >
+          <Grid style={{ paddingLeft: 0 }} paddingBottom="large">
             {hoa?.id ? (
               <Grid.Cell span={gridSpan}>
                 <HoaDescription hoa={hoa} />
@@ -51,16 +44,16 @@ export const AddressPage: React.FC = () => {
                 <p>Er zijn geen vve-gegevens gevonden voor dit adres.</p>
               </Grid.Cell>
             )}
-            {bagId && (
+            {hoa?.zip_code && (
               <Grid.Cell span={gridSpan}>
-                <PanoramaPreview bagId={bagId} aspect={4} fov={120} />
+                <MapView zipCode={hoa?.zip_code ?? undefined} />
               </Grid.Cell>
             )}
           </Grid>
           {hoa?.id && (
             <>
               <Section>
-                <HoaContacts hoaId={hoa.id}/>
+                <HoaContacts hoaId={hoa.id} />
               </Section>
               <Section>
                 <HoaOwners hoa={hoa} />

@@ -29,6 +29,7 @@ const constructQuery = (searchString?: string): string =>
     }
   )
 
+// The pdok /suggest endpoint is used to get the address details by search string
 export const useBagPdok = (searchString?: string, options?: Options) => {
   const handleError = useErrorHandler()
   const query = constructQuery(searchString)
@@ -42,6 +43,7 @@ export const useBagPdok = (searchString?: string, options?: Options) => {
   })
 }
 
+// The pdok /free endpoint is used to get the address details by bagId
 export const useBagPdokByBagId = (searchString?: string, options?: Options) => {
   const handleError = useErrorHandler()
   const query = constructQuery(searchString)
