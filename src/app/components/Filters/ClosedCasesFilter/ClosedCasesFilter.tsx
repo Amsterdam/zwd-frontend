@@ -1,19 +1,17 @@
 import React, { useContext } from "react"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
-import { useCaseStatuses } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
   contextName: "cases" | "tasks"
 }
 
-export const StatusFilter: React.FC<Props> = ({
+export const ClosedCasesFilter: React.FC<Props> = ({
   contextName,
   onChangeFilter
 }) => {
-  const { status } = useContext(ContextValues)[contextName]
-  const [caseStatuses] = useCaseStatuses()
+  const { isClosedFilter } = useContext(ContextValues)[contextName]
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChangeFilter(e.currentTarget.value)
@@ -21,19 +19,24 @@ export const StatusFilter: React.FC<Props> = ({
 
   return (
     <Field>
-      <Label htmlFor="status">Status</Label>
-      <Select id="status" onChange={onChange} value={status}>
+      <Label htmlFor="closed_cases_filter">Toon zaken</Label>
+      <Select
+        id="closed_cases_filter"
+        onChange={onChange}
+        value={isClosedFilter}
+      >
         <Select.Option key="" value="">
-          Alle statussen
+          Alle zaken
         </Select.Option>
-        {caseStatuses?.map((status) => (
-          <Select.Option key={`${status}`} value={`${status}`}>
-            {`${status}`}
-          </Select.Option>
-        ))}
+        <Select.Option key="false" value="true">
+          Gesloten zaken
+        </Select.Option>
+        <Select.Option key="false" value="false">
+          Open zaken
+        </Select.Option>
       </Select>
     </Field>
   )
 }
 
-export default StatusFilter
+export default ClosedCasesFilter

@@ -22,7 +22,7 @@ export const Search: React.FC<Props> = ({ onSearch, placeholder }) => {
 
   return (
     <Field>
-      <Label htmlFor="vve zoeken">Zoeken</Label>
+      <Label htmlFor="search-box">Zoeken</Label>
       <SearchField onSubmit={onSubmit} style={{ width: 400 }}>
         <SearchField.Input
           placeholder={placeholder}

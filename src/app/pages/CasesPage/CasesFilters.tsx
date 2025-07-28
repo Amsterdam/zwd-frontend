@@ -1,7 +1,12 @@
 import { useContext } from "react"
-import { Row } from "@amsterdam/design-system-react"
+import { Button, Field, Row } from "@amsterdam/design-system-react"
+import { FilterIcon } from "@amsterdam/design-system-react-icons"
 import { ContextValues } from "app/state/context/ValueProvider"
 import {
+  AdviceTypeFilter,
+  ApplicationTypeFilter,
+  ClosedCasesFilter,
+  DateFilter,
   Search,
   PageSizeFilter,
   StatusFilter,
@@ -10,9 +15,17 @@ import {
 } from "app/components"
 
 export const CasesFilters = () => {
-  const { pagination, updateContextCases } = useContext(ContextValues)["cases"]
+  const {
+    createdRangeAfter,
+    createdRangeBefore,
+    endDateRangeAfter,
+    endDateRangeBefore,
+    pagination,
+    showAllFilters,
+    updateContextCases
+  } = useContext(ContextValues)["cases"]
 
-  const onChangeFilter = (key: string, item: string) => {
+  const onChangeFilter = (key: string, item: string | boolean) => {
     const casesContextItem = {
       [key]: item,
       pagination: {
@@ -54,6 +67,65 @@ export const CasesFilters = () => {
           onChangeFilter("neighborhood", value)
         }
       />
+      {showAllFilters ? (
+        <>
+          <ApplicationTypeFilter
+            onChangeFilter={(value: string) =>
+              onChangeFilter("applicationType", value)
+            }
+          />
+          <AdviceTypeFilter
+            onChangeFilter={(value: string) =>
+              onChangeFilter("adviceType", value)
+            }
+          />
+          <DateFilter
+            value={createdRangeAfter}
+            label="Startdatum na"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("createdRangeAfter", value)
+            }
+          />
+          <DateFilter
+            value={createdRangeBefore}
+            label="Startdatum voor"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("createdRangeBefore", value)
+            }
+          />
+          <ClosedCasesFilter
+            contextName="cases"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("isClosedFilter", value)
+            }
+          />
+          <DateFilter
+            value={endDateRangeAfter}
+            label="Einddatum na"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("endDateRangeAfter", value)
+            }
+          />
+          <DateFilter
+            value={endDateRangeBefore}
+            label="Einddatum voor"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("endDateRangeBefore", value)
+            }
+          />
+        </>
+      ) : (
+        <Field style={{ justifyContent: "flex-end" }}>
+          <Button
+            id="filter-button"
+            icon={FilterIcon}
+            iconBefore
+            onClick={() => onChangeFilter("showAllFilters", true)}
+          >
+            Alle filters
+          </Button>
+        </Field>
+      )}
     </Row>
   )
 }
