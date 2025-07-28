@@ -1,11 +1,16 @@
-import { Button, Heading, Page } from "@amsterdam/design-system-react"
+import {
+  Button,
+  DescriptionList,
+  Heading,
+  Page
+} from "@amsterdam/design-system-react"
+import { LogOutIcon } from "@amsterdam/design-system-react-icons"
 import { Spinner, PageHeading, PageGrid } from "app/components"
 import { useDecodedToken } from "app/hooks"
 import { useAuth } from "react-oidc-context"
-import { LogOutIcon } from "@amsterdam/design-system-react-icons"
 import styles from "./AuthPage.module.css"
 
-interface WrapperProps {
+type WrapperProps = {
   align?: "flex-start"
   children: React.ReactNode
 }
@@ -40,16 +45,24 @@ export const AuthPage: React.FC = () => {
   return (
     <PageGrid>
       <PageHeading label="Gebruiker gegevens" />
-      {Object.entries(decodedToken).map(([key, value]) => (
-        <div key={key}>
-          <strong>{key}:</strong>{" "}
-          {Array.isArray(value) ? value.join(", ") : value.toString()}
-        </div>
-      ))}
+      <DescriptionList>
+        <DescriptionList.Term>E-mail</DescriptionList.Term>
+        <DescriptionList.Description>
+          {decodedToken.email}
+        </DescriptionList.Description>
+        <DescriptionList.Term>Voornaam</DescriptionList.Term>
+        <DescriptionList.Description>
+          {decodedToken.given_name}
+        </DescriptionList.Description>
+        <DescriptionList.Term>Achternaam</DescriptionList.Term>
+        <DescriptionList.Description>
+          {decodedToken.family_name}
+        </DescriptionList.Description>
+      </DescriptionList>
       <div>
         <Button
           variant="primary"
-          onClick={() => void auth.removeUser()}
+          onClick={() => void auth.signoutRedirect()}
           icon={LogOutIcon}
         >
           Uitloggen
