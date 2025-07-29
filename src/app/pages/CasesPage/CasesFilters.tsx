@@ -5,13 +5,13 @@ import { ContextValues } from "app/state/context/ValueProvider"
 import {
   AdviceTypeFilter,
   ApplicationTypeFilter,
-  ClosedCasesFilter,
   DateFilter,
   Search,
   PageSizeFilter,
   StatusFilter,
   DistrictFilter,
-  NeighborhoodFilter
+  NeighborhoodFilter,
+  BooleanStatusFilter
 } from "app/components"
 
 export const CasesFilters = () => {
@@ -20,6 +20,8 @@ export const CasesFilters = () => {
     createdRangeBefore,
     endDateRangeAfter,
     endDateRangeBefore,
+    isClosedFilter,
+    isSmallHoa,
     pagination,
     showAllFilters,
     updateContextCases
@@ -79,6 +81,16 @@ export const CasesFilters = () => {
               onChangeFilter("adviceType", value)
             }
           />
+          <BooleanStatusFilter
+            label="Vve grootte"
+            allLabel="Alle vve's"
+            trueLabel="Kleine vve's"
+            falseLabel="Grote vve's"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("isSmallHoa", value)
+            }
+            value={isSmallHoa}
+          />
           <DateFilter
             value={createdRangeAfter}
             label="Startdatum na"
@@ -93,11 +105,13 @@ export const CasesFilters = () => {
               onChangeFilter("createdRangeBefore", value)
             }
           />
-          <ClosedCasesFilter
-            contextName="cases"
-            onChangeFilter={(value: string) =>
-              onChangeFilter("isClosedFilter", value)
-            }
+          <BooleanStatusFilter
+            label="Toon zaken"
+            allLabel="Alle zaken"
+            trueLabel="Gesloten zaken"
+            falseLabel="Open zaken"
+            onChangeFilter={(value: string) => onChangeFilter("isClosedFilter", value)}
+            value={isClosedFilter}
           />
           <DateFilter
             value={endDateRangeAfter}

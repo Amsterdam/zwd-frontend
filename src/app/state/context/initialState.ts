@@ -13,6 +13,7 @@ export const initialState: StateType = {
     endDateRangeAfter: "",
     endDateRangeBefore: "",
     isClosedFilter: "false",
+    isSmallHoa: "",
     neighborhood: "",
     pagination: {
       page: 1,
