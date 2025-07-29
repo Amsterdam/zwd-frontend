@@ -18,6 +18,7 @@ export type StateType = {
     endDateRangeAfter?: string
     endDateRangeBefore?: string
     isClosedFilter: string
+    isSmallHoa: string
     neighborhood: string
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]

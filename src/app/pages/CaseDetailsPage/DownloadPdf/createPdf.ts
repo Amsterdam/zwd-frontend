@@ -152,7 +152,7 @@ const createPdf = (
     { label: "Bouwjaar:", value: formatValue(hoaData.build_year) },
     {
       label: "Aantal woningen:",
-      value: formatValue(hoaData.number_of_appartments)
+      value: formatValue(hoaData.number_of_apartments)
     },
     { label: "Monument status:", value: formatValue(hoaData.monument_status) },
     {
@@ -177,7 +177,7 @@ const createPdf = (
   // -------------------- Eigenaren -------------------- //
   const hoaDataOwners = hoaData?.owners ?? []
   const owners = hoaDataOwners.map((owner) => ({
-    label: `- ${owner?.name ?? "Onbekend"} (${owner.type}) - ${owner.number_of_appartments} ${owner.number_of_appartments === 1 ? "woning" : "woningen"}`
+    label: `- ${owner?.name ?? "Onbekend"} (${owner.type}) - ${owner.number_of_apartments} ${owner.number_of_apartments === 1 ? "woning" : "woningen"}`
   }))
   addDescription(doc, "Eigenaren", owners, startY)
 

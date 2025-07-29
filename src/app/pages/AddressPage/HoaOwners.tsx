@@ -10,7 +10,7 @@ type HomeownerAssociationOwner = {
   homeowner_association: number
   id: number
   name: string
-  number_of_appartments: number
+  number_of_apartments: number
   type: string
 }
 
@@ -36,24 +36,24 @@ const getColumns = (total: number) =>
     },
     {
       header: "Aantal woningen",
-      dataIndex: "number_of_appartments",
+      dataIndex: "number_of_apartments",
       sorter: createnumberSorter<HomeownerAssociationOwner>(
-        "number_of_appartments"
+        "number_of_apartments"
       )
     },
     {
       header: "Percentage woningen",
-      dataIndex: "number_of_appartments",
+      dataIndex: "number_of_apartments",
       sorter: createnumberSorter<HomeownerAssociationOwner>(
-        "number_of_appartments"
+        "number_of_apartments"
       ),
-      render: (_, obj) => `${getPercentage(obj.number_of_appartments, total)}%`
+      render: (_, obj) => `${getPercentage(obj.number_of_apartments, total)}%`
     }
   ] as ColumnType<HomeownerAssociationOwner>[]
 
 export const HoaOwners: React.FC<Props> = ({ hoa }) => {
   const owners = (hoa.owners as unknown as HomeownerAssociationOwner[]) ?? []
-  const columns = getColumns(hoa.number_of_appartments)
+  const columns = getColumns(hoa.number_of_apartments)
   return (
     <>
       <Heading level={2}>Eigenaren</Heading>

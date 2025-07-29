@@ -34,7 +34,7 @@ export const HoaDescription: React.FC<Props> = ({ hoa }) => {
         value: hoa?.is_priority_neighborhood ? "Ja" : "Nee"
       },
       { label: "Bouwjaar", value: hoa?.build_year },
-      { label: "Aantal woningen", value: hoa?.number_of_appartments },
+      { label: "Aantal woningen", value: hoa?.number_of_apartments },
       {
         label: "Monument status",
         value: capitalizeFirstLetterOrFallback(hoa?.monument_status)

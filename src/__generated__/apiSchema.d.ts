@@ -201,7 +201,7 @@ declare namespace Components {
             id: number;
             name: string;
             build_year: number;
-            number_of_appartments: number;
+            number_of_apartments: number;
             contacts: Nested[];
             owners?: Owner[];
             district: string;
@@ -231,7 +231,7 @@ declare namespace Components {
         export interface Owner {
             type: string;
             name?: string | null;
-            number_of_appartments: number;
+            number_of_apartments: number;
         }
         export interface PaginatedCaseCloseList {
             /**

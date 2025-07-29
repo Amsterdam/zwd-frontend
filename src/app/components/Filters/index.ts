@@ -1,6 +1,6 @@
 export * from "./AdviceTypeFilter/AdviceTypeFilter"
 export * from "./ApplicationTypeFilter/ApplicationTypeFilter"
-export * from "./ClosedCasesFilter/ClosedCasesFilter"
+export * from "./BooleanStatusFilter/BooleanStatusFilter"
 export * from "./DateFilter/DateFilter"
 export * from "./DistrictFilter/DistrictFilter"
 export * from "./NeighborhoodFilter/NeighborhoodFilter"
