@@ -1,24 +1,33 @@
 import { Field, Label, SearchField } from "@amsterdam/design-system-react"
+import { ContextValues } from "app/state/context/ValueProvider"
+import { useContext, useEffect, useState } from "react"
 
 type Props = {
   onSearch: (value: string) => void
   placeholder?: string
+  contextName: "cases" | "tasks"
 }
 
-export const Search: React.FC<Props> = ({ onSearch, placeholder }) => {
+export const Search: React.FC<Props> = ({ onSearch, placeholder, contextName }) => {
+  const { searchString } = useContext(ContextValues)[contextName]
+  const [inputValue, setInputValue] = useState(searchString)
+
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const value = formData.get("search-box")
-    onSearch(value as string)
+    onSearch(inputValue)
   }
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value
+    setInputValue(value)
     if (!value) {
       onSearch("")
     }
   }
+
+  useEffect(() => {
+    setInputValue(searchString)
+  }, [searchString])
 
   return (
     <Field>
@@ -27,6 +36,7 @@ export const Search: React.FC<Props> = ({ onSearch, placeholder }) => {
         <SearchField.Input
           placeholder={placeholder}
           name="search-box"
+          value={inputValue}
           onChange={onChange}
         />
         <SearchField.Button />

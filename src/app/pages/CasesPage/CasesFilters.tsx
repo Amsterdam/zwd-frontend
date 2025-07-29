@@ -11,8 +11,11 @@ import {
   StatusFilter,
   DistrictFilter,
   NeighborhoodFilter,
-  BooleanStatusFilter
+  BooleanStatusFilter,
+  ResetFiltersButton
 } from "app/components"
+
+const CASES = "cases"
 
 export const CasesFilters = () => {
   const {
@@ -25,7 +28,7 @@ export const CasesFilters = () => {
     pagination,
     showAllFilters,
     updateContextCases
-  } = useContext(ContextValues)["cases"]
+  } = useContext(ContextValues)[CASES]
 
   const onChangeFilter = (key: string, item: string | boolean) => {
     const casesContextItem = {
@@ -51,20 +54,21 @@ export const CasesFilters = () => {
   return (
     <Row wrap>
       <Search
+        contextName={CASES}
         onSearch={(value: string) => onChangeFilter("searchString", value)}
         placeholder="Zoek op ID, Excel ID of statutaire naam"
       />
-      <PageSizeFilter contextName="cases" onChangePageSize={onChangePageSize} />
+      <PageSizeFilter contextName={CASES} onChangePageSize={onChangePageSize} />
       <StatusFilter
-        contextName="cases"
+        contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
       />
       <DistrictFilter
-        contextName="cases"
+        contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
       />
       <NeighborhoodFilter
-        contextName="cases"
+        contextName={CASES}
         onChangeFilter={(value: string) =>
           onChangeFilter("neighborhood", value)
         }
@@ -110,7 +114,9 @@ export const CasesFilters = () => {
             allLabel="Alle zaken"
             trueLabel="Gesloten zaken"
             falseLabel="Open zaken"
-            onChangeFilter={(value: string) => onChangeFilter("isClosedFilter", value)}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("isClosedFilter", value)
+            }
             value={isClosedFilter}
           />
           <DateFilter
@@ -140,6 +146,8 @@ export const CasesFilters = () => {
           </Button>
         </Field>
       )}
+
+      <ResetFiltersButton contextName={CASES} />
     </Row>
   )
 }

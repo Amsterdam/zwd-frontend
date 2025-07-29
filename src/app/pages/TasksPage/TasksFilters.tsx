@@ -6,11 +6,14 @@ import {
   PageSizeFilter,
   StatusFilter,
   DistrictFilter,
-  NeighborhoodFilter
+  NeighborhoodFilter,
+  ResetFiltersButton
 } from "app/components"
 
+const TASKS = "tasks"
+
 export const TasksFilters = () => {
-  const { pagination, updateContextTasks } = useContext(ContextValues)["tasks"]
+  const { pagination, updateContextTasks } = useContext(ContextValues)[TASKS]
 
   const onChangeFilter = (key: string, item: string) => {
     const tasksContextItem = {
@@ -36,24 +39,26 @@ export const TasksFilters = () => {
   return (
     <Row wrap>
       <Search
+        contextName={TASKS}
         onSearch={(value: string) => onChangeFilter("searchString", value)}
         placeholder="Zoek op vve statutaire naam"
       />
-      <PageSizeFilter contextName="tasks" onChangePageSize={onChangePageSize} />
+      <PageSizeFilter contextName={TASKS} onChangePageSize={onChangePageSize} />
       <StatusFilter
-        contextName="tasks"
+        contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
       />
       <DistrictFilter
-        contextName="tasks"
+        contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
       />
       <NeighborhoodFilter
-        contextName="tasks"
+        contextName={TASKS}
         onChangeFilter={(value: string) =>
           onChangeFilter("neighborhood", value)
         }
       />
+      <ResetFiltersButton contextName={TASKS} />
     </Row>
   )
 }
