@@ -44,7 +44,7 @@ declare namespace Components {
              * * `Activatieteam` - ACTIVATIONTEAM
              */
             ApplicationTypeEnum;
-            created: string; // date-time
+            created?: string; // date-time
             description?: string | null;
             end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
@@ -72,7 +72,12 @@ declare namespace Components {
             is_successful: boolean;
         }
         export interface CaseCreate {
-            advice_type?: null | AdviceTypeEnum | BlankEnum | NullEnum;
+            advice_type?: null & (/**
+             * * `Energieadvies` - ENERGY_ADVICE
+             * * `Haalbaarheidsonderzoek` - HBO
+             * * `Cursus` - COURSE
+             */
+            AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
@@ -132,7 +137,7 @@ declare namespace Components {
             name: string;
         }
         export interface CaseList {
-            created: string; // date-time
+            created?: string; // date-time
             end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
             id: number;
@@ -198,22 +203,22 @@ declare namespace Components {
             date_added: string; // date-time
         }
         export interface HomeownerAssociation {
-            id: number;
-            name: string;
+            beschermd_stadsdorpsgezicht?: string | null;
             build_year: number;
-            number_of_apartments: number;
             contacts: Nested[];
-            owners?: Owner[];
             district: string;
-            neighborhood: string;
-            wijk: string;
-            zip_code?: string | null;
+            id: number;
+            is_priority_neighborhood: boolean;
             is_small: boolean;
-            monument_status?: string | null;
             kvk_nummer?: string | null;
             ligt_in_beschermd_gebied?: string | null;
-            beschermd_stadsdorpsgezicht?: string | null;
-            is_priority_neighborhood: boolean;
+            monument_status?: string | null;
+            name: string;
+            neighborhood: string;
+            number_of_apartments: number;
+            owners?: Owner[];
+            wijk: string;
+            zip_code?: string | null;
         }
         export interface Neighborhood {
             id: number;
@@ -386,6 +391,12 @@ declare namespace Components {
         export interface StartWorkflow {
             workflow_option_id: number;
         }
+        export interface Status {
+            bag_id: string;
+            vve_statutaire_naam: string;
+            zwd_zaak_id: string;
+            zwd_zaak_status: string;
+        }
         export interface Wijk {
             id: number;
             name: string;
@@ -407,6 +418,33 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace AddressStatusRetrieve {
+        namespace Parameters {
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.Status;
+        }
+    }
+    namespace AdvisorsList {
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseAdvisor[];
+        }
+    }
+    namespace AdvisorsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseAdvisor;
         }
     }
     namespace ApiSchemaRetrieve {
@@ -527,12 +565,20 @@ declare namespace Paths {
     }
     namespace CasesAdvisorsList {
         namespace Parameters {
+            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type Advisor = number;
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
+            export type CreatedRangeAfter = string; // date
+            export type CreatedRangeBefore = string; // date
             export type District = string[];
-            export type HomeownerAssociationName = string;
+            export type EndDateRangeAfter = string; // date
+            export type EndDateRangeBefore = string; // date
             export type Id = number;
+            export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
+            export type Search = string;
             export type Status = number[];
             export type Wijk = string[];
         }
@@ -540,11 +586,19 @@ declare namespace Paths {
             id: Parameters.Id;
         }
         export interface QueryParameters {
+            advice_type?: Parameters.AdviceType;
+            advisor?: Parameters.Advisor;
+            application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
+            created_range_after?: Parameters.CreatedRangeAfter /* date */;
+            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
-            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
+            end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
+            is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
+            search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
         }
@@ -640,24 +694,40 @@ declare namespace Paths {
     }
     namespace CasesList {
         namespace Parameters {
+            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type Advisor = number;
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
+            export type CreatedRangeAfter = string; // date
+            export type CreatedRangeBefore = string; // date
             export type District = string[];
-            export type HomeownerAssociationName = string;
+            export type EndDateRangeAfter = string; // date
+            export type EndDateRangeBefore = string; // date
+            export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
             export type Page = number;
             export type PageSize = number;
+            export type Search = string;
             export type Status = string[];
             export type Wijk = string[];
         }
         export interface QueryParameters {
+            advice_type?: Parameters.AdviceType;
+            advisor?: Parameters.Advisor;
+            application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
+            created_range_after?: Parameters.CreatedRangeAfter /* date */;
+            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
-            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
+            end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
+            is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
         }
@@ -667,12 +737,20 @@ declare namespace Paths {
     }
     namespace CasesProcessesList {
         namespace Parameters {
+            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type Advisor = number;
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
+            export type CreatedRangeAfter = string; // date
+            export type CreatedRangeBefore = string; // date
             export type District = string[];
-            export type HomeownerAssociationName = string;
+            export type EndDateRangeAfter = string; // date
+            export type EndDateRangeBefore = string; // date
             export type Id = number;
+            export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
+            export type Search = string;
             export type Status = number[];
             export type Wijk = string[];
         }
@@ -680,11 +758,19 @@ declare namespace Paths {
             id: Parameters.Id;
         }
         export interface QueryParameters {
+            advice_type?: Parameters.AdviceType;
+            advisor?: Parameters.Advisor;
+            application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
+            created_range_after?: Parameters.CreatedRangeAfter /* date */;
+            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
-            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
+            end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
+            is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
+            search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
         }
