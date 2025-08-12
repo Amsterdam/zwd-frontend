@@ -30,3 +30,14 @@ export const useAdvisor = (
     isProtected: true
   })
 }
+
+export const useAdvisorsList = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseAdvisor[]>({
+    ...options,
+    url: `${makeApiUrl("advisors")}`,
+    groupName: "advisors",
+    handleError,
+    isProtected: true
+  })
+}

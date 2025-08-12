@@ -12,6 +12,7 @@ import {
   DistrictFilter,
   NeighborhoodFilter,
   BooleanStatusFilter,
+  AdvisorFilter,
   ResetFiltersButton
 } from "app/components"
 
@@ -84,6 +85,10 @@ export const CasesFilters = () => {
             onChangeFilter={(value: string) =>
               onChangeFilter("adviceType", value)
             }
+          />
+          <AdvisorFilter
+            contextName={CASES}
+            onChangeFilter={(value: string) => onChangeFilter("advisor", value)}
           />
           <BooleanStatusFilter
             label="Vve grootte"

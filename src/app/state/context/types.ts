@@ -20,6 +20,7 @@ export type StateType = {
     isClosedFilter: string
     isSmallHoa: string
     neighborhood: string
+    advisor: string
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]
     searchString: string
