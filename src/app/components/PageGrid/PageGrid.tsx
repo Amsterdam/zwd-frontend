@@ -5,7 +5,7 @@ type Props = {
 }
 
 export const PageGrid: React.FC<Props> = ({ children }) => (
-  <Grid>
+  <Grid paddingBottom="x-large">
     {children.map((child, index) => (
       <Grid.Cell key={index} span="all">
         {child}
