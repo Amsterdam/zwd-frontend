@@ -15,6 +15,7 @@ export const initialState: StateType = {
     isClosedFilter: "false",
     isSmallHoa: "",
     neighborhood: "",
+    advisor: "",
     pagination: {
       page: 1,
       pageSize: 25
