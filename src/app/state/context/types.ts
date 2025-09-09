@@ -35,6 +35,7 @@ export type StateType = {
     district: string
     isClosedFilter: string
     neighborhood: string
+    taskName: string
     pagination: TABLE.Pagination
     results: CustomCaseUserTask[]
     searchString: string
