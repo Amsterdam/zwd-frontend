@@ -15,6 +15,7 @@ export const TasksPage: React.FC = () => {
     pagination,
     searchString,
     sorting,
+    taskName,
     status,
     wijk,
     updateContextTasks
@@ -25,6 +26,7 @@ export const TasksPage: React.FC = () => {
     neighborhood,
     searchString,
     sorting,
+    taskName,
     status,
     wijk
   )

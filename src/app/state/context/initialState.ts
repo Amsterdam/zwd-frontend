@@ -36,6 +36,7 @@ export const initialState: StateType = {
     district: "",
     isClosedFilter: "false",
     neighborhood: "",
+    taskName: "",
     pagination: {
       page: 1,
       pageSize: 25

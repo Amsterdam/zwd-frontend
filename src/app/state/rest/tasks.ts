@@ -19,6 +19,7 @@ export const useTasks = (
   neighborhood?: string,
   searchString?: string,
   sorting?: TABLE.Sorting,
+  taskName?: string,
   status?: string,
   wijk?: string,
   options?: Options
@@ -32,6 +33,7 @@ export const useTasks = (
       district,
       neighborhood,
       homeowner_association_name: searchString,
+      name: taskName,
       status,
       wijk,
       ordering: sorting
@@ -45,6 +47,7 @@ export const useTasks = (
     district,
     neighborhood,
     searchString,
+    taskName,
     status,
     wijk,
     sorting
@@ -64,6 +67,17 @@ export const useTask = (id: CustomCaseUserTask["id"], options?: Options) => {
   return useApiRequest<CustomCaseUserTask>({
     ...options,
     url: `${makeApiUrl("tasks", id)}`,
+    groupName: "tasks",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useTaskNames = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<string[]>({
+    ...options,
+    url: `${makeApiUrl("tasks", "names")}`,
     groupName: "tasks",
     handleError,
     isProtected: true

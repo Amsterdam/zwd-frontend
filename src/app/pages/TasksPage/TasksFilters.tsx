@@ -5,6 +5,7 @@ import {
   Search,
   PageSizeFilter,
   StatusFilter,
+  TaskNameFilter,
   DistrictFilter,
   NeighborhoodFilter,
   ResetFiltersButton
@@ -47,6 +48,9 @@ export const TasksFilters = () => {
       <StatusFilter
         contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
+      />
+      <TaskNameFilter
+        onChangeFilter={(value: string) => onChangeFilter("taskName", value)}
       />
       <DistrictFilter
         contextName={TASKS}
