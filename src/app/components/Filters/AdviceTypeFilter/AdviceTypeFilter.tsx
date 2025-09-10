@@ -4,10 +4,11 @@ import { ContextValues } from "app/state/context/ValueProvider"
 
 type Props = {
   onChangeFilter: (value: string) => void
+  contextName: "cases" | "tasks"
 }
 
-export const AdviceTypeFilter: React.FC<Props> = ({ onChangeFilter }) => {
-  const { adviceType } = useContext(ContextValues)["cases"]
+export const AdviceTypeFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+  const { adviceType } = useContext(ContextValues)[contextName]
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChangeFilter(e.currentTarget.value)

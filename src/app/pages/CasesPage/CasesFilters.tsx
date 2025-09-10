@@ -77,11 +77,13 @@ export const CasesFilters = () => {
       {showAllFilters ? (
         <>
           <ApplicationTypeFilter
+            contextName={CASES}
             onChangeFilter={(value: string) =>
               onChangeFilter("applicationType", value)
             }
           />
           <AdviceTypeFilter
+            contextName={CASES}
             onChangeFilter={(value: string) =>
               onChangeFilter("adviceType", value)
             }

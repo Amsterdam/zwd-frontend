@@ -18,6 +18,12 @@ export const TasksPage: React.FC = () => {
     taskName,
     status,
     wijk,
+    adviceType,
+    advisor,
+    applicationType,
+    createdRangeAfter,
+    createdRangeBefore,
+    isSmallHoa,
     updateContextTasks
   } = useContext(ContextValues)["tasks"]
   const [dataSource, { isBusy }] = useTasks(
@@ -28,7 +34,13 @@ export const TasksPage: React.FC = () => {
     sorting,
     taskName,
     status,
-    wijk
+    wijk,
+    adviceType,
+    advisor,
+    applicationType,
+    createdRangeAfter,
+    createdRangeBefore,
+    isSmallHoa
   )
   const navigate = useNavigate()
 

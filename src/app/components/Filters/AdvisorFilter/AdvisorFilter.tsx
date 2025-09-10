@@ -5,7 +5,7 @@ import { useAdvisorsList } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
-  contextName: "cases"
+  contextName: "cases" | "tasks"
 }
 
 export const AdvisorFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
