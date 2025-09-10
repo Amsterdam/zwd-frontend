@@ -5,11 +5,10 @@ import { useTaskNames } from "app/state/rest"
 
 type Props = {
   onChangeFilter: (value: string) => void
-  contextName: "tasks"
 }
 
-export const TaskNameFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
-  const { taskName } = useContext(ContextValues)[contextName]
+export const TaskNameFilter: React.FC<Props> = ({ onChangeFilter }) => {
+  const { taskName } = useContext(ContextValues)["tasks"]
   const [taskNames] = useTaskNames()
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

@@ -50,7 +50,6 @@ export const TasksFilters = () => {
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
       />
       <TaskNameFilter
-        contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("taskName", value)}
       />
       <DistrictFilter
