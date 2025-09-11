@@ -16,7 +16,7 @@ export const TaskNameFilter: React.FC<Props> = ({ onChangeFilter }) => {
   }
 
   return (
-    <Field>
+    <Field style={{ maxWidth: "30ch" }}>
       <Label htmlFor="taskName">Open taak</Label>
       <Select id="taskName" onChange={onChange} value={taskName}>
         <Select.Option key="" value="">
