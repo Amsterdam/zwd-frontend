@@ -1,7 +1,7 @@
 import { Heading } from "@amsterdam/design-system-react"
 import {
   ColumnType,
-  createnumberSorter,
+  createNumberSorter,
   createStringSorter,
   Table
 } from "app/components"
@@ -37,14 +37,14 @@ const getColumns = (total: number) =>
     {
       header: "Aantal woningen",
       dataIndex: "number_of_apartments",
-      sorter: createnumberSorter<HomeownerAssociationOwner>(
+      sorter: createNumberSorter<HomeownerAssociationOwner>(
         "number_of_apartments"
       )
     },
     {
       header: "Percentage woningen",
       dataIndex: "number_of_apartments",
-      sorter: createnumberSorter<HomeownerAssociationOwner>(
+      sorter: createNumberSorter<HomeownerAssociationOwner>(
         "number_of_apartments"
       ),
       render: (_, obj) => `${getPercentage(obj.number_of_apartments, total)}%`

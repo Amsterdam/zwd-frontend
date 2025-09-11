@@ -55,7 +55,7 @@ export const TasksFilters = () => {
       <Search
         contextName={TASKS}
         onSearch={(value: string) => onChangeFilter("searchString", value)}
-        placeholder="Zoek op vve statutaire naam"
+        placeholder="Zoek op zaak ID of statutaire naam"
       />
       <PageSizeFilter contextName={TASKS} onChangePageSize={onChangePageSize} />
       <TaskNameFilter

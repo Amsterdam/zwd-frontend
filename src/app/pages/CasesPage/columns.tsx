@@ -3,7 +3,7 @@ import {
   LinkButton,
   createStringSorter,
   createDateSorter,
-  createnumberSorter,
+  createNumberSorter,
   getSortOrder
 } from "app/components"
 import { formatDate } from "app/utils/dates"
@@ -14,7 +14,7 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
     header: "ID",
     dataIndex: "prefixed_dossier_id",
-    sorter: createnumberSorter<DataType>("id"),
+    sorter: createNumberSorter<DataType>("id"),
     sortOrder: getSortOrder(sorting, "prefixed_dossier_id")
   },
   {

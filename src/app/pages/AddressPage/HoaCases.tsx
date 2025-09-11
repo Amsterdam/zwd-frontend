@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import {
   ColumnType,
   createDateSorter,
-  createnumberSorter,
+  createNumberSorter,
   createStringSorter,
   LinkButton,
   Table
@@ -20,7 +20,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
   {
     header: "ID",
     dataIndex: "prefixed_dossier_id",
-    sorter: createnumberSorter<Components.Schemas.Case>("id"),
+    sorter: createNumberSorter<Components.Schemas.Case>("id"),
     defaultSortOrder: "DESCEND"
   },
   {
