@@ -1,6 +1,6 @@
 import {
   ColumnType,
-  createnumberSorter,
+  createNumberSorter,
   createDateSorter,
   createStringSorter,
   getSortOrder,
@@ -14,7 +14,7 @@ export const getColumns = (
   {
     header: "ID",
     dataIndex: "prefixed_dossier_id",
-    sorter: createnumberSorter<CustomCaseUserTask>("prefixed_dossier_id"),
+    sorter: createNumberSorter<CustomCaseUserTask>("prefixed_dossier_id"),
     sortOrder: getSortOrder(sorting, "prefixed_dossier_id")
   },
   {

@@ -26,7 +26,7 @@ export function createDateSorter<T>(path: string): (a: T, b: T) => number {
   }
 }
 
-export function createnumberSorter<T>(path: string): (a: T, b: T) => number {
+export function createNumberSorter<T>(path: string): (a: T, b: T) => number {
   return (a: T, b: T) => {
     const valA = getValueByPath(a, path) as number
     const valB = getValueByPath(b, path) as number
