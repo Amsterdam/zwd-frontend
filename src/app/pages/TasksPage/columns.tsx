@@ -1,5 +1,6 @@
 import {
   ColumnType,
+  createnumberSorter,
   createDateSorter,
   createStringSorter,
   getSortOrder,
@@ -10,6 +11,12 @@ import { formatDate } from "app/utils/dates"
 export const getColumns = (
   sorting: TABLE.Sorting
 ): ColumnType<CustomCaseUserTask>[] => [
+  {
+    header: "ID",
+    dataIndex: "prefixed_dossier_id",
+    sorter: createnumberSorter<CustomCaseUserTask>("prefixed_dossier_id"),
+    sortOrder: getSortOrder(sorting, "prefixed_dossier_id")
+  },
   {
     header: "Vve statutaire naam",
     dataIndex: "homeowner_association",

@@ -9,6 +9,7 @@ import { cleanParamObject } from "./utils"
 const SORTING_INDEX_MAPPING: Record<string, string> = {
   created: "created",
   id: "id",
+  prefixed_dossier_id: "prefixed_dossier_id",
   name: "name",
   homeowner_association: "homeowner_association_name"
 }
@@ -32,7 +33,7 @@ export const useTasks = (
       page_size: pagination?.pageSize ?? 25,
       district,
       neighborhood,
-      homeowner_association_name: searchString,
+      search: searchString,
       name: taskName,
       status,
       wijk,
