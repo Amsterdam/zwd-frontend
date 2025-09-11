@@ -1,5 +1,6 @@
 import { useContext } from "react"
-import { Row } from "@amsterdam/design-system-react"
+import { Button, Field, Row } from "@amsterdam/design-system-react"
+import { FilterIcon } from "@amsterdam/design-system-react-icons"
 import { ContextValues } from "app/state/context/ValueProvider"
 import {
   Search,
@@ -8,15 +9,27 @@ import {
   TaskNameFilter,
   DistrictFilter,
   NeighborhoodFilter,
-  ResetFiltersButton
+  ResetFiltersButton,
+  ApplicationTypeFilter,
+  AdviceTypeFilter,
+  AdvisorFilter,
+  BooleanStatusFilter,
+  DateFilter
 } from "app/components"
 
 const TASKS = "tasks"
 
 export const TasksFilters = () => {
-  const { pagination, updateContextTasks } = useContext(ContextValues)[TASKS]
+  const {
+    createdRangeAfter,
+    createdRangeBefore,
+    isSmallHoa,
+    pagination,
+    showAllFilters,
+    updateContextTasks
+  } = useContext(ContextValues)[TASKS]
 
-  const onChangeFilter = (key: string, item: string) => {
+  const onChangeFilter = (key: string, item: string | boolean) => {
     const tasksContextItem = {
       [key]: item,
       pagination: {
@@ -45,23 +58,79 @@ export const TasksFilters = () => {
         placeholder="Zoek op vve statutaire naam"
       />
       <PageSizeFilter contextName={TASKS} onChangePageSize={onChangePageSize} />
+      <TaskNameFilter
+        onChangeFilter={(value: string) => onChangeFilter("taskName", value)}
+      />
       <StatusFilter
         contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
-      />
-      <TaskNameFilter
-        onChangeFilter={(value: string) => onChangeFilter("taskName", value)}
       />
       <DistrictFilter
         contextName={TASKS}
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
       />
-      <NeighborhoodFilter
-        contextName={TASKS}
-        onChangeFilter={(value: string) =>
-          onChangeFilter("neighborhood", value)
-        }
-      />
+      {showAllFilters ? (
+        <>
+          <NeighborhoodFilter
+            contextName={TASKS}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("neighborhood", value)
+            }
+          />
+          <ApplicationTypeFilter
+            contextName={TASKS}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("applicationType", value)
+            }
+          />
+          <AdviceTypeFilter
+            contextName={TASKS}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("adviceType", value)
+            }
+          />
+          <AdvisorFilter
+            contextName={TASKS}
+            onChangeFilter={(value: string) => onChangeFilter("advisor", value)}
+          />
+          <BooleanStatusFilter
+            label="Vve grootte"
+            allLabel="Alle vve's"
+            trueLabel="Kleine vve's"
+            falseLabel="Grote vve's"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("isSmallHoa", value)
+            }
+            value={isSmallHoa}
+          />
+          <DateFilter
+            value={createdRangeAfter}
+            label="Startdatum na"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("createdRangeAfter", value)
+            }
+          />
+          <DateFilter
+            value={createdRangeBefore}
+            label="Startdatum voor"
+            onChangeFilter={(value: string) =>
+              onChangeFilter("createdRangeBefore", value)
+            }
+          />
+        </>
+      ) : (
+        <Field style={{ justifyContent: "flex-end" }}>
+          <Button
+            id="filter-button"
+            icon={FilterIcon}
+            iconBefore
+            onClick={() => onChangeFilter("showAllFilters", true)}
+          >
+            Alle filters
+          </Button>
+        </Field>
+      )}
+
       <ResetFiltersButton contextName={TASKS} />
     </Row>
   )

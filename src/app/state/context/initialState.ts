@@ -32,9 +32,15 @@ export const initialState: StateType = {
     updateContextCases: noop
   },
   tasks: {
+    adviceType: "",
+    advisor: "",
+    applicationType: "",
     count: 0,
+    createdRangeAfter: "",
+    createdRangeBefore: "",
     district: "",
     isClosedFilter: "false",
+    isSmallHoa: "",
     neighborhood: "",
     taskName: "",
     pagination: {

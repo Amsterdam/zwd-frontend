@@ -22,6 +22,12 @@ export const useTasks = (
   taskName?: string,
   status?: string,
   wijk?: string,
+  adviceType?: string,
+  advisor?: string,
+  applicationType?: string,
+  createdRangeAfter?: string,
+  createdRangeBefore?: string,
+  isSmallHoa?: string,
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -36,6 +42,12 @@ export const useTasks = (
       name: taskName,
       status,
       wijk,
+      advice_type: adviceType,
+      advisor,
+      application_type: applicationType,
+      created_range_after: createdRangeAfter,
+      created_range_before: createdRangeBefore,
+      is_small_hoa: isSmallHoa,
       ordering: sorting
         ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
         : undefined
@@ -50,6 +62,12 @@ export const useTasks = (
     taskName,
     status,
     wijk,
+    adviceType,
+    advisor,
+    applicationType,
+    createdRangeAfter,
+    createdRangeBefore,
+    isSmallHoa,
     sorting
   ])
 

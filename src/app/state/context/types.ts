@@ -31,9 +31,15 @@ export type StateType = {
     updateContextCases: (payload: Payload) => void
   }
   tasks: {
+    adviceType: string
+    advisor: string
+    applicationType: string
     count: number
+    createdRangeAfter?: string
+    createdRangeBefore?: string
     district: string
     isClosedFilter: string
+    isSmallHoa: string
     neighborhood: string
     taskName: string
     pagination: TABLE.Pagination
