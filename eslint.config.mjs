@@ -19,7 +19,7 @@ export default defineConfig([
       "react/prop-types": "off",
       "arrow-body-style": ["error", "as-needed"],
       "block-spacing": ["error", "always"],
-      "comma-dangle": ["error", "never"],
+      "comma-dangle": "off",
       "import/no-anonymous-default-export": "off",
       "no-multiple-empty-lines": ["error"],
       "object-curly-spacing": ["error", "always"],

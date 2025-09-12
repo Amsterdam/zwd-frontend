@@ -63,3 +63,18 @@ export const useHoaContacts = (
     isProtected: true
   })
 }
+
+export const useHomeownerAssociationApartments = (
+  id?: Components.Schemas.HomeownerAssociation["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.Apartment[]>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", id, "apartments")}`,
+    lazy: id === undefined,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}

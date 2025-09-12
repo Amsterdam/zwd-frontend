@@ -1,5 +1,6 @@
 .wrapper {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding-bottom: 8px;
   margin-top: 2rem;
@@ -7,6 +8,11 @@
 
 .withBorder {
   border-bottom: 1px solid #b4b4b4;
+}
+
+.backLink {
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 .icon {
