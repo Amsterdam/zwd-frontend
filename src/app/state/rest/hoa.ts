@@ -1,7 +1,7 @@
 import type { Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
-import { env } from "app/config/env"
+import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 
 export const useHomeownerAssociation = (
   id?: Components.Schemas.HomeownerAssociation["id"],
@@ -38,9 +38,10 @@ export const useHomeownerAssociationSearch = (
   options?: Options
 ) => {
   const handleError = useErrorHandler()
+  const params = stringifyQueryParams({ "hoa_name": searchString })
   return useApiRequest<HomeownerAssociationSearch[]>({
     ...options,
-    url: `${env.VITE_API_URL}homeowner-association/search?hoa_name=${searchString}`,
+    url: `${makeApiUrl("homeowner-association", "search")}${params}`,
     lazy: !searchString,
     groupName: "hoa",
     handleError,
