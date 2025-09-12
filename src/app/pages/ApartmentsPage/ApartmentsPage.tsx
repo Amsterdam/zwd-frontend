@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import { useParams } from "react-router-dom"
-import { PageGrid, PageHeading, Table, ColumnType, createStringSorter, createNumberSorter, DetailsList, RouterLink } from "app/components"
+import { PageGrid, PageHeading, Table, ColumnType, createStringSorter, createNumberSorter } from "app/components"
 import { useHomeownerAssociation, useHomeownerAssociationApartments } from "app/state/rest"
 import { HouseIcon } from "@amsterdam/design-system-react-icons"
 
@@ -56,12 +56,11 @@ export const ApartmentsPage: React.FC = () => {
 
   return (
     <PageGrid>
-      <PageHeading label={`Woningen ${hoa?.number_of_apartments ? `(${hoa?.number_of_apartments})` : ""}`} icon={HouseIcon} />
-      <DetailsList
-        data={[
-          { term: "Vve statutaire naam", details: <RouterLink to={`/vve/${hoa?.id}`}>{hoa?.name}</RouterLink> },
-          { term: "Aantal woningen", details: hoa?.number_of_apartments },
-        ]}
+      <PageHeading
+        label={`Woningen ${hoa?.number_of_apartments ? `(${hoa?.number_of_apartments})` : ""} — ${hoa?.name}`}
+        icon={HouseIcon}
+        backLinkUrl={`/vve/${hoaId}`}
+        backLinkLabel="Terug naar vve"
       />
       <Table<Components.Schemas.Apartment>
         columns={columns}
