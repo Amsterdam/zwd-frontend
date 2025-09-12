@@ -26,8 +26,7 @@ export default defineConfig([
       "quotes": ["error", "double", { "avoidEscape": true }],
       "space-unary-ops": ["error"],
       "space-infix-ops": ["error"],
-      "semi": ["error", "never"],
-      "indent": ["error", 2, { "SwitchCase": 1 }]
+      "semi": ["error", "never"]
     }
   }
 ])
