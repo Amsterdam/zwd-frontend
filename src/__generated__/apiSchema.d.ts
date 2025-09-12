@@ -20,6 +20,16 @@ declare namespace Components {
          * * `Cursus` - COURSE
          */
         export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek" | "Cursus";
+        export interface Apartment {
+            straatnaam?: string | null;
+            huisnummer?: number | null;
+            huisletter?: string | null;
+            huisnummertoevoeging?: string | null;
+            postcode?: string | null;
+            woonplaats?: string | null;
+            adresseerbaarobject_id?: string | null;
+            nummeraanduiding_id?: string | null;
+        }
         /**
          * * `Advies` - ADVICE
          * * `Activatieteam` - ACTIVATIONTEAM
@@ -50,7 +60,7 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             id: number;
             legacy_id?: string | null;
-            prefixed_dossier_id: string;
+            prefixed_dossier_id?: string | null;
             status: string;
             workflows: CaseWorkflow[];
         }
@@ -142,7 +152,7 @@ declare namespace Components {
             homeowner_association: CaseHomeownerAssociation;
             id: number;
             legacy_id?: string | null;
-            prefixed_dossier_id: string;
+            prefixed_dossier_id?: string | null;
             status: string;
             updated: string; // date-time
         }
@@ -174,6 +184,7 @@ declare namespace Components {
             name: string;
             case: number;
             homeowner_association: string;
+            prefixed_dossier_id: string;
             created: string; // date-time
         }
         export interface CaseWorkflow {
@@ -219,6 +230,43 @@ declare namespace Components {
             owners?: Owner[];
             wijk: string;
             zip_code?: string | null;
+        }
+        export interface MijnAmsterdam {
+            bag_id: string;
+            beschermd_stadsdorpsgezicht?: string | null;
+            build_year: number;
+            district?: string | null;
+            kvk_nummer?: string | null;
+            ligt_in_beschermd_gebied?: string | null;
+            monument_status?: string | null;
+            name: string;
+            neighborhood?: string | null;
+            number_of_apartments: number;
+            wijk?: string | null;
+            zip_code?: string | null;
+            cases: MijnAmsterdamCaseList[];
+        }
+        export interface MijnAmsterdamCaseList {
+            activation_team?: ActivationTeam;
+            advice_type?: null & (/**
+             * * `Energieadvies` - ENERGY_ADVICE
+             * * `Haalbaarheidsonderzoek` - HBO
+             * * `Cursus` - COURSE
+             */
+            AdviceTypeEnum | BlankEnum | NullEnum);
+            application_type?: /**
+             * * `Advies` - ADVICE
+             * * `Activatieteam` - ACTIVATIONTEAM
+             */
+            ApplicationTypeEnum;
+            created?: string; // date-time
+            end_date?: string | null; // date
+            homeowner_association: CaseHomeownerAssociation;
+            id: number;
+            legacy_id?: string | null;
+            prefixed_dossier_id?: string | null;
+            status: string;
+            updated: string; // date-time
         }
         export interface Neighborhood {
             id: number;
@@ -391,12 +439,6 @@ declare namespace Components {
         export interface StartWorkflow {
             workflow_option_id: number;
         }
-        export interface Status {
-            bag_id: string;
-            vve_statutaire_naam: string;
-            zwd_zaak_id: string;
-            zwd_zaak_status: string;
-        }
         export interface Wijk {
             id: number;
             name: string;
@@ -420,7 +462,7 @@ declare namespace Paths {
             export type $200 = Components.Schemas.HomeownerAssociation;
         }
     }
-    namespace AddressStatusRetrieve {
+    namespace AddressMijnAmsterdamRetrieve {
         namespace Parameters {
             export type Id = string;
         }
@@ -428,7 +470,7 @@ declare namespace Paths {
             id: Parameters.Id;
         }
         namespace Responses {
-            export type $200 = Components.Schemas.Status;
+            export type $200 = Components.Schemas.MijnAmsterdam;
         }
     }
     namespace AdvisorsList {
@@ -566,7 +608,7 @@ declare namespace Paths {
     namespace CasesAdvisorsList {
         namespace Parameters {
             export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
-            export type Advisor = number;
+            export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type CreatedRangeAfter = string; // date
@@ -695,7 +737,7 @@ declare namespace Paths {
     namespace CasesList {
         namespace Parameters {
             export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
-            export type Advisor = number;
+            export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type CreatedRangeAfter = string; // date
@@ -738,7 +780,7 @@ declare namespace Paths {
     namespace CasesProcessesList {
         namespace Parameters {
             export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
-            export type Advisor = number;
+            export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type CreatedRangeAfter = string; // date
@@ -847,6 +889,17 @@ declare namespace Paths {
         export type RequestBody = Components.Schemas.CaseDocumentWithTask;
         namespace Responses {
             export type $200 = Components.Schemas.CaseDocumentWithTask;
+        }
+    }
+    namespace HomeownerAssociationApartmentsRetrieve {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.Apartment;
         }
     }
     namespace HomeownerAssociationCasesRetrieve {
@@ -958,27 +1011,46 @@ declare namespace Paths {
     }
     namespace TasksList {
         namespace Parameters {
+            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type Advisor = string[];
+            export type ApplicationType = "Activatieteam" | "Advies";
+            export type CreatedRangeAfter = string; // date
+            export type CreatedRangeBefore = string; // date
             export type District = string[];
-            export type HomeownerAssociationName = string;
+            export type IsSmallHoa = boolean;
+            export type Name = string;
             export type Neighborhood = string[];
             export type Ordering = string;
             export type Page = number;
             export type PageSize = number;
+            export type Search = string;
             export type Status = string[];
             export type Wijk = string[];
         }
         export interface QueryParameters {
+            advice_type?: Parameters.AdviceType;
+            advisor?: Parameters.Advisor;
+            application_type?: Parameters.ApplicationType;
+            created_range_after?: Parameters.CreatedRangeAfter /* date */;
+            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
-            homeowner_association_name?: Parameters.HomeownerAssociationName;
+            is_small_hoa?: Parameters.IsSmallHoa;
+            name?: Parameters.Name;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedCaseUserTaskListList;
+        }
+    }
+    namespace TasksNamesRetrieve {
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseUserTaskList;
         }
     }
     namespace TasksRetrieve {
