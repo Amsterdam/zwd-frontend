@@ -3,6 +3,7 @@ import { PageHeader, SkipLink, Page } from "@amsterdam/design-system-react"
 import { env } from "app/config/env"
 import { useRedirectFromState } from "app/hooks"
 import { NavMenuItems, LinklistMenu } from "app/components"
+import CaseTitleUpdater from "app/routing/components/CaseTitleUpdater"
 
 import styles from "./styles.module.css"
 
@@ -11,6 +12,7 @@ export const DefaultLayout: React.FC = () => {
 
   return (
     <>
+      <CaseTitleUpdater />
       <SkipLink href="#main">Direct naar inhoud</SkipLink>
       <Page>
         <PageHeader
