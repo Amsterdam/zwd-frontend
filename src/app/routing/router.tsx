@@ -64,13 +64,13 @@ const router = createBrowserRouter([
       {
         path: "zaken/:caseId",
         element: <CaseDetailsPage />
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />
       }
     ]
   },
-  {
-    path: "/auth",
-    element: <AuthPage />
-  }
 ])
 
 export default router
