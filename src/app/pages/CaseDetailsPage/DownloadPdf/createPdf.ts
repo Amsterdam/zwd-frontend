@@ -181,12 +181,8 @@ const createPdf = (
   }))
   addDescription(doc, "Eigenaren", owners, startY)
 
-  doc.output("dataurlnewwindow", {
-    filename: `ZWD-${caseData.prefixed_dossier_id}.pdf`
-  })
-  
   // PDF downloaden
-  // doc.save("voorbeeld.pdf")
+  doc.save(`ZWD-${caseData.prefixed_dossier_id}.pdf`)
 }
 
 export default createPdf
