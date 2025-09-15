@@ -7,7 +7,7 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-const PAGE_SIZES = [10, 25, 100]
+const PAGE_SIZES = [10, 25, 100, 1000]
 
 export const PageSizeFilter: React.FC<Props> = ({ contextName, onChangePageSize }) => {
   const { pagination } = useContext(ContextValues)[contextName]

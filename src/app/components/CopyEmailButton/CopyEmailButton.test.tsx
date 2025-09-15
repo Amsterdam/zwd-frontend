@@ -1,6 +1,8 @@
 import React from "react"
 import { describe, it, beforeEach, expect, vi } from "vitest"
-import { render, screen, fireEvent, waitFor, act } from "@testing-library/react"
+import { render, screen, fireEvent, act } from "@testing-library/react"
+import "@testing-library/jest-dom"
+
 import CopyEmailButton from "./CopyEmailButton"
 
 describe("CopyEmailButton", () => {
@@ -19,7 +21,7 @@ describe("CopyEmailButton", () => {
     render(<CopyEmailButton email={email} name={name} />)
     const button = screen.getByTestId("copy-email-button")
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(button)
     })
 
@@ -32,17 +34,21 @@ describe("CopyEmailButton", () => {
     render(<CopyEmailButton email={email} name={name} />)
     const button = screen.getByTestId("copy-email-button")
 
-    act(() => {
+    await act(async () => {
       fireEvent.click(button)
     })
 
-    // Controleer dat de icon veranderd is naar CheckMarkCircleIcon
-    expect(button.querySelector("svg")).toBeInTheDocument()
+    // Controleer dat de checkmark icon zichtbaar is
+    const svgAfterClick = button.querySelector("svg")
+    expect(svgAfterClick).toBeInTheDocument()
 
-    // Wacht tot de knop weer terug is naar normale icon (na 2 seconden)
-    await waitFor(() => {
-      const svg = button.querySelector("svg")
-      expect(svg).toBeInTheDocument() // hier kun je eventueel checken dat het weer de originele icon is
-    }, { timeout: 2500 })
+    // Wacht tot de knop weer teruggaat naar originele icon
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 2100))
+    })
+
+    // Controleer dat er nog steeds een svg is (optioneel: check of het de originele icon is)
+    const svgAfterTimeout = button.querySelector("svg")
+    expect(svgAfterTimeout).toBeInTheDocument()
   })
 })
