@@ -22,33 +22,28 @@ export const ApartmentsPage: React.FC = () => {
     { 
       header: "Straat",
       dataIndex: "straatnaam",
-      width: 200,
       sorter: createStringSorter<Components.Schemas.Apartment>("straatnaam"),
     },
     { 
       header: "Huisnummer",
       dataIndex: "huisnummer",
-      width: 80,
       render: huisnummerRender,
       sorter: createNumberSorter<Components.Schemas.Apartment>("huisnummer"),
     },
     { 
       header: "Postcode",
       dataIndex: "postcode",
-      width: 80,
       sorter: createStringSorter<Components.Schemas.Apartment>("postcode"),
     },
     { 
       header: "Eigenaar type",
       dataIndex: "eigenaar_type",
-      width: 140,
       render: (text: string) => text || "-",
       sorter: createStringSorter<Components.Schemas.Apartment>("eigenaar_type"),
     },
     {
       header: "Eigenaar naam",
       dataIndex: "eigenaar_naam",
-      width: 140,
       render: (text: string) => text || "-",
       sorter: createStringSorter<Components.Schemas.Apartment>("eigenaar_naam"),
     },
