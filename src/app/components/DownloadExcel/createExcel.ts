@@ -5,9 +5,9 @@ const casesColumns = [
   { key: "legacy_id", header: "Excel ID" },
   { key: "homeowner_association_name", header: "Vve statutaire naam" },
   { key: "status", header: "Status" },
-  { key: "created", header: "Startdatum zaak" },
-  { key: "updated", header: "Laatst gewijzigd" },
+  { key: "request_date", header: "Aanvraagdatum" },
   { key: "end_date", header: "Einddatum zaak" },
+  { key: "updated", header: "Laatst gewijzigd" },
 ]
 
 export const createExcel = (data: Components.Schemas.CaseList[]) => {
@@ -30,9 +30,9 @@ export const createExcel = (data: Components.Schemas.CaseList[]) => {
     const row = {
       ...caseItem,
       homeowner_association_name: caseItem.homeowner_association?.name || "",
-      created: caseItem.created ? new Date(caseItem.created) : null,
-      updated: caseItem.updated ? new Date(caseItem.updated) : null,
+      request_date: caseItem.request_date ? new Date(caseItem.request_date) : null,
       end_date: caseItem.end_date ? new Date(caseItem.end_date) : null,
+      updated: caseItem.updated ? new Date(caseItem.updated) : null,
     }
     worksheet.addRow(row)
   })
