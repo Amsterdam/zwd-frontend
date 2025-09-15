@@ -21,8 +21,8 @@ export const TasksPage: React.FC = () => {
     adviceType,
     advisor,
     applicationType,
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     isSmallHoa,
     updateContextTasks
   } = useContext(ContextValues)["tasks"]
@@ -38,8 +38,8 @@ export const TasksPage: React.FC = () => {
     adviceType,
     advisor,
     applicationType,
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     isSmallHoa
   )
   const navigate = useNavigate()

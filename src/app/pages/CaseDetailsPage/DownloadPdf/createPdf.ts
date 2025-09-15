@@ -112,7 +112,9 @@ const createPdf = (
 
   // -------------------- Zaakdetails -------------------- //
   const caseDescriptionFields = [
-    { label: "Zaak ID:", value: formatValue(caseData.prefixed_dossier_id) }
+    { label: "Zaak ID:", value: formatValue(caseData.prefixed_dossier_id) },
+    { label: "Aanvraag:", value: formatValue(caseData.application_type) },
+    { label: "Aanvraagdatum:", value: formatValue(caseData.request_date) },
   ]
   if (isActivatieteam) {
     const activationTeamFields = [
@@ -135,6 +137,12 @@ const createPdf = (
       label: "Adviestype:",
       value: formatValue(caseData.advice_type)
     })
+    if (caseData.advisor?.name) {
+      caseDescriptionFields.push({
+        label: "Adviseur:",
+        value: formatValue(caseData.advisor?.name)
+      })
+    }
   }
 
   startY = addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
