@@ -2,13 +2,14 @@ import { DefaultLayout } from "app/components"
 import {
   AuthPage,
   AddressPage,
+  ApartmentsPage,
   CaseCreatePage,
   CaseDetailsPage,
   CasesPage,
   NotFoundPage,
   SearchPage,
   TasksPage,
-  BpmnPage
+  BpmnPage,
 } from "app/pages"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
 
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "vve/:hoaId/zaken/nieuw",
         element: <CaseCreatePage />
+      },
+      {
+        path: "vve/:hoaId/woningen",
+        element: <ApartmentsPage />
       },
       {
         path: "zaken",
