@@ -30,5 +30,5 @@
     "noFallthroughCasesInSwitch": true,
   },
   "include": ["src", "scripts", "./.eslintrc.cjs"],
-  "exclude": ["**/*.test.ts"]
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/generateSwaggerSchema.ts"]
 }
