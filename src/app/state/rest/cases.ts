@@ -90,12 +90,13 @@ export const useCases = (
 }
 
 export const useCase = (
-  id: Components.Schemas.Case["id"],
+  id?: Components.Schemas.Case["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.Case>({
     ...options,
+    lazy: id === undefined,
     url: `${makeApiUrl("cases", id)}`,
     groupName: "cases",
     handleError,
