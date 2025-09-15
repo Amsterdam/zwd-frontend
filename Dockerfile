@@ -1,4 +1,4 @@
-ARG NODE_VERSION=20
+ARG NODE_VERSION=22
 # Use the official Node.js image as the builder stage.
 # "alpine" refers to a lightweight Linux distribution based on musl libc and BusyBox,
 # known for its small size and efficiency.
