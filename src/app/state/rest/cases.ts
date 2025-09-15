@@ -5,9 +5,9 @@ import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 import { getOrderingQueryParam, cleanParamObject } from "./utils"
 
-// You can add multiple sorting options here like `created: "created, id"`
+// You can add multiple sorting options here like `request_date: "request_date, id"`
 const SORTING_INDEX_MAPPING: Record<string, string> = {
-  created: "created",
+  request_date: "request_date",
   id: "id",
   updated: "updated",
   prefixed_dossier_id: "id",
