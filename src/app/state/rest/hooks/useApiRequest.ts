@@ -41,6 +41,7 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
   lazy,
   keepUsingInvalidCache
 }: Config) => {
+  const apiContext = useContext(ApiContext)
   const {
     getCacheItem,
     setCacheItem,
@@ -49,7 +50,13 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
     clearCache,
     pushRequestInQueue,
     isRequestPendingInQueue
-  } = useContext(ApiContext)[groupName]
+  } = apiContext[groupName]
+
+  // Define which groups should be invalidated together on mutations
+  const CACHE_INVALIDATION_GRAPH: Partial<Record<ApiGroup, ApiGroup[]>> = {
+    cases: ["cases", "tasks"],
+    tasks: ["tasks"]
+  }
 
   const request = useRequestWrapper(isProtected)
 
@@ -60,7 +67,8 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
     async (options: Options, payload?: Payload) => {
       try {
         if (isMutateOptions(options) && !options.skipCacheClear) {
-          clearCache()
+          const groupsToClear = CACHE_INVALIDATION_GRAPH[groupName] ?? [groupName]
+          groupsToClear.forEach((group) => apiContext[group].clearCache())
         }
 
         const response: unknown = await request<Schema>(
@@ -88,7 +96,15 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
         }
       }
     },
-    [request, url, clearCache, setCacheItem, handleError, addErrorToCacheItem]
+    [
+      request,
+      url,
+      groupName,
+      apiContext,
+      setCacheItem,
+      handleError,
+      addErrorToCacheItem,
+    ]
   )
 
   /**
