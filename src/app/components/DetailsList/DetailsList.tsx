@@ -15,7 +15,7 @@ export const DetailsList: React.FC<Props> = ({ data = [] }) => (
         <DescriptionList.Term key={item?.term}>
           {item?.term}
         </DescriptionList.Term>
-        <DescriptionList.Description>
+        <DescriptionList.Description style={{ maxWidth: "80ch" }}>
           {React.isValidElement(item?.details) ? (
             item.details
           ) : (
