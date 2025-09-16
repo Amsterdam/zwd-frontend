@@ -61,6 +61,16 @@ export const CasesFilters = () => {
         placeholder="Zoek op ID, Excel ID of statutaire naam"
       />
       <PageSizeFilter contextName={CASES} onChangePageSize={onChangePageSize} />
+      <BooleanStatusFilter
+        label="Toon zaken"
+        allLabel="Alle zaken"
+        trueLabel="Gesloten zaken"
+        falseLabel="Open zaken"
+        onChangeFilter={(value: string) =>
+          onChangeFilter("isClosedFilter", value)
+        }
+        value={isClosedFilter}
+      />
       <StatusFilter
         contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
@@ -69,14 +79,14 @@ export const CasesFilters = () => {
         contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
       />
-      <NeighborhoodFilter
-        contextName={CASES}
-        onChangeFilter={(value: string) =>
-          onChangeFilter("neighborhood", value)
-        }
-      />
       {showAllFilters ? (
         <>
+          <NeighborhoodFilter
+            contextName={CASES}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("neighborhood", value)
+            }
+          />
           <ApplicationTypeFilter
             contextName={CASES}
             onChangeFilter={(value: string) =>
@@ -116,16 +126,6 @@ export const CasesFilters = () => {
             onChangeFilter={(value: string) =>
               onChangeFilter("createdRangeBefore", value)
             }
-          />
-          <BooleanStatusFilter
-            label="Toon zaken"
-            allLabel="Alle zaken"
-            trueLabel="Gesloten zaken"
-            falseLabel="Open zaken"
-            onChangeFilter={(value: string) =>
-              onChangeFilter("isClosedFilter", value)
-            }
-            value={isClosedFilter}
           />
           <DateFilter
             value={endDateRangeAfter}
