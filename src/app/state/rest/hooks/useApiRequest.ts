@@ -47,7 +47,6 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
     setCacheItem,
     updateCacheItem,
     addErrorToCacheItem,
-    clearCache,
     pushRequestInQueue,
     isRequestPendingInQueue
   } = apiContext[groupName]
