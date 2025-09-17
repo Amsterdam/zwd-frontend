@@ -5,9 +5,9 @@ import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 import { getOrderingQueryParam, cleanParamObject } from "./utils"
 
-// You can add multiple sorting options here like `created: "created, id"`
+// You can add multiple sorting options here like `request_date: "request_date, id"`
 const SORTING_INDEX_MAPPING: Record<string, string> = {
-  created: "created",
+  request_date: "request_date",
   id: "id",
   updated: "updated",
   prefixed_dossier_id: "id",
@@ -20,8 +20,8 @@ export const useCases = (
   pagination: TABLE.Pagination,
   adviceType?: string,
   applicationType?: string,
-  createdRangeAfter?: string,
-  createdRangeBefore?: string,
+  requestDateRangeAfter?: string,
+  requestDateRangeBefore?: string,
   district?: string,
   endDateRangeAfter?: string,
   endDateRangeBefore?: string,
@@ -43,8 +43,8 @@ export const useCases = (
       page_size: pagination?.pageSize ?? 25,
       advice_type: adviceType,
       application_type: applicationType,
-      created_range_after: createdRangeAfter,
-      created_range_before: createdRangeBefore,
+      request_date_range_after: requestDateRangeAfter,
+      request_date_range_before: requestDateRangeBefore,
       end_date_range_after: endDateRangeAfter,
       end_date_range_before: endDateRangeBefore,
       closed: isClosedFilter,
@@ -65,8 +65,8 @@ export const useCases = (
     pagination.pageSize,
     adviceType,
     applicationType,
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     district,
     endDateRangeAfter,
     endDateRangeBefore,

@@ -36,11 +36,11 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sortOrder: getSortOrder(sorting, "status")
   },
   {
-    header: "Startdatum zaak",
-    dataIndex: "created",
-    sorter: createDateSorter<DataType>("created"),
+    header: "Aanvraagdatum",
+    dataIndex: "request_date",
+    sorter: createDateSorter<DataType>("request_date"),
     defaultSortOrder: "DESCEND" as const,
-    sortOrder: getSortOrder(sorting, "created"),
+    sortOrder: getSortOrder(sorting, "request_date"),
     render: (text) => formatDate(text)
   },
   {

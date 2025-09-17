@@ -21,8 +21,8 @@ const CASES = "cases"
 
 export const CasesFilters = () => {
   const {
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     endDateRangeAfter,
     endDateRangeBefore,
     isClosedFilter,
@@ -114,17 +114,17 @@ export const CasesFilters = () => {
             value={isSmallHoa}
           />
           <DateFilter
-            value={createdRangeAfter}
-            label="Startdatum na"
+            value={requestDateRangeAfter}
+            label="Aanvraagdatum na"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeAfter", value)
+              onChangeFilter("requestDateRangeAfter", value)
             }
           />
           <DateFilter
-            value={createdRangeBefore}
-            label="Startdatum voor"
+            value={requestDateRangeBefore}
+            label="Aanvraagdatum voor"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeBefore", value)
+              onChangeFilter("requestDateRangeBefore", value)
             }
           />
           <DateFilter

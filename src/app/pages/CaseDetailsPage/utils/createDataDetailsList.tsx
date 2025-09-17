@@ -12,13 +12,20 @@ function createDataDetailsList(data?: Components.Schemas.Case) {
       )
     },
     { term: "Zaak ID", details: data?.prefixed_dossier_id },
-    { term: "Aanvraag", details: data?.application_type }
+    { term: "Aanvraag", details: data?.application_type },
+    { term: "Aanvraagdatum", details: data?.request_date ? formatDate(data?.request_date) : "-" }
   ]
 
   if (data?.application_type === "Advies" && data?.advice_type) {
     dataDetailsList.push({
       term: "Adviestype",
       details: data?.advice_type
+    })
+  }
+  if (data?.advisor?.name) {
+    dataDetailsList.push({
+      term: "Adviseur",
+      details: data?.advisor?.name
     })
   }
 
