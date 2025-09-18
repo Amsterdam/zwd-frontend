@@ -8,3 +8,7 @@ html {
 .ams-dialog {
   --ams-label-font-weight: normal;
 }
+
+h2.ams-heading:has(+ div > table) {
+  margin-block-end: 0.35em;
+}
