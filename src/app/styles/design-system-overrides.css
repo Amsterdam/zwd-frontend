@@ -10,5 +10,9 @@ html {
 }
 
 h2.ams-heading:has(+ div > table) {
-  margin-block-end: 0.35em;
+  margin-block-end: 0.5em;
+}
+
+.ams-dialog h1 {
+  font-size: var(--ams-heading-2-font-size);
 }

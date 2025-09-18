@@ -64,6 +64,22 @@ export const useHoaContacts = (
   })
 }
 
+export const useHoaContactDelete = (
+  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  contactId: Components.Schemas.Contact["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<void>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", hoaId, "delete-contact", contactId)}`,
+    lazy: true,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useHomeownerAssociationApartments = (
   id?: Components.Schemas.HomeownerAssociation["id"],
   options?: Options
