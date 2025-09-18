@@ -70,9 +70,28 @@ export const useHoaContactDelete = (
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<void>({
+  return useApiRequest<Components.Schemas.Contact>({
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "delete-contact", contactId)}`,
+    lazy: true,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
+export type UpdateHoaContactsPayload = {
+  contacts: Array<Pick<Components.Schemas.Contact, "id" | "fullname" | "email" | "phone" | "role">>
+}
+
+export const useHoaContactsUpdate = (
+  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<UpdateHoaContactsPayload>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", hoaId, "contacts")}`,
     lazy: true,
     groupName: "hoa",
     handleError,

@@ -1,9 +1,9 @@
-import { Button, Heading, IconButton } from "@amsterdam/design-system-react"
-import { PencilIcon } from "@amsterdam/design-system-react-icons"
+import { Button, Heading } from "@amsterdam/design-system-react"
 import { ColumnType, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
 import { useHoaContacts } from "app/state/rest"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
+import EditHoaContact from "./EditHoaContact/EditHoaContact"
 
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
@@ -42,7 +42,8 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       render: (_, record: Contact) => (
         <div style={{ display: "flex" }}>
           <CopyEmailButton email={record.email} name={record.fullname} />
-          <DeleteHoaContact hoaId={hoaId} contact={record} title={`Verwijder ${record.fullname}`} />
+          <EditHoaContact hoaId={hoaId} contact={record} label={`Bewerk ${record.fullname}`} />
+          <DeleteHoaContact hoaId={hoaId} contact={record} label={`Verwijder ${record.fullname}`} />
         </div>
       )
     }
@@ -57,6 +58,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
         columns={columns}
         emptyPlaceholder="Geen contactpersonen gevonden"
       />
+      <Button variant="secondary" style={{ marginTop: "1.5rem" }}>Contactpersoon toevoegen</Button>
     </>
   )
 }
