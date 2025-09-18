@@ -18,7 +18,7 @@ export const EditHoaContact: React.FC<Props> = ({ hoaId, contact, label }) => {
   return (
     <>
       <IconButton svg={PencilIcon} label={label ?? `Bewerk ${contact.fullname}`} onClick={openDialog} />
-      <EditHoaContactDialog hoaId={hoaId} id={dialogId} contact={contact} />
+      <EditHoaContactDialog hoaId={hoaId} dialogId={dialogId} contact={contact} />
     </>
   )
 }

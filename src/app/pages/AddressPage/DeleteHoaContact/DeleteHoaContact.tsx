@@ -22,7 +22,7 @@ export const DeleteHoaContact: React.FC<Props> = ({ hoaId, contact, label }) => 
         label={label}
         onClick={openDialog}
       />
-      <DeleteHoaContactDialog id={dialogId} hoaId={hoaId} contact={contact} />
+      <DeleteHoaContactDialog dialogId={dialogId} hoaId={hoaId} contact={contact} />
     </>
   )
 }

@@ -1,22 +1,22 @@
 import { ConfirmationDialog } from "app/components"
-import { useHoaContactDelete } from "app/state/rest"
+import { useHomeownerAssociationContactDelete } from "app/state/rest"
 
 type Contact = Components.Schemas.Contact
 
 type Props = {
-  id: string;
+  dialogId: string;
   hoaId: Components.Schemas.HomeownerAssociation["id"];
   contact: Contact;
 }
 
-export const DeleteHoaContactDialog: React.FC<Props> = ({ id, hoaId, contact }) => {
-  const [, { execDelete }] = useHoaContactDelete(hoaId, contact.id)
+export const DeleteHoaContactDialog: React.FC<Props> = ({ dialogId, hoaId, contact }) => {
+  const [, { execDelete }] = useHomeownerAssociationContactDelete(hoaId, contact.id)
 
   const onConfirm = () => void execDelete()
 
   return (
     <ConfirmationDialog
-      id={id}
+      id={dialogId}
       title="Contactpersoon verwijderen"
       content={
         <span>

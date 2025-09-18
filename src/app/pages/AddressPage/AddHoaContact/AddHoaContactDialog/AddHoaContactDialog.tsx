@@ -1,24 +1,16 @@
 import { AddOrEditHoaContactDialog, FormMode } from "../../AddOrEditHoaContactDialog/AddOrEditHoaContactDialog"
 
-type Contact = Components.Schemas.Contact
-
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"];
   dialogId: string;
-  contact: Contact;
 }
 
-export const EditHoaContactDialog: React.FC<Props> = ({
-  hoaId,
-  dialogId,
-  contact,
-}) => (
+export const AddHoaContactDialog: React.FC<Props> = ({ hoaId, dialogId }) => (
   <AddOrEditHoaContactDialog
-    mode={FormMode.EDIT}
-    hoaId={hoaId}
     dialogId={dialogId}
-    contact={contact}
+    mode={FormMode.ADD}
+    hoaId={hoaId}
   />
 )
 
-export default EditHoaContactDialog
+export default AddHoaContactDialog

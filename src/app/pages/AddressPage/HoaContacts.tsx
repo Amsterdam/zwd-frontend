@@ -1,9 +1,10 @@
-import { Button, Heading } from "@amsterdam/design-system-react"
+import { Heading } from "@amsterdam/design-system-react"
 import { ColumnType, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
-import { useHoaContacts } from "app/state/rest"
+import { useHomeownerAssociationContacts } from "app/state/rest"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
 import EditHoaContact from "./EditHoaContact/EditHoaContact"
+import AddHoaContact from "./AddHoaContact/AddHoaContact"
 
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
@@ -12,7 +13,7 @@ type Props = {
 type Contact = Components.Schemas.Contact
 
 export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
-  const [contacts, { isBusy }] = useHoaContacts(hoaId)
+  const [contacts, { isBusy }] = useHomeownerAssociationContacts(hoaId)
 
   const columns: ColumnType<Contact>[] = [
     {
@@ -58,7 +59,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
         columns={columns}
         emptyPlaceholder="Geen contactpersonen gevonden"
       />
-      <Button variant="secondary" style={{ marginTop: "1.5rem" }}>Contactpersoon toevoegen</Button>
+      <AddHoaContact hoaId={hoaId} />
     </>
   )
 }
