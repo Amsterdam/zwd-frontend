@@ -41,10 +41,18 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Acties",
       dataIndex: "actions",
       render: (_, record: Contact) => (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
           <CopyEmailButton email={record.email} name={record.fullname} />
-          <EditHoaContact hoaId={hoaId} contact={record} label={`Bewerk ${record.fullname}`} />
-          <DeleteHoaContact hoaId={hoaId} contact={record} label={`Verwijder ${record.fullname}`} />
+          <EditHoaContact
+            hoaId={hoaId}
+            contact={record}
+            label={`Bewerk ${record.fullname}`}
+          />
+          <DeleteHoaContact
+            hoaId={hoaId}
+            contact={record}
+            label={`Verwijder ${record.fullname}`}
+          />
         </div>
       )
     }

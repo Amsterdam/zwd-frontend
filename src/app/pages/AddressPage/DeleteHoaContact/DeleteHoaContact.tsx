@@ -6,12 +6,16 @@ import { TrashBinIcon } from "@amsterdam/design-system-react-icons"
 type Contact = Components.Schemas.Contact
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"];
-  contact: Contact;
-  label: string;
+  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  contact: Contact
+  label: string
 }
 
-export const DeleteHoaContact: React.FC<Props> = ({ hoaId, contact, label }) => {
+export const DeleteHoaContact: React.FC<Props> = ({
+  hoaId,
+  contact,
+  label
+}) => {
   const dialogId = `delete-contact-${contact.id}`
   const { openDialog } = useDialog(dialogId)
 
@@ -21,8 +25,13 @@ export const DeleteHoaContact: React.FC<Props> = ({ hoaId, contact, label }) => 
         svg={TrashBinIcon}
         label={label}
         onClick={openDialog}
+        size="large"
       />
-      <DeleteHoaContactDialog dialogId={dialogId} hoaId={hoaId} contact={contact} />
+      <DeleteHoaContactDialog
+        dialogId={dialogId}
+        hoaId={hoaId}
+        contact={contact}
+      />
     </>
   )
 }
