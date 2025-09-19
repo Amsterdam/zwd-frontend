@@ -2,30 +2,13 @@ import React from "react"
 import { Column, Row } from "@amsterdam/design-system-react"
 import type { FieldValues, UseFormReturn } from "react-hook-form"
 import { SelectField, TextInputField } from "app/components"
+import { validationRequired, validationEmail, validationPhone } from "app/utils/validation"
 import { OPTIONS_ROLE_FUNCTIONS, CUSTOM_ROLE } from "./formOptions"
 
 type Props = {
   formMethods?: UseFormReturn<FieldValues>
   name: string // This prop is required for passing the formMethods to the children
   shouldShow: (formValues: FieldValues) => boolean
-}
-
-const validationRequired = { required: true }
-
-const validationEmail = {
-  ...validationRequired,
-  pattern: {
-    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-    message: "Dit is geen geldig e-mailadres"
-  }
-}
-
-const validationPhone = {
-  ...validationRequired,
-  pattern: {
-    value: /^(0031|0)[1-9][0-9]{8,9}$/,
-    message: "Dit is geen geldig telefoonnummer"
-  }
 }
 
 const contacts = [

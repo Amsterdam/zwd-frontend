@@ -49,7 +49,7 @@ export const useHomeownerAssociationSearch = (
   })
 }
 
-export const useHoaContacts = (
+export const useHomeownerAssociationContacts = (
   id?: Components.Schemas.HomeownerAssociation["id"],
   options?: Options
 ) => {
@@ -58,6 +58,42 @@ export const useHoaContacts = (
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "contacts")}`,
     lazy: id === undefined,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
+export type CreateOrUpdateHoaContactsPayload = {
+  contacts: Array<Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role">
+    & Partial<Pick<Components.Schemas.Contact, "id">>>
+}
+
+export const useHomeownerAssociationContactsCreateOrUpdate = (
+  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<CreateOrUpdateHoaContactsPayload>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", hoaId, "contacts")}`,
+    lazy: true,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useHomeownerAssociationContactDelete = (
+  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  contactId: Components.Schemas.Contact["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.Contact>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", hoaId, "delete-contact", contactId)}`,
+    lazy: true,
     groupName: "hoa",
     handleError,
     isProtected: true

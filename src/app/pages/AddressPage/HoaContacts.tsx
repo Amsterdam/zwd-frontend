@@ -1,7 +1,10 @@
 import { Heading } from "@amsterdam/design-system-react"
 import { ColumnType, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
-import { useHoaContacts } from "app/state/rest"
+import { useHomeownerAssociationContacts } from "app/state/rest"
+import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
+import EditHoaContact from "./EditHoaContact/EditHoaContact"
+import AddHoaContact from "./AddHoaContact/AddHoaContact"
 
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
@@ -9,39 +12,51 @@ type Props = {
 
 type Contact = Components.Schemas.Contact
 
-const columns: ColumnType<Contact>[] = [
-  {
-    header: "Naam",
-    dataIndex: "fullname",
-    sorter: createStringSorter<Contact>("fullname"),
-    defaultSortOrder: "DESCEND"
-  },
-  {
-    header: "E-mail",
-    dataIndex: "email",
-    sorter: createStringSorter<Contact>("email")
-  },
-  {
-    header: "Telefoon",
-    dataIndex: "phone",
-    sorter: createStringSorter<Contact>("phone")
-  },
-  {
-    header: "Functie in vve",
-    dataIndex: "role",
-    sorter: createStringSorter<Contact>("role")
-  },
-  {
-    header: "Acties",
-    dataIndex: "email",
-    render: (_, record: Contact) => (
-      <CopyEmailButton email={record.email} name={record.fullname} />
-    )
-  }
-] as ColumnType<Contact>[]
-
 export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
-  const [contacts, { isBusy }] = useHoaContacts(hoaId)
+  const [contacts, { isBusy }] = useHomeownerAssociationContacts(hoaId)
+
+  const columns: ColumnType<Contact>[] = [
+    {
+      header: "Naam",
+      dataIndex: "fullname",
+      sorter: createStringSorter<Contact>("fullname"),
+      defaultSortOrder: "DESCEND"
+    },
+    {
+      header: "E-mail",
+      dataIndex: "email",
+      sorter: createStringSorter<Contact>("email")
+    },
+    {
+      header: "Telefoon",
+      dataIndex: "phone",
+      sorter: createStringSorter<Contact>("phone")
+    },
+    {
+      header: "Functie in vve",
+      dataIndex: "role",
+      sorter: createStringSorter<Contact>("role")
+    },
+    {
+      header: "Acties",
+      dataIndex: "actions",
+      render: (_, record: Contact) => (
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <CopyEmailButton email={record.email} name={record.fullname} />
+          <EditHoaContact
+            hoaId={hoaId}
+            contact={record}
+            label={`Bewerk ${record.fullname}`}
+          />
+          <DeleteHoaContact
+            hoaId={hoaId}
+            contact={record}
+            label={`Verwijder ${record.fullname}`}
+          />
+        </div>
+      )
+    }
+  ] as ColumnType<Contact>[]
 
   return (
     <>
@@ -52,6 +67,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
         columns={columns}
         emptyPlaceholder="Geen contactpersonen gevonden"
       />
+      <AddHoaContact hoaId={hoaId} />
     </>
   )
 }
