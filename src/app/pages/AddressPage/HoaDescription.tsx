@@ -34,12 +34,13 @@ export const HoaDescription: React.FC<Props> = ({ hoa }) => {
         value: hoa?.is_priority_neighborhood ? "Ja" : "Nee"
       },
       { label: "Bouwjaar", value: hoa?.build_year },
-      { 
-        label: "Aantal woningen", value: (
+      {
+        label: "Aantal woningen",
+        value: (
           <RouterLink to={`/vve/${hoa?.id}/woningen`}>
             {hoa?.number_of_apartments} woningen
           </RouterLink>
-        ) 
+        )
       },
       {
         label: "Monument status",

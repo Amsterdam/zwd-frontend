@@ -47,18 +47,18 @@ export const FileInputField: React.FC<Props> = ({
         accept={ACCEPTED_FILE_TYPES}
         {...(register
           ? register(name, {
-            validate: {
-              required: (files) =>
-                !validation.required ||
+              validate: {
+                required: (files) =>
+                  !validation.required ||
                   (files && files.length > 0) ||
                   "Bestand is verplicht",
-              maxSize: (files) =>
-                !files ||
+                maxSize: (files) =>
+                  !files ||
                   !files[0] ||
                   files[0].size <= MAX_FILE_SIZE_BYTES ||
                   MAX_FILE_SIZE_ERROR_MESSAGE
-            }
-          })
+              }
+            })
           : {})}
       />
       {hasError && (

@@ -11,8 +11,8 @@ describe("createExcel", () => {
         status: "Open",
         request_date: "2025-09-10T12:07:57.926331Z",
         end_date: "2025-12-31T23:59:59.000Z",
-        updated: "2025-09-12T09:15:00.000Z",
-      },
+        updated: "2025-09-12T09:15:00.000Z"
+      }
     ]
 
     const workbook = createExcel(mockData)
@@ -30,7 +30,7 @@ describe("createExcel", () => {
       "Status",
       "Aanvraagdatum",
       "Einddatum zaak",
-      "Laatst gewijzigd",
+      "Laatst gewijzigd"
     ])
 
     // Controleer eerste rij data

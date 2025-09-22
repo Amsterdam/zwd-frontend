@@ -29,7 +29,8 @@ export const RadioGroupFieldSet: React.FC<Props> = ({
   shouldShow,
   ...rest
 }) => {
-  const { formState, register, watch } = formMethods as UseFormReturn<FieldValues>
+  const { formState, register, watch } =
+    formMethods as UseFormReturn<FieldValues>
   const hasError = !!formState?.errors?.[name]
   const formValues = watch()
   const isVisible = shouldShow ? shouldShow(formValues) : true

@@ -13,7 +13,6 @@ const isValidBlob = (data: unknown): data is Blob => {
   return valid
 }
 
-
 export const downloadFile = (data: unknown, filename: string): void => {
   if (!isValidBlob(data)) return
 
@@ -29,7 +28,6 @@ export const downloadFile = (data: unknown, filename: string): void => {
   // Clean up the blob URL after a short delay to ensure the download starts
   setTimeout(() => URL.revokeObjectURL(blobUrl), 1000)
 }
-
 
 export const viewFile = (data: unknown): void => {
   if (!isValidBlob(data)) return
@@ -84,8 +82,8 @@ export const useFetchFile = (fileUrl: string) => {
  */
 export const canViewInline = (url: string): boolean => {
   const extension = url
-    .split("?")[0]             
-    .split("#")[0]              
+    .split("?")[0]
+    .split("#")[0]
     .split(".")
     .pop()
     ?.toLowerCase()

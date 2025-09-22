@@ -24,9 +24,9 @@ const useSorter = <T>(
   const defaultSorting =
     defaultSortingIndex > -1
       ? {
-        index: defaultSortingIndex,
-        order: columns[defaultSortingIndex].defaultSortOrder!
-      }
+          index: defaultSortingIndex,
+          order: columns[defaultSortingIndex].defaultSortOrder!
+        }
       : undefined
 
   const [sorting, setSorting] = useState<SortingType | undefined>(

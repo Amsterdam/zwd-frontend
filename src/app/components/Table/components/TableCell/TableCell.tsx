@@ -5,7 +5,11 @@ type TableCellProps = React.TdHTMLAttributes<HTMLTableCellElement> & {
   borderLeft?: boolean
 }
 
-const TableCell: React.FC<TableCellProps> = ({ borderLeft, className, ...props }) => (
+const TableCell: React.FC<TableCellProps> = ({
+  borderLeft,
+  className,
+  ...props
+}) => (
   <td
     className={`${styles.cell} ${borderLeft ? styles.borderLeft : ""} ${className || ""}`}
     {...props}

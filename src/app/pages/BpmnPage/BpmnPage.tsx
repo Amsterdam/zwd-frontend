@@ -7,7 +7,9 @@ import BpmnDiagram from "./BpmnDiagram"
 
 export const BpmnPage: React.FC = () => {
   const [bpmnModelName, setBpmnModelName] = useState<string | undefined>()
-  const [bpmnModel, setBpmnModel] = useState<Components.Schemas.BpmnModel | undefined>()
+  const [bpmnModel, setBpmnModel] = useState<
+    Components.Schemas.BpmnModel | undefined
+  >()
 
   return (
     <PageGrid>

@@ -14,7 +14,9 @@ export const DownloadExcel = () => {
     const workbook = createExcel(results)
     const buffer = await workbook.xlsx.writeBuffer()
 
-    const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" })
+    const blob = new Blob([buffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    })
     saveAs(blob, "ZWD-Zaken.xlsx")
   }
 

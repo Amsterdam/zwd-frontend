@@ -11,7 +11,9 @@ const TablePagination: React.FC<PaginationType> = ({
 }) => {
   const totalPages = Math.ceil(collectionSize / pageSize)
 
-  const CustomLinkComponent: React.FC<React.AnchorHTMLAttributes<HTMLAnchorElement>> = (props) => {
+  const CustomLinkComponent: React.FC<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+  > = (props) => {
     const href = props.href || ""
     const match = href.match(/page=(\d+)/)
     const targetPage = match ? Number(match[1]) : undefined
@@ -23,9 +25,7 @@ const TablePagination: React.FC<PaginationType> = ({
       }
     }
 
-    return (
-      <a {...props} onClick={handleClick} />
-    )
+    return <a {...props} onClick={handleClick} />
   }
 
   return (

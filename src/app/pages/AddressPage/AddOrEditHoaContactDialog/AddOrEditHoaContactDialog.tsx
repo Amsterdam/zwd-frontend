@@ -1,9 +1,21 @@
 import { Dialog } from "@amsterdam/design-system-react"
 import { useDialog } from "app/hooks"
-import { Form, FormActionButtons, SelectField, TextInputField } from "app/components"
+import {
+  Form,
+  FormActionButtons,
+  SelectField,
+  TextInputField
+} from "app/components"
 import { useHomeownerAssociationContactsCreateOrUpdate } from "app/state/rest"
-import { CUSTOM_ROLE, OPTIONS_ROLE_FUNCTIONS } from "app/pages/CaseCreatePage/formOptions"
-import { validationRequired, validationEmail, validationPhone } from "app/utils/validation"
+import {
+  CUSTOM_ROLE,
+  OPTIONS_ROLE_FUNCTIONS
+} from "app/pages/CaseCreatePage/formOptions"
+import {
+  validationRequired,
+  validationEmail,
+  validationPhone
+} from "app/utils/validation"
 
 export enum FormMode {
   ADD = "add",
@@ -13,10 +25,10 @@ export enum FormMode {
 type Contact = Components.Schemas.Contact
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"];
-  dialogId: string;
-  mode: FormMode;
-  contact?: Contact;
+  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  dialogId: string
+  mode: FormMode
+  contact?: Contact
 }
 
 type FormValues = {
@@ -27,19 +39,21 @@ type FormValues = {
   role_custom?: string
 }
 
-const resolveDefaultValues = (mode: FormMode, contact?: Contact): FormValues => {
+const resolveDefaultValues = (
+  mode: FormMode,
+  contact?: Contact
+): FormValues => {
   if (mode === FormMode.EDIT && contact) {
-    const defaultRole = OPTIONS_ROLE_FUNCTIONS.find((o) => o.label === contact.role)?.value
-      ?? CUSTOM_ROLE
-    const defaultRoleCustom = defaultRole === CUSTOM_ROLE
-      ? contact.role
-      : ""
+    const defaultRole =
+      OPTIONS_ROLE_FUNCTIONS.find((o) => o.label === contact.role)?.value ??
+      CUSTOM_ROLE
+    const defaultRoleCustom = defaultRole === CUSTOM_ROLE ? contact.role : ""
     return {
       fullname: contact.fullname,
       email: contact.email,
       phone: contact.phone,
       role: defaultRole,
-      role_custom: defaultRoleCustom,
+      role_custom: defaultRoleCustom
     }
   }
   return {
@@ -47,18 +61,20 @@ const resolveDefaultValues = (mode: FormMode, contact?: Contact): FormValues => 
     email: "",
     phone: "",
     role: "",
-    role_custom: "",
+    role_custom: ""
   }
 }
 
 const resolveSubmittedRole = (values: FormValues, fallbackRole?: string) =>
-  values.role === CUSTOM_ROLE ? (values.role_custom ?? fallbackRole ?? "") : values.role
+  values.role === CUSTOM_ROLE
+    ? (values.role_custom ?? fallbackRole ?? "")
+    : values.role
 
 export const AddOrEditHoaContactDialog: React.FC<Props> = ({
   hoaId,
   dialogId,
   mode,
-  contact,
+  contact
 }) => {
   const { closeDialog } = useDialog(dialogId)
   const [, { execPost }] = useHomeownerAssociationContactsCreateOrUpdate(hoaId)
@@ -75,7 +91,7 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           fullname: values.fullname,
           email: values.email,
           phone: values.phone,
-          role: roleValue as string,
+          role: roleValue as string
         }
       ]
     }).then(() => {
@@ -83,13 +99,10 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
     })
   }
 
-  const heading = mode === FormMode.ADD
-    ? "Contactpersoon toevoegen"
-    : "Bewerk contactpersoon"
+  const heading =
+    mode === FormMode.ADD ? "Contactpersoon toevoegen" : "Bewerk contactpersoon"
 
-  const okText = mode === FormMode.ADD
-    ? "Toevoegen"
-    : "Opslaan"
+  const okText = mode === FormMode.ADD ? "Toevoegen" : "Opslaan"
 
   return (
     <Dialog id={dialogId} heading={heading}>
@@ -136,5 +149,3 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
 }
 
 export default AddOrEditHoaContactDialog
-
-

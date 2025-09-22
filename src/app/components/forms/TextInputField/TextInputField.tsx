@@ -71,7 +71,9 @@ export const TextInputField: React.FC<Props> = ({
   return (
     <Field>
       <Label htmlFor={name}>{label}</Label>
-      {hasError && error?.message && <ErrorMessage>{error?.message}</ErrorMessage>}
+      {hasError && error?.message && (
+        <ErrorMessage>{error?.message}</ErrorMessage>
+      )}
       <TextInput
         id={name}
         invalid={hasError}

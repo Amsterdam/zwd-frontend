@@ -34,8 +34,8 @@ export const createClusterIcon = <P extends Supercluster.ClusterProperties>(
   const sizeClassName =
     count < 3 ? styles.small : count < 10 ? styles.medium : styles.large
   const icon = L.divIcon({
-    html: `<div><span>${ feature.properties.point_count_abbreviated }</span></div>`,
-    className: `${ styles.default } ${ sizeClassName }`,
+    html: `<div><span>${feature.properties.point_count_abbreviated}</span></div>`,
+    className: `${styles.default} ${sizeClassName}`,
     iconSize: L.point(40, 40)
   })
 

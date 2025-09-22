@@ -2,8 +2,8 @@ import L, { CRS, LatLng, PointExpression } from "leaflet"
 import proj4 from "proj4"
 
 type Coordinates = {
-    x: number
-    y: number
+  x: number
+  y: number
 }
 
 export const CRS_CONFIG = {

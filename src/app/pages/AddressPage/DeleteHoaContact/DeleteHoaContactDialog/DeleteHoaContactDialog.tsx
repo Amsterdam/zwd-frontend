@@ -4,13 +4,20 @@ import { useHomeownerAssociationContactDelete } from "app/state/rest"
 type Contact = Components.Schemas.Contact
 
 type Props = {
-  dialogId: string;
-  hoaId: Components.Schemas.HomeownerAssociation["id"];
-  contact: Contact;
+  dialogId: string
+  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  contact: Contact
 }
 
-export const DeleteHoaContactDialog: React.FC<Props> = ({ dialogId, hoaId, contact }) => {
-  const [, { execDelete }] = useHomeownerAssociationContactDelete(hoaId, contact.id)
+export const DeleteHoaContactDialog: React.FC<Props> = ({
+  dialogId,
+  hoaId,
+  contact
+}) => {
+  const [, { execDelete }] = useHomeownerAssociationContactDelete(
+    hoaId,
+    contact.id
+  )
 
   const onConfirm = () => void execDelete()
 
@@ -20,7 +27,8 @@ export const DeleteHoaContactDialog: React.FC<Props> = ({ dialogId, hoaId, conta
       title="Contactpersoon verwijderen"
       content={
         <span>
-          Weet u zeker dat u contactpersoon <strong>{contact.fullname}</strong> wilt verwijderen?
+          Weet u zeker dat u contactpersoon <strong>{contact.fullname}</strong>{" "}
+          wilt verwijderen?
         </span>
       }
       onOk={onConfirm}

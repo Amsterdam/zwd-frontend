@@ -39,7 +39,13 @@ const DocumentActionButton: React.FC<Props> = ({
       <Spinner color="#004699" size={18} />
     </div>
   ) : (
-    <IconButton label={label} title={label} svg={icon} onClick={handleClick} size="large" />
+    <IconButton
+      label={label}
+      title={label}
+      svg={icon}
+      onClick={handleClick}
+      size="large"
+    />
   )
 }
 

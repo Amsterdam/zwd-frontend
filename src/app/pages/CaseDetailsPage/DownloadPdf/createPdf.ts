@@ -114,7 +114,7 @@ const createPdf = (
   const caseDescriptionFields = [
     { label: "Zaak ID:", value: formatValue(caseData.prefixed_dossier_id) },
     { label: "Aanvraag:", value: formatValue(caseData.application_type) },
-    { label: "Aanvraagdatum:", value: formatValue(caseData.request_date) },
+    { label: "Aanvraagdatum:", value: formatValue(caseData.request_date) }
   ]
   if (isActivatieteam) {
     const activationTeamFields = [

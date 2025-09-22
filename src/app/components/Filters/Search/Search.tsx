@@ -8,7 +8,11 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-export const Search: React.FC<Props> = ({ onSearch, placeholder, contextName }) => {
+export const Search: React.FC<Props> = ({
+  onSearch,
+  placeholder,
+  contextName
+}) => {
   const { searchString } = useContext(ContextValues)[contextName]
   const [inputValue, setInputValue] = useState(searchString)
 

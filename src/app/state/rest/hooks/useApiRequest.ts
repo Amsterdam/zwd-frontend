@@ -66,7 +66,9 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
     async (options: Options, payload?: Payload) => {
       try {
         if (isMutateOptions(options) && !options.skipCacheClear) {
-          const groupsToClear = CACHE_INVALIDATION_GRAPH[groupName] ?? [groupName]
+          const groupsToClear = CACHE_INVALIDATION_GRAPH[groupName] ?? [
+            groupName
+          ]
           groupsToClear.forEach((group) => apiContext[group].clearCache())
         }
 
@@ -102,7 +104,7 @@ const useApiRequest = <Schema, Payload = Partial<Schema>>({
       apiContext,
       setCacheItem,
       handleError,
-      addErrorToCacheItem,
+      addErrorToCacheItem
     ]
   )
 

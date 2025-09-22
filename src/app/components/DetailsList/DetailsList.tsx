@@ -23,7 +23,7 @@ export const DetailsList: React.FC<Props> = ({ data = [] }) => (
           )}
         </DescriptionList.Description>
       </React.Fragment>
-    ) )}
+    ))}
   </DescriptionList>
 )
 

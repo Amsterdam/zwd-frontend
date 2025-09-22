@@ -2,7 +2,11 @@ import React from "react"
 import { Column, Row } from "@amsterdam/design-system-react"
 import type { FieldValues, UseFormReturn } from "react-hook-form"
 import { SelectField, TextInputField } from "app/components"
-import { validationRequired, validationEmail, validationPhone } from "app/utils/validation"
+import {
+  validationRequired,
+  validationEmail,
+  validationPhone
+} from "app/utils/validation"
 import { OPTIONS_ROLE_FUNCTIONS, CUSTOM_ROLE } from "./formOptions"
 
 type Props = {
