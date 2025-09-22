@@ -33,33 +33,31 @@ const mapData = (
 ): CaseCreateInput => ({
   request_date: data.request_date,
   application_type: data.application_type,
-  advice_type: (
-    data.application_type === APPLICATION_TYPES.ADVIES
-      ? data.advice_type
-      : undefined
-  ) as unknown as Components.Schemas.CaseCreate["advice_type"],
+  advice_type: (data.application_type === APPLICATION_TYPES.ADVIES
+    ? data.advice_type
+    : undefined) as unknown as Components.Schemas.CaseCreate["advice_type"],
   description: data.description,
   homeowner_association,
   contacts:
     data?.advice_type === ADVIES_TYPES.CURSUS
       ? []
       : data?.fullname?.map((_, index) => ({
-        fullname: data.fullname[index],
-        email: data.email[index],
-        phone: data.phone[index],
-        role: data?.custom_role?.[index] || data.role[index]
-      })) || [],
+          fullname: data.fullname[index],
+          email: data.email[index],
+          phone: data.phone[index],
+          role: data?.custom_role?.[index] || data.role[index]
+        })) || [],
   ...(data.application_type === APPLICATION_TYPES.ACTIVATIETEAM
     ? {
-      activation_team: {
-        type: data.activationteam_type,
-        subject:
+        activation_team: {
+          type: data.activationteam_type,
+          subject:
             data.activationteam_subject === ACTIVATIETEAM_SUBJECTS.ANDERS
               ? data.activationteam_subject_other
               : data.activationteam_subject,
-        meeting_date: data.activationteam_meeting_date
+          meeting_date: data.activationteam_meeting_date
+        }
       }
-    }
     : {})
 })
 

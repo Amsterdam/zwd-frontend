@@ -1,5 +1,8 @@
 import { Icon } from "@amsterdam/design-system-react"
-import { ArrowDownIcon, ArrowUpIcon } from "@amsterdam/design-system-react-icons"
+import {
+  ArrowDownIcon,
+  ArrowUpIcon
+} from "@amsterdam/design-system-react-icons"
 import { SortingType, ASCEND, DESCEND } from "../../types"
 import styles from "./Sorter.module.css"
 

@@ -9,7 +9,10 @@ type Props = {
 
 const PAGE_SIZES = [10, 25, 100, 1000]
 
-export const PageSizeFilter: React.FC<Props> = ({ contextName, onChangePageSize }) => {
+export const PageSizeFilter: React.FC<Props> = ({
+  contextName,
+  onChangePageSize
+}) => {
   const { pagination } = useContext(ContextValues)[contextName]
 
   const onPageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -20,7 +23,11 @@ export const PageSizeFilter: React.FC<Props> = ({ contextName, onChangePageSize 
   return (
     <Field>
       <Label htmlFor="resultaten per pagina">Resultaten per pagina</Label>
-      <Select onChange={onPageSizeChange} value={pagination.pageSize}>
+      <Select
+        onChange={onPageSizeChange}
+        value={pagination.pageSize}
+        style={{ width: "100%" }}
+      >
         {PAGE_SIZES.map((size) => (
           <Select.Option key={size} value={size}>
             {size}

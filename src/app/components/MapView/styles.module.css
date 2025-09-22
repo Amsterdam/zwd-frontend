@@ -1,65 +1,64 @@
 .container {
-    height: 100%;
-    min-height: 300px;
-    z-index: 1;
-    border-radius: 8px;
-    border: 1px solid rgb(221, 221, 221);
-  }
-  
-  .markerCluster {
-    align-items: center;
-    background-color: rgb(250, 219, 20);
-    border-radius: 100px;
-    cursor: pointer;
-    display: flex !important;
-    justify-content: center;
-    padding: 2px;
-  }
-  
-  .markerCluster:focus {
-    outline: 8px solid #ff0;
-  }
-  
-  .markerCluster div {
-    align-items: center;
-    background: #fff;
-    border-radius: 15px;
-    display: flex;
-    font:
-      12px 'Helvetica Neue',
-      Arial,
-      Helvetica,
-      sans-serif;
-    font-weight: 800;
-    height: 30px;
-    justify-content: center;
-    width: 30px;
-  }
+  height: 100%;
+  min-height: 300px;
+  z-index: 1;
+  border-radius: 8px;
+  border: 1px solid rgb(221, 221, 221);
+}
 
-  .markerClusterSmall:hover {
-    background: rgba(236, 0, 0, 0.5); /* Red */
-    color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .markerClusterSmall {
-    background: rgba(236, 0, 0); /* Solid Red */
-  }
-  
-  .markerClusterMedium:hover {
-    background: rgba(250, 140, 22, 0.5); /* Orange */
-    color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .markerClusterMedium {
-    background: rgb(250, 140, 22); /* Solid Orange */
-  }
-  
-  .markerClusterLarge:hover {
-    background: rgba(250, 219, 20, 0.5); /* Yellow */
-    color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .markerClusterLarge {
-    background: rgb(250, 219, 20); /* Solid Yellow */
-  }
-    
+.markerCluster {
+  align-items: center;
+  background-color: rgb(250, 219, 20);
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex !important;
+  justify-content: center;
+  padding: 2px;
+}
+
+.markerCluster:focus {
+  outline: 8px solid #ff0;
+}
+
+.markerCluster div {
+  align-items: center;
+  background: #fff;
+  border-radius: 15px;
+  display: flex;
+  font:
+    12px "Helvetica Neue",
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-weight: 800;
+  height: 30px;
+  justify-content: center;
+  width: 30px;
+}
+
+.markerClusterSmall:hover {
+  background: rgba(236, 0, 0, 0.5); /* Red */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.markerClusterSmall {
+  background: rgba(236, 0, 0); /* Solid Red */
+}
+
+.markerClusterMedium:hover {
+  background: rgba(250, 140, 22, 0.5); /* Orange */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.markerClusterMedium {
+  background: rgb(250, 140, 22); /* Solid Orange */
+}
+
+.markerClusterLarge:hover {
+  background: rgba(250, 219, 20, 0.5); /* Yellow */
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.markerClusterLarge {
+  background: rgb(250, 219, 20); /* Solid Yellow */
+}

@@ -11,13 +11,13 @@ export const LinkButton: React.FC<Props> = ({ label, to = "", onClick }) => {
   const href = useHref(to)
   const routerClickHandler = useLinkClickHandler(to)
 
-  const handleClick  = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     onClick?.()
   }
 
   // If onClick is passed. Link must be used as button.
-  const clickHandler = onClick ? handleClick  : routerClickHandler
+  const clickHandler = onClick ? handleClick : routerClickHandler
 
   return (
     <LinkList>

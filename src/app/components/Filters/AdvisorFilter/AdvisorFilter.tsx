@@ -8,7 +8,10 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-export const AdvisorFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+export const AdvisorFilter: React.FC<Props> = ({
+  contextName,
+  onChangeFilter
+}) => {
   const { advisor } = useContext(ContextValues)[contextName]
   const [advisors] = useAdvisorsList()
 

@@ -85,9 +85,9 @@ const MarkerCluster: React.FC<Props> = ({ markers = [] }) => {
       crs: getCrsRd(),
       maxBounds: [
         [52.25168, 4.64034],
-        [52.50536, 5.10737],
+        [52.50536, 5.10737]
       ],
-      scrollWheelZoom: false,
+      scrollWheelZoom: false
     })
 
     map.on("click mousedown", () => {

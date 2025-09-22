@@ -28,6 +28,7 @@ export const UpdateDocument: React.FC<Props> = ({ record }) => {
         title="Wijzig naam document"
         svg={PencilIcon}
         onClick={openDialog}
+        size="large"
       />
       <Dialog heading={`Wijzig documentnaam "${record.name}"`} id={dialogId}>
         <Form onSubmit={onSubmit} defaultValues={{ name: record.name }}>

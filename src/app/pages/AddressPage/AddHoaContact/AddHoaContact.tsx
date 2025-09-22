@@ -13,7 +13,11 @@ export const AddHoaContact: React.FC<Props> = ({ hoaId, label }) => {
 
   return (
     <>
-      <Button variant="secondary" style={{ marginTop: "1.5rem" }} onClick={openDialog}>
+      <Button
+        variant="secondary"
+        style={{ marginTop: "1.5rem" }}
+        onClick={openDialog}
+      >
         {label ?? "Contactpersoon toevoegen"}
       </Button>
       <AddHoaContactDialog hoaId={hoaId} dialogId={dialogId} />

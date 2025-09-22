@@ -1,10 +1,10 @@
 import type { Feature, FeatureCollection, Point } from "geojson"
 
-export function toGeoJSON<DataType extends { latitude: number, longitude: number }>(
-  data: DataType[] | undefined
-) {
-  type DataGeometry = Point;
-  type DataProperties = Omit<DataType, "latitude" | "longitude">;
+export function toGeoJSON<
+  DataType extends { latitude: number; longitude: number }
+>(data: DataType[] | undefined) {
+  type DataGeometry = Point
+  type DataProperties = Omit<DataType, "latitude" | "longitude">
 
   if (!data || !data.length) {
     return {
@@ -13,7 +13,7 @@ export function toGeoJSON<DataType extends { latitude: number, longitude: number
     }
   }
 
-  const features = data.map(item => {
+  const features = data.map((item) => {
     const { latitude, longitude, ...other } = item
 
     const geometry: DataGeometry = {

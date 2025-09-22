@@ -7,7 +7,10 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-export const AdviceTypeFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+export const AdviceTypeFilter: React.FC<Props> = ({
+  contextName,
+  onChangeFilter
+}) => {
   const { adviceType } = useContext(ContextValues)[contextName]
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

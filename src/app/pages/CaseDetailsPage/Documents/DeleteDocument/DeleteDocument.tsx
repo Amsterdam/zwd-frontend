@@ -24,6 +24,7 @@ export const DeleteDocument: React.FC<Props> = ({ record }) => {
         title="Verwijder document"
         svg={TrashBinIcon}
         onClick={openDialog}
+        size="large"
       />
       <ConfirmationDialog
         id={dialogId}

@@ -10,7 +10,6 @@ import { TableType, SortingType, DESCEND } from "./types"
 import { getValueByPath } from "app/utils/getValueByPath"
 import styles from "./Table.module.css"
 
-
 // Create dummydata for loading skeleton based on the columns.length and numLoadingRows property.
 const createLoadingData = (numColumns: number, numRows: number): string[][] =>
   Array.from({ length: numRows }, () =>

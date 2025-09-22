@@ -28,7 +28,7 @@ export const SelectBpmnModel: React.FC<Props> = ({
   }
 
   return (
-    <Field style={{ width: 300 }}>
+    <Field>
       <Label htmlFor="bpmn-version">Versie</Label>
       {isBusy ? (
         <Spinner />

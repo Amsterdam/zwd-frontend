@@ -9,7 +9,7 @@ import {
   NotFoundPage,
   SearchPage,
   TasksPage,
-  BpmnPage,
+  BpmnPage
 } from "app/pages"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
 
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
         element: <AuthPage />
       }
     ]
-  },
+  }
 ])
 
 export default router

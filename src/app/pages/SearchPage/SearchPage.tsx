@@ -33,7 +33,7 @@ export const SearchPage: React.FC = () => {
   const placeholder = isSearchVve
     ? "Zoek op vve naam"
     : "Zoek op postcode of straat"
-    
+
   return (
     <PageGrid>
       <PageHeading label={label} icon={SearchIcon} />

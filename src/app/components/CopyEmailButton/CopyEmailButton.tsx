@@ -1,6 +1,9 @@
 import { useState } from "react"
 import { IconButton } from "@amsterdam/design-system-react"
-import { CopyIcon, CheckMarkCircleIcon } from "@amsterdam/design-system-react-icons"
+import {
+  CopyIcon,
+  CheckMarkCircleIcon
+} from "@amsterdam/design-system-react-icons"
 
 type Props = {
   email: string
@@ -33,4 +36,4 @@ export const CopyEmailButton = ({ email, name }: Props) => {
   )
 }
 
-export default CopyEmailButton 
+export default CopyEmailButton

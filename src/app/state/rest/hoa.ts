@@ -38,7 +38,7 @@ export const useHomeownerAssociationSearch = (
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  const params = stringifyQueryParams({ "hoa_name": searchString })
+  const params = stringifyQueryParams({ hoa_name: searchString })
   return useApiRequest<HomeownerAssociationSearch[]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", "search")}${params}`,
@@ -65,8 +65,10 @@ export const useHomeownerAssociationContacts = (
 }
 
 export type CreateOrUpdateHoaContactsPayload = {
-  contacts: Array<Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role">
-    & Partial<Pick<Components.Schemas.Contact, "id">>>
+  contacts: Array<
+    Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role"> &
+      Partial<Pick<Components.Schemas.Contact, "id">>
+  >
 }
 
 export const useHomeownerAssociationContactsCreateOrUpdate = (

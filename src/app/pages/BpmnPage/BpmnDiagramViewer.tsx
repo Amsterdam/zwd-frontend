@@ -50,7 +50,7 @@ const BpmnDiagramViewer: React.FC<Props> = ({ xml }) => {
     }
   }, [xml])
 
-  return <div ref={bpmnViewerRef} style={{ width: "100%", height: 500 }}/>
+  return <div ref={bpmnViewerRef} style={{ width: "100%", height: 500 }} />
 }
 
 export default BpmnDiagramViewer

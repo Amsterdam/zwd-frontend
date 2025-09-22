@@ -8,7 +8,10 @@ type Props = {
   contextName: "cases" | "tasks"
 }
 
-export const DistrictFilter: React.FC<Props> = ({ contextName, onChangeFilter }) => {
+export const DistrictFilter: React.FC<Props> = ({
+  contextName,
+  onChangeFilter
+}) => {
   const { district } = useContext(ContextValues)[contextName]
   const [districts] = useDistricts()
 

@@ -1,4 +1,7 @@
 /* This file is used to override the default design system styles */
+:root {
+  --ams-page-max-inline-size: 100rem;
+}
 
 body,
 html {

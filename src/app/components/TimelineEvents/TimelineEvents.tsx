@@ -6,7 +6,7 @@ export const TimelineEvents: React.FC<{ events: CaseEvent[] }> = ({
   events
 }) => (
   <>
-    <Accordion headingLevel={1} sectionAs="div">
+    <Accordion headingLevel={3} sectionAs="div">
       {events.map((event, index) => (
         <Accordion.Section
           key={event.id}
