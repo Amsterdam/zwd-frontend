@@ -1,4 +1,3 @@
-import { Row } from "@amsterdam/design-system-react"
 import { DownloadIcon, EyeOpenIcon } from "@amsterdam/design-system-react-icons"
 import { viewFile, downloadFile, canViewInline } from "app/utils/files"
 import UpdateDocument from "../UpdateDocument/UpdateDocument"
@@ -10,7 +9,7 @@ type Props = {
 }
 
 const DocumentsActions: React.FC<Props> = ({ record }) => (
-  <Row align="end" alignVertical="center">
+  <div style={{ display: "flex", gap: "0.8rem" }}>
     {canViewInline(record.document) && (
       <DocumentActionButton
         record={record}
@@ -27,7 +26,7 @@ const DocumentsActions: React.FC<Props> = ({ record }) => (
       onFile={(file) => downloadFile(file, record.name)}
     />
     <DeleteDocument record={record} />
-  </Row>
+  </div>
 )
 
 export default DocumentsActions

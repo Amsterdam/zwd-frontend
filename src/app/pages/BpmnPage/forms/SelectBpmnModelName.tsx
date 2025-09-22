@@ -11,7 +11,7 @@ export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
   const names = modelNames ?? []
 
   return (
-    <Field style={{ width: 300 }}>
+    <Field>
       <Label htmlFor="bpmn-model">Naam</Label>
       {isBusy ? (
         <Spinner />

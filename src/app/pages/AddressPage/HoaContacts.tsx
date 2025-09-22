@@ -41,7 +41,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Acties",
       dataIndex: "actions",
       render: (_, record: Contact) => (
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+        <div style={{ display: "flex", gap: "0.8rem" }}>
           <CopyEmailButton email={record.email} name={record.fullname} />
           <EditHoaContact
             hoaId={hoaId}

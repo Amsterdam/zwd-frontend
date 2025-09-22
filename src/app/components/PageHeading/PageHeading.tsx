@@ -32,7 +32,7 @@ export const PageHeading: React.FC<Props> = ({
 }) => {
   const size: Size = `level-${level}`
   const navigate = useNavigate()
-  
+
   return (
     <div className={clsx(styles.wrapper, border && styles.withBorder)}>
       {backLinkUrl && backLinkLabel && (
@@ -49,14 +49,16 @@ export const PageHeading: React.FC<Props> = ({
           </StandaloneLink>
         </div>
       )}
-      {icon && (
-        <Icon
-          size="heading-3"
-          className={styles.icon}
-          svg={icon}
-        />
-      )}
-      <Heading size={size} level={1}>{label}</Heading>
+      <div style={{ display: "flex" }}>
+        {icon && (
+          <Icon
+            size={`heading-${level}`}
+            className={styles.icon}
+            svg={icon}
+          />
+        )}
+        <Heading size={size} level={1}>{label}</Heading>
+      </div>
     </div>
   )
 }

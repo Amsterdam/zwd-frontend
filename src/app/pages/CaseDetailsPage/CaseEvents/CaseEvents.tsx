@@ -14,7 +14,7 @@ export const CaseEvents: React.FC<Props> = ({ caseId }) => {
   }
   return (
     <div style={{ marginBottom: "32px" }}>
-      <PageHeading label="Zaakhistorie" level={4} border />
+      <PageHeading label="Zaakhistorie" level={3} border />
       <TimelineEvents events={events} />
     </div>
   )

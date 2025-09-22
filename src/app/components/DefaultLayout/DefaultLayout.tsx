@@ -5,8 +5,6 @@ import { useRedirectFromState } from "app/hooks"
 import { NavMenuItems, LinklistMenu } from "app/components"
 import CaseTitleUpdater from "app/routing/components/CaseTitleUpdater"
 
-import styles from "./styles.module.css"
-
 export const DefaultLayout: React.FC = () => {
   useRedirectFromState()
 
@@ -17,7 +15,6 @@ export const DefaultLayout: React.FC = () => {
       <Page>
         <PageHeader
           brandName={`${env.VITE_APP_TITLE} ${env.VITE_ENV}`}
-          className={styles.header}
           menuItems={NavMenuItems}
           noMenuButtonOnWideWindow
         >
