@@ -12,6 +12,7 @@ type Props = {
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
   shouldShow?: (formValues: FieldValues) => boolean
+  rows?: number
 }
 
 export const TextAreaField: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const TextAreaField: React.FC<Props> = ({
   validation = {},
   formMethods = {},
   shouldShow,
+  rows = 4,
   ...rest
 }) => {
   const { formState, register, watch } =
@@ -39,8 +41,9 @@ export const TextAreaField: React.FC<Props> = ({
       </Label>
       <TextArea
         id={name}
-        rows={4}
+        rows={rows}
         invalid={hasError}
+        resize="vertical"
         {...(register ? register(name, validation) : {})}
         {...rest}
       />

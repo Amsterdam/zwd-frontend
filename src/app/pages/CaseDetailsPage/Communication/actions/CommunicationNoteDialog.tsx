@@ -25,7 +25,11 @@ export const CommunicationNoteDialog: React.FC<Props> = ({
   okText
 }) => (
   <Dialog id={dialogId} heading={heading}>
-    <Form<FormValues> defaultValues={defaultValues} onSubmit={onSubmit}>
+    <Form<FormValues>
+      defaultValues={defaultValues}
+      onSubmit={onSubmit}
+      formGrid={{ narrow: 4, medium: 8, wide: 12 }}
+    >
       <DateInputField
         name="date"
         label="Datum"
