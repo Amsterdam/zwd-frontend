@@ -17,7 +17,7 @@ type FormProps<T extends FieldValues> = {
   dummyValues?: DefaultValues<T>
 }
 
-const DEFAULT_GRID: GridColumnNumbers = { narrow: 4, medium: 6, wide: 10 }
+const DEFAULT_GRID: GridColumnNumbers = { narrow: 4, medium: 8, wide: 12 }
 
 type ChildProps = {
   name?: string
