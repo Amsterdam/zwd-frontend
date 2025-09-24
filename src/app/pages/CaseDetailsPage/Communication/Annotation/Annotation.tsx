@@ -66,7 +66,7 @@ export const Annotation: React.FC = () => {
           </Form>
         </div>
       ) : (
-        <Paragraph style={{ margin: "16px 0" }}>
+        <Paragraph style={{ margin: "16px 0", whiteSpace: "pre-line" }}>
           {data?.communication_note}
         </Paragraph>
       )}
