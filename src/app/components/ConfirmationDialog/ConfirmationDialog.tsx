@@ -35,7 +35,7 @@ export const ConfirmationDialog: React.FC<Props> = ({
     }
     heading={title ?? "Weet u zeker?"}
   >
-    <Paragraph className="ams-mb--md">
+    <Paragraph style={{ marginBottom: 12 }}>
       {content ??
         "Weet u zeker dat u door wilt gaan met het uitvoeren van deze actie?"}
     </Paragraph>

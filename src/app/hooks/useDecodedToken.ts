@@ -18,3 +18,17 @@ export const useDecodedToken = (): DecodedToken | undefined => {
   const decoded = jwtDecode<DecodedToken>(token)
   return decoded
 }
+
+function parseName(nameString: string): string {
+  const [lastName, firstName] = nameString
+    .split(", ")
+    .map((part) => part.trim())
+  return `${firstName} ${lastName}`
+}
+
+export const useUserFullName = (): string | undefined => {
+  const decodedToken = useDecodedToken()
+  if (!decodedToken?.name) return undefined
+
+  return parseName(decodedToken.name)
+}

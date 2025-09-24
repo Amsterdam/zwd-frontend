@@ -11,11 +11,13 @@ type Props = {
   label?: string
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
+  type?: "date" | "datetime-local"
 }
 
 export const DateInputField: React.FC<Props> = ({
   name,
   label,
+  type = "date",
   formMethods = {},
   validation = {},
   ...rest
@@ -31,6 +33,7 @@ export const DateInputField: React.FC<Props> = ({
       <DateInput
         aria-describedby="date"
         invalid={hasError}
+        type={type}
         {...(register ? register(name, validation) : {})}
         {...rest}
       />
