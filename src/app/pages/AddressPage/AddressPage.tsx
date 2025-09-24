@@ -2,7 +2,7 @@ import { HouseIcon } from "@amsterdam/design-system-react-icons"
 import { useNavigate, useParams } from "react-router-dom"
 import { PageHeading, PageSpinner, PageGrid } from "app/components"
 import HoaDescription from "./HoaDescription"
-import { Button, Grid, GridColumnNumbers } from "@amsterdam/design-system-react"
+import { Button, Grid, GridColumnNumbers, Link, Paragraph } from "@amsterdam/design-system-react"
 import {
   useHomeownerAssociation,
   useHomeownerAssociationByBagId
@@ -38,6 +38,10 @@ export const AddressPage: React.FC = () => {
             {hoa?.id ? (
               <Grid.Cell span={gridSpan}>
                 <HoaDescription hoa={hoa} />
+                <Paragraph size="small" style={{ marginTop: "1.5rem" }}>
+                  <span style={{ marginRight: "0.25rem" }}>Zie je onjuiste vve-gegevens?</span>
+                  <Link href="https://www.amsterdam.nl/stelselpedia/terugmelden/" target="_blank" rel="external noopener noreferrer">Meld het hier</Link>
+                </Paragraph>
               </Grid.Cell>
             ) : (
               <Grid.Cell span={gridSpan}>

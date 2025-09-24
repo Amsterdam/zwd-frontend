@@ -2,7 +2,8 @@ import { Dialog } from "@amsterdam/design-system-react"
 import { useParams } from "react-router-dom"
 import { Form, FormActionButtons, SelectField } from "app/components/forms"
 import { useCaseProcesses, useCaseProcessesStart } from "app/state/rest"
-import { useMemo } from "react"
+import { useMemo, useContext } from "react"
+import { ApiContext } from "app/state/rest/provider/ApiProvider"
 
 type Props = {
   id: string
@@ -20,6 +21,7 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
   const { caseId } = useParams()
   const [data] = useCaseProcesses(Number(caseId))
   const [, { execPost }] = useCaseProcessesStart(Number(caseId))
+  const { clearCache: clearTasksCache } = useContext(ApiContext)["tasks"]
 
   const options: Option[] = useMemo(() => {
     if (!data) return []
@@ -30,6 +32,7 @@ export const SubtaskDialog: React.FC<Props> = ({ id }) => {
     execPost(variables)
       .then((resp) => {
         console.log("Succes:", resp)
+        clearTasksCache()
       })
       .catch((err) => {
         console.log("Error creating case:", err)

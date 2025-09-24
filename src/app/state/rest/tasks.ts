@@ -26,8 +26,8 @@ export const useTasks = (
   adviceType?: string,
   advisor?: string,
   applicationType?: string,
-  createdRangeAfter?: string,
-  createdRangeBefore?: string,
+  requestDateRangeAfter?: string,
+  requestDateRangeBefore?: string,
   isSmallHoa?: string,
   options?: Options
 ) => {
@@ -46,8 +46,8 @@ export const useTasks = (
       advice_type: adviceType,
       advisor,
       application_type: applicationType,
-      created_range_after: createdRangeAfter,
-      created_range_before: createdRangeBefore,
+      request_date_range_after: requestDateRangeAfter,
+      request_date_range_before: requestDateRangeBefore,
       is_small_hoa: isSmallHoa,
       ordering: sorting
         ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
@@ -66,8 +66,8 @@ export const useTasks = (
     adviceType,
     advisor,
     applicationType,
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     isSmallHoa,
     sorting
   ])

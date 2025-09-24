@@ -5,6 +5,7 @@ import {
 } from "./formOptions"
 
 type FormTypes = {
+  request_date: string
   fullname: string[]
   email: string[]
   phone: string[]
@@ -30,6 +31,7 @@ const mapData = (
   data: CaseCreateFormTypes,
   homeowner_association: Components.Schemas.HomeownerAssociation["id"]
 ): CaseCreateInput => ({
+  request_date: data.request_date,
   application_type: data.application_type,
   advice_type: (
     data.application_type === APPLICATION_TYPES.ADVIES
@@ -66,6 +68,7 @@ export default mapData
 export type DefaultDummyValues = Omit<CaseCreateFormTypes, "id">
 
 export const defaultDummyValues: DefaultDummyValues = {
+  request_date: "2025-09-15",
   application_type: "Advies",
   advice_type: "Energieadvies",
   fullname: ["Chewbacca", "Han Solo"],
@@ -76,6 +79,7 @@ export const defaultDummyValues: DefaultDummyValues = {
 }
 
 export const dummyValuesActivationTeam: DefaultDummyValues = {
+  request_date: "2025-09-15",
   application_type: "Activatieteam",
   activationteam_type: "Informatiebijeenkomst",
   activationteam_subject: ACTIVATIETEAM_SUBJECTS.ANDERS,

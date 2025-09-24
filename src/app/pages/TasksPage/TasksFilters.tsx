@@ -21,8 +21,8 @@ const TASKS = "tasks"
 
 export const TasksFilters = () => {
   const {
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     isSmallHoa,
     pagination,
     showAllFilters,
@@ -104,17 +104,17 @@ export const TasksFilters = () => {
             value={isSmallHoa}
           />
           <DateFilter
-            value={createdRangeAfter}
-            label="Startdatum na"
+            value={requestDateRangeAfter}
+            label="Aanvraagdatum na"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeAfter", value)
+              onChangeFilter("requestDateRangeAfter", value)
             }
           />
           <DateFilter
-            value={createdRangeBefore}
-            label="Startdatum voor"
+            value={requestDateRangeBefore}
+            label="Aanvraagdatum voor"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeBefore", value)
+              onChangeFilter("requestDateRangeBefore", value)
             }
           />
         </>

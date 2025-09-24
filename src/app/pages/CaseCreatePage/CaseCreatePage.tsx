@@ -3,6 +3,7 @@ import { PencilIcon } from "@amsterdam/design-system-react-icons"
 import { Heading } from "@amsterdam/design-system-react"
 import { useNavigate, useParams } from "react-router-dom"
 import {
+  DateInputField,
   PageHeading,
   Form,
   RadioGroupFieldSet,
@@ -81,6 +82,11 @@ export const CaseCreatePage: React.FC = () => {
             dummyValues={dummyValuesActivationTeam}
             formGrid={{ narrow: 4, medium: 6, wide: 6 }}
           >
+            <DateInputField
+              name="request_date"
+              label="Wat is de aanvraagdatum?"
+              validation={{ required: true }}
+            />
             <RadioGroupFieldSet
               name="application_type"
               label="Waarvoor is de aanvraag?"

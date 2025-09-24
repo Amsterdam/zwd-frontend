@@ -29,6 +29,8 @@ declare namespace Components {
             woonplaats?: string | null;
             adresseerbaarobject_id?: string | null;
             nummeraanduiding_id?: string | null;
+            eigenaar_type?: string | null;
+            eigenaar_naam?: string | null;
         }
         /**
          * * `Advies` - ADVICE
@@ -61,6 +63,11 @@ declare namespace Components {
             id: number;
             legacy_id?: string | null;
             prefixed_dossier_id?: string | null;
+            request_date?: string | null; // date
+            advisor: {
+                id: number;
+                name: string;
+            };
             status: string;
             workflows: CaseWorkflow[];
         }
@@ -82,6 +89,7 @@ declare namespace Components {
             is_successful: boolean;
         }
         export interface CaseCreate {
+            activation_team?: ActivationTeam;
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
@@ -98,7 +106,7 @@ declare namespace Components {
             homeowner_association?: number | null;
             id: number;
             legacy_id?: string | null;
-            activation_team?: ActivationTeam;
+            request_date?: string | null; // date
         }
         export interface CaseDocument {
             id: number;
@@ -153,6 +161,7 @@ declare namespace Components {
             id: number;
             legacy_id?: string | null;
             prefixed_dossier_id?: string | null;
+            request_date?: string | null; // date
             status: string;
             updated: string; // date-time
         }
@@ -265,6 +274,7 @@ declare namespace Components {
             id: number;
             legacy_id?: string | null;
             prefixed_dossier_id?: string | null;
+            request_date?: string | null; // date
             status: string;
             updated: string; // date-time
         }
@@ -611,8 +621,6 @@ declare namespace Paths {
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
-            export type CreatedRangeAfter = string; // date
-            export type CreatedRangeBefore = string; // date
             export type District = string[];
             export type EndDateRangeAfter = string; // date
             export type EndDateRangeBefore = string; // date
@@ -620,6 +628,8 @@ declare namespace Paths {
             export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
+            export type RequestDateRangeAfter = string; // date
+            export type RequestDateRangeBefore = string; // date
             export type Search = string;
             export type Status = number[];
             export type Wijk = string[];
@@ -632,14 +642,14 @@ declare namespace Paths {
             advisor?: Parameters.Advisor;
             application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
-            created_range_after?: Parameters.CreatedRangeAfter /* date */;
-            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
             end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
             end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
             is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
+            request_date_range_after?: Parameters.RequestDateRangeAfter /* date */;
+            request_date_range_before?: Parameters.RequestDateRangeBefore /* date */;
             search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
@@ -740,8 +750,6 @@ declare namespace Paths {
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
-            export type CreatedRangeAfter = string; // date
-            export type CreatedRangeBefore = string; // date
             export type District = string[];
             export type EndDateRangeAfter = string; // date
             export type EndDateRangeBefore = string; // date
@@ -750,6 +758,8 @@ declare namespace Paths {
             export type Ordering = string;
             export type Page = number;
             export type PageSize = number;
+            export type RequestDateRangeAfter = string; // date
+            export type RequestDateRangeBefore = string; // date
             export type Search = string;
             export type Status = string[];
             export type Wijk = string[];
@@ -759,8 +769,6 @@ declare namespace Paths {
             advisor?: Parameters.Advisor;
             application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
-            created_range_after?: Parameters.CreatedRangeAfter /* date */;
-            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
             end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
             end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
@@ -769,6 +777,8 @@ declare namespace Paths {
             ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            request_date_range_after?: Parameters.RequestDateRangeAfter /* date */;
+            request_date_range_before?: Parameters.RequestDateRangeBefore /* date */;
             search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
@@ -783,8 +793,6 @@ declare namespace Paths {
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
-            export type CreatedRangeAfter = string; // date
-            export type CreatedRangeBefore = string; // date
             export type District = string[];
             export type EndDateRangeAfter = string; // date
             export type EndDateRangeBefore = string; // date
@@ -792,6 +800,8 @@ declare namespace Paths {
             export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
+            export type RequestDateRangeAfter = string; // date
+            export type RequestDateRangeBefore = string; // date
             export type Search = string;
             export type Status = number[];
             export type Wijk = string[];
@@ -804,14 +814,14 @@ declare namespace Paths {
             advisor?: Parameters.Advisor;
             application_type?: Parameters.ApplicationType;
             closed?: Parameters.Closed;
-            created_range_after?: Parameters.CreatedRangeAfter /* date */;
-            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
             end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
             end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
             is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
+            request_date_range_after?: Parameters.RequestDateRangeAfter /* date */;
+            request_date_range_before?: Parameters.RequestDateRangeBefore /* date */;
             search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;
@@ -1014,8 +1024,6 @@ declare namespace Paths {
             export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = string[];
             export type ApplicationType = "Activatieteam" | "Advies";
-            export type CreatedRangeAfter = string; // date
-            export type CreatedRangeBefore = string; // date
             export type District = string[];
             export type IsSmallHoa = boolean;
             export type Name = string;
@@ -1023,6 +1031,8 @@ declare namespace Paths {
             export type Ordering = string;
             export type Page = number;
             export type PageSize = number;
+            export type RequestDateRangeAfter = string; // date
+            export type RequestDateRangeBefore = string; // date
             export type Search = string;
             export type Status = string[];
             export type Wijk = string[];
@@ -1031,8 +1041,6 @@ declare namespace Paths {
             advice_type?: Parameters.AdviceType;
             advisor?: Parameters.Advisor;
             application_type?: Parameters.ApplicationType;
-            created_range_after?: Parameters.CreatedRangeAfter /* date */;
-            created_range_before?: Parameters.CreatedRangeBefore /* date */;
             district?: Parameters.District;
             is_small_hoa?: Parameters.IsSmallHoa;
             name?: Parameters.Name;
@@ -1040,6 +1048,8 @@ declare namespace Paths {
             ordering?: Parameters.Ordering;
             page?: Parameters.Page;
             page_size?: Parameters.PageSize;
+            request_date_range_after?: Parameters.RequestDateRangeAfter /* date */;
+            request_date_range_before?: Parameters.RequestDateRangeBefore /* date */;
             search?: Parameters.Search;
             status?: Parameters.Status;
             wijk?: Parameters.Wijk;

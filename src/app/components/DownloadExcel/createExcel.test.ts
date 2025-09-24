@@ -9,9 +9,9 @@ describe("createExcel", () => {
         legacy_id: 123,
         homeowner_association: { name: "VVE De Zonnebloem" },
         status: "Open",
-        created: "2025-09-10T12:07:57.926331Z",
-        updated: "2025-09-12T09:15:00.000Z",
+        request_date: "2025-09-10T12:07:57.926331Z",
         end_date: "2025-12-31T23:59:59.000Z",
+        updated: "2025-09-12T09:15:00.000Z",
       },
     ]
 
@@ -28,9 +28,9 @@ describe("createExcel", () => {
       "Excel ID",
       "Vve statutaire naam",
       "Status",
-      "Startdatum zaak",
-      "Laatst gewijzigd",
+      "Aanvraagdatum",
       "Einddatum zaak",
+      "Laatst gewijzigd",
     ])
 
     // Controleer eerste rij data

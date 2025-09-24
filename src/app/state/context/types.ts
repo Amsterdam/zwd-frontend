@@ -12,8 +12,8 @@ export type StateType = {
     adviceType: string
     applicationType: string
     count: number
-    createdRangeAfter?: string
-    createdRangeBefore?: string
+    requestDateRangeAfter?: string
+    requestDateRangeBefore?: string
     district: string
     endDateRangeAfter?: string
     endDateRangeBefore?: string
@@ -35,8 +35,8 @@ export type StateType = {
     advisor: string
     applicationType: string
     count: number
-    createdRangeAfter?: string
-    createdRangeBefore?: string
+    requestDateRangeAfter?: string
+    requestDateRangeBefore?: string
     district: string
     isClosedFilter: string
     isSmallHoa: string

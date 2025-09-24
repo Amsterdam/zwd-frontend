@@ -23,12 +23,12 @@ export const FormActionButtons: React.FC<Props> = ({
   formMethods
 }) => (
   <Row style={{ marginTop: 24 }}>
-    <CancelButton label={cancelText} onCancel={onCancel} />
     <SubmitButton
       label={okText}
       loading={loading}
       formState={formMethods?.formState}
       onSubmit={onOk}
     />
+    <CancelButton label={cancelText} onCancel={onCancel} />
   </Row>
 )

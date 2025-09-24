@@ -25,11 +25,11 @@ export const ConfirmationDialog: React.FC<Props> = ({
     id={id}
     footer={
       <ActionGroup>
-        <Button onClick={Dialog.close} variant="secondary">
-          Annuleer
-        </Button>
         <Button form="ams-dialog-asking-to-confirm-form" onClick={onOk}>
           {onOkText ?? "Doorgaan"}
+        </Button>
+        <Button onClick={Dialog.close} variant="secondary">
+          Annuleer
         </Button>
       </ActionGroup>
     }

@@ -29,9 +29,9 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
     sorter: createStringSorter<Components.Schemas.Case>("status")
   },
   {
-    header: "Startdatum zaak",
-    dataIndex: "created",
-    sorter: createDateSorter<Components.Schemas.Case>("created"),
+    header: "Aanvraagdatum",
+    dataIndex: "request_date",
+    sorter: createDateSorter<Components.Schemas.Case>("request_date"),
     render: (text) => formatDate(text)
   },
   {

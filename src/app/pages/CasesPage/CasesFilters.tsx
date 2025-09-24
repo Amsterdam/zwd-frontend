@@ -21,8 +21,8 @@ const CASES = "cases"
 
 export const CasesFilters = () => {
   const {
-    createdRangeAfter,
-    createdRangeBefore,
+    requestDateRangeAfter,
+    requestDateRangeBefore,
     endDateRangeAfter,
     endDateRangeBefore,
     isClosedFilter,
@@ -61,6 +61,16 @@ export const CasesFilters = () => {
         placeholder="Zoek op ID, Excel ID of statutaire naam"
       />
       <PageSizeFilter contextName={CASES} onChangePageSize={onChangePageSize} />
+      <BooleanStatusFilter
+        label="Toon zaken"
+        allLabel="Alle zaken"
+        trueLabel="Gesloten zaken"
+        falseLabel="Open zaken"
+        onChangeFilter={(value: string) =>
+          onChangeFilter("isClosedFilter", value)
+        }
+        value={isClosedFilter}
+      />
       <StatusFilter
         contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("status", value)}
@@ -69,14 +79,14 @@ export const CasesFilters = () => {
         contextName={CASES}
         onChangeFilter={(value: string) => onChangeFilter("district", value)}
       />
-      <NeighborhoodFilter
-        contextName={CASES}
-        onChangeFilter={(value: string) =>
-          onChangeFilter("neighborhood", value)
-        }
-      />
       {showAllFilters ? (
         <>
+          <NeighborhoodFilter
+            contextName={CASES}
+            onChangeFilter={(value: string) =>
+              onChangeFilter("neighborhood", value)
+            }
+          />
           <ApplicationTypeFilter
             contextName={CASES}
             onChangeFilter={(value: string) =>
@@ -104,28 +114,18 @@ export const CasesFilters = () => {
             value={isSmallHoa}
           />
           <DateFilter
-            value={createdRangeAfter}
-            label="Startdatum na"
+            value={requestDateRangeAfter}
+            label="Aanvraagdatum na"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeAfter", value)
+              onChangeFilter("requestDateRangeAfter", value)
             }
           />
           <DateFilter
-            value={createdRangeBefore}
-            label="Startdatum voor"
+            value={requestDateRangeBefore}
+            label="Aanvraagdatum voor"
             onChangeFilter={(value: string) =>
-              onChangeFilter("createdRangeBefore", value)
+              onChangeFilter("requestDateRangeBefore", value)
             }
-          />
-          <BooleanStatusFilter
-            label="Toon zaken"
-            allLabel="Alle zaken"
-            trueLabel="Gesloten zaken"
-            falseLabel="Open zaken"
-            onChangeFilter={(value: string) =>
-              onChangeFilter("isClosedFilter", value)
-            }
-            value={isClosedFilter}
           />
           <DateFilter
             value={endDateRangeAfter}

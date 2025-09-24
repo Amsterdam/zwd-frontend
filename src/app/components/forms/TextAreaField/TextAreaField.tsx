@@ -38,8 +38,7 @@ export const TextAreaField: React.FC<Props> = ({
         {label}
       </Label>
       <TextArea
-        aria-describedby="bodyDescription"
-        id="body"
+        id={name}
         rows={4}
         invalid={hasError}
         {...(register ? register(name, validation) : {})}
