@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@amsterdam/design-system-react": "^2.0.1",
-    "@amsterdam/design-system-react-icons": "^1.0.1",
+    "@amsterdam/design-system-react-icons": "^1.1.0",
     "@types/file-saver": "^2.0.7",
     "@types/leaflet": "^1.9.20",
     "@types/lodash.debounce": "^4.0.9",
