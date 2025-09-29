@@ -27,7 +27,7 @@ const getColumns = (total: number) =>
       header: "Type",
       dataIndex: "type",
       sorter: createStringSorter<HomeownerAssociationOwner>("type"),
-      defaultSortOrder: "DESCEND"
+      defaultSortOrder: "ASCEND"
     },
     {
       header: "Naam",
