@@ -20,7 +20,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Naam",
       dataIndex: "fullname",
       sorter: createStringSorter<Contact>("fullname"),
-      defaultSortOrder: "DESCEND"
+      defaultSortOrder: "ASCEND"
     },
     {
       header: "E-mail",

@@ -58,7 +58,7 @@ export const useHomeownerAssociationContacts = (
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "contacts")}`,
     lazy: id === undefined,
-    groupName: "hoa",
+    groupName: "cases",
     handleError,
     isProtected: true
   })
@@ -80,7 +80,7 @@ export const useHomeownerAssociationContactsCreateOrUpdate = (
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "contacts")}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "cases",
     handleError,
     isProtected: true
   })
@@ -96,7 +96,7 @@ export const useHomeownerAssociationContactDelete = (
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "delete-contact", contactId)}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "cases",
     handleError,
     isProtected: true
   })
