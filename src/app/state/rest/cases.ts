@@ -6,7 +6,7 @@ import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 import { getOrderingQueryParam, cleanParamObject } from "./utils"
 
 // You can add multiple sorting options here like `request_date: "request_date, id"`
-const SORTING_INDEX_MAPPING: Record<string, string> = {
+export const SORTING_INDEX_MAPPING: Record<string, string> = {
   request_date: "request_date",
   id: "id",
   updated: "updated",
