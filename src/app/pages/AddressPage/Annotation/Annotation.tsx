@@ -22,6 +22,15 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
   , [data?.annotation])
 
   const onSubmit = (values: FormValues) => {
+    if (values.annotation?.trim().length === 0) {
+      const confirm = window.confirm("Weet je zeker dat je de aantekening wilt verwijderen?")
+      if (confirm) {
+        values.annotation = null
+      } else {
+        setIsEditing(false)
+        return
+      }
+    }
     void execPatch(values).then(() => {
       setIsEditing(false)
     })
