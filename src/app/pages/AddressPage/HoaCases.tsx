@@ -10,7 +10,6 @@ import {
 } from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
-import Section from "./Section"
 import { PlusIcon } from "@amsterdam/design-system-react-icons"
 
 type Props = {
@@ -88,18 +87,20 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
             Nieuwe zaak aanmaken
         </Button>
       </Row>
-      <Heading level={3} style={{ marginBottom: "1rem" }}>
-        Open zaken {numberOfOpenCases > 0 && `(${numberOfOpenCases})`}
-      </Heading>
-      <Table
-        data={openCases}
-        columns={openColumns}
-        emptyPlaceholder="Geen open zaken gevonden"
-        loading={isBusy}
-        onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
-      />
+      <section>
+        <Heading level={3} style={{ marginBottom: "1rem" }}>
+          Open zaken {numberOfOpenCases > 0 && `(${numberOfOpenCases})`}
+        </Heading>
+        <Table
+          data={openCases}
+          columns={openColumns}
+          emptyPlaceholder="Geen open zaken gevonden"
+          loading={isBusy}
+          onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
+        />
+      </section>
       {numberOfClosedCases > 0 && (
-        <Section>
+        <section style={{ marginTop: "2rem" }}>
           <Heading level={3} style={{ marginBottom: "1rem" }}>
             Gesloten zaken {`(${numberOfClosedCases})`}
           </Heading>
@@ -108,7 +109,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
             columns={closedColumns}
             onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
           />
-        </Section>
+        </section>
       )}
     </>
   )

@@ -16,14 +16,17 @@ import {
 } from "app/state/rest"
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
-import Section from "./Section"
 import HoaContacts from "./HoaContacts"
 import MapView from "app/components/MapView/MapView"
+import Annotation from "./Annotation/Annotation"
+import Communication from "./Communication"
 import { useURLState } from "app/hooks"
 import {
   CertificateIcon,
   FolderIcon,
+  PencilIcon,
   PersonIcon,
+  MegaphoneIcon,
 } from "@amsterdam/design-system-react-icons"
 
 type TabHeaderProps = {
@@ -88,30 +91,40 @@ export const AddressPage: React.FC = () => {
             )}
           </Grid>
           {hoa?.id && (
-            <Section>
-              <Tabs activeTab={activeTab} onTabChange={setActiveTab}>
-                <Tabs.List>
-                  <Tabs.Button aria-controls="zaken">
-                    <TabHeader svg={FolderIcon} label="Zaken" />
-                  </Tabs.Button>
-                  <Tabs.Button aria-controls="contactpersonen">
-                    <TabHeader svg={PersonIcon} label="Contactpersonen" />
-                  </Tabs.Button>
-                  <Tabs.Button aria-controls="eigenaren">
-                    <TabHeader svg={CertificateIcon} label="Eigenaren" />
-                  </Tabs.Button>
-                </Tabs.List>
-                <Tabs.Panel id="zaken">
-                  <HoaCases hoaId={hoa.id} />
-                </Tabs.Panel>
-                <Tabs.Panel id="contactpersonen">
-                  <HoaContacts hoaId={hoa.id} />
-                </Tabs.Panel>
-                <Tabs.Panel id="eigenaren">
-                  <HoaOwners hoa={hoa} />
-                </Tabs.Panel>
-              </Tabs>
-            </Section>
+            <Tabs activeTab={activeTab} onTabChange={setActiveTab} style={{ marginTop: "2rem" }}>
+              <Tabs.List>
+                <Tabs.Button aria-controls="zaken">
+                  <TabHeader svg={FolderIcon} label="Zaken" />
+                </Tabs.Button>
+                <Tabs.Button aria-controls="contactpersonen">
+                  <TabHeader svg={PersonIcon} label="Contactpersonen" />
+                </Tabs.Button>
+                <Tabs.Button aria-controls="eigenaren">
+                  <TabHeader svg={CertificateIcon} label="Eigenaren" />
+                </Tabs.Button>
+                <Tabs.Button aria-controls="communicatie">
+                  <TabHeader svg={MegaphoneIcon} label="Communicatie" />
+                </Tabs.Button>
+                <Tabs.Button aria-controls="aantekeningen">
+                  <TabHeader svg={PencilIcon} label="Aantekeningen" />
+                </Tabs.Button>
+              </Tabs.List>
+              <Tabs.Panel id="zaken">
+                <HoaCases hoaId={hoa.id} />
+              </Tabs.Panel>
+              <Tabs.Panel id="contactpersonen">
+                <HoaContacts hoaId={hoa.id} />
+              </Tabs.Panel>
+              <Tabs.Panel id="eigenaren">
+                <HoaOwners hoa={hoa} />
+              </Tabs.Panel>
+              <Tabs.Panel id="communicatie">
+                <Communication />
+              </Tabs.Panel>
+              <Tabs.Panel id="aantekeningen">
+                <Annotation />
+              </Tabs.Panel>
+            </Tabs>
           )}
         </>
       ) : null}

@@ -12,7 +12,6 @@ import { useURLState } from "app/hooks"
 import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents"
-import Communication from "./Communication"
 import AddSubtask from "./AddSubtask/AddSubtask"
 import DownloadPdf from "./DownloadPdf/DownloadPdf"
 import createDataDetailsList from "./utils/createDataDetailsList"
@@ -52,9 +51,6 @@ export const CaseDetailsPage: React.FC = () => {
           <Tabs.Button aria-controls="documenten">
             <TabHeader svg={DocumentsIcon} label="Documenten" />
           </Tabs.Button>
-          <Tabs.Button aria-controls="communicatie">
-            <TabHeader svg={MegaphoneIcon} label="Communicatie" />
-          </Tabs.Button>
         </Tabs.List>
         <Tabs.Panel id="taken">
           {data?.id && (
@@ -67,9 +63,6 @@ export const CaseDetailsPage: React.FC = () => {
         </Tabs.Panel>
         <Tabs.Panel id="documenten">
           <Documents />
-        </Tabs.Panel>
-        <Tabs.Panel id="communicatie">
-          <Communication />
         </Tabs.Panel>
       </Tabs>
     </PageGrid>
