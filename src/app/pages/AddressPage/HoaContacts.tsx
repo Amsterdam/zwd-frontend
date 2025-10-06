@@ -1,4 +1,3 @@
-import { Heading } from "@amsterdam/design-system-react"
 import { ColumnType, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
 import { useHomeownerAssociationContacts } from "app/state/rest"
@@ -60,14 +59,13 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
 
   return (
     <>
-      <Heading level={2}>Contactpersonen</Heading>
+      <AddHoaContact hoaId={hoaId} />
       <Table
         loading={isBusy}
         data={contacts || []}
         columns={columns}
         emptyPlaceholder="Geen contactpersonen gevonden"
       />
-      <AddHoaContact hoaId={hoaId} />
     </>
   )
 }
