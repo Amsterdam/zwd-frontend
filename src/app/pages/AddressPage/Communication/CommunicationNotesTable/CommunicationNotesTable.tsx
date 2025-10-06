@@ -1,18 +1,20 @@
-import { useParams } from "react-router-dom"
 import { Table } from "app/components"
 import { useCommunicationNotes } from "app/state/rest"
-import { columns } from "./columns"
+import { createColumns } from "./columns"
 
-export const CommunicationNotesTable: React.FC = () => {
-  const { caseId } = useParams()
-  const [communicationNotes, { isBusy }] = useCommunicationNotes(Number(caseId))
+type CommunicationNotesTableProps = {
+  hoaId: number
+}
+
+export const CommunicationNotesTable: React.FC<CommunicationNotesTableProps> = ({ hoaId }) => {
+  const [communicationNotes, { isBusy }] = useCommunicationNotes(hoaId)
 
   return (
     <Table
       data={
-        (communicationNotes ?? []) as Components.Schemas.CaseCommunicationNote[]
+        (communicationNotes ?? []) as Components.Schemas.HomeownerAssociationCommunicationNote[]
       }
-      columns={columns}
+      columns={createColumns(hoaId)}
       emptyPlaceholder="Geen contactmeldingen gevonden"
       loading={isBusy}
     />

@@ -88,18 +88,6 @@ declare namespace Components {
             name: string;
             is_successful: boolean;
         }
-        export interface CaseCommunicationNote {
-            id: number;
-            note: string;
-            author_name?: string;
-            date?: string | null; // date-time
-        }
-        export interface CaseCommunicationNoteCreate {
-            id: number;
-            note: string;
-            author_name?: string;
-            date?: string | null; // date-time
-        }
         export interface CaseCreate {
             activation_team?: ActivationTeam;
             advice_type?: null & (/**
@@ -252,6 +240,18 @@ declare namespace Components {
             owners?: Owner[];
             wijk: string;
             zip_code?: string | null;
+        }
+        export interface HomeownerAssociationCommunicationNote {
+            id: number;
+            note: string;
+            author_name?: string;
+            date?: string | null; // date-time
+        }
+        export interface HomeownerAssociationCommunicationNoteCreate {
+            id: number;
+            note: string;
+            author_name?: string;
+            date?: string | null; // date-time
         }
         export interface HomeownerAssociationUpdate {
             annotation?: string | null;
@@ -456,13 +456,13 @@ declare namespace Components {
             previous?: string | null; // uri
             results: Wijk[];
         }
-        export interface PatchedCaseCommunicationNoteUpdate {
+        export interface PatchedCaseDocumentNameUpdate {
+            name?: string;
+        }
+        export interface PatchedHomeownerAssociationCommunicationNoteUpdate {
             note?: string;
             author_name?: string;
             date?: string | null; // date-time
-        }
-        export interface PatchedCaseDocumentNameUpdate {
-            name?: string;
         }
         export interface PatchedHomeownerAssociationUpdate {
             annotation?: string | null;
@@ -680,57 +680,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseAdvisor[];
-        }
-    }
-    namespace CasesCommunicationNotesCreate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.CaseCommunicationNoteCreate;
-        namespace Responses {
-            export type $201 = Components.Schemas.CaseCommunicationNote;
-        }
-    }
-    namespace CasesCommunicationNotesDestroy {
-        namespace Parameters {
-            export type Id = number;
-            export type NoteId = string;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-            note_id: Parameters.NoteId;
-        }
-        namespace Responses {
-            export interface $204 {
-            }
-        }
-    }
-    namespace CasesCommunicationNotesList {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseCommunicationNote[];
-        }
-    }
-    namespace CasesCommunicationNotesPartialUpdate {
-        namespace Parameters {
-            export type Id = number;
-            export type NoteId = string;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-            note_id: Parameters.NoteId;
-        }
-        export type RequestBody = Components.Schemas.PatchedCaseCommunicationNoteUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseCommunicationNote;
         }
     }
     namespace CasesCreate {
@@ -998,6 +947,57 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.CaseList;
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesCreate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.HomeownerAssociationCommunicationNoteCreate;
+        namespace Responses {
+            export type $201 = Components.Schemas.HomeownerAssociationCommunicationNote;
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesDestroy {
+        namespace Parameters {
+            export type Id = number;
+            export type NoteId = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+            note_id: Parameters.NoteId;
+        }
+        namespace Responses {
+            export interface $204 {
+            }
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesList {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationCommunicationNote[];
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesPartialUpdate {
+        namespace Parameters {
+            export type Id = number;
+            export type NoteId = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+            note_id: Parameters.NoteId;
+        }
+        export type RequestBody = Components.Schemas.PatchedHomeownerAssociationCommunicationNoteUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationCommunicationNote;
         }
     }
     namespace HomeownerAssociationContactsCreate {

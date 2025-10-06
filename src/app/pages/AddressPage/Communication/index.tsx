@@ -2,12 +2,16 @@ import { Row } from "@amsterdam/design-system-react"
 import { CreateCommunicationNote } from "./actions/CreateCommunicationNote"
 import { CommunicationNotesTable } from "./CommunicationNotesTable/CommunicationNotesTable"
 
-const Communication: React.FC = () => (
+type CommunicationProps = {
+  hoaId: number
+}
+
+const Communication: React.FC<CommunicationProps> = ({ hoaId }) => (
   <>
     <Row align="end" style={{ marginBottom: "1rem" }}>
-      <CreateCommunicationNote />
+      <CreateCommunicationNote hoaId={hoaId} />
     </Row>
-    <CommunicationNotesTable />
+    <CommunicationNotesTable hoaId={hoaId} />
   </>
 )
 
