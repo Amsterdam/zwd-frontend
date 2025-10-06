@@ -32,7 +32,7 @@ export const CasesFilters = () => {
     updateContextCases
   } = useContext(ContextValues)[CASES]
 
-  const onChangeFilter = (key: string, item: string | boolean) => {
+  const onChangeFilter = (key: string, item: string | boolean | string[]) => {
     const casesContextItem = {
       [key]: item,
       pagination: {
@@ -73,17 +73,17 @@ export const CasesFilters = () => {
       />
       <StatusFilter
         contextName={CASES}
-        onChangeFilter={(value: string) => onChangeFilter("status", value)}
+        onChangeFilter={(value: string[]) => onChangeFilter("status", value)}
       />
       <DistrictFilter
         contextName={CASES}
-        onChangeFilter={(value: string) => onChangeFilter("district", value)}
+        onChangeFilter={(value: string[]) => onChangeFilter("district", value)}
       />
       {showAllFilters ? (
         <>
           <NeighborhoodFilter
             contextName={CASES}
-            onChangeFilter={(value: string) =>
+            onChangeFilter={(value: string[]) =>
               onChangeFilter("neighborhood", value)
             }
           />
@@ -101,7 +101,9 @@ export const CasesFilters = () => {
           />
           <AdvisorFilter
             contextName={CASES}
-            onChangeFilter={(value: string) => onChangeFilter("advisor", value)}
+            onChangeFilter={(value: string[]) =>
+              onChangeFilter("advisor", value)
+            }
           />
           <BooleanStatusFilter
             label="Vve grootte"

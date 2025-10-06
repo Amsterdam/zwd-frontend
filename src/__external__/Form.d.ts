@@ -1,9 +1,14 @@
+type Option = {
+  value: string | number
+  label: string
+}
+
 type FormItem = {
   type: string
   name: string
   label: string
   required?: boolean
-  options?: { value: string | number; label: string }[]
+  options?: Option[]
   tooltip?: string
 }
 
