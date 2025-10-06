@@ -122,7 +122,7 @@ export const AddressPage: React.FC = () => {
                 <Communication />
               </Tabs.Panel>
               <Tabs.Panel id="aantekeningen">
-                <Annotation />
+                <Annotation hoaId={hoa.id} />
               </Tabs.Panel>
             </Tabs>
           )}

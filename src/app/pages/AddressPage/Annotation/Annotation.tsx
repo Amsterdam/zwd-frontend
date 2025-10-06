@@ -1,31 +1,30 @@
 import { useMemo, useState } from "react"
-import { useParams } from "react-router-dom"
 import {
   Button,
   Heading,
   Paragraph,
   Row
 } from "@amsterdam/design-system-react"
-import { useCase } from "app/state/rest"
+import { useHomeownerAssociation } from "app/state/rest"
 import { TextAreaField, FormActionButtons, Form } from "app/components"
-import { validationRequired } from "app/utils/validation"
 import { PencilIcon, PlusIcon } from "@amsterdam/design-system-react-icons"
 
 type FormValues = {
-  communication_note: Components.Schemas.Case["communication_note"]
+  annotation: Components.Schemas.HomeownerAssociation["annotation"]
 }
 
-export const Annotation: React.FC = () => {
-  const { caseId } = useParams()
-  const [data, { execPatch }] = useCase(Number(caseId))
+export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
+  const [data, { execPatch }] = useHomeownerAssociation(hoaId)
   const [isEditing, setIsEditing] = useState(false)
 
-  const hasCommunicationNote = useMemo(() =>
-    data?.communication_note?.length && data?.communication_note?.length > 0 && data?.communication_note
-  , [data?.communication_note])
+  const hasAnnotation = useMemo(() =>
+    data?.annotation?.length && data?.annotation?.length > 0 && data?.annotation
+  , [data?.annotation])
 
   const onSubmit = (values: FormValues) => {
-    execPatch(values)
+    void execPatch(values).then(() => {
+      setIsEditing(false)
+    })
   }
 
   const toggleEdit = () => {
@@ -42,23 +41,23 @@ export const Annotation: React.FC = () => {
         }}>
         <Button
           variant="primary"
-          icon={hasCommunicationNote ? PencilIcon : PlusIcon}
+          icon={hasAnnotation ? PencilIcon : PlusIcon}
           iconBefore
           onClick={toggleEdit}
         >
-          {hasCommunicationNote ? "Aantekeningen bewerken" : "Aantekening toevoegen"}
+          {hasAnnotation ? "Aantekeningen bewerken" : "Aantekening toevoegen"}
         </Button>
       </Row>
       {isEditing ? (
         <Form<FormValues>
-          defaultValues={{ communication_note: data?.communication_note }}
+          defaultValues={{ annotation: data?.annotation }}
           onSubmit={onSubmit}
           formGrid={{ narrow: 4, medium: 8, wide: 12 }}
         >
           <TextAreaField
-            name="communication_note"
-            label=""
-            validation={validationRequired}
+            name="annotation"
+            label={ hasAnnotation ? "Aantekening bewerken" : "Aantekening toevoegen" }
+            validation={{ required: false }}
             rows={10}
           />
           <FormActionButtons

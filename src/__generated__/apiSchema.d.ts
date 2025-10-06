@@ -57,7 +57,6 @@ declare namespace Components {
              */
             ApplicationTypeEnum;
             created?: string; // date-time
-            communication_note?: string | null;
             description?: string | null;
             end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
@@ -181,9 +180,6 @@ declare namespace Components {
         export interface CaseStatus {
             name: string;
         }
-        export interface CaseUpdate {
-            communication_note?: string | null;
-        }
         export interface CaseUserTask {
             id: number;
             task_id: string; // uuid
@@ -239,6 +235,7 @@ declare namespace Components {
             date_added: string; // date-time
         }
         export interface HomeownerAssociation {
+            annotation?: string | null;
             beschermd_stadsdorpsgezicht?: string | null;
             build_year: number;
             contacts: Nested[];
@@ -255,6 +252,9 @@ declare namespace Components {
             owners?: Owner[];
             wijk: string;
             zip_code?: string | null;
+        }
+        export interface HomeownerAssociationUpdate {
+            annotation?: string | null;
         }
         export interface MijnAmsterdam {
             bag_id: string;
@@ -464,8 +464,8 @@ declare namespace Components {
         export interface PatchedCaseDocumentNameUpdate {
             name?: string;
         }
-        export interface PatchedCaseUpdate {
-            communication_note?: string | null;
+        export interface PatchedHomeownerAssociationUpdate {
+            annotation?: string | null;
         }
         export interface PatchedUpdateCaseAdvisor {
             advisor?: number;
@@ -828,6 +828,7 @@ declare namespace Paths {
             export type District = string[];
             export type EndDateRangeAfter = string; // date
             export type EndDateRangeBefore = string; // date
+            export type Expand = boolean;
             export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
@@ -847,6 +848,7 @@ declare namespace Paths {
             district?: Parameters.District;
             end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
             end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
+            expand?: Parameters.Expand;
             is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
@@ -860,18 +862,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedCaseListList;
-        }
-    }
-    namespace CasesPartialUpdate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.PatchedCaseUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseUpdate;
         }
     }
     namespace CasesProcessesList {
@@ -938,18 +928,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.Case;
-        }
-    }
-    namespace CasesUpdate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.CaseUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseUpdate;
         }
     }
     namespace CasesWorkflowsRetrieve {
@@ -1084,6 +1062,18 @@ declare namespace Paths {
             export type $200 = Components.Schemas.PaginatedHomeownerAssociationList;
         }
     }
+    namespace HomeownerAssociationPartialUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.PatchedHomeownerAssociationUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationUpdate;
+        }
+    }
     namespace HomeownerAssociationPriorityZipcodeCreate {
         export type RequestBody = Components.Schemas.HomeownerAssociation;
         namespace Responses {
@@ -1104,6 +1094,18 @@ declare namespace Paths {
     namespace HomeownerAssociationSearchRetrieve {
         namespace Responses {
             export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace HomeownerAssociationUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.HomeownerAssociationUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationUpdate;
         }
     }
     namespace NeighborhoodsList {
