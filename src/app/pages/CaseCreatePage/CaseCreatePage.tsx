@@ -111,13 +111,15 @@ export const CaseCreatePage: React.FC = () => {
             <ContactsFormFields
               name="CONTACTS_FORM"
               shouldShow={(formValues) =>
-                formValues.advice_type === ADVIES_TYPES.ENERGIEADVIES ||
-                formValues.advice_type ===
-                  ADVIES_TYPES.HAALBAARHEIDSONDERZOEK ||
-                formValues.activationteam_type ===
-                  ACTIVATIETEAM_TYPES.INFORMATIEBIJEENKOMST ||
-                formValues.activationteam_type ===
-                  ACTIVATIETEAM_TYPES.LEDENVERGADERING
+                (formValues.application_type === APPLICATION_TYPES.ADVIES &&
+                  (formValues.advice_type === ADVIES_TYPES.ENERGIEADVIES ||
+                    formValues.advice_type ===
+                      ADVIES_TYPES.HAALBAARHEIDSONDERZOEK)) ||
+                (formValues.application_type === APPLICATION_TYPES.ACTIVATIETEAM &&
+                  (formValues.activationteam_type ===
+                    ACTIVATIETEAM_TYPES.INFORMATIEBIJEENKOMST ||
+                    formValues.activationteam_type ===
+                      ACTIVATIETEAM_TYPES.LEDENVERGADERING))
               }
             />
             <TextAreaField
