@@ -9,6 +9,7 @@ import {
   Table
 } from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
+import { useNavigateWithModifier } from "app/hooks"
 import { formatDate } from "app/utils/dates"
 import { PlusIcon } from "@amsterdam/design-system-react-icons"
 
@@ -59,6 +60,7 @@ const columns: ColumnType<Components.Schemas.Case>[] = [
 export const HoaCases: React.FC<Props> = ({ hoaId }) => {
   const [cases, { isBusy }] = useHomeownerAssociationCases(hoaId)
   const navigate = useNavigate()
+  const navigateWithModifier = useNavigateWithModifier()
 
   const openCases = cases?.filter(
     (caseItem) => caseItem.status !== "Afgesloten"
@@ -96,7 +98,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           columns={openColumns}
           emptyPlaceholder="Geen open zaken gevonden"
           loading={isBusy}
-          onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
+          onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
         />
       </section>
       {numberOfClosedCases > 0 && (
@@ -107,7 +109,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           <Table
             data={closedCases}
             columns={closedColumns}
-            onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
+            onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
           />
         </section>
       )}

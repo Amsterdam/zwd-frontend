@@ -1,8 +1,8 @@
 import { useContext, useEffect, useMemo } from "react"
-import { useNavigate } from "react-router-dom"
 import { useCases } from "app/state/rest"
 import { Table, PageHeading, PageGrid } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
+import { useNavigateWithModifier } from "app/hooks"
 import getColumns from "./columns"
 import CasesFilters from "./CasesFilters"
 
@@ -28,7 +28,7 @@ export const CasesPage: React.FC = () => {
     wijk,
     updateContextCases
   } = useContext(ContextValues)["cases"]
-  const navigate = useNavigate()
+  const navigateWithModifier = useNavigateWithModifier()
   const [dataSource, { isBusy }] = useCases(
     pagination,
     adviceType,
@@ -79,7 +79,7 @@ export const CasesPage: React.FC = () => {
         columns={columns}
         data={results}
         loading={isBusy}
-        onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
+        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,
