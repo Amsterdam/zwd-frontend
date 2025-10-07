@@ -50,16 +50,20 @@ export const MultiSelectField = ({
       ...base,
       backgroundColor:
         state.isSelected || state.isFocused
-          ? COLOR_HIGHLIGHT // Blauw bij focus of geselecteerd
-          : "transparent" // Default background colour
+          ? COLOR_HIGHLIGHT // Blue background by focus or selected
+          : "transparent", // Default background colour
+      color: state.isSelected || state.isFocused ? "white" : "black", // White text by focus or selected
+      "&:active": {
+        backgroundColor: COLOR_HIGHLIGHT // Blue by clicking
+      }
     }),
     multiValue: (base) => ({
       ...base,
-      borderRadius: 0 // Border van tag in select
+      borderRadius: 0 // Border of tag in select
     }),
     multiValueLabel: (base) => ({
       ...base,
-      color: "var(--ams-color-text)" // kleur van de tekst in de tag
+      color: "var(--ams-color-text)" // Color of the text in the tag
     }),
     multiValueRemove: (base) => ({
       ...base,
