@@ -1,20 +1,20 @@
 import { IconButton } from "@amsterdam/design-system-react"
 import { TrashBinIcon } from "@amsterdam/design-system-react-icons"
-import { useParams } from "react-router-dom"
 import { useDialog } from "app/hooks"
 import { useCommunicationNote } from "app/state/rest"
 import { ConfirmationDialog } from "app/components"
 
 type Props = {
-  communicationNote: Components.Schemas.CaseCommunicationNote
+  hoaId: number
+  communicationNote: Components.Schemas.HomeownerAssociationCommunicationNote
 }
 
-export const UpdateCommunicationNote: React.FC<Props> = ({
+export const DeleteCommunicationNote: React.FC<Props> = ({
+  hoaId,
   communicationNote
 }) => {
-  const { caseId } = useParams()
   const [, { execDelete }] = useCommunicationNote(
-    Number(caseId),
+    hoaId,
     communicationNote.id
   )
   const dialogId = `delete-communication-note-${communicationNote.id}`
@@ -50,4 +50,4 @@ export const UpdateCommunicationNote: React.FC<Props> = ({
   )
 }
 
-export default UpdateCommunicationNote
+export default DeleteCommunicationNote

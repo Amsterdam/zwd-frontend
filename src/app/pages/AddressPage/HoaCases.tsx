@@ -1,4 +1,4 @@
-import { Heading } from "@amsterdam/design-system-react"
+import { Button, Heading, Row } from "@amsterdam/design-system-react"
 import { useNavigate } from "react-router-dom"
 import {
   ColumnType,
@@ -10,7 +10,7 @@ import {
 } from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
 import { formatDate } from "app/utils/dates"
-import Section from "./Section"
+import { PlusIcon } from "@amsterdam/design-system-react-icons"
 
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
@@ -76,19 +76,32 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
   const numberOfClosedCases = closedCases?.length || 0
   return (
     <>
-      <Heading level={2}>
-        Open zaken {numberOfOpenCases > 0 && `(${numberOfOpenCases})`}
-      </Heading>
-      <Table
-        data={openCases}
-        columns={openColumns}
-        emptyPlaceholder="Geen open zaken gevonden"
-        loading={isBusy}
-        onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
-      />
+      <Row align="end">
+        <Button
+          onClick={() => void navigate(`/vve/${hoaId}/zaken/nieuw`)}
+          key="id-add-case"
+          variant="primary"
+          icon={PlusIcon}
+          iconBefore
+          >
+            Nieuwe zaak aanmaken
+        </Button>
+      </Row>
+      <section>
+        <Heading level={3} style={{ marginBottom: "1rem" }}>
+          Open zaken {numberOfOpenCases > 0 && `(${numberOfOpenCases})`}
+        </Heading>
+        <Table
+          data={openCases}
+          columns={openColumns}
+          emptyPlaceholder="Geen open zaken gevonden"
+          loading={isBusy}
+          onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
+        />
+      </section>
       {numberOfClosedCases > 0 && (
-        <Section>
-          <Heading level={2}>
+        <section style={{ marginTop: "2rem" }}>
+          <Heading level={3} style={{ marginBottom: "1rem" }}>
             Gesloten zaken {`(${numberOfClosedCases})`}
           </Heading>
           <Table
@@ -96,7 +109,7 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
             columns={closedColumns}
             onClickRow={(obj) => void navigate(`/zaken/${obj.id}`)}
           />
-        </Section>
+        </section>
       )}
     </>
   )

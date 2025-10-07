@@ -57,7 +57,6 @@ declare namespace Components {
              */
             ApplicationTypeEnum;
             created?: string; // date-time
-            communication_note?: string | null;
             description?: string | null;
             end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
@@ -88,18 +87,6 @@ declare namespace Components {
             id: number;
             name: string;
             is_successful: boolean;
-        }
-        export interface CaseCommunicationNote {
-            id: number;
-            note: string;
-            author_name?: string;
-            date?: string | null; // date-time
-        }
-        export interface CaseCommunicationNoteCreate {
-            id: number;
-            note: string;
-            author_name?: string;
-            date?: string | null; // date-time
         }
         export interface CaseCreate {
             activation_team?: ActivationTeam;
@@ -181,9 +168,6 @@ declare namespace Components {
         export interface CaseStatus {
             name: string;
         }
-        export interface CaseUpdate {
-            communication_note?: string | null;
-        }
         export interface CaseUserTask {
             id: number;
             task_id: string; // uuid
@@ -239,6 +223,7 @@ declare namespace Components {
             date_added: string; // date-time
         }
         export interface HomeownerAssociation {
+            annotation?: string | null;
             beschermd_stadsdorpsgezicht?: string | null;
             build_year: number;
             contacts: Nested[];
@@ -255,6 +240,21 @@ declare namespace Components {
             owners?: Owner[];
             wijk: string;
             zip_code?: string | null;
+        }
+        export interface HomeownerAssociationCommunicationNote {
+            id: number;
+            note: string;
+            author_name?: string;
+            date?: string | null; // date-time
+        }
+        export interface HomeownerAssociationCommunicationNoteCreate {
+            id: number;
+            note: string;
+            author_name?: string;
+            date?: string | null; // date-time
+        }
+        export interface HomeownerAssociationUpdate {
+            annotation?: string | null;
         }
         export interface MijnAmsterdam {
             bag_id: string;
@@ -456,16 +456,16 @@ declare namespace Components {
             previous?: string | null; // uri
             results: Wijk[];
         }
-        export interface PatchedCaseCommunicationNoteUpdate {
+        export interface PatchedCaseDocumentNameUpdate {
+            name?: string;
+        }
+        export interface PatchedHomeownerAssociationCommunicationNoteUpdate {
             note?: string;
             author_name?: string;
             date?: string | null; // date-time
         }
-        export interface PatchedCaseDocumentNameUpdate {
-            name?: string;
-        }
-        export interface PatchedCaseUpdate {
-            communication_note?: string | null;
+        export interface PatchedHomeownerAssociationUpdate {
+            annotation?: string | null;
         }
         export interface PatchedUpdateCaseAdvisor {
             advisor?: number;
@@ -682,57 +682,6 @@ declare namespace Paths {
             export type $200 = Components.Schemas.CaseAdvisor[];
         }
     }
-    namespace CasesCommunicationNotesCreate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.CaseCommunicationNoteCreate;
-        namespace Responses {
-            export type $201 = Components.Schemas.CaseCommunicationNote;
-        }
-    }
-    namespace CasesCommunicationNotesDestroy {
-        namespace Parameters {
-            export type Id = number;
-            export type NoteId = string;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-            note_id: Parameters.NoteId;
-        }
-        namespace Responses {
-            export interface $204 {
-            }
-        }
-    }
-    namespace CasesCommunicationNotesList {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseCommunicationNote[];
-        }
-    }
-    namespace CasesCommunicationNotesPartialUpdate {
-        namespace Parameters {
-            export type Id = number;
-            export type NoteId = string;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-            note_id: Parameters.NoteId;
-        }
-        export type RequestBody = Components.Schemas.PatchedCaseCommunicationNoteUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseCommunicationNote;
-        }
-    }
     namespace CasesCreate {
         export type RequestBody = Components.Schemas.CaseCreate;
         namespace Responses {
@@ -828,6 +777,7 @@ declare namespace Paths {
             export type District = string[];
             export type EndDateRangeAfter = string; // date
             export type EndDateRangeBefore = string; // date
+            export type Expand = boolean;
             export type IsSmallHoa = boolean;
             export type Neighborhood = string[];
             export type Ordering = string;
@@ -847,6 +797,7 @@ declare namespace Paths {
             district?: Parameters.District;
             end_date_range_after?: Parameters.EndDateRangeAfter /* date */;
             end_date_range_before?: Parameters.EndDateRangeBefore /* date */;
+            expand?: Parameters.Expand;
             is_small_hoa?: Parameters.IsSmallHoa;
             neighborhood?: Parameters.Neighborhood;
             ordering?: Parameters.Ordering;
@@ -860,18 +811,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedCaseListList;
-        }
-    }
-    namespace CasesPartialUpdate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.PatchedCaseUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseUpdate;
         }
     }
     namespace CasesProcessesList {
@@ -938,18 +877,6 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.Case;
-        }
-    }
-    namespace CasesUpdate {
-        namespace Parameters {
-            export type Id = number;
-        }
-        export interface PathParameters {
-            id: Parameters.Id;
-        }
-        export type RequestBody = Components.Schemas.CaseUpdate;
-        namespace Responses {
-            export type $200 = Components.Schemas.CaseUpdate;
         }
     }
     namespace CasesWorkflowsRetrieve {
@@ -1022,6 +949,57 @@ declare namespace Paths {
             export type $200 = Components.Schemas.CaseList;
         }
     }
+    namespace HomeownerAssociationCommunicationNotesCreate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.HomeownerAssociationCommunicationNoteCreate;
+        namespace Responses {
+            export type $201 = Components.Schemas.HomeownerAssociationCommunicationNote;
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesDestroy {
+        namespace Parameters {
+            export type Id = number;
+            export type NoteId = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+            note_id: Parameters.NoteId;
+        }
+        namespace Responses {
+            export interface $204 {
+            }
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesList {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationCommunicationNote[];
+        }
+    }
+    namespace HomeownerAssociationCommunicationNotesPartialUpdate {
+        namespace Parameters {
+            export type Id = number;
+            export type NoteId = string;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+            note_id: Parameters.NoteId;
+        }
+        export type RequestBody = Components.Schemas.PatchedHomeownerAssociationCommunicationNoteUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationCommunicationNote;
+        }
+    }
     namespace HomeownerAssociationContactsCreate {
         namespace Parameters {
             export type Id = number;
@@ -1084,6 +1062,18 @@ declare namespace Paths {
             export type $200 = Components.Schemas.PaginatedHomeownerAssociationList;
         }
     }
+    namespace HomeownerAssociationPartialUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.PatchedHomeownerAssociationUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationUpdate;
+        }
+    }
     namespace HomeownerAssociationPriorityZipcodeCreate {
         export type RequestBody = Components.Schemas.HomeownerAssociation;
         namespace Responses {
@@ -1104,6 +1094,18 @@ declare namespace Paths {
     namespace HomeownerAssociationSearchRetrieve {
         namespace Responses {
             export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace HomeownerAssociationUpdate {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        export type RequestBody = Components.Schemas.HomeownerAssociationUpdate;
+        namespace Responses {
+            export type $200 = Components.Schemas.HomeownerAssociationUpdate;
         }
     }
     namespace NeighborhoodsList {

@@ -1,10 +1,11 @@
-import { Heading } from "@amsterdam/design-system-react"
 import {
   ColumnType,
   createNumberSorter,
   createStringSorter,
-  Table
+  Table,
 } from "app/components"
+import { Button, Row } from "@amsterdam/design-system-react"
+import { useNavigate } from "react-router-dom"
 
 type HomeownerAssociationOwner = {
   homeowner_association: number
@@ -54,14 +55,20 @@ const getColumns = (total: number) =>
 export const HoaOwners: React.FC<Props> = ({ hoa }) => {
   const owners = (hoa.owners as unknown as HomeownerAssociationOwner[]) ?? []
   const columns = getColumns(hoa.number_of_apartments)
+  const navigate = useNavigate()
+
   return (
     <>
-      <Heading level={2}>Eigenaren</Heading>
       <Table
         data={owners}
         columns={columns}
         emptyPlaceholder="Geen eigenaren gevonden"
       />
+      <Row style={{ marginTop: "1.5rem" }}>
+        <Button onClick={() => { window.scrollTo(0, 0); void navigate(`/vve/${hoa?.id}/woningen`) }} variant="secondary">
+          Bekijk eigenaren per woning
+        </Button>
+      </Row>
     </>
   )
 }

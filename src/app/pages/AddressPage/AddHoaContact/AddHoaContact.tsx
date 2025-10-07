@@ -1,4 +1,5 @@
-import { Button } from "@amsterdam/design-system-react"
+import { Button, Row } from "@amsterdam/design-system-react"
+import { PlusIcon } from "@amsterdam/design-system-react-icons"
 import { useDialog } from "app/hooks"
 import AddHoaContactDialog from "./AddHoaContactDialog/AddHoaContactDialog"
 
@@ -12,16 +13,18 @@ export const AddHoaContact: React.FC<Props> = ({ hoaId, label }) => {
   const { openDialog } = useDialog(dialogId)
 
   return (
-    <>
+    <Row align="end" style={{ marginBottom: "1rem" }}>
       <Button
-        variant="secondary"
-        style={{ marginTop: "1.5rem" }}
+        key="id-add-contact"
+        variant="primary"
+        icon={PlusIcon}
+        iconBefore
         onClick={openDialog}
       >
         {label ?? "Contactpersoon toevoegen"}
       </Button>
       <AddHoaContactDialog hoaId={hoaId} dialogId={dialogId} />
-    </>
+    </Row>
   )
 }
 

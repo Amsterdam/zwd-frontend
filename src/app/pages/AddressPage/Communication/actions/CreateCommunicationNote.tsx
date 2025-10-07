@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom"
 import dayjs from "dayjs"
 import { Button } from "@amsterdam/design-system-react"
 import { PlusIcon } from "@amsterdam/design-system-react-icons"
@@ -8,12 +7,15 @@ import { ISO_DATE_FORMAT_TIME } from "app/utils/dates"
 import { useCommunicationNotes } from "app/state/rest"
 import type { FormValues } from "./types"
 
-export const CreateCommunicationNote: React.FC = () => {
+type CreateCommunicationNoteProps = {
+  hoaId: number
+}
+
+export const CreateCommunicationNote: React.FC<CreateCommunicationNoteProps> = ({ hoaId }) => {
   const dialogId = "create-communication-note"
-  const { caseId } = useParams()
   const { openDialog, closeDialog } = useDialog(dialogId)
   const userFullName = useUserFullName()
-  const [, { execPost }] = useCommunicationNotes(Number(caseId))
+  const [, { execPost }] = useCommunicationNotes(hoaId)
 
   const defaultValues = {
     date: dayjs().format(ISO_DATE_FORMAT_TIME),

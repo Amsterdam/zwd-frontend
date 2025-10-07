@@ -1,7 +1,6 @@
 import { IconButton } from "@amsterdam/design-system-react"
 import { PencilIcon } from "@amsterdam/design-system-react-icons"
 import dayjs from "dayjs"
-import { useParams } from "react-router-dom"
 import { useDialog } from "app/hooks"
 import { CommunicationNoteDialog } from "./CommunicationNoteDialog"
 import { useCommunicationNote } from "app/state/rest"
@@ -9,17 +8,18 @@ import { FormValues } from "./types"
 import { ISO_DATE_FORMAT_TIME } from "app/utils/dates"
 
 type Props = {
-  communicationNote: Components.Schemas.CaseCommunicationNote
+  hoaId: number
+  communicationNote: Components.Schemas.HomeownerAssociationCommunicationNote
 }
 
 export const UpdateCommunicationNote: React.FC<Props> = ({
+  hoaId,
   communicationNote
 }) => {
   const dialogId = `update-communication-note-${communicationNote.id}`
-  const { caseId } = useParams()
   const { openDialog, closeDialog } = useDialog(dialogId)
   const [, { execPatch }] = useCommunicationNote(
-    Number(caseId),
+    hoaId,
     communicationNote.id
   )
 

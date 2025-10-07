@@ -2,33 +2,33 @@ import type { Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
-type CommunicationNote = Components.Schemas.CaseCommunicationNote
+type CommunicationNote = Components.Schemas.HomeownerAssociationCommunicationNote
 
 export const useCommunicationNotes = (
-  id: Components.Schemas.Case["id"],
+  id: Components.Schemas.HomeownerAssociation["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
   return useApiRequest<CommunicationNote[] | CommunicationNote>({
     ...options,
-    url: `${makeApiUrl("cases", id, "communication-notes")}`,
-    groupName: "cases",
+    url: `${makeApiUrl("homeowner-association", id, "communication-notes")}`,
+    groupName: "hoa",
     handleError,
     isProtected: true
   })
 }
 
 export const useCommunicationNote = (
-  caseId: Components.Schemas.Case["id"],
+  hoaId: Components.Schemas.HomeownerAssociation["id"],
   noteId: CommunicationNote["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
   return useApiRequest<CommunicationNote>({
     ...options,
-    url: `${makeApiUrl("cases", caseId, "communication-notes", noteId)}`,
+    url: `${makeApiUrl("homeowner-association", hoaId, "communication-notes", noteId)}`,
     lazy: true,
-    groupName: "cases",
+    groupName: "hoa",
     handleError,
     isProtected: true
   })

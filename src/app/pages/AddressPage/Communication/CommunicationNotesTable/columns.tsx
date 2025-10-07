@@ -7,9 +7,9 @@ import { DateTime } from "app/components"
 import DeleteCommunicationNote from "../actions/DeleteCommunicationNote"
 import UpdateCommunicationNote from "../actions/UpdateCommunicationNote"
 
-type CommunicationNote = Components.Schemas.CaseCommunicationNote
+type CommunicationNote = Components.Schemas.HomeownerAssociationCommunicationNote
 
-export const columns: ColumnType<CommunicationNote>[] = [
+export const createColumns = (hoaId: number): ColumnType<CommunicationNote>[] => [
   {
     header: "Datum",
     dataIndex: "date",
@@ -33,8 +33,8 @@ export const columns: ColumnType<CommunicationNote>[] = [
     width: 80,
     render: (_, record) => (
       <div style={{ display: "flex", gap: "0.8rem" }}>
-        <UpdateCommunicationNote communicationNote={record} />
-        <DeleteCommunicationNote communicationNote={record} />
+        <UpdateCommunicationNote hoaId={hoaId} communicationNote={record} />
+        <DeleteCommunicationNote hoaId={hoaId} communicationNote={record} />
       </div>
     )
   }
