@@ -24,9 +24,6 @@ export const AdviceTypeFilter: React.FC<Props> = ({
         <Select.Option key="" value="">
           Alle adviestypes
         </Select.Option>
-        <Select.Option key="Cursus" value="Cursus">
-          Cursus
-        </Select.Option>
         <Select.Option key="Energieadvies" value="Energieadvies">
           Energieadvies
         </Select.Option>

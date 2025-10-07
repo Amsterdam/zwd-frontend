@@ -30,6 +30,9 @@ export const ApplicationTypeFilter: React.FC<Props> = ({
         <Select.Option key="Advies" value="Advies">
           Advies
         </Select.Option>
+        <Select.Option key="Cursus" value="Cursus">
+          Cursus
+        </Select.Option>
       </Select>
     </Field>
   )
