@@ -116,18 +116,3 @@ export const useHomeownerAssociationApartments = (
     isProtected: true
   })
 }
-
-export const useHomeownerAssociationUpdate = (
-  id: Components.Schemas.HomeownerAssociation["id"],
-  options?: Options
-) => {
-  const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.HomeownerAssociation>({
-    ...options,
-    url: `${makeApiUrl("homeowner-association", id)}`,
-    lazy: true,
-    groupName: "hoa",
-    handleError,
-    isProtected: true
-  })
-}
