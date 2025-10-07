@@ -10,44 +10,44 @@ export type ActionType = {
 export type StateType = {
   cases: {
     adviceType: string
+    advisor: string[]
     applicationType: string
     count: number
     requestDateRangeAfter?: string
     requestDateRangeBefore?: string
-    district: string
+    district: string[]
     endDateRangeAfter?: string
     endDateRangeBefore?: string
     isClosedFilter: string
     isSmallHoa: string
-    neighborhood: string
-    advisor: string
+    neighborhood: string[]
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]
     searchString: string
     showAllFilters: boolean
     sorting: TABLE.Sorting
-    status: string
+    status: string[]
     wijk: string
     updateContextCases: (payload: Payload) => void
   }
   tasks: {
     adviceType: string
-    advisor: string
+    advisor: string[]
     applicationType: string
     count: number
     requestDateRangeAfter?: string
     requestDateRangeBefore?: string
-    district: string
+    district: string[]
     isClosedFilter: string
     isSmallHoa: string
-    neighborhood: string
+    neighborhood: string[]
     taskName: string
     pagination: TABLE.Pagination
     results: CustomCaseUserTask[]
     searchString: string
     showAllFilters: boolean
     sorting: TABLE.Sorting
-    status: string
+    status: string[]
     wijk: string
     updateContextTasks: (payload: Payload) => void
   }

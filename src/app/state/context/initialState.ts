@@ -9,13 +9,13 @@ export const initialState: StateType = {
     count: 0,
     requestDateRangeAfter: "",
     requestDateRangeBefore: "",
-    district: "",
+    district: [],
     endDateRangeAfter: "",
     endDateRangeBefore: "",
     isClosedFilter: "false",
     isSmallHoa: "",
-    neighborhood: "",
-    advisor: "",
+    neighborhood: [],
+    advisor: [],
     pagination: {
       page: 1,
       pageSize: 25
@@ -27,21 +27,21 @@ export const initialState: StateType = {
       dataIndex: "request_date",
       order: "DESCEND"
     },
-    status: "",
+    status: [],
     wijk: "",
     updateContextCases: noop
   },
   tasks: {
     adviceType: "",
-    advisor: "",
+    advisor: [],
     applicationType: "",
     count: 0,
     requestDateRangeAfter: "",
     requestDateRangeBefore: "",
-    district: "",
+    district: [],
     isClosedFilter: "false",
     isSmallHoa: "",
-    neighborhood: "",
+    neighborhood: [],
     taskName: "",
     pagination: {
       page: 1,
@@ -54,7 +54,7 @@ export const initialState: StateType = {
       dataIndex: "created",
       order: "DESCEND"
     },
-    status: "",
+    status: [],
     wijk: "",
     updateContextTasks: noop
   }

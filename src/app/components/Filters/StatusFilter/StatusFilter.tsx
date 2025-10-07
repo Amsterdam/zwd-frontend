@@ -1,10 +1,11 @@
 import React, { useContext } from "react"
-import { Field, Label, Select } from "@amsterdam/design-system-react"
+import { Field, Label } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
 import { useCaseStatuses } from "app/state/rest"
+import { MultiSelectField } from "app/components/MultiSelectField/MultiSelectField"
 
 type Props = {
-  onChangeFilter: (value: string) => void
+  onChangeFilter: (value: string[]) => void
   contextName: "cases" | "tasks"
 }
 
@@ -15,23 +16,21 @@ export const StatusFilter: React.FC<Props> = ({
   const { status } = useContext(ContextValues)[contextName]
   const [caseStatuses] = useCaseStatuses()
 
-  const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onChangeFilter(e.currentTarget.value)
-  }
+  const options: Option[] =
+    caseStatuses?.map((name) => ({
+      value: String(name),
+      label: String(name)
+    })) || []
 
   return (
     <Field>
       <Label htmlFor="status">Status</Label>
-      <Select id="status" onChange={onChange} value={status}>
-        <Select.Option key="" value="">
-          Alle statussen
-        </Select.Option>
-        {caseStatuses?.map((status) => (
-          <Select.Option key={`${status}`} value={`${status}`}>
-            {`${status}`}
-          </Select.Option>
-        ))}
-      </Select>
+      <MultiSelectField
+        onChange={onChangeFilter}
+        value={status}
+        options={options}
+        placeholder="Selecteer statussen"
+      />
     </Field>
   )
 }

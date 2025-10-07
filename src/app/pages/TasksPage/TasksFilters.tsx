@@ -29,7 +29,7 @@ export const TasksFilters = () => {
     updateContextTasks
   } = useContext(ContextValues)[TASKS]
 
-  const onChangeFilter = (key: string, item: string | boolean) => {
+  const onChangeFilter = (key: string, item: string | boolean | string[]) => {
     const tasksContextItem = {
       [key]: item,
       pagination: {
@@ -63,17 +63,17 @@ export const TasksFilters = () => {
       />
       <StatusFilter
         contextName={TASKS}
-        onChangeFilter={(value: string) => onChangeFilter("status", value)}
+        onChangeFilter={(value: string[]) => onChangeFilter("status", value)}
       />
       <DistrictFilter
         contextName={TASKS}
-        onChangeFilter={(value: string) => onChangeFilter("district", value)}
+        onChangeFilter={(value: string[]) => onChangeFilter("district", value)}
       />
       {showAllFilters ? (
         <>
           <NeighborhoodFilter
             contextName={TASKS}
-            onChangeFilter={(value: string) =>
+            onChangeFilter={(value: string[]) =>
               onChangeFilter("neighborhood", value)
             }
           />
@@ -91,7 +91,9 @@ export const TasksFilters = () => {
           />
           <AdvisorFilter
             contextName={TASKS}
-            onChangeFilter={(value: string) => onChangeFilter("advisor", value)}
+            onChangeFilter={(value: string[]) =>
+              onChangeFilter("advisor", value)
+            }
           />
           <BooleanStatusFilter
             label="Vve grootte"

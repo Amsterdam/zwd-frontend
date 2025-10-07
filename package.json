@@ -48,6 +48,7 @@
     "react-hook-form": "^7.63.0",
     "react-oidc-context": "^3.3.0",
     "react-router-dom": "^7.9.1",
+    "react-select": "^5.10.2",
     "supercluster": "^8.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
