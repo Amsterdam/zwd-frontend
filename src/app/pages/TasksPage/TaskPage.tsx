@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigateWithModifier } from "app/hooks"
 import { PageGrid, PageHeading, Table } from "app/components"
 import { useTasks } from "app/state/rest"
 import getColumns from "./columns"
@@ -42,7 +42,7 @@ export const TasksPage: React.FC = () => {
     requestDateRangeBefore,
     isSmallHoa
   )
-  const navigate = useNavigate()
+  const navigateWithModifier = useNavigateWithModifier()
 
   useEffect(() => {
     if (dataSource?.results) {
@@ -75,7 +75,7 @@ export const TasksPage: React.FC = () => {
         columns={columns}
         data={results}
         loading={isBusy}
-        onClickRow={(obj) => void navigate(`/zaken/${obj.case}`)}
+        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.case}`)}
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,
