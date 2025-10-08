@@ -17,9 +17,8 @@ declare namespace Components {
         /**
          * * `Energieadvies` - ENERGY_ADVICE
          * * `Haalbaarheidsonderzoek` - HBO
-         * * `Cursus` - COURSE
          */
-        export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek" | "Cursus";
+        export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek";
         export interface Apartment {
             straatnaam?: string | null;
             huisnummer?: number | null;
@@ -35,8 +34,9 @@ declare namespace Components {
         /**
          * * `Advies` - ADVICE
          * * `Activatieteam` - ACTIVATIONTEAM
+         * * `Cursus` - COURSE
          */
-        export type ApplicationTypeEnum = "Advies" | "Activatieteam";
+        export type ApplicationTypeEnum = "Advies" | "Activatieteam" | "Cursus";
         export type BlankEnum = "";
         export interface BpmnModel {
             version: string;
@@ -48,12 +48,12 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
-             * * `Cursus` - COURSE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
+             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             created?: string; // date-time
@@ -93,12 +93,12 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
-             * * `Cursus` - COURSE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
+             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             contacts?: Contact[];
@@ -276,12 +276,12 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
-             * * `Cursus` - COURSE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
+             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             created?: string; // date-time
@@ -641,9 +641,9 @@ declare namespace Paths {
     }
     namespace CasesAdvisorsList {
         namespace Parameters {
-            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies";
+            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -770,9 +770,9 @@ declare namespace Paths {
     }
     namespace CasesList {
         namespace Parameters {
-            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies";
+            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -815,9 +815,9 @@ declare namespace Paths {
     }
     namespace CasesProcessesList {
         namespace Parameters {
-            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies";
+            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -1134,9 +1134,9 @@ declare namespace Paths {
     }
     namespace TasksList {
         namespace Parameters {
-            export type AdviceType = "Cursus" | "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = string[];
-            export type ApplicationType = "Activatieteam" | "Advies";
+            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
             export type District = string[];
             export type IsSmallHoa = boolean;
             export type Name = string;

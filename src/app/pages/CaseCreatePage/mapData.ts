@@ -1,6 +1,5 @@
 import {
   ACTIVATIETEAM_SUBJECTS,
-  ADVIES_TYPES,
   APPLICATION_TYPES
 } from "./formOptions"
 
@@ -39,7 +38,7 @@ const mapData = (
   description: data.description,
   homeowner_association,
   contacts:
-    data?.advice_type === ADVIES_TYPES.CURSUS
+    data?.application_type === APPLICATION_TYPES.CURSUS
       ? []
       : data?.fullname?.map((_, index) => ({
           fullname: data.fullname[index],

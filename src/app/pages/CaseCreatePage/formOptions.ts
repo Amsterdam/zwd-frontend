@@ -1,17 +1,17 @@
 export const APPLICATION_TYPES = {
+  ACTIVATIETEAM: "Activatieteam",
   ADVIES: "Advies",
-  ACTIVATIETEAM: "Activatieteam"
+  CURSUS: "Cursus",
 }
 
 export const ADVIES_TYPES = {
-  CURSUS: "Cursus",
   ENERGIEADVIES: "Energieadvies",
-  HAALBAARHEIDSONDERZOEK: "Haalbaarheidsonderzoek"
+  HAALBAARHEIDSONDERZOEK: "Haalbaarheidsonderzoek",
 }
 
 export const ACTIVATIETEAM_TYPES = {
   INFORMATIEBIJEENKOMST: "Informatiebijeenkomst",
-  LEDENVERGADERING: "Ledenvergadering"
+  LEDENVERGADERING: "Ledenvergadering",
 }
 
 export const ACTIVATIETEAM_SUBJECTS = {
@@ -23,13 +23,13 @@ export const ACTIVATIETEAM_SUBJECTS = {
     "U heeft de plannen voor het verduurzamingsscenario gemaakt en bent klaar om deze uit te voeren. U wilt op de ledenvergadering besluiten een opdracht te verlenen (aan bijvoorbeeld een aannemer).",
   FINANCIEEL_BESLUIT:
     "In de ledenvergadering nemen we het besluit om met de vve een financiering af te sluiten om de verduurzamingsmaatregelen te kunnen betalen.",
-  ANDERS: "Anders, namelijk:"
+  ANDERS: "Anders, namelijk:",
 }
 
 const createOptions = (record: Record<string, string>) =>
   Object.entries(record).map(([, value]) => ({
     value,
-    label: value
+    label: value,
   }))
 
 export const optionsApplicationTypes = createOptions(APPLICATION_TYPES)
@@ -56,13 +56,13 @@ export const ROLE_FUNCTIONS = {
   COMMISSIELID_TECHNISCH: "Commissielid technisch",
   VVE_LID: "Vve-lid",
   VVE_BEHEERDER: "Vve-beheerder",
-  CUSTOM: "Anders, namelijk:"
+  CUSTOM: "Anders, namelijk:",
 }
 
 // Dynamisch genereren van opties voor rollen
 export const OPTIONS_ROLE_FUNCTIONS = Object.entries(ROLE_FUNCTIONS).map(
   ([key, label]) => ({
     value: key === "CUSTOM" ? CUSTOM_ROLE : label,
-    label
+    label,
   })
 )
