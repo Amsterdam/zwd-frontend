@@ -8,6 +8,7 @@ import {
 import { useHomeownerAssociation } from "app/state/rest"
 import { TextAreaField, FormActionButtons, Form } from "app/components"
 import { PencilIcon, PlusIcon } from "@amsterdam/design-system-react-icons"
+import { formatTextWithLineBreaks } from "app/utils/text.tsx"
 
 type FormValues = {
   annotation: Components.Schemas.HomeownerAssociation["annotation"]
@@ -79,12 +80,11 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
       ) : (
         <>
           <Heading level={4}>Aantekeningen</Heading>
-          <Paragraph style={{ margin: "1rem 0", whiteSpace: "pre-line" }}>
+          <Paragraph style={{ margin: "1rem 0" }}>
             {hasAnnotation
-              ? data?.annotation
-                : <em>Geen aantekeningen gevonden</em>
-              }
-            </Paragraph>
+              ? formatTextWithLineBreaks(data?.annotation)
+              : <em>Geen aantekeningen gevonden</em>}
+          </Paragraph>
         </>
       )}
     </>
