@@ -30,6 +30,45 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sortOrder: getSortOrder(sorting, "homeowner_association.name")
   },
   {
+    header: "Vve grootte",
+    dataIndex: "homeowner_association.number_of_apartments",
+    sorter: createNumberSorter<DataType>("homeowner_association.number_of_apartments"),
+    sortOrder: getSortOrder(sorting, "homeowner_association.number_of_apartments")
+  },
+  {
+    header: "Stadsdeel",
+    dataIndex: "homeowner_association.district",
+    sorter: createStringSorter<DataType>("homeowner_association.district"),
+    sortOrder: getSortOrder(sorting, "homeowner_association.district"),
+  },
+  {
+    header: "Buurt",
+    dataIndex: "homeowner_association.neighborhood",
+    sorter: createStringSorter<DataType>("homeowner_association.neighborhood"),
+    sortOrder: getSortOrder(sorting, "homeowner_association.neighborhood"),
+  },
+  {
+    header: "Aanvraagtype",
+    dataIndex: "application_type",
+    sorter: createStringSorter<DataType>("application_type"),
+    sortOrder: getSortOrder(sorting, "application_type"),
+    render: (text) => text || "–"
+  },
+  {
+    header: "Adviestype",
+    dataIndex: "advice_type",
+    sorter: createStringSorter<DataType>("advice_type"),
+    sortOrder: getSortOrder(sorting, "advice_type"),
+    render: (text) => text || "–"
+  },
+  {
+    header: "Adviseur",
+    dataIndex: "advisor",
+    sorter: createStringSorter<DataType>("advisor"),
+    sortOrder: getSortOrder(sorting, "advisor"),
+    render: (text) => text || "–"
+  },
+  {
     header: "Status",
     dataIndex: "status",
     sorter: createStringSorter<DataType>("status"),
@@ -42,6 +81,14 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     defaultSortOrder: "DESCEND" as const,
     sortOrder: getSortOrder(sorting, "request_date"),
     render: (text) => formatDate(text)
+  },
+  {
+    header: "Einddatum",
+    dataIndex: "end_date",
+    sorter: createDateSorter<DataType>("end_date"),
+    defaultSortOrder: "DESCEND" as const,
+    sortOrder: getSortOrder(sorting, "end_date"),
+    render: (text) => text ? formatDate(text) : "–"
   },
   {
     header: "Laatst gewijzigd",
