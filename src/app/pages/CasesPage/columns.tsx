@@ -10,6 +10,15 @@ import { formatDate } from "app/utils/dates"
 
 type DataType = Components.Schemas.CaseList
 
+export const DEFAULT_COLUMNS = [
+  "prefixed_dossier_id",
+  "legacy_id",
+  "homeowner_association.name",
+  "status",
+  "request_date",
+  "updated",
+]
+
 const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
     header: "ID",

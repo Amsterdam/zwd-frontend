@@ -8,6 +8,13 @@ import {
 } from "app/components"
 import { formatDate } from "app/utils/dates"
 
+export const DEFAULT_COLUMNS = [
+  "case.prefixed_dossier_id",
+  "case.homeowner_association.name",
+  "name",
+  "created",
+]
+
 export const getColumns = (
   sorting: TABLE.Sorting
 ): ColumnType<Components.Schemas.CaseUserTaskList>[] => [
