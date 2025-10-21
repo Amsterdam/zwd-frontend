@@ -7,6 +7,7 @@ import {
   ApplicationTypeFilter,
   DateFilter,
   DownloadExcel,
+  ColumnSettings,
   Search,
   PageSizeFilter,
   StatusFilter,
@@ -158,9 +159,15 @@ export const CasesFilters = () => {
       )}
 
       <ResetFiltersButton contextName={CASES} />
+
       <Field style={{ justifyContent: "flex-end" }}>
         <DownloadExcel />
       </Field>
+
+      <Field style={{ justifyContent: "flex-end" }}>
+        <ColumnSettings />
+      </Field>
+
     </Row>
   )
 }
