@@ -137,7 +137,7 @@ export const TasksFilters = () => {
       <ResetFiltersButton contextName={TASKS} />
 
       <Field style={{ justifyContent: "flex-end" }}>
-        <ColumnSettings />
+        <ColumnSettings contextName={TASKS} />
       </Field>
 
     </Row>

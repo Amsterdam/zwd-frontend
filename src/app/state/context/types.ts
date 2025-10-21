@@ -12,6 +12,7 @@ export type StateType = {
     adviceType: string
     advisor: string[]
     applicationType: string
+    columnsVisible: string[]
     count: number
     requestDateRangeAfter?: string
     requestDateRangeBefore?: string
@@ -34,6 +35,7 @@ export type StateType = {
     adviceType: string
     advisor: string[]
     applicationType: string
+    columnsVisible: string[]
     count: number
     requestDateRangeAfter?: string
     requestDateRangeBefore?: string
