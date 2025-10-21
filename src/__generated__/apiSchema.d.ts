@@ -206,9 +206,7 @@ declare namespace Components {
         export interface CaseUserTaskList {
             id: number;
             name: string;
-            case: number;
-            homeowner_association: string;
-            prefixed_dossier_id: string;
+            case: CaseList;
             created: string; // date-time
         }
         export interface CaseWorkflow {
