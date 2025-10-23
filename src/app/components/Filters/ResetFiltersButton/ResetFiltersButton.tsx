@@ -9,6 +9,7 @@ type Props = {
 }
 
 const EXCLUDED_KEYS = [
+  "columnsVisible",
   "count",
   "results",
   "pagination",
@@ -26,9 +27,11 @@ export const ResetFiltersButton: React.FC<Props> = ({ contextName }) => {
 
   const resetFilters = () => {
     if (contextName === "cases") {
-      updateContextCases({ ...initialState.cases })
+      const { columnsVisible } = casesFilters
+      updateContextCases({ ...initialState.cases, columnsVisible })
     } else if (contextName === "tasks") {
-      updateContextTasks({ ...initialState.tasks })
+      const { columnsVisible } = tasksFilters
+      updateContextTasks({ ...initialState.tasks, columnsVisible })
     }
   }
 
