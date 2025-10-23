@@ -45,7 +45,7 @@ export type StateType = {
     neighborhood: string[]
     taskName: string
     pagination: TABLE.Pagination
-    results: CustomCaseUserTask[]
+    results: Components.Schemas.CaseUserTaskList[]
     searchString: string
     showAllFilters: boolean
     sorting: TABLE.Sorting
