@@ -1,3 +1,4 @@
+export * from "./ColumnSettings/ColumnSettings"
 export * from "./ConfirmationDialog/ConfirmationDialog"
 export * from "./DownloadExcel/DownloadExcel"
 export * from "./Table/utils/createSorters"

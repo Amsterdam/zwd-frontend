@@ -7,11 +7,17 @@ import getOrderingQueryParam from "./utils/getOrderingQueryParam"
 import { cleanParamObject } from "./utils"
 
 const SORTING_INDEX_MAPPING: Record<string, string> = {
-  created: "created",
-  id: "id",
-  prefixed_dossier_id: "prefixed_dossier_id",
-  name: "name",
-  homeowner_association: "homeowner_association_name"
+  "created": "created",
+  "case.prefixed_dossier_id": "case__prefixed_dossier_id",
+  "case.homeowner_association.name": "case__homeowner_association__name",
+  "case.homeowner_association.district": "case__homeowner_association__district",
+  "case.homeowner_association.neighborhood": "case__homeowner_association__neighborhood",
+  "case.homeowner_association.number_of_apartments": "case__homeowner_association__number_of_apartments",
+  "case.application_type": "case__application_type",
+  "case.advice_type": "case__advice_type",
+  "case.advisor": "case__advisor",
+  "case.status": "case__status",
+  "name": "name",
 }
 
 export const useTasks = (

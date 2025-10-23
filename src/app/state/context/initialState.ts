@@ -1,4 +1,6 @@
 import type { StateType } from "./types"
+import { DEFAULT_COLUMNS as CASES_DEFAULT_COLUMNS } from "app/pages/CasesPage/columns"
+import { DEFAULT_COLUMNS as TASKS_DEFAULT_COLUMNS } from "app/pages/TasksPage/columns"
 
 const noop = () => {}
 
@@ -6,6 +8,7 @@ export const initialState: StateType = {
   cases: {
     adviceType: "",
     applicationType: "",
+    columnsVisible: CASES_DEFAULT_COLUMNS,
     count: 0,
     requestDateRangeAfter: "",
     requestDateRangeBefore: "",
@@ -35,6 +38,7 @@ export const initialState: StateType = {
     adviceType: "",
     advisor: [],
     applicationType: "",
+    columnsVisible: TASKS_DEFAULT_COLUMNS,
     count: 0,
     requestDateRangeAfter: "",
     requestDateRangeBefore: "",
