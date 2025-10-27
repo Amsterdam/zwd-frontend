@@ -45,8 +45,6 @@ export const ColumnSettingsDialog = ({ dialogId, contextName, onClose }: Props) 
     ? getCasesColumns({ dataIndex: "", order: "DESCEND" })
     : getTasksColumns({ dataIndex: "", order: "DESCEND" })
 
-  const handleSave = () => void onClose()
-
   const handleColumnToggle = (dataIndex: string, checked: boolean) => {
     const newColumnsVisible = checked
       ? [...columnsVisible, dataIndex]
@@ -70,6 +68,7 @@ export const ColumnSettingsDialog = ({ dialogId, contextName, onClose }: Props) 
     <Dialog
       heading="Kolomweergave aanpassen"
       id={dialogId}
+      style={{ userSelect: "none" }}
     >
       <>
         {allColumns.filter(column => !isActionColumn(column.dataIndex || "")).map((column) => {
@@ -82,36 +81,26 @@ export const ColumnSettingsDialog = ({ dialogId, contextName, onClose }: Props) 
           }
 
           return (
-            <Row key={dataIndex} style={{ userSelect: "none" }}>
-              <Checkbox
-                id={`column-${dataIndex}`}
-                checked={isChecked}
-                disabled={isMandatory}
-                onChange={(e) => handleColumnToggle(dataIndex || "", e.target.checked)}
-              >
-                {column.header}
-                {isMandatory && " (verplicht)"}
-              </Checkbox>
-            </Row>
+            <Checkbox
+              id={`column-${dataIndex}`}
+              key={dataIndex}
+              checked={isChecked}
+              disabled={isMandatory}
+              onChange={(e) => handleColumnToggle(dataIndex || "", e.target.checked)}
+            >
+              {column.header}
+              {isMandatory && " (verplicht)"}
+            </Checkbox>
           )
         })}
 
-        <Row style={{ marginTop: 24, marginBottom: 32, justifyContent: "space-between" }}>
-          <Row>
-            <Button
-              variant="primary"
-              onClick={handleSave}
-            >
-              Opslaan
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={onClose}
-            >
-              Annuleer
-            </Button>
-          </Row>
-
+        <Row align="between" style={{ marginTop: 24, marginBottom: 32 }}>
+          <Button
+            variant="primary"
+            onClick={onClose}
+          >
+            Sluiten
+          </Button>
           <Button
             variant="secondary"
             onClick={handleResetToDefaults}
