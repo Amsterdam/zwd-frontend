@@ -10,6 +10,7 @@ export const CasesPage: React.FC = () => {
   const {
     adviceType,
     applicationType,
+    columnsVisible,
     count,
     requestDateRangeAfter,
     requestDateRangeBefore,
@@ -70,13 +71,23 @@ export const CasesPage: React.FC = () => {
   }
 
   const columns = useMemo(() => getColumns(sorting), [sorting])
+  const columnsFiltered = useMemo(
+    () => columns.filter(column => {
+      const alwaysVisible = ["prefixed_dossier_id", "id"]
+      if (alwaysVisible.includes(column?.dataIndex ?? "")) {
+        return true
+      }
+      return columnsVisible.includes(column.dataIndex ?? "")
+    }),
+    [columns, columnsVisible]
+  )
 
   return (
     <PageGrid>
       <PageHeading label={`Zakenoverzicht (${count})`} />
       <CasesFilters />
       <Table
-        columns={columns}
+        columns={columnsFiltered}
         data={results}
         loading={isBusy}
         onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}

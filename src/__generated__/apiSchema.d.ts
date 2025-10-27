@@ -153,8 +153,23 @@ declare namespace Components {
         export interface CaseHomeownerAssociation {
             id: number;
             name: string;
+            district: string;
+            neighborhood: string;
+            number_of_apartments: number;
         }
         export interface CaseList {
+            advice_type?: null & (/**
+             * * `Energieadvies` - ENERGY_ADVICE
+             * * `Haalbaarheidsonderzoek` - HBO
+             */
+            AdviceTypeEnum | BlankEnum | NullEnum);
+            advisor: string;
+            application_type?: /**
+             * * `Advies` - ADVICE
+             * * `Activatieteam` - ACTIVATIONTEAM
+             * * `Cursus` - COURSE
+             */
+            ApplicationTypeEnum;
             created?: string; // date-time
             end_date?: string | null; // date
             homeowner_association: CaseHomeownerAssociation;
@@ -191,9 +206,7 @@ declare namespace Components {
         export interface CaseUserTaskList {
             id: number;
             name: string;
-            case: number;
-            homeowner_association: string;
-            prefixed_dossier_id: string;
+            case: CaseList;
             created: string; // date-time
         }
         export interface CaseWorkflow {

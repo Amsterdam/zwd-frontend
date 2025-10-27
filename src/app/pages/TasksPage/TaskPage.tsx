@@ -8,6 +8,7 @@ import TasksFilters from "./TasksFilters"
 
 export const TasksPage: React.FC = () => {
   const {
+    columnsVisible,
     count,
     district,
     neighborhood,
@@ -66,16 +67,26 @@ export const TasksPage: React.FC = () => {
   }
 
   const columns = useMemo(() => getColumns(sorting), [sorting])
+  const columnsFiltered = useMemo(
+    () => columns.filter(column => {
+      const alwaysVisible = ["case.prefixed_dossier_id", "case.id"]
+      if (alwaysVisible.includes(column?.dataIndex ?? "")) {
+        return true
+      }
+      return columnsVisible.includes(column.dataIndex ?? "")
+    }),
+    [columns, columnsVisible]
+  )
 
   return (
     <PageGrid>
       <PageHeading label={`Takenoverzicht (${count})`} />
       <TasksFilters />
       <Table
-        columns={columns}
+        columns={columnsFiltered}
         data={results}
         loading={isBusy}
-        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.case}`)}
+        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.case.id}`)}
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,
