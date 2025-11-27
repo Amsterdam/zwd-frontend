@@ -1,6 +1,7 @@
-import { ColumnType, createStringSorter, Table } from "app/components"
+import { ColumnType, createDateSorter, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
 import { useHomeownerAssociationContacts } from "app/state/rest"
+import { formatDate } from "app/utils/dates"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
 import EditHoaContact from "./EditHoaContact/EditHoaContact"
 import AddHoaContact from "./AddHoaContact/AddHoaContact"
@@ -54,6 +55,12 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Functie in vve",
       dataIndex: "role",
       sorter: createStringSorter<Contact>("role")
+    },
+    {
+      header: "Cursusdatum",
+      dataIndex: "course_date",
+      sorter: createDateSorter<Contact>("course_date"),
+      render: (value) => value ? formatDate(value) : "–"
     },
     {
       header: "Acties",
