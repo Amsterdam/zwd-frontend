@@ -672,7 +672,7 @@ declare namespace Paths {
             export type RequestDateRangeAfter = string; // date
             export type RequestDateRangeBefore = string; // date
             export type Search = string;
-            export type Status = number[];
+            export type Status = string[];
             export type Wijk = string[];
         }
         export interface PathParameters {
@@ -846,7 +846,7 @@ declare namespace Paths {
             export type RequestDateRangeAfter = string; // date
             export type RequestDateRangeBefore = string; // date
             export type Search = string;
-            export type Status = number[];
+            export type Status = string[];
             export type Wijk = string[];
         }
         export interface PathParameters {
