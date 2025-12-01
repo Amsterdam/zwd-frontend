@@ -7,6 +7,7 @@ import { Field, Checkbox } from "@amsterdam/design-system-react"
 
 type Props = {
   name: string
+  id?: string
   label?: string
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>

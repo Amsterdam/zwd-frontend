@@ -5,6 +5,18 @@ import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
 import EditHoaContact from "./EditHoaContact/EditHoaContact"
 import AddHoaContact from "./AddHoaContact/AddHoaContact"
 
+
+const contactPrimaryTagStyles = {
+  display: "inline-block",
+  verticalAlign: "text-bottom",
+  background: "var(--ams-color-interactive)",
+  color: "var(--ams-color-text-inverse)",
+  fontSize: "0.75em",
+  lineHeight: "1.1",
+  padding: "0.225em 0.35em",
+  borderRadius: "0.2rem",
+}
+
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
 }
@@ -19,7 +31,14 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Naam",
       dataIndex: "fullname",
       sorter: createStringSorter<Contact>("fullname"),
-      defaultSortOrder: "ASCEND"
+      defaultSortOrder: "ASCEND",
+      render: (name, record: Contact) => record.is_primary
+        ?
+        <>
+          <span style={{ marginRight: "0.35em" }}>{name}</span>
+          <span style={contactPrimaryTagStyles}>primair</span>
+        </>
+        : name,
     },
     {
       header: "E-mail",

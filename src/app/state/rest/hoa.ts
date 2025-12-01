@@ -67,7 +67,7 @@ export const useHomeownerAssociationContacts = (
 export type CreateOrUpdateHoaContactsPayload = {
   contacts: Array<
     Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role"> &
-      Partial<Pick<Components.Schemas.Contact, "id">>
+      Partial<Pick<Components.Schemas.Contact, "id" | "is_primary">>
   >
 }
 

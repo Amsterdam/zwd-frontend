@@ -216,11 +216,13 @@ declare namespace Components {
             completed?: boolean;
         }
         export interface Contact {
+            id: number;
             fullname: string;
             email: string; // email
             phone: string;
             role: string;
-            id: number;
+            is_primary?: boolean;
+            course_date?: string | null; // date
         }
         export interface District {
             id: number;
@@ -317,7 +319,9 @@ declare namespace Components {
             phone: string;
             fullname: string;
             role: string;
-            homeowner_associations?: number[];
+            is_primary?: boolean;
+            course_date?: string | null; // date
+            homeowner_association: number;
         }
         export type NullEnum = null;
         export interface Owner {
