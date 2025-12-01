@@ -4,6 +4,7 @@ import {
   Form,
   FormActionButtons,
   SelectField,
+  CheckboxField,
   TextInputField
 } from "app/components"
 import { useHomeownerAssociationContactsCreateOrUpdate } from "app/state/rest"
@@ -37,6 +38,7 @@ type FormValues = {
   phone: string
   role: string
   role_custom?: string
+  is_primary?: boolean
 }
 
 const resolveDefaultValues = (
@@ -53,7 +55,8 @@ const resolveDefaultValues = (
       email: contact.email,
       phone: contact.phone,
       role: defaultRole,
-      role_custom: defaultRoleCustom
+      role_custom: defaultRoleCustom,
+      is_primary: contact.is_primary,
     }
   }
   return {
@@ -61,7 +64,8 @@ const resolveDefaultValues = (
     email: "",
     phone: "",
     role: "",
-    role_custom: ""
+    role_custom: "",
+    is_primary: false,
   }
 }
 
@@ -91,7 +95,8 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           fullname: values.fullname,
           email: values.email,
           phone: values.phone,
-          role: roleValue as string
+          role: roleValue as string,
+          is_primary: values.is_primary ?? false,
         }
       ]
     }).then(() => {
@@ -136,6 +141,11 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           label="Specificeer functie"
           validation={validationRequired}
           shouldShow={(values) => values.role === CUSTOM_ROLE}
+        />
+        <CheckboxField
+          name="is_primary"
+          label="Is primair vve-contact"
+          validation={{ required: false }}
         />
         <FormActionButtons
           name="actions"

@@ -1,4 +1,4 @@
-import { ColumnType, createStringSorter, Table, Tag } from "app/components"
+import { ColumnType, createStringSorter, Table } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
 import { useHomeownerAssociationContacts } from "app/state/rest"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
