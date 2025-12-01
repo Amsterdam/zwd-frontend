@@ -114,23 +114,27 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
       <Form<FormValues> defaultValues={defaultValues} onSubmit={onSubmit}>
         <TextInputField
           name="fullname"
+          id={`${dialogId}_fullname`}
           label="Naam"
           validation={validationRequired}
         />
         <TextInputField
           name="email"
+          id={`${dialogId}_email`}
           label="E-mail"
           type="email"
           validation={validationEmail}
         />
         <TextInputField
           name="phone"
+          id={`${dialogId}_phone`}
           label="Telefoon"
           type="tel"
           validation={validationPhone}
         />
         <SelectField
           name="role"
+          id={`${dialogId}_role`}
           label="Functie in vve"
           options={OPTIONS_ROLE_FUNCTIONS}
           hasDefaultOption={true}
@@ -138,12 +142,14 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
         />
         <TextInputField
           name="role_custom"
+          id={`${dialogId}_role_custom`}
           label="Specificeer functie"
           validation={validationRequired}
           shouldShow={(values) => values.role === CUSTOM_ROLE}
         />
         <CheckboxField
           name="is_primary"
+          id={`${dialogId}_is_primary`}
           label="Is primair vve-contact"
           validation={{ required: false }}
         />

@@ -8,6 +8,7 @@ import { Field, Label, Select } from "@amsterdam/design-system-react"
 export type Option = { value: string | number; label: string }
 
 type Props = {
+  id?: string
   name: string
   label?: string
   options?: Option[]
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export const SelectField: React.FC<Props> = ({
+  id,
   name,
   label,
   options,
@@ -31,9 +33,9 @@ export const SelectField: React.FC<Props> = ({
 
   return (
     <Field>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={id ?? name}>{label}</Label>
       <Select
-        id={name}
+        id={id ?? name}
         invalid={hasError}
         {...(register ? register(name, validation) : {})}
         {...rest}

@@ -16,6 +16,7 @@ import { getValueByPath } from "app/utils/getValueByPath"
 import styles from "../styles/form.module.css"
 
 type Props = {
+  id?: string
   name: string
   label?: string
   type?: TextInputProps["type"]
@@ -25,6 +26,7 @@ type Props = {
 }
 
 export const TextInputField: React.FC<Props> = ({
+  id,
   name,
   label,
   type,
@@ -70,12 +72,12 @@ export const TextInputField: React.FC<Props> = ({
 
   return (
     <Field>
-      <Label htmlFor={name}>{label}</Label>
+      <Label htmlFor={id ?? name}>{label}</Label>
       {hasError && error?.message && (
         <ErrorMessage>{error?.message}</ErrorMessage>
       )}
       <TextInput
-        id={name}
+        id={id ?? name}
         invalid={hasError}
         type={type}
         size={type === "tel" ? 14 : undefined}

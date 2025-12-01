@@ -13,7 +13,7 @@ const contactPrimaryTagStyles = {
   color: "var(--ams-color-text-inverse)",
   fontSize: "0.75em",
   lineHeight: "1.1",
-  padding: "0.25em 0.35em",
+  padding: "0.225em 0.35em",
   borderRadius: "0.2rem",
 }
 
