@@ -224,6 +224,12 @@ declare namespace Components {
             is_primary?: boolean;
             course_date?: string | null; // date
         }
+        /**
+         * Serializer for course participant CSV import requests
+         */
+        export interface CourseParticipantImport {
+            file: string; // uri
+        }
         export interface District {
             id: number;
             name: string;
@@ -270,6 +276,26 @@ declare namespace Components {
         }
         export interface HomeownerAssociationUpdate {
             annotation?: string | null;
+        }
+        /**
+         * Serializer for CSV import results
+         */
+        export interface ImportResult {
+            counts: {
+                [name: string]: number;
+            };
+            messages: string[];
+            warnings: string[];
+            errors: /* Serializer for individual row errors from CSV imports */ RowError[];
+        }
+        /**
+         * Serializer for letter CSV import requests
+         */
+        export interface LetterImport {
+            file: string; // uri
+            date: string; // date-time
+            description: string;
+            author_name: string;
         }
         export interface MijnAmsterdam {
             bag_id: string;
@@ -486,6 +512,14 @@ declare namespace Components {
         }
         export interface PatchedUpdateCaseAdvisor {
             advisor?: number;
+        }
+        /**
+         * Serializer for individual row errors from CSV imports
+         */
+        export interface RowError {
+            row_number: number;
+            field?: string | null;
+            message: string;
         }
         export interface StartWorkflow {
             workflow_option_id: number;
@@ -1064,6 +1098,18 @@ declare namespace Paths {
         namespace Responses {
             export interface $204 {
             }
+        }
+    }
+    namespace HomeownerAssociationImportCourseParticipantsCreate {
+        export type RequestBody = /* Serializer for course participant CSV import requests */ Components.Schemas.CourseParticipantImport;
+        namespace Responses {
+            export type $200 = /* Serializer for CSV import results */ Components.Schemas.ImportResult;
+        }
+    }
+    namespace HomeownerAssociationImportLettersCreate {
+        export type RequestBody = /* Serializer for letter CSV import requests */ Components.Schemas.LetterImport;
+        namespace Responses {
+            export type $200 = /* Serializer for CSV import results */ Components.Schemas.ImportResult;
         }
     }
     namespace HomeownerAssociationList {
