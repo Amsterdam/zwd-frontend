@@ -60,7 +60,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       header: "Cursusdatum",
       dataIndex: "course_date",
       sorter: createDateSorter<Contact>("course_date"),
-      render: (value) => value ? formatDate(value) : "–"
+      render: (value) => value ? formatDate(value) : ""
     },
     {
       header: "Acties",
