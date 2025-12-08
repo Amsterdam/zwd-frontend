@@ -216,11 +216,13 @@ declare namespace Components {
             completed?: boolean;
         }
         export interface Contact {
+            id: number;
             fullname: string;
             email: string; // email
             phone: string;
             role: string;
-            id: number;
+            is_primary?: boolean;
+            course_date?: string | null; // date
         }
         export interface District {
             id: number;
@@ -317,7 +319,9 @@ declare namespace Components {
             phone: string;
             fullname: string;
             role: string;
-            homeowner_associations?: number[];
+            is_primary?: boolean;
+            course_date?: string | null; // date
+            homeowner_association: number;
         }
         export type NullEnum = null;
         export interface Owner {
@@ -668,7 +672,7 @@ declare namespace Paths {
             export type RequestDateRangeAfter = string; // date
             export type RequestDateRangeBefore = string; // date
             export type Search = string;
-            export type Status = number[];
+            export type Status = string[];
             export type Wijk = string[];
         }
         export interface PathParameters {
@@ -842,7 +846,7 @@ declare namespace Paths {
             export type RequestDateRangeAfter = string; // date
             export type RequestDateRangeBefore = string; // date
             export type Search = string;
-            export type Status = number[];
+            export type Status = string[];
             export type Wijk = string[];
         }
         export interface PathParameters {

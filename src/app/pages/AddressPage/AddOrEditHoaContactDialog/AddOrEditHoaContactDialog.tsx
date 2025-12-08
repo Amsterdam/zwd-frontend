@@ -4,6 +4,7 @@ import {
   Form,
   FormActionButtons,
   SelectField,
+  CheckboxField,
   TextInputField
 } from "app/components"
 import { useHomeownerAssociationContactsCreateOrUpdate } from "app/state/rest"
@@ -37,6 +38,7 @@ type FormValues = {
   phone: string
   role: string
   role_custom?: string
+  is_primary?: boolean
 }
 
 const resolveDefaultValues = (
@@ -53,7 +55,8 @@ const resolveDefaultValues = (
       email: contact.email,
       phone: contact.phone,
       role: defaultRole,
-      role_custom: defaultRoleCustom
+      role_custom: defaultRoleCustom,
+      is_primary: contact.is_primary,
     }
   }
   return {
@@ -61,7 +64,8 @@ const resolveDefaultValues = (
     email: "",
     phone: "",
     role: "",
-    role_custom: ""
+    role_custom: "",
+    is_primary: false,
   }
 }
 
@@ -91,7 +95,8 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           fullname: values.fullname,
           email: values.email,
           phone: values.phone,
-          role: roleValue as string
+          role: roleValue as string,
+          is_primary: values.is_primary ?? false,
         }
       ]
     }).then(() => {
@@ -109,23 +114,27 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
       <Form<FormValues> defaultValues={defaultValues} onSubmit={onSubmit}>
         <TextInputField
           name="fullname"
+          id={`${dialogId}_fullname`}
           label="Naam"
           validation={validationRequired}
         />
         <TextInputField
           name="email"
+          id={`${dialogId}_email`}
           label="E-mail"
           type="email"
           validation={validationEmail}
         />
         <TextInputField
           name="phone"
+          id={`${dialogId}_phone`}
           label="Telefoon"
           type="tel"
           validation={validationPhone}
         />
         <SelectField
           name="role"
+          id={`${dialogId}_role`}
           label="Functie in vve"
           options={OPTIONS_ROLE_FUNCTIONS}
           hasDefaultOption={true}
@@ -133,9 +142,16 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
         />
         <TextInputField
           name="role_custom"
+          id={`${dialogId}_role_custom`}
           label="Specificeer functie"
           validation={validationRequired}
           shouldShow={(values) => values.role === CUSTOM_ROLE}
+        />
+        <CheckboxField
+          name="is_primary"
+          id={`${dialogId}_is_primary`}
+          label="Is primair vve-contact"
+          validation={{ required: false }}
         />
         <FormActionButtons
           name="actions"
