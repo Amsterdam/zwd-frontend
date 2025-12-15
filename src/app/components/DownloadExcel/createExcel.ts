@@ -1,4 +1,3 @@
-import columns from "app/pages/SearchPage/SearchResults/columns"
 import Excel from "exceljs"
 
 export type ExpandedCase = Components.Schemas.Case & {
