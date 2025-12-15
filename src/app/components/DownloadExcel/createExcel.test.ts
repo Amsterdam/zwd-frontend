@@ -39,7 +39,11 @@ describe("createExcel", () => {
               name: "Persoon B",
               number_of_apartments: 5
             }
-          ]
+          ],
+          additional_fields: [
+              { header: "Extra Field 1", value: "Value 1" },
+              { header: "Extra Field 2", value: "Value 2" }
+            ]
         }
       }
     ]
@@ -75,7 +79,9 @@ describe("createExcel", () => {
       "Vve monument status",
       "Vve ligt in beschermd gebied",
       "Vve beschermd stads- of dorpsgezicht",
-      "Vve Eigenaren"
+      "Vve Eigenaren",
+      "Extra Field 1",
+      "Extra Field 2"
     ])
 
     // Controleer eerste rij data
@@ -114,5 +120,8 @@ describe("createExcel", () => {
     expect(firstRow.getCell(23).value).toBe(
       "Onderneming: Bedrijf A (5 appartementen); Particulier: Persoon B (5 appartementen)"
     ) // Vve Eigenaren
+    // Controleer extra velden
+    expect(firstRow.getCell(24).value).toBe("Value 1") // Extra Field 1
+    expect(firstRow.getCell(25).value).toBe("Value 2") // Extra Field 2
   })
 })
