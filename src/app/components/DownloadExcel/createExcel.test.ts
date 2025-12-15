@@ -40,11 +40,11 @@ describe("createExcel", () => {
               number_of_apartments: 5
             }
           ],
-          additional_fields: [
+        },
+        additional_fields: [
               { header: "Extra Field 1", value: "Value 1" },
               { header: "Extra Field 2", value: "Value 2" }
-            ]
-        }
+        ]
       }
     ]
 
