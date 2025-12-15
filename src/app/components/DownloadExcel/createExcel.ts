@@ -1,8 +1,10 @@
+import columns from "app/pages/SearchPage/SearchResults/columns"
 import Excel from "exceljs"
 
 export type ExpandedCase = Components.Schemas.Case & {
   updated?: string
   homeowner_association: Components.Schemas.HomeownerAssociation | null
+  additional_fields: { header: string; value: string }[]
 }
 
 const casesColumns = [
@@ -55,8 +57,23 @@ export const createExcel = (data: ExpandedCase[]) => {
     column.width = 15
   })
   worksheet.getColumn(10).width = 100
-
   worksheet.getRow(1).font = { bold: true }
+  const additional_fields = new Map<string, { header: string; key: string; width: number }>()
+
+  data.forEach(caseItem => {
+    caseItem.additional_fields.forEach((field: { header: string | undefined }) => {
+      if (!field.header) return
+      const exists = worksheet.columns.some(col => col.header === field.header)
+      if (!exists && !additional_fields.has(field.header)) {
+        additional_fields.set(field.header, {
+          header: field.header,
+          key: field.header,
+          width: 15,
+        })
+      }
+    })
+  })
+  worksheet.columns = [...worksheet.columns, ...Array.from(additional_fields.values())]
 
   data.forEach((caseItem) => {
     const owners =
@@ -66,7 +83,10 @@ export const createExcel = (data: ExpandedCase[]) => {
             `${owner.type}: ${owner.name} (${owner.number_of_apartments} appartementen)`
         )
         .join("; ") || ""
-
+    
+    const additional_fields_map = Object.fromEntries(
+      caseItem.additional_fields.map((f: { header: string; value: string }) => [f.header, f.value])
+    )
     const row = {
       ...caseItem,
       request_date: caseItem.request_date
@@ -94,7 +114,8 @@ export const createExcel = (data: ExpandedCase[]) => {
         caseItem.homeowner_association?.ligt_in_beschermd_gebied || "",
       hoa_beschermd_stadsdorpsgezicht:
         caseItem.homeowner_association?.beschermd_stadsdorpsgezicht || "",
-      hoa_owners: owners
+      hoa_owners: owners,
+      ...additional_fields_map
     }
     worksheet.addRow(row)
   })
