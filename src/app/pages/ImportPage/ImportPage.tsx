@@ -68,29 +68,32 @@ export const ImportPage: React.FC = () => {
     setError(null)
     setImportResult(null)
 
-    try {
-      const formData = importConfig.buildFormData(data as ImportFormData)
+    const formData = importConfig.buildFormData(data as ImportFormData)
 
-      let response: unknown
-      if (importType === "letters") {
-        response = await execLetterImport(formData as unknown as Partial<ImportResultData>)
-      } else if (importType === "course-participants") {
-        response = await execCourseParticipantImport(formData as unknown as Partial<ImportResultData>)
-      } else {
-        throw new Error("Onbekend import type")
-      }
-
-      const result = (response as { data?: ImportResultData })?.data ?? (response as ImportResultData)
-      if (result) {
-        setImportResult(result)
-        window.scrollTo({ top: 0, behavior: "smooth" })
-      }
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : "Er is een fout opgetreden bij het importeren"
-      setError(errorMessage)
-    } finally {
-      setIsSubmitting(false)
+    let response: unknown
+    if (importType === "letters") {
+      response = await execLetterImport(formData as unknown as Partial<ImportResultData>)
+    } else if (importType === "course-participants") {
+      response = await execCourseParticipantImport(formData as unknown as Partial<ImportResultData>)
+    } else {
+      throw new Error("Onbekend import type")
     }
+
+    const result = (response as { data?: ImportResultData })?.data ?? (response as ImportResultData)
+    if (result) {
+      setImportResult(result)
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    } else {
+      setError("Er is een fout opgetreden bij het importeren")
+    }
+
+    setIsSubmitting(false)
+  }
+
+  const handleReset = () => {
+    setImportResult(null)
+    setError(null)
+    setImportType("")
   }
 
   useEffect(() => {
@@ -99,12 +102,6 @@ export const ImportPage: React.FC = () => {
       setError(null)
     }
   }, [importType])
-
-  const handleReset = () => {
-    setImportResult(null)
-    setError(null)
-    setImportType("")
-  }
 
   if (importResult) {
     return (
@@ -157,6 +154,12 @@ export const ImportPage: React.FC = () => {
 
             <FormFieldsWrapper config={importConfig} name="formFieldsWrapper" />
 
+            {error && (
+              <ErrorMessage>
+                {error}
+              </ErrorMessage>
+            )}
+
             <FormActionButtons
               name="actions"
               okText="Importeren"
@@ -167,12 +170,6 @@ export const ImportPage: React.FC = () => {
           </Form>
 
         </div>
-      )}
-
-      {error && (
-        <ErrorMessage>
-          {error}
-        </ErrorMessage>
       )}
     </PageGrid>
   )
