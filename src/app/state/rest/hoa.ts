@@ -116,3 +116,27 @@ export const useHomeownerAssociationApartments = (
     isProtected: true
   })
 }
+
+export const useLetterImport = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.ImportResult>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", "import-letters")}`,
+    lazy: true,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useCourseParticipantImport = (options?: Options) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.ImportResult>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", "import-course-participants")}`,
+    lazy: true,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}

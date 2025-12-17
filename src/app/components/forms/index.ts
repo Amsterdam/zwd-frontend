@@ -1,6 +1,7 @@
 export * from "./CheckboxField/CheckboxField"
 export * from "./DateInputField/DateInputField"
 export * from "./FileInputField/FileInputField"
+export * from "./FileInputFieldCSV/FileInputFieldCSV"
 export * from "./FormActionButtons/CancelButton"
 export * from "./FormActionButtons/FormActionButtons"
 export * from "./FormActionButtons/SubmitButton"

@@ -9,7 +9,8 @@ import {
   NotFoundPage,
   SearchPage,
   TasksPage,
-  BpmnPage
+  BpmnPage,
+  ImportPage,
 } from "app/pages"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "zaken/:caseId",
         element: <CaseDetailsPage />
+      },
+      {
+        path: "import",
+        element: <ImportPage />
       },
       {
         path: "/auth",
