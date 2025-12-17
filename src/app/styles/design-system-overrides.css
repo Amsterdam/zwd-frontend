@@ -15,3 +15,12 @@ h2.ams-heading:has(+ div > table) {
 .ams-dialog h1 {
   font-size: var(--ams-heading-2-font-size);
 }
+
+.ams-accordion__panel {
+  padding-block-end: 1rem;
+}
+.ams-accordion__panel .ams-unordered-list,
+.ams-accordion__panel .ams-ordered-list {
+  margin-block-start: 0.5rem;
+  margin-block-end: 1rem;
+}
