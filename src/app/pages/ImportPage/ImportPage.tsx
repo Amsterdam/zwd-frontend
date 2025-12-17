@@ -58,9 +58,9 @@ export const ImportPage: React.FC = () => {
 
   const importConfig = importType ? importTypeRegistry[importType] : null
 
-  const defaultValues = useMemo(() => {
-    return importConfig ? importConfig.getDefaultValues(userFullName) : undefined
-  }, [importConfig, userFullName])
+  const defaultValues = useMemo(() =>
+    importConfig ? importConfig.getDefaultValues(userFullName) : undefined
+  , [importConfig, userFullName])
 
   const onSubmit = async (data: ImportFormData) => {
     if (!importType || !importConfig) {
