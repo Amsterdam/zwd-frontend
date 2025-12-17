@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { PageGrid, PageHeading, Form, FormActionButtons } from "app/components"
 import { useLetterImport, useCourseParticipantImport } from "app/state/rest"
 import { ErrorMessage, Field, Label, Select, Accordion, OrderedList, Button, Row } from "@amsterdam/design-system-react"
@@ -57,6 +57,10 @@ export const ImportPage: React.FC = () => {
   const [, { execPost: execCourseParticipantImport }] = useCourseParticipantImport({ lazy: true })
 
   const importConfig = importType ? importTypeRegistry[importType] : null
+
+  const defaultValues = useMemo(() => {
+    return importConfig ? importConfig.getDefaultValues(userFullName) : undefined
+  }, [importConfig, userFullName])
 
   const onSubmit = async (data: ImportFormData) => {
     if (!importType || !importConfig) {
@@ -141,7 +145,7 @@ export const ImportPage: React.FC = () => {
 
           <Form<ImportFormData>
             key={importType}
-            defaultValues={importConfig.getDefaultValues(userFullName)}
+            defaultValues={defaultValues}
             onSubmit={onSubmit}
           >
             <FileInputFieldCSV
