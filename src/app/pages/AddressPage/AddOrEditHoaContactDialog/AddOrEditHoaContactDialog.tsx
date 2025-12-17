@@ -5,7 +5,8 @@ import {
   FormActionButtons,
   SelectField,
   CheckboxField,
-  TextInputField
+  TextInputField,
+  DateInputField
 } from "app/components"
 import { useHomeownerAssociationContactsCreateOrUpdate } from "app/state/rest"
 import {
@@ -39,6 +40,7 @@ type FormValues = {
   role: string
   role_custom?: string
   is_primary?: boolean
+  course_date?: string
 }
 
 const resolveDefaultValues = (
@@ -57,6 +59,7 @@ const resolveDefaultValues = (
       role: defaultRole,
       role_custom: defaultRoleCustom,
       is_primary: contact.is_primary,
+      course_date: contact.course_date || "",
     }
   }
   return {
@@ -66,6 +69,7 @@ const resolveDefaultValues = (
     role: "",
     role_custom: "",
     is_primary: false,
+    course_date: "",
   }
 }
 
@@ -97,6 +101,7 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           phone: values.phone,
           role: roleValue as string,
           is_primary: values.is_primary ?? false,
+          course_date: values.course_date || null,
         }
       ]
     }).then(() => {
@@ -151,6 +156,12 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           name="is_primary"
           id={`${dialogId}_is_primary`}
           label="Is primair vve-contact"
+          validation={{ required: false }}
+        />
+        <DateInputField
+          name="course_date"
+          label="Cursusdatum"
+          type="date"
           validation={{ required: false }}
         />
         <FormActionButtons
