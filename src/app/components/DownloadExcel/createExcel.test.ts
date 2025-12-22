@@ -28,6 +28,7 @@ describe("createExcel", () => {
           monument_status: "Geen",
           ligt_in_beschermd_gebied: "Nee",
           beschermd_stadsdorpsgezicht: "Nee",
+          course_participant_count: 3,
           owners: [
             {
               type: "Onderneming",
@@ -80,6 +81,7 @@ describe("createExcel", () => {
       "Vve ligt in beschermd gebied",
       "Vve beschermd stads- of dorpsgezicht",
       "Vve Eigenaren",
+      "Vve aantal cursusdeelnemers",
       "Extra Field 1",
       "Extra Field 2"
     ])
@@ -120,8 +122,12 @@ describe("createExcel", () => {
     expect(firstRow.getCell(23).value).toBe(
       "Onderneming: Bedrijf A (5 appartementen); Particulier: Persoon B (5 appartementen)"
     ) // Vve Eigenaren
+
+    // Controleer cursusdeelnemers
+    expect(firstRow.getCell(24).value).toBe(3) // Vve aantal cursusdeelnemers
+
     // Controleer extra velden
-    expect(firstRow.getCell(24).value).toBe("Value 1") // Extra Field 1
-    expect(firstRow.getCell(25).value).toBe("Value 2") // Extra Field 2
+    expect(firstRow.getCell(25).value).toBe("Value 1") // Extra Field 1
+    expect(firstRow.getCell(26).value).toBe("Value 2") // Extra Field 2
   })
 })

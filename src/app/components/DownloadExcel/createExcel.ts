@@ -44,7 +44,11 @@ const casesColumns = [
     key: "hoa_beschermd_stadsdorpsgezicht",
     header: "Vve beschermd stads- of dorpsgezicht"
   },
-  { key: "hoa_owners", header: "Vve Eigenaren" }
+  { key: "hoa_owners", header: "Vve Eigenaren" },
+  {
+    key: "hoa_course_participant_count",
+    header: "Vve aantal cursusdeelnemers"
+  }
 ]
 
 export const createExcel = (data: ExpandedCase[]) => {
@@ -82,7 +86,7 @@ export const createExcel = (data: ExpandedCase[]) => {
             `${owner.type}: ${owner.name} (${owner.number_of_apartments} appartementen)`
         )
         .join("; ") || ""
-    
+
     const additional_fields_map = Object.fromEntries(
       caseItem.additional_fields.map((f: { header: string; value: string }) => [f.header, f.value])
     )
@@ -114,6 +118,7 @@ export const createExcel = (data: ExpandedCase[]) => {
       hoa_beschermd_stadsdorpsgezicht:
         caseItem.homeowner_association?.beschermd_stadsdorpsgezicht || "",
       hoa_owners: owners,
+      hoa_course_participant_count: caseItem.homeowner_association?.course_participant_count || 0,
       ...additional_fields_map
     }
     worksheet.addRow(row)
