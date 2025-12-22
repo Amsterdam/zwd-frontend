@@ -248,6 +248,7 @@ declare namespace Components {
             beschermd_stadsdorpsgezicht?: string | null;
             build_year: number;
             contacts: Nested[];
+            course_participant_count: string;
             district: string;
             id: number;
             is_priority_neighborhood: boolean;
