@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo } from "react"
 import { useCases } from "app/state/rest"
-import { Table, PageHeading, PageGrid } from "app/components"
+import { Table, PageHeading, PageGrid, ActiveFilters } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
 import { useNavigateWithModifier } from "app/hooks"
 import getColumns from "./columns"
@@ -86,6 +86,7 @@ export const CasesPage: React.FC = () => {
     <PageGrid>
       <PageHeading label={`Zakenoverzicht (${count})`} />
       <CasesFilters />
+      <ActiveFilters contextName="cases" />
       <Table
         columns={columnsFiltered}
         data={results}
