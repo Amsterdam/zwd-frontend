@@ -24,3 +24,20 @@ h2.ams-heading:has(+ div > table) {
   margin-block-start: 0.5rem;
   margin-block-end: 1rem;
 }
+
+/* Override: Hide menu button and show menu items on custom breakpoint */
+@media screen and (min-width: 83.5rem) {
+  .ams-page-header__mega-menu-button-item--hide-on-wide-window {
+    display: none;
+  }
+}
+
+/* Override: Show menu button and hide menu items on custom breakpoint */
+@media screen and not (min-width: 83.5rem) {
+  .ams-page-header__mega-menu-button-item--hide-on-wide-window {
+    display: block;
+  }
+  .ams-page-header__menu-item:not(.ams-page-header__menu-item--fixed) {
+    display: none;
+  }
+}
