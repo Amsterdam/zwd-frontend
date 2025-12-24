@@ -6,12 +6,12 @@ import { useDecodedToken } from "app/hooks"
 import { menuItems } from "./menuItems"
 import type { MenuItem } from "./types"
 
-const NavMenuItem = ({ label, path, icon, fixed }: MenuItem) => {
+const NavMenuItem = ({ label, path, icon, fixed, core }: MenuItem) => {
   const handleClick = useLinkClickHandler(path)
   const href = useHref(path)
 
   return (
-    <PageHeader.MenuLink href={href} onClick={handleClick} fixed={fixed}>
+    <PageHeader.MenuLink href={href} onClick={handleClick} fixed={fixed} data-core={core}>
       {icon && (
         <Icon
           svg={icon}
