@@ -2,9 +2,9 @@ import { SearchIcon } from "@amsterdam/design-system-react-icons"
 import { MenuItem } from "./types"
 
 export const menuItems: MenuItem[] = [
-  { label: "Zoeken", path: "/zoeken", icon: SearchIcon },
-  { label: "Zakenoverzicht", path: "/zaken" },
-  { label: "Takenoverzicht", path: "/taken" },
+  { label: "Zoeken", path: "/zoeken", icon: SearchIcon, core: true },
+  { label: "Zakenoverzicht", path: "/zaken", core: true },
+  { label: "Takenoverzicht", path: "/taken", core: true },
   { label: "Import", path: "/import" },
   { label: "BPMN", path: "/bpmn" }
 ]

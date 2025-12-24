@@ -3,4 +3,5 @@ export type MenuItem = {
   path: string
   icon?: React.ComponentType
   fixed?: boolean
+  core?: boolean
 }

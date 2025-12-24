@@ -8,13 +8,15 @@ import CaseTitleUpdater from "app/routing/components/CaseTitleUpdater"
 export const DefaultLayout: React.FC = () => {
   useRedirectFromState()
 
+  const brandName = `${env.VITE_APP_TITLE}${env.VITE_DISPLAY_ENV === "true" ? ` ${env.VITE_ENV}` : ""}`
+
   return (
     <>
       <CaseTitleUpdater />
       <SkipLink href="#main">Direct naar inhoud</SkipLink>
       <Page>
         <PageHeader
-          brandName={`${env.VITE_APP_TITLE} ${env.VITE_ENV}`}
+          brandName={brandName}
           menuItems={NavMenuItems}
           noMenuButtonOnWideWindow
         >
