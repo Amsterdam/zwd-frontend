@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo } from "react"
 import { useNavigateWithModifier } from "app/hooks"
-import { PageGrid, PageHeading, Table } from "app/components"
+import { PageGrid, PageHeading, Table, ActiveFilters } from "app/components"
 import { useTasks } from "app/state/rest"
 import getColumns from "./columns"
 import { ContextValues } from "app/state/context/ValueProvider"
@@ -82,6 +82,7 @@ export const TasksPage: React.FC = () => {
     <PageGrid>
       <PageHeading label={`Takenoverzicht (${count})`} />
       <TasksFilters />
+      <ActiveFilters contextName="tasks" />
       <Table
         columns={columnsFiltered}
         data={results}

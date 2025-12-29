@@ -1,0 +1,23 @@
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: 0.25rem;
+  background-color: var(--ams-button-primary-background-color);
+  color: var(--ams-button-primary-color);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.filterChip:hover {
+  background-color: var(--ams-button-primary-hover-background-color);
+}
+
+.closeIcon {
+  width: 0.95em;
+  height: 0.95em;
+  flex-shrink: 0;
+  fill: currentColor;
+}
