@@ -133,9 +133,9 @@ export const ImportPage: React.FC = () => {
           <importConfig.InstructionsComponent />
 
           <Accordion headingLevel={3}>
-            <Accordion.Section label="Hoe exporteer ik een CSV-bestand vanuit Word?">
+            <Accordion.Section label="Hoe exporteer ik een CSV-bestand vanuit Excel?">
               <OrderedList>
-                <OrderedList.Item>Open het Word-document</OrderedList.Item>
+                <OrderedList.Item>Open het Excel-document</OrderedList.Item>
                 <OrderedList.Item>Ga naar Bestand → Opslaan als</OrderedList.Item>
                 <OrderedList.Item>Kies het bestandsformaat &quot;CSV (komma&apos;s gescheiden) (*.csv)&quot;</OrderedList.Item>
                 <OrderedList.Item>Sla het bestand op</OrderedList.Item>
