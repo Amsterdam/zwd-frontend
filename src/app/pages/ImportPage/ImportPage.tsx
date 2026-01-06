@@ -2,10 +2,11 @@ import { useState, useEffect, useMemo } from "react"
 import { PageGrid, PageHeading, Form, FormActionButtons } from "app/components"
 import { useLetterImport, useCourseParticipantImport } from "app/state/rest"
 import { ErrorMessage, Field, Label, Select, Accordion, OrderedList, Button, Row } from "@amsterdam/design-system-react"
-import { DocumentCheckMarkIcon, DocumentIcon } from "@amsterdam/design-system-react-icons"
+import { DocumentCheckMarkIcon, DocumentIcon, DownloadIcon } from "@amsterdam/design-system-react-icons"
 import { useUserFullName } from "app/hooks"
 import ImportResult from "./ImportResult"
 import { FileInputFieldCSV } from "app/components/forms"
+import { downloadCsv } from "app/utils/files"
 import {
   ImportType,
   ImportFormData,
@@ -100,6 +101,15 @@ export const ImportPage: React.FC = () => {
     setImportType("")
   }
 
+  const handleDownloadFailedRows = () => {
+    if (importResult?.failed_rows_data) {
+      const { headers, rows } = importResult.failed_rows_data
+      const importLabel = importTypeRegistry[importType as ImportType].labelShort.toLowerCase()
+      const filename = `zwd-${importLabel}-fouten-${new Date().toISOString().split("T")[0]}.csv`
+      downloadCsv(headers, rows, filename)
+    }
+  }
+
   useEffect(() => {
     if (importType) {
       setImportResult(null)
@@ -108,12 +118,24 @@ export const ImportPage: React.FC = () => {
   }, [importType])
 
   if (importResult) {
+    const hasFailedRows = importResult.failed_rows_data && importResult.failed_rows_data.rows.length > 0
+
     return (
       <PageGrid>
         <PageHeading label="Resultaten import" icon={DocumentCheckMarkIcon} />
         <ImportResult result={importResult} />
         <Row>
-          <Button variant="primary" onClick={handleReset}>
+          {hasFailedRows && (
+            <Button
+              variant="primary"
+              onClick={handleDownloadFailedRows}
+              icon={DownloadIcon}
+              iconBefore
+            >
+              Download fouten
+            </Button>
+          )}
+          <Button variant="secondary" onClick={handleReset}>
             Nieuwe import starten
           </Button>
         </Row>

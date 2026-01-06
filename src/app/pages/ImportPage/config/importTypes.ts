@@ -32,10 +32,15 @@ export type ImportResultData = {
     field?: string | null
     message: string
   }>
+  failed_rows_data?: {
+    headers: string[]
+    rows: Record<string, string>[]
+  }
 }
 
 export type ImportTypeConfig<T extends FieldValues = FieldValues> = {
   label: string
+  labelShort: string
   value: ImportType
   InstructionsComponent: React.FC
   FormFieldsComponent: React.FC<{ formMethods?: UseFormReturn<FieldValues> }>
@@ -51,6 +56,7 @@ export const importTypeRegistry: ImportTypeRegistry = {
 
   "letters": {
     label: "Brieven importeren",
+    labelShort: "Brieven",
     value: "letters",
     InstructionsComponent: LetterImportInstructions,
     FormFieldsComponent: LetterImportFormFields,
@@ -72,6 +78,7 @@ export const importTypeRegistry: ImportTypeRegistry = {
 
   "course-participants": {
     label: "Cursusdeelnemers importeren",
+    labelShort: "Cursusdeelnemers",
     value: "course-participants",
     InstructionsComponent: CourseParticipantImportInstructions,
     FormFieldsComponent: CourseParticipantImportFormFields,
