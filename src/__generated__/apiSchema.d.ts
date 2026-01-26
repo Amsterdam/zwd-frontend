@@ -34,9 +34,8 @@ declare namespace Components {
         /**
          * * `Advies` - ADVICE
          * * `Activatieteam` - ACTIVATIONTEAM
-         * * `Cursus` - COURSE
          */
-        export type ApplicationTypeEnum = "Advies" | "Activatieteam" | "Cursus";
+        export type ApplicationTypeEnum = "Advies" | "Activatieteam";
         export type BlankEnum = "";
         export interface BpmnModel {
             version: string;
@@ -53,7 +52,6 @@ declare namespace Components {
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
-             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             created?: string; // date-time
@@ -98,7 +96,6 @@ declare namespace Components {
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
-             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             contacts?: Contact[];
@@ -167,7 +164,6 @@ declare namespace Components {
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
-             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             created?: string; // date-time
@@ -235,6 +231,15 @@ declare namespace Components {
             name: string;
             neighborhoods: Neighborhood[];
         }
+        /**
+         * Serializer for failed rows data structure
+         */
+        export interface FailedRowsData {
+            headers: string[];
+            rows: {
+                [name: string]: string;
+            }[];
+        }
         export interface GenericCompletedTaskCreate {
             id: number;
             case_user_task_id: string;
@@ -288,6 +293,15 @@ declare namespace Components {
             messages: string[];
             warnings: string[];
             errors: /* Serializer for individual row errors from CSV imports */ RowError[];
+            /**
+             * Serializer for failed rows data structure
+             */
+            failed_rows_data?: {
+                headers: string[];
+                rows: {
+                    [name: string]: string;
+                }[];
+            } | null;
         }
         /**
          * Serializer for letter CSV import requests
@@ -323,7 +337,6 @@ declare namespace Components {
             application_type?: /**
              * * `Advies` - ADVICE
              * * `Activatieteam` - ACTIVATIONTEAM
-             * * `Cursus` - COURSE
              */
             ApplicationTypeEnum;
             created?: string; // date-time
@@ -695,7 +708,7 @@ declare namespace Paths {
         namespace Parameters {
             export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -824,7 +837,7 @@ declare namespace Paths {
         namespace Parameters {
             export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -869,7 +882,7 @@ declare namespace Paths {
         namespace Parameters {
             export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = number[];
-            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
             export type District = string[];
             export type EndDateRangeAfter = string; // date
@@ -1200,7 +1213,7 @@ declare namespace Paths {
         namespace Parameters {
             export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
             export type Advisor = string[];
-            export type ApplicationType = "Activatieteam" | "Advies" | "Cursus";
+            export type ApplicationType = "Activatieteam" | "Advies";
             export type District = string[];
             export type IsSmallHoa = boolean;
             export type Name = string;
