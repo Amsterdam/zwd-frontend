@@ -60,7 +60,10 @@ export type StateType = {
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]
     sorting: TABLE.Sorting,
-    searchString: string
+    searchString: string,
+    district: string[],
+    isSmallHoa: string,
+    participantCount: number,
     updateContextHoa: (payload: Payload) => void
   }
 }

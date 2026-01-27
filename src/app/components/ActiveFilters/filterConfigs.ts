@@ -29,7 +29,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   district: {
     key: "district",
     type: "array",
-    contexts: ["cases", "tasks"],
+    contexts: ["cases", "tasks", "hoa"],
     getLabel: (value) => value,
   },
   neighborhood: {
@@ -60,7 +60,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   isSmallHoa: {
     key: "isSmallHoa",
     type: "boolean",
-    contexts: ["cases", "tasks"],
+    contexts: ["cases", "tasks", "hoa"],
     getLabel: (value) => value === "true" ? "Kleine vve's" : "Grote vve's",
   },
   requestDateRangeAfter: {

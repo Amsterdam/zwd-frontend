@@ -9,6 +9,9 @@ export const useHomeownerAssociations = (
   pagination: TABLE.Pagination,
   sorting?: TABLE.Sorting,
   searchString?: string,
+  district?: string[],
+  isSmallHoa?: string,
+  participantCount?: number,
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -20,14 +23,20 @@ export const useHomeownerAssociations = (
       ordering: sorting
         ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
         : undefined,
-      search: searchString
+      search: searchString,
+      district,
+      is_small_hoa: isSmallHoa,
+      participant_count: participantCount,
     }
     return stringifyQueryParams(cleanParamObject(params))
   }, [
     pagination.page,
     pagination.pageSize,
     sorting,
-    searchString
+    searchString,
+    district,
+    isSmallHoa,
+    participantCount
   ])
   return useApiRequest<Components.Schemas.PaginatedCaseListList>({
     ...options,

@@ -76,6 +76,9 @@ export const initialState: StateType = {
       order: "DESCEND"
     },
     searchString: "",
+    district: [],
+    isSmallHoa: "",
+    participantCount: 0,
     updateContextHoa: noop,
   }
 }
