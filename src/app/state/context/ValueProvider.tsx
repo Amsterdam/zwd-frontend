@@ -27,8 +27,18 @@ const ValueProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         },
         [dispatch]
       )
+    },
+    hoa: {
+      ...state.hoa,
+      updateContextHoa: useCallback(
+        (payload: Payload) => {
+          dispatch({ type: actions.UPDATE_HOA, payload })
+        },
+        [dispatch]
+      )
     }
   }
+
 
   return (
     <ContextValues.Provider value={value}>{children}</ContextValues.Provider>

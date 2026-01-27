@@ -1,4 +1,4 @@
-import type { StateType } from "./types"
+import type { Payload, StateType } from "./types"
 import { DEFAULT_COLUMNS as CASES_DEFAULT_COLUMNS } from "app/pages/CasesPage/columns"
 import { DEFAULT_COLUMNS as TASKS_DEFAULT_COLUMNS } from "app/pages/TasksPage/columns"
 
@@ -61,6 +61,22 @@ export const initialState: StateType = {
     status: [],
     wijk: "",
     updateContextTasks: noop
+  },
+  hoa: {
+    name: "",
+    columnsVisible: CASES_DEFAULT_COLUMNS,
+    count: 0,
+    pagination: {
+      page: 1,
+      pageSize: 25
+    },
+    results: [],
+    sorting: {
+      dataIndex: "created",
+      order: "DESCEND"
+    },
+    searchString: "",
+    updateContextHoa: noop,
   }
 }
 

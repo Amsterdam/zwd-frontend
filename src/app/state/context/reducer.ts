@@ -19,6 +19,14 @@ const reducer = (state: StateType, action: ActionType) => {
           ...action.payload
         }
       }
+      case actions.UPDATE_HOA:
+      return {
+        ...state,
+        hoa: {
+          ...state.hoa,
+          ...action.payload
+        }
+      }
     default:
       return state
   }

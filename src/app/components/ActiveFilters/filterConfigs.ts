@@ -5,7 +5,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   searchString: {
     key: "searchString",
     type: "search",
-    contexts: ["cases", "tasks"],
+    contexts: ["cases", "tasks", "hoa"],
     getLabel: (value) => `Zoeken: “${value}”`,
   },
   taskName: {

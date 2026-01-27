@@ -1,7 +1,43 @@
-import type { Options } from "."
+import { SORTING_INDEX_MAPPING, type Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
+import { useMemo } from "react"
+import { cleanParamObject, getOrderingQueryParam } from "./utils"
+
+export const useHomeownerAssociations = (
+  pagination: TABLE.Pagination,
+  sorting?: TABLE.Sorting,
+  searchString?: string,
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+
+  const queryString = useMemo(() => {
+    const params: Record<string, Value> = {
+      page: pagination?.page ?? 1,
+      page_size: pagination?.pageSize ?? 25,
+      ordering: sorting
+        ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+        : undefined,
+      search: searchString
+    }
+    return stringifyQueryParams(cleanParamObject(params))
+  }, [
+    pagination.page,
+    pagination.pageSize,
+    sorting,
+    searchString
+  ])
+  return useApiRequest<Components.Schemas.PaginatedCaseListList>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association")}${queryString}`,
+    groupName: "hoa",
+    handleError,
+    isProtected: true
+  })
+}
+
 
 export const useHomeownerAssociation = (
   id?: Components.Schemas.HomeownerAssociation["id"],
