@@ -64,6 +64,8 @@ export type StateType = {
     district: string[],
     isSmallHoa: string,
     participantCount: number,
+    letterCount: number,
+    neighborhood: string[],
     updateContextHoa: (payload: Payload) => void
   }
 }

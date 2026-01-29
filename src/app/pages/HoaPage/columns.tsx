@@ -31,11 +31,29 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sortOrder: getSortOrder(sorting, "district")
   },
   {
+    header: "Buurt",
+    dataIndex: "neighborhood",
+    sorter: createStringSorter<DataType>("neighborhood"),
+    sortOrder: getSortOrder(sorting, "neighborhood")
+  },
+  {
     header: "Cursisten",
     dataIndex: "course_participant_count",
     sorter: createNumberSorter<DataType>("course_participant_count"),
     sortOrder: getSortOrder(sorting, "course_participant_count")
   },
+  {
+    header: "Brieven",
+    dataIndex: "letter_count",
+    sorter: createNumberSorter<DataType>("letter_count"),
+    sortOrder: getSortOrder(sorting, "letter_count")
+  },
+  {
+    header: "Zaken",
+    dataIndex: "cases_count",
+    sorter: createNumberSorter<DataType>("cases_count"),
+    sortOrder: getSortOrder(sorting, "cases_count")
+  }
 ]
 
 export default getColumns

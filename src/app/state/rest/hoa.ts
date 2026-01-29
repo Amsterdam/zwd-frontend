@@ -12,6 +12,8 @@ export const useHomeownerAssociations = (
   district?: string[],
   isSmallHoa?: string,
   participantCount?: number,
+  letterCount?: number,
+  neighborhood?: string[],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -27,6 +29,8 @@ export const useHomeownerAssociations = (
       district,
       is_small_hoa: isSmallHoa,
       participant_count: participantCount,
+      letter_count: letterCount,
+      neighborhood,
     }
     return stringifyQueryParams(cleanParamObject(params))
   }, [
@@ -36,7 +40,9 @@ export const useHomeownerAssociations = (
     searchString,
     district,
     isSmallHoa,
-    participantCount
+    participantCount,
+    letterCount,
+    neighborhood
   ])
   return useApiRequest<Components.Schemas.PaginatedCaseListList>({
     ...options,

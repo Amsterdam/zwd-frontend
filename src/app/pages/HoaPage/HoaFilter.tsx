@@ -6,7 +6,8 @@ import {
   PageSizeFilter,
   Search,
   BooleanStatusFilter,
-  ParticipantCountFilter
+  CountSelectFilter,
+  NeighborhoodFilter
 } from "app/components"
 
 const HOA = "hoa"
@@ -16,6 +17,7 @@ export const HoaFilters = () => {
     pagination,
     isSmallHoa,
     participantCount,
+    letterCount,
     updateContextHoa
   } = useContext(ContextValues)[HOA]
 
@@ -52,6 +54,12 @@ export const HoaFilters = () => {
         contextName={HOA}
         onChangeFilter={(value: string[]) => onChangeFilter("district", value)}
       />`
+      <NeighborhoodFilter
+        contextName={HOA}
+        onChangeFilter={(value: string[]) =>
+          onChangeFilter("neighborhood", value)
+        }
+      />`
       <BooleanStatusFilter
         label="Vve grootte"
         allLabel="Alle vve's"
@@ -62,12 +70,14 @@ export const HoaFilters = () => {
         }
         value={isSmallHoa}
       />
-      <ParticipantCountFilter
-        contextName={HOA}
-        onChangeFilter={(value: number) =>
-          onChangeFilter("participantCount", value)
-        }
-      />
+      <CountSelectFilter
+        onChangeFilter={(value: number) => onChangeFilter("participantCount", value)}
+        label="Aantal deelnemers" value={participantCount} 
+        />
+      <CountSelectFilter
+        onChangeFilter={(value: number) => onChangeFilter("letterCount", value)}
+        label="Aantal brieven" value={letterCount} 
+        />
     </Row>
   )
 }

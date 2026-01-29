@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo } from "react"
-import { Table, PageHeading, PageGrid, ActiveFilters, ParticipantCountFilter } from "app/components"
+import { Table, PageHeading, PageGrid, ActiveFilters } from "app/components"
 import { ContextValues } from "app/state/context/ValueProvider"
 import { useNavigateWithModifier } from "app/hooks"
 import getColumns from "./columns"
@@ -16,6 +16,8 @@ export const HoaPage: React.FC = () => {
     district,
     isSmallHoa,
     participantCount,
+    letterCount,
+    neighborhood,
     updateContextHoa
   } = useContext(ContextValues)["hoa"]
   const navigateWithModifier = useNavigateWithModifier()
@@ -26,6 +28,8 @@ export const HoaPage: React.FC = () => {
     district,
     isSmallHoa,
     participantCount,
+    letterCount,
+    neighborhood,
   )
 
   useEffect(() => {

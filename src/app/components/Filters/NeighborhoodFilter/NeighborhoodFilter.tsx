@@ -6,7 +6,7 @@ import { MultiSelectField } from "app/components/MultiSelectField/MultiSelectFie
 
 type Props = {
   onChangeFilter: (values: string[]) => void
-  contextName: "cases" | "tasks"
+  contextName: "cases" | "tasks" | "hoa"
 }
 
 export const NeighborhoodFilter: React.FC<Props> = ({

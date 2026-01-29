@@ -1,26 +1,25 @@
-import React, { useContext } from "react"
+import React from "react"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
-import { ContextValues } from "app/state/context/ValueProvider"
 
 type Props = {
   onChangeFilter: (value: number) => void
-  contextName: "hoa"
+  label: string
+  value: number
 }
 
-export const ParticipantCountFilter: React.FC<Props> = ({
-  contextName,
+export const CountSelectFilter: React.FC<Props> = ({
+  label,
+  value,
   onChangeFilter
 }) => {
-  const { participantCount } = useContext(ContextValues)[contextName]
-
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChangeFilter(Number(e.currentTarget.value))
   }
 
   return (
     <Field>
-      <Label htmlFor="participantCount">Aantal Cursisten</Label>
-      <Select id="participantCount" onChange={onChange} value={participantCount}>
+      <Label htmlFor="count">{label}</Label>
+      <Select id="count" onChange={onChange} value={value}>
         <Select.Option key="Nul" value={0}>
           Alle aantallen 
         </Select.Option>
@@ -35,4 +34,4 @@ export const ParticipantCountFilter: React.FC<Props> = ({
   )
 }
 
-export default ParticipantCountFilter
+export default CountSelectFilter

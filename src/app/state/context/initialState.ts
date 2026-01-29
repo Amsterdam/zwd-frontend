@@ -79,6 +79,8 @@ export const initialState: StateType = {
     district: [],
     isSmallHoa: "",
     participantCount: 0,
+    letterCount: 0,
+    neighborhood: [],
     updateContextHoa: noop,
   }
 }

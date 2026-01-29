@@ -7,6 +7,7 @@ export const getOrderingQueryParam = (
   sorting: { dataIndex?: string; order?: string },
   indexMapping: Record<string, string>
 ): string => {
+  console.log("getOrderingQueryParam called with:", sorting, indexMapping);
   if (!sorting?.dataIndex) return ""
 
   const value = indexMapping[sorting.dataIndex] || ""

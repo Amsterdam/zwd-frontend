@@ -19,6 +19,13 @@ export const SORTING_INDEX_MAPPING: Record<string, string> = {
   "request_date": "request_date",
   "status": "status",
   "updated": "updated",
+  "name": "name",
+  "number_of_apartments": "number_of_apartments",
+  "district": "district",
+  "neighborhood": "neighborhood",
+  "course_participant_count": "course_participant_count",
+  "letter_count": "letter_count",
+  "cases_count": "cases_count"
 }
 
 export const useCases = (
