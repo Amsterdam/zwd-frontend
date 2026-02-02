@@ -10,7 +10,13 @@ const hoaColumns = [
   { key: "cases_count", header: "Aantal zaken" }
 ]
 
-export const createExcel = (data: Components.Schemas.HomeownerAssociation[]) => {
+export type ExpandedHoa = Components.Schemas.HomeownerAssociation & {
+  cases_count: number
+  letter_count: number
+  course_participant_count: number
+}
+
+export const createExcel = (data: ExpandedHoa[]) => {
   const workbook = new Excel.Workbook()
   const worksheet = workbook.addWorksheet("vve's")
 
@@ -23,7 +29,13 @@ export const createExcel = (data: Components.Schemas.HomeownerAssociation[]) => 
 
   data.forEach((hoaItem) => {
     const row = {
-      ...hoaItem
+      name: hoaItem?.name,
+      number_of_apartments: hoaItem?.number_of_apartments,
+      district: hoaItem?.district,
+      neighborhood: hoaItem?.neighborhood,
+      course_participant_count: hoaItem?.course_participant_count,
+      letter_count: hoaItem?.letter_count,
+      cases_count: hoaItem?.cases_count
     }
     worksheet.addRow(row)
   })
