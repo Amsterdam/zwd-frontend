@@ -22,15 +22,16 @@ describe("createExcel", () => {
     expect(worksheet).toBeDefined()
 
     // Controleer kolommen
-    const headers = worksheet ? worksheet.columns.map((col) => col.header) : []
-    expect(headers).toEqual([
-        "Statutaire naam",
-        "Aantal appartementen",
-        "Stadsdeel",
-        "Buurt",
-        "Aantal cursusdeelnemers",
-        "Aantal brieven",
-        "Aantal zaken"
+    const headerRow = worksheet?.getRow(1)
+    expect(headerRow?.values).toEqual([
+      ,
+      "Statutaire naam",
+      "Aantal appartementen",
+      "Stadsdeel",
+      "Buurt",
+      "Aantal cursusdeelnemers",
+      "Aantal brieven",
+      "Aantal zaken"
     ])
 
     // Controleer eerste rij data
