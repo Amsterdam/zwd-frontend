@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import {Row } from "@amsterdam/design-system-react"
+import {Field, Row } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
 import {
   DistrictFilter,
@@ -7,7 +7,9 @@ import {
   Search,
   BooleanStatusFilter,
   CountSelectFilter,
-  NeighborhoodFilter
+  NeighborhoodFilter,
+  DownloadHoaExcel,
+  DownloadExcel
 } from "app/components"
 
 const HOA = "hoa"
@@ -48,18 +50,18 @@ export const HoaFilters = () => {
         contextName={HOA}
         onSearch={(value: string) => onChangeFilter("searchString", value)}
         placeholder="Zoek op ID, Excel ID of statutaire naam"
-      />`
+      />
       <PageSizeFilter contextName={HOA} onChangePageSize={onChangePageSize} />
       <DistrictFilter
         contextName={HOA}
         onChangeFilter={(value: string[]) => onChangeFilter("district", value)}
-      />`
+      />
       <NeighborhoodFilter
         contextName={HOA}
         onChangeFilter={(value: string[]) =>
           onChangeFilter("neighborhood", value)
         }
-      />`
+      />
       <BooleanStatusFilter
         label="Vve grootte"
         allLabel="Alle vve's"
@@ -72,12 +74,15 @@ export const HoaFilters = () => {
       />
       <CountSelectFilter
         onChangeFilter={(value: number) => onChangeFilter("participantCount", value)}
-        label="Aantal deelnemers" value={participantCount} 
+        label="Cursisten" value={participantCount} 
         />
       <CountSelectFilter
         onChangeFilter={(value: number) => onChangeFilter("letterCount", value)}
-        label="Aantal brieven" value={letterCount} 
+        label="Brieven" value={letterCount} 
         />
+      <Field style={{ justifyContent: "flex-end" }}>
+          <DownloadHoaExcel />
+      </Field>
     </Row>
   )
 }

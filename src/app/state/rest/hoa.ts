@@ -28,7 +28,7 @@ export const useHomeownerAssociations = (
       search: searchString,
       district,
       is_small_hoa: isSmallHoa,
-      participant_count: participantCount,
+      course_participant_count: participantCount,
       letter_count: letterCount,
       neighborhood,
     }
