@@ -5,7 +5,7 @@ import { saveAs } from "file-saver"
 import { useAuth } from "react-oidc-context"
 import { ContextValues } from "app/state/context/ValueProvider"
 import { createExcel } from "./createExcel"
-import type { ExpandedCase } from "./createExcel"
+import type { ExpandedHoa } from "./createExcel"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 import { cleanParamObject, getOrderingQueryParam } from "app/state/rest/utils"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
@@ -67,7 +67,7 @@ export const DownloadHoaExcel = () => {
   const fetchAllHoas = async () => {
     setLoading(true)
     try {
-      let allResults: ExpandedCase[] = []
+      let allResults: ExpandedHoa[] = []
       const initialQueryString = buildQueryString(queryParams, 1)
       const initialUrl = `${makeApiUrl("homeowner-association")}${initialQueryString}`
 
