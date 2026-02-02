@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import {Field, Row } from "@amsterdam/design-system-react"
+import { Field, Row } from "@amsterdam/design-system-react"
 import { ContextValues } from "app/state/context/ValueProvider"
 import {
   DistrictFilter,
@@ -9,7 +9,6 @@ import {
   CountSelectFilter,
   NeighborhoodFilter,
   DownloadHoaExcel,
-  DownloadExcel
 } from "app/components"
 
 const HOA = "hoa"

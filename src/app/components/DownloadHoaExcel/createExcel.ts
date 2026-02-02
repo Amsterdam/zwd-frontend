@@ -11,6 +11,9 @@ const hoaColumns = [
   { key: "number_of_apartments", header: "Aantal appartementen" },
   { key: "district", header: "Stadsdeel" },
   { key: "neighborhood", header: "Buurt" },
+  { key: "course_participant_count", header: "Aantal cursusdeelnemers" },
+  { key: "letter_count", header: "Aantal brieven" },
+  { key: "cases_count", header: "Aantal zaken" }
 
 ]
 
