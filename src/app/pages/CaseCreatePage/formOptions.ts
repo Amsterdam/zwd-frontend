@@ -1,7 +1,6 @@
 export const APPLICATION_TYPES = {
   ACTIVATIETEAM: "Activatieteam",
   ADVIES: "Advies",
-  CURSUS: "Cursus",
 }
 
 export const ADVIES_TYPES = {
