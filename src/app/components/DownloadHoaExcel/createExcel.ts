@@ -1,11 +1,5 @@
 import Excel from "exceljs"
 
-export type ExpandedCase = Components.Schemas.Case & {
-  updated?: string
-  homeowner_association: Components.Schemas.HomeownerAssociation | null
-  additional_fields: { header: string; value: string }[]
-}
-
 const hoaColumns = [
   { key: "name", header: "Statutaire naam" },
   { key: "number_of_apartments", header: "Aantal appartementen" },
@@ -14,10 +8,9 @@ const hoaColumns = [
   { key: "course_participant_count", header: "Aantal cursusdeelnemers" },
   { key: "letter_count", header: "Aantal brieven" },
   { key: "cases_count", header: "Aantal zaken" }
-
 ]
 
-export const createExcel = (data: ExpandedCase[]) => {
+export const createExcel = (data: Components.Schemas.HomeownerAssociation[]) => {
   const workbook = new Excel.Workbook()
   const worksheet = workbook.addWorksheet("vve's")
 
