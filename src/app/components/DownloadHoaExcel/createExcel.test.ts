@@ -23,8 +23,8 @@ describe("createExcel", () => {
 
     // Controleer kolommen
     const headerRow = worksheet?.getRow(1)
-    expect(headerRow?.values).toEqual([
-      ,
+    const headerValues = Array.isArray(headerRow?.values) ? headerRow!.values.slice(1) : []
+    expect(headerValues).toEqual([
       "Statutaire naam",
       "Aantal appartementen",
       "Stadsdeel",
