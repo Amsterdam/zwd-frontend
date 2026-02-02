@@ -36,7 +36,7 @@ describe("createExcel", () => {
 
     // Controleer eerste rij data
     if (!worksheet) {
-      throw new Error("Worksheet 'Zaken' not found")
+      throw new Error("Worksheet \"vve's\" not found")
     }
     const firstRow = worksheet.getRow(2)
     expect(firstRow.getCell(1).value).toBe("VVE De Zonnebloem")

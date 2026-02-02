@@ -82,7 +82,7 @@ export const initialState: StateType = {
     participantCount: 0,
     letterCount: 0,
     neighborhood: [],
-    updateContextHoa: noop,
+    updateContextHoa: noop
   }
 }
 

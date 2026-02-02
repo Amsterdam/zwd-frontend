@@ -59,9 +59,9 @@ export const DownloadHoaExcel = () => {
     course_participant_count: participantCount,
     letter_count: letterCount,
     neighborhood,
-        ordering: sorting
-          ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
-          : undefined,
+    ordering: sorting
+      ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+      : undefined,
   }
 
   const fetchAllHoas = async () => {
