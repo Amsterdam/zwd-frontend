@@ -91,7 +91,6 @@ export const DownloadHoaExcel = () => {
       })
 
       // Create Excel and trigger download
-      console.log(allResults)
       const workbook = createExcel(allResults)
       const buffer = await workbook.xlsx.writeBuffer()
       const blob = new Blob([buffer], {

@@ -16,7 +16,7 @@ describe("createExcel", () => {
     ]
 
     const workbook = createExcel(mockData)
-    const worksheet = workbook.getWorksheet("Zaken")
+    const worksheet = workbook.getWorksheet("vve's")
 
     // Controleer of worksheet bestaat
     expect(worksheet).toBeDefined()
