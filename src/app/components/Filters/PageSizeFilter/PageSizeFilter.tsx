@@ -4,7 +4,7 @@ import { ContextValues } from "app/state/context/ValueProvider"
 
 type Props = {
   onChangePageSize: (value: string) => void
-  contextName: "cases" | "tasks" | "hoa"
+  contextName: "cases" | "tasks" | "hoas"
 }
 
 const PAGE_SIZES = [10, 25, 100, 1000]

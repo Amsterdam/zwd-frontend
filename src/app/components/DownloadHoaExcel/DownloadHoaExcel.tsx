@@ -49,7 +49,7 @@ export const DownloadHoaExcel = () => {
     letterCount,
     neighborhood,
     sorting,
-  } = useContext(ContextValues)["hoa"]
+  } = useContext(ContextValues)["hoas"]
   const [loading, setLoading] = useState(false)
 
   const queryParams = {

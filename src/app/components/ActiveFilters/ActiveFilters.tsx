@@ -8,7 +8,7 @@ import { FilterValue, FilterChip } from "./types"
 import styles from "./ActiveFilters.module.css"
 
 type Props = {
-  contextName: "cases" | "tasks" | "hoa"
+  contextName: "cases" | "tasks" | "hoas"
 }
 
 const getFilterValueFromContext = (
@@ -19,11 +19,12 @@ const getFilterValueFromContext = (
 export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
   const fullContext = useContext(ContextValues)
   const context = fullContext[contextName]
-  const updateContext = contextName === "cases"
-    ? fullContext.cases.updateContextCases
-    : contextName === "tasks"
-      ? fullContext.tasks.updateContextTasks
-      : fullContext.hoa.updateContextHoa
+  let updateContext = fullContext.cases.updateContextCases;
+  if (contextName === "tasks") {
+    updateContext = fullContext.tasks.updateContextTasks;
+  } else if (contextName === "hoas") {
+    updateContext = fullContext.hoas.updateContextHoas;
+  }
   const [advisors] = useAdvisorsList()
 
   const removeFilter = (key: string, valueToRemove?: string) => {

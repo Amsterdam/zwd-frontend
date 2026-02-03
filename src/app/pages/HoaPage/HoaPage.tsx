@@ -18,8 +18,8 @@ export const HoaPage: React.FC = () => {
     participantCount,
     letterCount,
     neighborhood,
-    updateContextHoa
-  } = useContext(ContextValues)["hoa"]
+    updateContextHoas
+  } = useContext(ContextValues)["hoas"]
   const navigateWithModifier = useNavigateWithModifier()
   const [dataSource, { isBusy }] = useHomeownerAssociations(
     pagination,
@@ -34,32 +34,32 @@ export const HoaPage: React.FC = () => {
 
   useEffect(() => {
     if (dataSource?.results) {
-      updateContextHoa({
+      updateContextHoas({
         results: dataSource?.results,
         count: dataSource.count
       })
     } else {
-      updateContextHoa({
+      updateContextHoas({
         results: [],
         count: 0
       })
     }
-  }, [dataSource, updateContextHoa])
+  }, [dataSource, updateContextHoas])
 
   const onChangeTable = (
     pagination: TABLE.Pagination,
     sorting: TABLE.Sorting,
   ) => {
-    updateContextHoa({ pagination, sorting })
+    updateContextHoas({ pagination, sorting })
   }
 
   const columns = useMemo(() => getColumns(sorting), [sorting])
 
   return (
     <PageGrid>
-      <PageHeading label={`VvE-overzicht (${count})`} />
+      <PageHeading label={`Vve-overzicht (${count})`} />
       <HoaFilters />
-      <ActiveFilters contextName="hoa" />
+      <ActiveFilters contextName="hoas" />
       <Table
         columns={columns}
         data={results}

@@ -63,7 +63,7 @@ export const initialState: StateType = {
     updateContextTasks: noop
   },
   
-  hoa: {
+  hoas: {
     name: "",
     columnsVisible: CASES_DEFAULT_COLUMNS,
     count: 0,
@@ -82,7 +82,7 @@ export const initialState: StateType = {
     participantCount: 0,
     letterCount: 0,
     neighborhood: [],
-    updateContextHoa: noop
+    updateContextHoas: noop
   }
 }
 

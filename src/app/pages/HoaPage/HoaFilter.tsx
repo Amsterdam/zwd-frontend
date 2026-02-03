@@ -9,9 +9,10 @@ import {
   CountSelectFilter,
   NeighborhoodFilter,
   DownloadHoaExcel,
+  ResetFiltersButton,
 } from "app/components"
 
-const HOA = "hoa"
+const HOAS = "hoas"
 
 export const HoaFilters = () => {
   const {
@@ -19,9 +20,8 @@ export const HoaFilters = () => {
     isSmallHoa,
     participantCount,
     letterCount,
-    updateContextHoa
-  } = useContext(ContextValues)[HOA]
-
+    updateContextHoas
+  } = useContext(ContextValues)[HOAS]
   const onChangeFilter = (key: string, item: string | boolean | string[] | number) => {
     const hoaContextItem = {
       [key]: item,
@@ -30,11 +30,11 @@ export const HoaFilters = () => {
         page: 1
       }
     }
-    updateContextHoa(hoaContextItem)
+    updateContextHoas(hoaContextItem)
   }
 
   const onChangePageSize = (pageSize: string) => {
-    updateContextHoa({
+    updateContextHoas({
       pagination: {
         ...pagination,
         pageSize: parseInt(pageSize),
@@ -46,17 +46,17 @@ export const HoaFilters = () => {
   return (
     <Row wrap>
       <Search
-        contextName={HOA}
+        contextName={HOAS}
         onSearch={(value: string) => onChangeFilter("searchString", value)}
         placeholder="Zoek op ID, Excel ID of statutaire naam"
       />
-      <PageSizeFilter contextName={HOA} onChangePageSize={onChangePageSize} />
+      <PageSizeFilter contextName={HOAS} onChangePageSize={onChangePageSize} />
       <DistrictFilter
-        contextName={HOA}
+        contextName={HOAS}
         onChangeFilter={(value: string[]) => onChangeFilter("district", value)}
       />
       <NeighborhoodFilter
-        contextName={HOA}
+        contextName={HOAS}
         onChangeFilter={(value: string[]) =>
           onChangeFilter("neighborhood", value)
         }
@@ -82,6 +82,7 @@ export const HoaFilters = () => {
       <Field style={{ justifyContent: "flex-end" }}>
           <DownloadHoaExcel />
       </Field>
+      <ResetFiltersButton contextName={HOAS} />
     </Row>
   )
 }

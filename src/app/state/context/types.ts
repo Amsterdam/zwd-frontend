@@ -53,7 +53,7 @@ export type StateType = {
     wijk: string
     updateContextTasks: (payload: Payload) => void
   },
-  hoa: {
+  hoas: {
     name: string,
     columnsVisible: string[]
     count: number
@@ -66,7 +66,7 @@ export type StateType = {
     participantCount: number,
     letterCount: number,
     neighborhood: string[],
-    updateContextHoa: (payload: Payload) => void
+    updateContextHoas: (payload: Payload) => void
   }
 }
 

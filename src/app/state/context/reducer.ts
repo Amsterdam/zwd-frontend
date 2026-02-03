@@ -19,11 +19,11 @@ const reducer = (state: StateType, action: ActionType) => {
           ...action.payload
         }
       }
-      case actions.UPDATE_HOA:
+      case actions.UPDATE_HOAS:
       return {
         ...state,
-        hoa: {
-          ...state.hoa,
+        hoas: {
+          ...state.hoas,
           ...action.payload
         }
       }

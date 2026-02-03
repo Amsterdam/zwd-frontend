@@ -12,7 +12,7 @@ export const useCommunicationNotes = (
   return useApiRequest<CommunicationNote[] | CommunicationNote>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "communication-notes")}`,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -28,7 +28,7 @@ export const useCommunicationNote = (
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "communication-notes", noteId)}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })

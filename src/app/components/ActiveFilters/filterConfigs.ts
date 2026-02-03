@@ -5,7 +5,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   searchString: {
     key: "searchString",
     type: "search",
-    contexts: ["cases", "tasks", "hoa"],
+    contexts: ["cases", "tasks", "hoas"],
     getLabel: (value) => `Zoeken: “${value}”`,
   },
   taskName: {
@@ -29,7 +29,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   district: {
     key: "district",
     type: "array",
-    contexts: ["cases", "tasks", "hoa"],
+    contexts: ["cases", "tasks", "hoas"],
     getLabel: (value) => value,
   },
   neighborhood: {
@@ -60,7 +60,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   isSmallHoa: {
     key: "isSmallHoa",
     type: "boolean",
-    contexts: ["cases", "tasks", "hoa"],
+    contexts: ["cases", "tasks", "hoas"],
     getLabel: (value) => value === "true" ? "Kleine vve's" : "Grote vve's",
   },
   requestDateRangeAfter: {
