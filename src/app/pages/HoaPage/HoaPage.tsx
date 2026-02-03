@@ -54,16 +54,6 @@ export const HoaPage: React.FC = () => {
   }
 
   const columns = useMemo(() => getColumns(sorting), [sorting])
-  // const columnsFiltered = useMemo(
-  //   () => columns.filter(column => {
-  //     const alwaysVisible = ["prefixed_dossier_id", "id"]
-  //     if (alwaysVisible.includes(column?.dataIndex ?? "")) {
-  //       return true
-  //     }
-  //     return columnsVisible.includes(column.dataIndex ?? "")
-  //   }),
-  //   [columns, columnsVisible]
-  // )
 
   return (
     <PageGrid>
