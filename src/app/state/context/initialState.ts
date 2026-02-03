@@ -62,7 +62,7 @@ export const initialState: StateType = {
     wijk: "",
     updateContextTasks: noop
   },
-  
+
   hoas: {
     name: "",
     columnsVisible: CASES_DEFAULT_COLUMNS,

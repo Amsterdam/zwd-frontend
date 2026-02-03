@@ -4,7 +4,10 @@ export type FilterConfig = {
   key: string
   type: FilterType
   contexts: ("cases" | "tasks" | "hoas")[]
-  getLabel: (value: string, helpers?: Components.Schemas.CaseAdvisor[] | undefined) => string
+  getLabel: (
+    value: string,
+    helpers?: Components.Schemas.CaseAdvisor[] | undefined
+  ) => string
 }
 
 export type FilterConfigs = Record<string, FilterConfig>

@@ -13,10 +13,7 @@ export const DeleteCommunicationNote: React.FC<Props> = ({
   hoaId,
   communicationNote
 }) => {
-  const [, { execDelete }] = useCommunicationNote(
-    hoaId,
-    communicationNote.id
-  )
+  const [, { execDelete }] = useCommunicationNote(hoaId, communicationNote.id)
   const dialogId = `delete-communication-note-${communicationNote.id}`
   const { openDialog } = useDialog(dialogId)
 

@@ -16,7 +16,7 @@ export const DEFAULT_COLUMNS = [
   "homeowner_association.name",
   "status",
   "request_date",
-  "updated",
+  "updated"
 ]
 
 const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
@@ -41,20 +41,25 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
     header: "Vve grootte",
     dataIndex: "homeowner_association.number_of_apartments",
-    sorter: createNumberSorter<DataType>("homeowner_association.number_of_apartments"),
-    sortOrder: getSortOrder(sorting, "homeowner_association.number_of_apartments")
+    sorter: createNumberSorter<DataType>(
+      "homeowner_association.number_of_apartments"
+    ),
+    sortOrder: getSortOrder(
+      sorting,
+      "homeowner_association.number_of_apartments"
+    )
   },
   {
     header: "Stadsdeel",
     dataIndex: "homeowner_association.district",
     sorter: createStringSorter<DataType>("homeowner_association.district"),
-    sortOrder: getSortOrder(sorting, "homeowner_association.district"),
+    sortOrder: getSortOrder(sorting, "homeowner_association.district")
   },
   {
     header: "Buurt",
     dataIndex: "homeowner_association.neighborhood",
     sorter: createStringSorter<DataType>("homeowner_association.neighborhood"),
-    sortOrder: getSortOrder(sorting, "homeowner_association.neighborhood"),
+    sortOrder: getSortOrder(sorting, "homeowner_association.neighborhood")
   },
   {
     header: "Aanvraagtype",
@@ -97,7 +102,7 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sorter: createDateSorter<DataType>("end_date"),
     defaultSortOrder: "DESCEND" as const,
     sortOrder: getSortOrder(sorting, "end_date"),
-    render: (text) => text ? formatDate(text) : "–"
+    render: (text) => (text ? formatDate(text) : "–")
   },
   {
     header: "Laatst gewijzigd",

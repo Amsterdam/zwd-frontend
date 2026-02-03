@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import {
   FolderIcon,
   DocumentsIcon,
-  DocumentCheckMarkIcon,
+  DocumentCheckMarkIcon
 } from "@amsterdam/design-system-react-icons"
 import { Icon, Row, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"

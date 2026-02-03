@@ -52,21 +52,20 @@ export type StateType = {
     status: string[]
     wijk: string
     updateContextTasks: (payload: Payload) => void
-  },
+  }
   hoas: {
-    name: string,
+    name: string
     columnsVisible: string[]
     count: number
     pagination: TABLE.Pagination
     results: Components.Schemas.CaseList[]
-    sorting: TABLE.Sorting,
-    searchString: string,
-    district: string[],
-    isSmallHoa: string,
-    participantCount: number,
-    letterCount: number,
-    neighborhood: string[],
+    sorting: TABLE.Sorting
+    searchString: string
+    district: string[]
+    isSmallHoa: string
+    participantCount: number
+    letterCount: number
+    neighborhood: string[]
     updateContextHoas: (payload: Payload) => void
   }
 }
-

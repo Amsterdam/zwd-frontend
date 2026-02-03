@@ -10,7 +10,7 @@ import {
   SearchPage,
   TasksPage,
   BpmnPage,
-  ImportPage,
+  ImportPage
 } from "app/pages"
 import { HoaPage } from "app/pages/HoaPage/HoaPage"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"

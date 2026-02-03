@@ -61,22 +61,32 @@ export const createExcel = (data: ExpandedCase[]) => {
   })
   worksheet.getColumn(10).width = 100
   worksheet.getRow(1).font = { bold: true }
-  const additional_fields = new Map<string, { header: string; key: string; width: number }>()
+  const additional_fields = new Map<
+    string,
+    { header: string; key: string; width: number }
+  >()
 
-  data.forEach(caseItem => {
-    caseItem.additional_fields.forEach((field: { header: string | undefined }) => {
-      if (!field.header) return
-      const exists = worksheet.columns.some(col => col.header === field.header)
-      if (!exists && !additional_fields.has(field.header)) {
-        additional_fields.set(field.header, {
-          header: field.header,
-          key: field.header,
-          width: 15,
-        })
+  data.forEach((caseItem) => {
+    caseItem.additional_fields.forEach(
+      (field: { header: string | undefined }) => {
+        if (!field.header) return
+        const exists = worksheet.columns.some(
+          (col) => col.header === field.header
+        )
+        if (!exists && !additional_fields.has(field.header)) {
+          additional_fields.set(field.header, {
+            header: field.header,
+            key: field.header,
+            width: 15
+          })
+        }
       }
-    })
+    )
   })
-  worksheet.columns = [...worksheet.columns, ...Array.from(additional_fields.values())]
+  worksheet.columns = [
+    ...worksheet.columns,
+    ...Array.from(additional_fields.values())
+  ]
 
   data.forEach((caseItem) => {
     const owners =
@@ -88,7 +98,10 @@ export const createExcel = (data: ExpandedCase[]) => {
         .join("; ") || ""
 
     const additional_fields_map = Object.fromEntries(
-      caseItem.additional_fields.map((f: { header: string; value: string }) => [f.header, f.value])
+      caseItem.additional_fields.map((f: { header: string; value: string }) => [
+        f.header,
+        f.value
+      ])
     )
     const row = {
       ...caseItem,
@@ -118,7 +131,8 @@ export const createExcel = (data: ExpandedCase[]) => {
       hoa_beschermd_stadsdorpsgezicht:
         caseItem.homeowner_association?.beschermd_stadsdorpsgezicht || "",
       hoa_owners: owners,
-      hoa_course_participant_count: caseItem.homeowner_association?.course_participant_count || 0,
+      hoa_course_participant_count:
+        caseItem.homeowner_association?.course_participant_count || 0,
       ...additional_fields_map
     }
     worksheet.addRow(row)

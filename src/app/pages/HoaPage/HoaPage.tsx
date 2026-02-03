@@ -29,7 +29,7 @@ export const HoaPage: React.FC = () => {
     isSmallHoa,
     participantCount,
     letterCount,
-    neighborhood,
+    neighborhood
   )
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export const HoaPage: React.FC = () => {
 
   const onChangeTable = (
     pagination: TABLE.Pagination,
-    sorting: TABLE.Sorting,
+    sorting: TABLE.Sorting
   ) => {
     updateContextHoas({ pagination, sorting })
   }
@@ -64,7 +64,9 @@ export const HoaPage: React.FC = () => {
         columns={columns}
         data={results}
         loading={isBusy}
-        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/vve/${obj.id}`)}
+        onClickRow={(obj, _index, e) =>
+          navigateWithModifier(e, `/vve/${obj.id}`)
+        }
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,

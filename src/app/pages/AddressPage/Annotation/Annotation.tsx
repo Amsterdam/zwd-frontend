@@ -1,10 +1,5 @@
 import { useMemo, useState } from "react"
-import {
-  Button,
-  Heading,
-  Paragraph,
-  Row
-} from "@amsterdam/design-system-react"
+import { Button, Heading, Paragraph, Row } from "@amsterdam/design-system-react"
 import { useHomeownerAssociation } from "app/state/rest"
 import { TextAreaField, FormActionButtons, Form } from "app/components"
 import { PencilIcon, PlusIcon } from "@amsterdam/design-system-react-icons"
@@ -18,13 +13,19 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
   const [data, { execPatch }] = useHomeownerAssociation(hoaId)
   const [isEditing, setIsEditing] = useState(false)
 
-  const hasAnnotation = useMemo(() =>
-    data?.annotation?.length && data?.annotation?.length > 0 && data?.annotation
-  , [data?.annotation])
+  const hasAnnotation = useMemo(
+    () =>
+      data?.annotation?.length &&
+      data?.annotation?.length > 0 &&
+      data?.annotation,
+    [data?.annotation]
+  )
 
   const onSubmit = (values: FormValues) => {
     if (values.annotation?.trim().length === 0) {
-      const confirm = window.confirm("Weet je zeker dat je de aantekening wilt verwijderen?")
+      const confirm = window.confirm(
+        "Weet je zeker dat je de aantekening wilt verwijderen?"
+      )
       if (confirm) {
         values.annotation = null
       } else {
@@ -47,8 +48,9 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
         align="end"
         style={{
           marginBottom: "1rem",
-          display: isEditing ? "none" : "flex",
-        }}>
+          display: isEditing ? "none" : "flex"
+        }}
+      >
         <Button
           variant="primary"
           icon={hasAnnotation ? PencilIcon : PlusIcon}
@@ -66,7 +68,9 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
         >
           <TextAreaField
             name="annotation"
-            label={ hasAnnotation ? "Aantekening bewerken" : "Aantekening toevoegen" }
+            label={
+              hasAnnotation ? "Aantekening bewerken" : "Aantekening toevoegen"
+            }
             validation={{ required: false }}
             rows={10}
           />
@@ -81,9 +85,11 @@ export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {
         <>
           <Heading level={4}>Aantekeningen</Heading>
           <Paragraph style={{ margin: "1rem 0" }}>
-            {hasAnnotation
-              ? formatTextWithLineBreaks(data?.annotation)
-              : <em>Geen aantekeningen gevonden</em>}
+            {hasAnnotation ? (
+              formatTextWithLineBreaks(data?.annotation)
+            ) : (
+              <em>Geen aantekeningen gevonden</em>
+            )}
           </Paragraph>
         </>
       )}

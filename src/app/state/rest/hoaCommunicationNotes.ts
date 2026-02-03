@@ -2,7 +2,8 @@ import type { Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
-type CommunicationNote = Components.Schemas.HomeownerAssociationCommunicationNote
+type CommunicationNote =
+  Components.Schemas.HomeownerAssociationCommunicationNote
 
 export const useCommunicationNotes = (
   id: Components.Schemas.HomeownerAssociation["id"],

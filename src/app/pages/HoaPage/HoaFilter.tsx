@@ -9,7 +9,7 @@ import {
   CountSelectFilter,
   NeighborhoodFilter,
   DownloadHoaExcel,
-  ResetFiltersButton,
+  ResetFiltersButton
 } from "app/components"
 
 const HOAS = "hoas"
@@ -22,7 +22,10 @@ export const HoaFilters = () => {
     letterCount,
     updateContextHoas
   } = useContext(ContextValues)[HOAS]
-  const onChangeFilter = (key: string, item: string | boolean | string[] | number) => {
+  const onChangeFilter = (
+    key: string,
+    item: string | boolean | string[] | number
+  ) => {
     const hoaContextItem = {
       [key]: item,
       pagination: {
@@ -66,21 +69,23 @@ export const HoaFilters = () => {
         allLabel="Alle vve's"
         trueLabel="Kleine vve's"
         falseLabel="Grote vve's"
-        onChangeFilter={(value: string) =>
-          onChangeFilter("isSmallHoa", value)
-        }
+        onChangeFilter={(value: string) => onChangeFilter("isSmallHoa", value)}
         value={isSmallHoa}
       />
       <CountSelectFilter
-        onChangeFilter={(value: number) => onChangeFilter("participantCount", value)}
-        label="Cursisten" value={participantCount} 
-        />
+        onChangeFilter={(value: number) =>
+          onChangeFilter("participantCount", value)
+        }
+        label="Cursisten"
+        value={participantCount}
+      />
       <CountSelectFilter
         onChangeFilter={(value: number) => onChangeFilter("letterCount", value)}
-        label="Brieven" value={letterCount} 
-        />
+        label="Brieven"
+        value={letterCount}
+      />
       <Field style={{ justifyContent: "flex-end" }}>
-          <DownloadHoaExcel />
+        <DownloadHoaExcel />
       </Field>
       <ResetFiltersButton contextName={HOAS} />
     </Row>

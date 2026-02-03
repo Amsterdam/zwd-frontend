@@ -23,7 +23,9 @@ describe("createExcel", () => {
 
     // Controleer kolommen
     const headerRow = worksheet?.getRow(1)
-    const headerValues = Array.isArray(headerRow?.values) ? headerRow!.values.slice(1) : []
+    const headerValues = Array.isArray(headerRow?.values)
+      ? headerRow!.values.slice(1)
+      : []
     expect(headerValues).toEqual([
       "Statutaire naam",
       "Aantal appartementen",
@@ -36,7 +38,7 @@ describe("createExcel", () => {
 
     // Controleer eerste rij data
     if (!worksheet) {
-      throw new Error("Worksheet \"vve's\" not found")
+      throw new Error('Worksheet "vve\'s" not found')
     }
     const firstRow = worksheet.getRow(2)
     expect(firstRow.getCell(1).value).toBe("VVE De Zonnebloem")

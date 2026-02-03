@@ -57,7 +57,9 @@ h2.ams-heading:has(+ div > table) {
   .ams-page-header__mega-menu-button-item--hide-on-wide-window {
     display: block;
   }
-  .ams-page-header__menu-item:not(.ams-page-header__menu-item--fixed):not(:has([data-core="true"])) {
+  .ams-page-header__menu-item:not(.ams-page-header__menu-item--fixed):not(
+      :has([data-core="true"])
+    ) {
     display: none;
   }
 }

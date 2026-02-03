@@ -15,52 +15,57 @@ type Props = {
 
 type ContextData = StateType["cases"] | StateType["tasks"]
 
-const MANDATORY_COLUMNS = [
-  "prefixed_dossier_id",
-  "case.prefixed_dossier_id",
-]
+const MANDATORY_COLUMNS = ["prefixed_dossier_id", "case.prefixed_dossier_id"]
 
-const ACTION_COLUMNS = [
-  "id",
-  "case.id"
-]
+const ACTION_COLUMNS = ["id", "case.id"]
 
-export const ColumnSettingsDialog = ({ dialogId, contextName, onClose }: Props) => {
-  const contextData = useContext(ContextValues)[contextName as "cases" | "tasks"] as ContextData
+export const ColumnSettingsDialog = ({
+  dialogId,
+  contextName,
+  onClose
+}: Props) => {
+  const contextData = useContext(ContextValues)[
+    contextName as "cases" | "tasks"
+  ] as ContextData
   const { columnsVisible } = contextData
 
   const updateContext = (payload: Payload) => {
     if (contextName === "cases") {
-      (contextData as StateType["cases"]).updateContextCases(payload)
+      ;(contextData as StateType["cases"]).updateContextCases(payload)
     } else {
-      (contextData as StateType["tasks"]).updateContextTasks(payload)
+      ;(contextData as StateType["tasks"]).updateContextTasks(payload)
     }
   }
 
-  const defaultColumns = contextName === "cases"
-    ? CASES_DEFAULT_COLUMNS
-    : TASKS_DEFAULT_COLUMNS
+  const defaultColumns =
+    contextName === "cases" ? CASES_DEFAULT_COLUMNS : TASKS_DEFAULT_COLUMNS
 
-  const allColumns = contextName === "cases"
-    ? getCasesColumns({ dataIndex: "", order: "DESCEND" })
-    : getTasksColumns({ dataIndex: "", order: "DESCEND" })
+  const allColumns =
+    contextName === "cases"
+      ? getCasesColumns({ dataIndex: "", order: "DESCEND" })
+      : getTasksColumns({ dataIndex: "", order: "DESCEND" })
 
   const handleColumnToggle = (dataIndex: string, checked: boolean) => {
     const newColumnsVisible = checked
       ? [...columnsVisible, dataIndex]
-      : columnsVisible.filter(col => col !== dataIndex)
+      : columnsVisible.filter((col) => col !== dataIndex)
 
     updateContext({
-      columnsVisible: newColumnsVisible,
+      columnsVisible: newColumnsVisible
     })
   }
 
-  const handleResetToDefaults = () => void updateContext({ columnsVisible: defaultColumns })
+  const handleResetToDefaults = () =>
+    void updateContext({ columnsVisible: defaultColumns })
 
-  const isMandatoryColumn = (dataIndex: string) => MANDATORY_COLUMNS.includes(dataIndex)
-  const isActionColumn = (dataIndex: string) => ACTION_COLUMNS.includes(dataIndex)
+  const isMandatoryColumn = (dataIndex: string) =>
+    MANDATORY_COLUMNS.includes(dataIndex)
+  const isActionColumn = (dataIndex: string) =>
+    ACTION_COLUMNS.includes(dataIndex)
   const isDefaultColumns = useMemo(
-    () => columnsVisible.every(column => defaultColumns.includes(column)) && columnsVisible.length === defaultColumns.length,
+    () =>
+      columnsVisible.every((column) => defaultColumns.includes(column)) &&
+      columnsVisible.length === defaultColumns.length,
     [columnsVisible, defaultColumns]
   )
 
@@ -71,34 +76,35 @@ export const ColumnSettingsDialog = ({ dialogId, contextName, onClose }: Props) 
       style={{ userSelect: "none" }}
     >
       <>
-        {allColumns.filter(column => !isActionColumn(column.dataIndex || "")).map((column) => {
-          const dataIndex = column.dataIndex
-          const isMandatory = isMandatoryColumn(dataIndex || "")
-          const isChecked = columnsVisible.includes(dataIndex || "")
+        {allColumns
+          .filter((column) => !isActionColumn(column.dataIndex || ""))
+          .map((column) => {
+            const dataIndex = column.dataIndex
+            const isMandatory = isMandatoryColumn(dataIndex || "")
+            const isChecked = columnsVisible.includes(dataIndex || "")
 
-          if (!dataIndex) {
-            return null
-          }
+            if (!dataIndex) {
+              return null
+            }
 
-          return (
-            <Checkbox
-              id={`column-${dataIndex}`}
-              key={dataIndex}
-              checked={isChecked}
-              disabled={isMandatory}
-              onChange={(e) => handleColumnToggle(dataIndex || "", e.target.checked)}
-            >
-              {column.header}
-              {isMandatory && " (verplicht)"}
-            </Checkbox>
-          )
-        })}
+            return (
+              <Checkbox
+                id={`column-${dataIndex}`}
+                key={dataIndex}
+                checked={isChecked}
+                disabled={isMandatory}
+                onChange={(e) =>
+                  handleColumnToggle(dataIndex || "", e.target.checked)
+                }
+              >
+                {column.header}
+                {isMandatory && " (verplicht)"}
+              </Checkbox>
+            )
+          })}
 
         <Row align="between" style={{ marginTop: 24, marginBottom: 32 }}>
-          <Button
-            variant="primary"
-            onClick={onClose}
-          >
+          <Button variant="primary" onClick={onClose}>
             Sluiten
           </Button>
           <Button

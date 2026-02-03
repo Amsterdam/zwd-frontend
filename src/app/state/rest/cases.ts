@@ -7,25 +7,26 @@ import { getOrderingQueryParam, cleanParamObject } from "./utils"
 
 // You can add multiple sorting options here like `request_date: "request_date, id"`
 export const SORTING_INDEX_MAPPING: Record<string, string> = {
-  "advice_type": "advice_type",
-  "advisor": "advisor",
-  "application_type": "application_type",
+  advice_type: "advice_type",
+  advisor: "advisor",
+  application_type: "application_type",
   "homeowner_association.district": "homeowner_association__district",
   "homeowner_association.name": "homeowner_association__name",
   "homeowner_association.neighborhood": "homeowner_association__neighborhood",
-  "homeowner_association.number_of_apartments": "homeowner_association__number_of_apartments",
-  "legacy_id": "legacy_id",
-  "prefixed_dossier_id": "prefixed_dossier_id",
-  "request_date": "request_date",
-  "status": "status",
-  "updated": "updated",
-  "name": "name",
-  "number_of_apartments": "number_of_apartments",
-  "district": "district",
-  "neighborhood": "neighborhood",
-  "course_participant_count": "course_participant_count",
-  "letter_count": "letter_count",
-  "cases_count": "cases_count"
+  "homeowner_association.number_of_apartments":
+    "homeowner_association__number_of_apartments",
+  legacy_id: "legacy_id",
+  prefixed_dossier_id: "prefixed_dossier_id",
+  request_date: "request_date",
+  status: "status",
+  updated: "updated",
+  name: "name",
+  number_of_apartments: "number_of_apartments",
+  district: "district",
+  neighborhood: "neighborhood",
+  course_participant_count: "course_participant_count",
+  letter_count: "letter_count",
+  cases_count: "cases_count"
 }
 
 export const useCases = (

@@ -21,7 +21,7 @@ export const CountSelectFilter: React.FC<Props> = ({
       <Label htmlFor="count">{label}</Label>
       <Select id="count" onChange={onChange} value={value}>
         <Select.Option key="Nul" value={0}>
-          Alle aantallen 
+          Alle aantallen
         </Select.Option>
         <Select.Option key="Eén of meer" value={1}>
           Eén of meer

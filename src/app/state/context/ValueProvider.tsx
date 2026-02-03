@@ -39,7 +39,6 @@ const ValueProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
-
   return (
     <ContextValues.Provider value={value}>{children}</ContextValues.Provider>
   )

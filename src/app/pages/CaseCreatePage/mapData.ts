@@ -1,7 +1,4 @@
-import {
-  ACTIVATIETEAM_SUBJECTS,
-  APPLICATION_TYPES
-} from "./formOptions"
+import { ACTIVATIETEAM_SUBJECTS, APPLICATION_TYPES } from "./formOptions"
 
 type FormTypes = {
   request_date: string

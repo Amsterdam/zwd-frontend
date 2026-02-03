@@ -18,7 +18,7 @@ const buildQueryString = (params: Record<string, unknown>, page: number) => {
   const queryParams = {
     ...params,
     page,
-    page_size: PAGE_SIZE,
+    page_size: PAGE_SIZE
   }
   return stringifyQueryParams(cleanParamObject(queryParams))
 }
@@ -27,8 +27,8 @@ const fetchHoasByPage = async (url: string, token?: string) => {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   })
 
   if (!response.ok) {
@@ -48,7 +48,7 @@ export const DownloadHoaExcel = () => {
     participantCount,
     letterCount,
     neighborhood,
-    sorting,
+    sorting
   } = useContext(ContextValues)["hoas"]
   const [loading, setLoading] = useState(false)
 
@@ -61,7 +61,7 @@ export const DownloadHoaExcel = () => {
     neighborhood,
     ordering: sorting
       ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
-      : undefined,
+      : undefined
   }
 
   const fetchAllHoas = async () => {
@@ -94,7 +94,7 @@ export const DownloadHoaExcel = () => {
       const workbook = createExcel(allResults)
       const buffer = await workbook.xlsx.writeBuffer()
       const blob = new Blob([buffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       })
       saveAs(blob, "ZWD-vve.xlsx")
     } catch (error) {

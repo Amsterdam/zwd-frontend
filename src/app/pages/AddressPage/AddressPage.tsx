@@ -26,7 +26,7 @@ import {
   FolderIcon,
   PencilIcon,
   PersonIcon,
-  MegaphoneIcon,
+  MegaphoneIcon
 } from "@amsterdam/design-system-react-icons"
 
 type TabHeaderProps = {
@@ -91,7 +91,11 @@ export const AddressPage: React.FC = () => {
             )}
           </Grid>
           {hoa?.id && (
-            <Tabs activeTab={activeTab} onTabChange={setActiveTab} style={{ marginTop: "2rem" }}>
+            <Tabs
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+              style={{ marginTop: "2rem" }}
+            >
               <Tabs.List>
                 <Tabs.Button aria-controls="zaken">
                   <TabHeader svg={FolderIcon} label="Zaken" />

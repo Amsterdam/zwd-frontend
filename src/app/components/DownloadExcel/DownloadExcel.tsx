@@ -19,7 +19,7 @@ const buildQueryString = (params: Record<string, unknown>, page: number) => {
     ...params,
     expand: "true",
     page,
-    page_size: PAGE_SIZE,
+    page_size: PAGE_SIZE
   }
   return stringifyQueryParams(cleanParamObject(queryParams))
 }
@@ -28,8 +28,8 @@ const fetchCasesByPage = async (url: string, token?: string) => {
   const response = await fetch(url, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   })
 
   if (!response.ok) {
@@ -57,7 +57,7 @@ export const DownloadExcel = () => {
     searchString,
     sorting,
     status,
-    wijk,
+    wijk
   } = useContext(ContextValues)["cases"]
   const [loading, setLoading] = useState(false)
 
@@ -78,7 +78,7 @@ export const DownloadExcel = () => {
     wijk,
     ordering: sorting
       ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
-      : undefined,
+      : undefined
   }
 
   const fetchAllCases = async () => {
@@ -111,7 +111,7 @@ export const DownloadExcel = () => {
       const workbook = createExcel(allResults)
       const buffer = await workbook.xlsx.writeBuffer()
       const blob = new Blob([buffer], {
-        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       })
       saveAs(blob, "ZWD-Zaken.xlsx")
     } catch (error) {

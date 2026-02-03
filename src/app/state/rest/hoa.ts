@@ -30,7 +30,7 @@ export const useHomeownerAssociations = (
       is_small_hoa: isSmallHoa,
       course_participant_count: participantCount,
       letter_count: letterCount,
-      neighborhood,
+      neighborhood
     }
     return stringifyQueryParams(cleanParamObject(params))
   }, [
@@ -52,7 +52,6 @@ export const useHomeownerAssociations = (
     isProtected: true
   })
 }
-
 
 export const useHomeownerAssociation = (
   id?: Components.Schemas.HomeownerAssociation["id"],
@@ -118,7 +117,9 @@ export const useHomeownerAssociationContacts = (
 export type CreateOrUpdateHoaContactsPayload = {
   contacts: Array<
     Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role"> &
-      Partial<Pick<Components.Schemas.Contact, "id" | "is_primary" | "course_date">>
+      Partial<
+        Pick<Components.Schemas.Contact, "id" | "is_primary" | "course_date">
+      >
   >
 }
 

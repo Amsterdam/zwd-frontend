@@ -40,11 +40,11 @@ describe("createExcel", () => {
               name: "Persoon B",
               number_of_apartments: 5
             }
-          ],
+          ]
         },
         additional_fields: [
-              { header: "Extra Field 1", value: "Value 1" },
-              { header: "Extra Field 2", value: "Value 2" }
+          { header: "Extra Field 1", value: "Value 1" },
+          { header: "Extra Field 2", value: "Value 2" }
         ]
       }
     ]
@@ -99,9 +99,15 @@ describe("createExcel", () => {
     expect(firstRow.getCell(6).value).toBe("John Doe") // Adviseur
 
     // Controleer dat de datumvelden correct zijn
-    expect(firstRow.getCell(7).value).toEqual(new Date("2025-09-10T12:07:57.926331Z")) // Aanvraagdatum
-    expect(firstRow.getCell(8).value).toEqual(new Date("2025-12-31T23:59:59.000Z")) // Einddatum zaak
-    expect(firstRow.getCell(9).value).toEqual(new Date("2025-09-12T09:15:00.000Z")) // Laatst gewijzigd
+    expect(firstRow.getCell(7).value).toEqual(
+      new Date("2025-09-10T12:07:57.926331Z")
+    ) // Aanvraagdatum
+    expect(firstRow.getCell(8).value).toEqual(
+      new Date("2025-12-31T23:59:59.000Z")
+    ) // Einddatum zaak
+    expect(firstRow.getCell(9).value).toEqual(
+      new Date("2025-09-12T09:15:00.000Z")
+    ) // Laatst gewijzigd
 
     // Controleer VVE gegevens
     expect(firstRow.getCell(10).value).toBe("VVE De Zonnebloem") // Vve statutaire naam

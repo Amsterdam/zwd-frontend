@@ -7,9 +7,7 @@ import {
 
 type DataType = Components.Schemas.CaseList
 
-export const DEFAULT_COLUMNS = [
-  "name",
-]
+export const DEFAULT_COLUMNS = ["name"]
 
 const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
   {
