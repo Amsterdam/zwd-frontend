@@ -106,3 +106,49 @@ export const canViewInline = (url: string): boolean => {
 
   return viewableExtensions.includes(extension)
 }
+
+/**
+ * Escapes a CSV field value by wrapping it in quotes if necessary
+ * and escaping internal quotes by doubling them.
+ */
+const escapeCsvField = (value: string): string => {
+  // If the value contains comma, newline, quote, or space, wrap in quotes
+  // Spaces are quoted to prevent CSV readers from treating them as delimiters
+  if (value.includes(",") || value.includes("\n") || value.includes('"') || value.includes(" ")) {
+    // Escape internal quotes by doubling them
+    return `"${value.replace(/"/g, '""')}"`
+  }
+  return value
+}
+
+/**
+ * Converts an array of objects with headers to a CSV string and downloads it.
+ * @param headers Array of header names
+ * @param rows Array of objects where keys match header names
+ * @param filename Name of the file to download
+ */
+export const downloadCsv = (
+  headers: string[],
+  rows: Record<string, string>[],
+  filename: string
+): void => {
+  // Create CSV content
+  const csvLines: string[] = []
+
+  // Add header row
+  csvLines.push(headers.map(escapeCsvField).join(","))
+
+  // Add data rows
+  for (const row of rows) {
+    const values = headers.map((header) => {
+      const value = row[header] ?? ""
+      return escapeCsvField(value)
+    })
+    csvLines.push(values.join(","))
+  }
+
+  // Create blob and download
+  const csvContent = csvLines.join("\n")
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" })
+  downloadFile(blob, filename)
+}

@@ -38,9 +38,7 @@ const mapData = (
   description: data.description,
   homeowner_association,
   contacts:
-    data?.application_type === APPLICATION_TYPES.CURSUS
-      ? []
-      : data?.fullname?.map((_, index) => ({
+    data?.fullname?.map((_, index) => ({
           fullname: data.fullname[index],
           email: data.email[index],
           phone: data.phone[index],

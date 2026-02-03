@@ -73,7 +73,7 @@ const ImportResult: React.FC<ImportResultProps> = ({ result }) => {
             ?
               <Paragraph>
                 Let op: <strong>{result.counts?.failed} van de {result.counts?.total} rijen</strong> konden niet worden geïmporteerd.<br/>
-                Bekijk hieronder de specifieke fouten. Je kunt de data aanpassen en opnieuw importeren.
+                Bekijk hieronder de specifieke fouten. Je kunt de data downloaden, aanpassen en opnieuw importeren.
               </Paragraph>
             :
               <Paragraph>
