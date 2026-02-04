@@ -114,7 +114,12 @@ export const canViewInline = (url: string): boolean => {
 const escapeCsvField = (value: string): string => {
   // If the value contains comma, newline, quote, or space, wrap in quotes
   // Spaces are quoted to prevent CSV readers from treating them as delimiters
-  if (value.includes(",") || value.includes("\n") || value.includes('"') || value.includes(" ")) {
+  if (
+    value.includes(",") ||
+    value.includes("\n") ||
+    value.includes('"') ||
+    value.includes(" ")
+  ) {
     // Escape internal quotes by doubling them
     return `"${value.replace(/"/g, '""')}"`
   }

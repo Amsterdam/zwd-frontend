@@ -46,18 +46,20 @@ h2.ams-heading:has(+ div > table) {
 }
 
 /* PageHeader › hide menu button on large screens */
-@media screen and (min-width: 83.5rem) {
+@media screen and (min-width: 93rem) {
   .ams-page-header__mega-menu-button-item--hide-on-wide-window {
     display: none;
   }
 }
 
 /* PageHeader › show menu button and hide menu items except fixed and core items on medium screens */
-@media screen and (max-width: 83.5rem) {
+@media screen and (max-width: 93rem) {
   .ams-page-header__mega-menu-button-item--hide-on-wide-window {
     display: block;
   }
-  .ams-page-header__menu-item:not(.ams-page-header__menu-item--fixed):not(:has([data-core="true"])) {
+  .ams-page-header__menu-item:not(.ams-page-header__menu-item--fixed):not(
+      :has([data-core="true"])
+    ) {
     display: none;
   }
 }

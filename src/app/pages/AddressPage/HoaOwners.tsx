@@ -2,7 +2,7 @@ import {
   ColumnType,
   createNumberSorter,
   createStringSorter,
-  Table,
+  Table
 } from "app/components"
 import { Button, Row } from "@amsterdam/design-system-react"
 import { useNavigate } from "react-router-dom"
@@ -65,7 +65,13 @@ export const HoaOwners: React.FC<Props> = ({ hoa }) => {
         emptyPlaceholder="Geen eigenaren gevonden"
       />
       <Row style={{ marginTop: "1.5rem" }}>
-        <Button onClick={() => { window.scrollTo(0, 0); void navigate(`/vve/${hoa?.id}/woningen`) }} variant="secondary">
+        <Button
+          onClick={() => {
+            window.scrollTo(0, 0)
+            void navigate(`/vve/${hoa?.id}/woningen`)
+          }}
+          variant="secondary"
+        >
           Bekijk eigenaren per woning
         </Button>
       </Row>

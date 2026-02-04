@@ -61,6 +61,28 @@ export const initialState: StateType = {
     status: [],
     wijk: "",
     updateContextTasks: noop
+  },
+
+  hoas: {
+    name: "",
+    columnsVisible: CASES_DEFAULT_COLUMNS,
+    count: 0,
+    pagination: {
+      page: 1,
+      pageSize: 25
+    },
+    results: [],
+    sorting: {
+      dataIndex: "created",
+      order: "DESCEND"
+    },
+    searchString: "",
+    district: [],
+    isSmallHoa: "",
+    participantCount: 0,
+    letterCount: 0,
+    neighborhood: [],
+    updateContextHoas: noop
   }
 }
 

@@ -15,7 +15,7 @@ import {
   AdvisorFilter,
   BooleanStatusFilter,
   DateFilter,
-  ColumnSettings,
+  ColumnSettings
 } from "app/components"
 
 const TASKS = "tasks"
@@ -139,7 +139,6 @@ export const TasksFilters = () => {
       <Field style={{ justifyContent: "flex-end" }}>
         <ColumnSettings contextName={TASKS} />
       </Field>
-
     </Row>
   )
 }

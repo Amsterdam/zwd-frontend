@@ -18,10 +18,7 @@ export const UpdateCommunicationNote: React.FC<Props> = ({
 }) => {
   const dialogId = `update-communication-note-${communicationNote.id}`
   const { openDialog, closeDialog } = useDialog(dialogId)
-  const [, { execPatch }] = useCommunicationNote(
-    hoaId,
-    communicationNote.id
-  )
+  const [, { execPatch }] = useCommunicationNote(hoaId, communicationNote.id)
 
   const defaultValues = {
     date: dayjs(communicationNote.date).format(ISO_DATE_FORMAT_TIME),

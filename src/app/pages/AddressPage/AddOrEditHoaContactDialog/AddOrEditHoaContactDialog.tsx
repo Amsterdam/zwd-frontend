@@ -59,7 +59,7 @@ const resolveDefaultValues = (
       role: defaultRole,
       role_custom: defaultRoleCustom,
       is_primary: contact.is_primary,
-      course_date: contact.course_date || "",
+      course_date: contact.course_date || ""
     }
   }
   return {
@@ -69,7 +69,7 @@ const resolveDefaultValues = (
     role: "",
     role_custom: "",
     is_primary: false,
-    course_date: "",
+    course_date: ""
   }
 }
 
@@ -101,7 +101,7 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
           phone: values.phone,
           role: roleValue as string,
           is_primary: values.is_primary ?? false,
-          course_date: values.course_date || null,
+          course_date: values.course_date || null
         }
       ]
     }).then(() => {

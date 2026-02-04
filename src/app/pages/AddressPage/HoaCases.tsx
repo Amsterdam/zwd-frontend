@@ -85,8 +85,8 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           variant="primary"
           icon={PlusIcon}
           iconBefore
-          >
-            Nieuwe zaak aanmaken
+        >
+          Nieuwe zaak aanmaken
         </Button>
       </Row>
       <section>
@@ -98,7 +98,9 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           columns={openColumns}
           emptyPlaceholder="Geen open zaken gevonden"
           loading={isBusy}
-          onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
+          onClickRow={(obj, _index, e) =>
+            navigateWithModifier(e, `/zaken/${obj.id}`)
+          }
         />
       </section>
       {numberOfClosedCases > 0 && (
@@ -109,7 +111,9 @@ export const HoaCases: React.FC<Props> = ({ hoaId }) => {
           <Table
             data={closedCases}
             columns={closedColumns}
-            onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
+            onClickRow={(obj, _index, e) =>
+              navigateWithModifier(e, `/zaken/${obj.id}`)
+            }
           />
         </section>
       )}

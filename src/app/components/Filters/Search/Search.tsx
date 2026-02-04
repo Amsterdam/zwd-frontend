@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react"
 type Props = {
   onSearch: (value: string) => void
   placeholder?: string
-  contextName: "cases" | "tasks"
+  contextName: "cases" | "tasks" | "hoas"
 }
 
 export const Search: React.FC<Props> = ({

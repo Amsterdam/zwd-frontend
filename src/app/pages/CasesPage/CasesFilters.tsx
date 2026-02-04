@@ -167,7 +167,6 @@ export const CasesFilters = () => {
       <Field style={{ justifyContent: "flex-end" }}>
         <ColumnSettings contextName={CASES} />
       </Field>
-
     </Row>
   )
 }

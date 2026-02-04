@@ -11,7 +11,9 @@ type CreateCommunicationNoteProps = {
   hoaId: number
 }
 
-export const CreateCommunicationNote: React.FC<CreateCommunicationNoteProps> = ({ hoaId }) => {
+export const CreateCommunicationNote: React.FC<
+  CreateCommunicationNoteProps
+> = ({ hoaId }) => {
   const dialogId = "create-communication-note"
   const { openDialog, closeDialog } = useDialog(dialogId)
   const userFullName = useUserFullName()

@@ -8,7 +8,7 @@ import { FilterValue, FilterChip } from "./types"
 import styles from "./ActiveFilters.module.css"
 
 type Props = {
-  contextName: "cases" | "tasks"
+  contextName: "cases" | "tasks" | "hoas"
 }
 
 const getFilterValueFromContext = (
@@ -19,10 +19,12 @@ const getFilterValueFromContext = (
 export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
   const fullContext = useContext(ContextValues)
   const context = fullContext[contextName]
-  const updateContext = contextName === "cases"
-    ? fullContext.cases.updateContextCases
-    : fullContext.tasks.updateContextTasks
-
+  let updateContext = fullContext.cases.updateContextCases
+  if (contextName === "tasks") {
+    updateContext = fullContext.tasks.updateContextTasks
+  } else if (contextName === "hoas") {
+    updateContext = fullContext.hoas.updateContextHoas
+  }
   const [advisors] = useAdvisorsList()
 
   const removeFilter = (key: string, valueToRemove?: string) => {
@@ -33,7 +35,7 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
       case "array": {
         const currentValue = getFilterValueFromContext(context, key)
         update[key] = Array.isArray(currentValue)
-          ? currentValue.filter(v => v !== valueToRemove)
+          ? currentValue.filter((v) => v !== valueToRemove)
           : []
         break
       }
@@ -62,20 +64,20 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
       // Handle array filters
       if (config.type === "array") {
         if (Array.isArray(value) && value.length > 0) {
-          value.forEach(v => {
+          value.forEach((v) => {
             chips.push({
               key,
               label: config.getLabel(v, advisors),
-              value: v,
+              value: v
             })
           })
         }
-      // Handle single-value filters
+        // Handle single-value filters
       } else {
         chips.push({
           key,
           label: config.getLabel(value as string, advisors),
-          value: value as string,
+          value: value as string
         })
       }
     })
@@ -106,4 +108,3 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
 }
 
 export default ActiveFilters
-

@@ -22,7 +22,12 @@ export const formatTextWithLineBreaks = (text: string | null | undefined) => {
             {lineIndex < lines.length - 1 && <br />}
           </Fragment>
         ))}
-        {index < paragraphs.length - 1 && <><br /><br /></>}
+        {index < paragraphs.length - 1 && (
+          <>
+            <br />
+            <br />
+          </>
+        )}
       </Fragment>
     ))
 }
