@@ -146,7 +146,7 @@ export const CasesFilters = () => {
           />
         </>
       ) : (
-        <Field style={{ justifyContent: "flex-end" }}>
+        <Field className="align-bottom">
           <Button
             id="filter-button"
             icon={FilterIcon}
@@ -160,11 +160,11 @@ export const CasesFilters = () => {
 
       <ResetFiltersButton contextName={CASES} />
 
-      <Field style={{ justifyContent: "flex-end" }}>
+      <Field className="align-bottom">
         <DownloadExcel />
       </Field>
 
-      <Field style={{ justifyContent: "flex-end" }}>
+      <Field className="align-bottom">
         <ColumnSettings contextName={CASES} />
       </Field>
     </Row>

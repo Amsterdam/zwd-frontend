@@ -14,7 +14,7 @@ import {
 
 const HOAS = "hoas"
 
-export const HoaFilters = () => {
+export const HoasFilters = () => {
   const {
     pagination,
     isSmallHoa,
@@ -84,7 +84,7 @@ export const HoaFilters = () => {
         label="Brieven"
         value={letterCount}
       />
-      <Field style={{ justifyContent: "flex-end" }}>
+      <Field className="align-bottom">
         <DownloadHoaExcel />
       </Field>
       <ResetFiltersButton contextName={HOAS} />
@@ -92,4 +92,4 @@ export const HoaFilters = () => {
   )
 }
 
-export default HoaFilters
+export default HoasFilters

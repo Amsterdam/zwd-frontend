@@ -12,7 +12,7 @@ import {
   BpmnPage,
   ImportPage
 } from "app/pages"
-import { HoaPage } from "app/pages/HoaPage/HoaPage"
+import { HoasPage } from "app/pages/HoasPage/HoasPage"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
 
 const RedirectToSearch = () => {
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
       },
       {
         path: "vve",
-        element: <HoaPage />
+        element: <HoasPage />
       }
     ]
   }
