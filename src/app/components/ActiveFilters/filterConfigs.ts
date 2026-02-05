@@ -35,7 +35,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
   neighborhood: {
     key: "neighborhood",
     type: "array",
-    contexts: ["cases", "tasks"],
+    contexts: ["cases", "tasks", "hoas"],
     getLabel: (value) => value
   },
   advisor: {
@@ -86,5 +86,17 @@ export const FILTER_CONFIGS: FilterConfigs = {
     type: "date",
     contexts: ["cases"],
     getLabel: (value) => `Einddatum voor ${formatDate(value)}`
+  },
+  participantCount: {
+    key: "participantCount",
+    type: "select",
+    contexts: ["hoas"],
+    getLabel: (value) => `${value} of meer cursisten`
+  },
+  letterCount: {
+    key: "letterCount",
+    type: "select",
+    contexts: ["hoas"],
+    getLabel: (value) => `${value} of meer brieven`
   }
 }

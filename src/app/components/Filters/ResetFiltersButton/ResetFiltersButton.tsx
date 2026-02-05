@@ -63,7 +63,7 @@ export const ResetFiltersButton: React.FC<Props> = ({ contextName }) => {
   if (!hasActiveFilters) return null
 
   return (
-    <Field style={{ justifyContent: "flex-end" }}>
+    <Field className="align-bottom">
       <Button onClick={resetFilters} icon={CloseIcon} iconBefore>
         Wis alle filters
       </Button>

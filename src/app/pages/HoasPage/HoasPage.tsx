@@ -4,9 +4,9 @@ import { ContextValues } from "app/state/context/ValueProvider"
 import { useNavigateWithModifier } from "app/hooks"
 import getColumns from "./columns"
 import { useHomeownerAssociations } from "app/state/rest"
-import HoaFilters from "./HoaFilter"
+import HoaFilters from "./HoasFilters"
 
-export const HoaPage: React.FC = () => {
+export const HoasPage: React.FC = () => {
   const {
     count,
     results,
@@ -78,4 +78,4 @@ export const HoaPage: React.FC = () => {
   )
 }
 
-export default HoaPage
+export default HoasPage

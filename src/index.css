@@ -2,3 +2,12 @@
   font-family: "Amsterdam Sans", Arial, sans-serif;
   /* padding: 0px 16px; */
 }
+
+.align-bottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+.align-bottom > :not(:last-child) {
+  margin-block-end: 0;
+}

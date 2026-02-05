@@ -1,0 +1,443 @@
+.
+├── directory-tree.txt
+├── dist
+│   ├── amsterdam.svg
+│   ├── assets
+│   │   ├── amsterdam-CCN_PZxr.png
+│   │   ├── AmsterdamSans-Bold-B-eEYlh-.eot
+│   │   ├── AmsterdamSans-Bold-CN8ieXn0.woff
+│   │   ├── AmsterdamSans-BoldItalic-D8IgX2tE.eot
+│   │   ├── AmsterdamSans-BoldItalic-DGVdd_B4.woff2
+│   │   ├── AmsterdamSans-BoldItalic-Iks2g4JK.woff
+│   │   ├── AmsterdamSans-Bold-rXlH1Jru.woff2
+│   │   ├── AmsterdamSans-ExtraBold-0zPbyHYJ.eot
+│   │   ├── AmsterdamSans-ExtraBold-GN1-Za61.woff
+│   │   ├── AmsterdamSans-ExtraBold-hk2GetsY.woff2
+│   │   ├── AmsterdamSans-Italic-D8oH3P5t.woff
+│   │   ├── AmsterdamSans-Italic-Djuh9q7q.eot
+│   │   ├── AmsterdamSans-Italic-DW94SgHh.woff2
+│   │   ├── AmsterdamSans-Light-C9JJu_TU.eot
+│   │   ├── AmsterdamSans-Light-D_AncfMf.woff2
+│   │   ├── AmsterdamSans-Light-iEj3CW9t.woff
+│   │   ├── AmsterdamSans-Regular-BSIiMMb3.eot
+│   │   ├── AmsterdamSans-Regular-nwmnLZDN.woff
+│   │   ├── AmsterdamSans-Regular-QnM7etvR.woff2
+│   │   ├── html2canvas.esm-B0tyYwQk.js
+│   │   ├── index-BRhpf7En.js
+│   │   ├── index.es-DTFJWr8u.js
+│   │   ├── index-heqaEtq8.css
+│   │   └── purify.es-CQJ0hv7W.js
+│   ├── config
+│   │   └── env.js
+│   └── index.html
+├── docker-compose.yml
+├── Dockerfile
+├── entrypoint.sh
+├── eslint.config.mjs
+├── index.html
+├── LICENSE.md
+├── Makefile
+├── nginx.conf
+├── package.json
+├── package-lock.json
+├── public
+│   ├── amsterdam.svg
+│   └── config
+│       └── env.js
+├── README.md
+├── scripts
+│   ├── src
+│   │   ├── __external__
+│   │   │   └── BAGPdokResponse.d.ts
+│   │   └── generateSwaggerSchema.ts
+│   └── tsconfig.json
+├── src
+│   ├── app
+│   │   ├── components
+│   │   │   ├── ActiveFilters
+│   │   │   │   ├── ActiveFilters.module.css
+│   │   │   │   ├── ActiveFilters.tsx
+│   │   │   │   ├── filterConfigs.ts
+│   │   │   │   └── types.ts
+│   │   │   ├── ColumnSettings
+│   │   │   │   ├── ColumnSettingsDialog
+│   │   │   │   │   └── ColumnSettingsDialog.tsx
+│   │   │   │   └── ColumnSettings.tsx
+│   │   │   ├── ConfirmationDialog
+│   │   │   │   ├── ConfirmationDialog.tsx
+│   │   │   │   └── useDialog.ts
+│   │   │   ├── CopyEmailButton
+│   │   │   │   ├── CopyEmailButton.test.tsx
+│   │   │   │   └── CopyEmailButton.tsx
+│   │   │   ├── DateTime
+│   │   │   │   └── DateTime.tsx
+│   │   │   ├── DefaultLayout
+│   │   │   │   └── DefaultLayout.tsx
+│   │   │   ├── Descriptions
+│   │   │   │   └── Descriptions.tsx
+│   │   │   ├── DetailsList
+│   │   │   │   └── DetailsList.tsx
+│   │   │   ├── DownloadExcel
+│   │   │   │   ├── createExcel.test.ts
+│   │   │   │   ├── createExcel.ts
+│   │   │   │   └── DownloadExcel.tsx
+│   │   │   ├── DownloadHoaExcel
+│   │   │   │   ├── createExcel.test.ts
+│   │   │   │   ├── createExcel.ts
+│   │   │   │   └── DownloadHoaExcel.tsx
+│   │   │   ├── Filters
+│   │   │   │   ├── AdviceTypeFilter
+│   │   │   │   │   └── AdviceTypeFilter.tsx
+│   │   │   │   ├── AdvisorFilter
+│   │   │   │   │   └── AdvisorFilter.tsx
+│   │   │   │   ├── ApplicationTypeFilter
+│   │   │   │   │   └── ApplicationTypeFilter.tsx
+│   │   │   │   ├── BooleanStatusFilter
+│   │   │   │   │   └── BooleanStatusFilter.tsx
+│   │   │   │   ├── CountSelectFilter
+│   │   │   │   │   └── CountSelectFilter.tsx
+│   │   │   │   ├── DateFilter
+│   │   │   │   │   └── DateFilter.tsx
+│   │   │   │   ├── DistrictFilter
+│   │   │   │   │   └── DistrictFilter.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── NeighborhoodFilter
+│   │   │   │   │   └── NeighborhoodFilter.tsx
+│   │   │   │   ├── PageSizeFilter
+│   │   │   │   │   └── PageSizeFilter.tsx
+│   │   │   │   ├── ResetFiltersButton
+│   │   │   │   │   └── ResetFiltersButton.tsx
+│   │   │   │   ├── Search
+│   │   │   │   │   └── Search.tsx
+│   │   │   │   ├── StatusFilter
+│   │   │   │   │   └── StatusFilter.tsx
+│   │   │   │   └── TaskNameFilter
+│   │   │   │       └── TaskNameFilter.tsx
+│   │   │   ├── forms
+│   │   │   │   ├── CheckboxField
+│   │   │   │   │   └── CheckboxField.tsx
+│   │   │   │   ├── DateInputField
+│   │   │   │   │   └── DateInputField.tsx
+│   │   │   │   ├── FileInputField
+│   │   │   │   │   └── FileInputField.tsx
+│   │   │   │   ├── FileInputFieldCSV
+│   │   │   │   │   └── FileInputFieldCSV.tsx
+│   │   │   │   ├── Form
+│   │   │   │   │   └── Form.tsx
+│   │   │   │   ├── FormActionButtons
+│   │   │   │   │   ├── CancelButton.tsx
+│   │   │   │   │   ├── FormActionButtons.tsx
+│   │   │   │   │   └── SubmitButton.tsx
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── RadioGroupFieldSet
+│   │   │   │   │   └── RadioGroupFieldSet.tsx
+│   │   │   │   ├── SelectField
+│   │   │   │   │   └── SelectField.tsx
+│   │   │   │   ├── styles
+│   │   │   │   │   └── form.module.css
+│   │   │   │   ├── __tests__
+│   │   │   │   ├── TextAreaField
+│   │   │   │   │   └── TextAreaField.tsx
+│   │   │   │   └── TextInputField
+│   │   │   │       └── TextInputField.tsx
+│   │   │   ├── HoaName
+│   │   │   │   └── HoaName.tsx
+│   │   │   ├── index.ts
+│   │   │   ├── LinkButton
+│   │   │   │   └── LinkButton.tsx
+│   │   │   ├── MapView
+│   │   │   │   ├── MapView.tsx
+│   │   │   │   ├── MarkerCluster.tsx
+│   │   │   │   ├── styles.module.css
+│   │   │   │   └── utils
+│   │   │   │       ├── createClusterIcon.ts
+│   │   │   │       ├── getCrsRd.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       ├── MarkerIcon.svg
+│   │   │   │       └── toGeoJSON.ts
+│   │   │   ├── MultiSelectField
+│   │   │   │   └── MultiSelectField.tsx
+│   │   │   ├── NavMenu
+│   │   │   │   ├── LinklistMenu.tsx
+│   │   │   │   ├── menuItems.ts
+│   │   │   │   ├── NavMenuItems.tsx
+│   │   │   │   └── types.ts
+│   │   │   ├── PageGrid
+│   │   │   │   └── PageGrid.tsx
+│   │   │   ├── PageHeading
+│   │   │   │   ├── PageHeading.module.css
+│   │   │   │   └── PageHeading.tsx
+│   │   │   ├── RouterLink
+│   │   │   │   └── RouterLink.tsx
+│   │   │   ├── SectionDivider
+│   │   │   │   ├── SectionDivider.module.css
+│   │   │   │   └── SectionDivider.tsx
+│   │   │   ├── SmallSkeleton
+│   │   │   │   ├── SmallSkeleton.module.css
+│   │   │   │   └── SmallSkeleton.tsx
+│   │   │   ├── Spinner
+│   │   │   │   ├── Spinner.module.css
+│   │   │   │   └── Spinner.tsx
+│   │   │   ├── Table
+│   │   │   │   ├── components
+│   │   │   │   │   ├── TableCell
+│   │   │   │   │   │   ├── TableCell.module.css
+│   │   │   │   │   │   └── TableCell.tsx
+│   │   │   │   │   ├── TableHeader
+│   │   │   │   │   │   ├── Sorter.module.css
+│   │   │   │   │   │   ├── Sorter.tsx
+│   │   │   │   │   │   ├── TableHeader.module.css
+│   │   │   │   │   │   └── TableHeader.tsx
+│   │   │   │   │   └── TablePagination
+│   │   │   │   │       ├── TablePagination.module.css
+│   │   │   │   │       └── TablePagination.tsx
+│   │   │   │   ├── hooks
+│   │   │   │   │   ├── usePagination.ts
+│   │   │   │   │   └── useSorter.ts
+│   │   │   │   ├── Table.module.css
+│   │   │   │   ├── Table.tsx
+│   │   │   │   ├── types.ts
+│   │   │   │   └── utils
+│   │   │   │       └── createSorters.ts
+│   │   │   ├── Tag
+│   │   │   │   ├── styles.module.css
+│   │   │   │   └── Tag.tsx
+│   │   │   ├── TaskReviewGuard
+│   │   │   │   └── TaskReviewGuard.tsx
+│   │   │   └── TimelineEvents
+│   │   │       ├── dictionaries.ts
+│   │   │       ├── TimelineEvent.module.css
+│   │   │       ├── TimelineEvents.tsx
+│   │   │       ├── TimelineEvent.tsx
+│   │   │       └── useValues.ts
+│   │   ├── config
+│   │   │   └── env.ts
+│   │   ├── hooks
+│   │   │   ├── index.ts
+│   │   │   ├── useDecodedToken.ts
+│   │   │   ├── useNavigateWithModifier.ts
+│   │   │   ├── useRedirectFromState.ts
+│   │   │   └── useURLState.ts
+│   │   ├── pages
+│   │   │   ├── AddressPage
+│   │   │   │   ├── AddHoaContact
+│   │   │   │   │   ├── AddHoaContactDialog
+│   │   │   │   │   │   └── AddHoaContactDialog.tsx
+│   │   │   │   │   └── AddHoaContact.tsx
+│   │   │   │   ├── AddOrEditHoaContactDialog
+│   │   │   │   │   └── AddOrEditHoaContactDialog.tsx
+│   │   │   │   ├── AddressPage.tsx
+│   │   │   │   ├── Annotation
+│   │   │   │   │   └── Annotation.tsx
+│   │   │   │   ├── Communication
+│   │   │   │   │   ├── actions
+│   │   │   │   │   │   ├── CommunicationNoteDialog.tsx
+│   │   │   │   │   │   ├── CreateCommunicationNote.tsx
+│   │   │   │   │   │   ├── DeleteCommunicationNote.tsx
+│   │   │   │   │   │   ├── types.ts
+│   │   │   │   │   │   └── UpdateCommunicationNote.tsx
+│   │   │   │   │   ├── CommunicationNotesTable
+│   │   │   │   │   │   ├── columns.tsx
+│   │   │   │   │   │   └── CommunicationNotesTable.tsx
+│   │   │   │   │   └── index.tsx
+│   │   │   │   ├── DeleteHoaContact
+│   │   │   │   │   ├── DeleteHoaContactDialog
+│   │   │   │   │   │   └── DeleteHoaContactDialog.tsx
+│   │   │   │   │   └── DeleteHoaContact.tsx
+│   │   │   │   ├── EditHoaContact
+│   │   │   │   │   ├── EditHoaContactDialog
+│   │   │   │   │   │   └── EditHoaContactDialog.tsx
+│   │   │   │   │   └── EditHoaContact.tsx
+│   │   │   │   ├── HoaCases.tsx
+│   │   │   │   ├── HoaContacts.tsx
+│   │   │   │   ├── HoaDescription.tsx
+│   │   │   │   └── HoaOwners.tsx
+│   │   │   ├── ApartmentsPage
+│   │   │   │   └── ApartmentsPage.tsx
+│   │   │   ├── AuthPage
+│   │   │   │   ├── AuthPage.module.css
+│   │   │   │   └── AuthPage.tsx
+│   │   │   ├── BpmnPage
+│   │   │   │   ├── BpmnDiagram.tsx
+│   │   │   │   ├── BpmnDiagramViewer.tsx
+│   │   │   │   ├── BpmnPage.tsx
+│   │   │   │   └── forms
+│   │   │   │       ├── SelectBpmnModelName.tsx
+│   │   │   │       └── SelectBpmnModel.tsx
+│   │   │   ├── CaseCreatePage
+│   │   │   │   ├── ActivationTeamFormFields.tsx
+│   │   │   │   ├── CaseCreatePage.tsx
+│   │   │   │   ├── ContactsFormFields.tsx
+│   │   │   │   ├── formOptions.ts
+│   │   │   │   ├── mapData.ts
+│   │   │   │   └── __tests__
+│   │   │   ├── CaseDetailsPage
+│   │   │   │   ├── AddSubtask
+│   │   │   │   │   ├── AddSubtask.tsx
+│   │   │   │   │   └── SubtaskDialog
+│   │   │   │   │       └── SubtaskDialog.tsx
+│   │   │   │   ├── CaseDetailsPage.tsx
+│   │   │   │   ├── CaseEvents
+│   │   │   │   │   └── CaseEvents.tsx
+│   │   │   │   ├── Documents
+│   │   │   │   │   ├── DeleteDocument
+│   │   │   │   │   │   └── DeleteDocument.tsx
+│   │   │   │   │   ├── DocumentsTable
+│   │   │   │   │   │   ├── DocumentActionButton.tsx
+│   │   │   │   │   │   ├── DocumentActions.tsx
+│   │   │   │   │   │   └── DocumentsTable.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   ├── UpdateDocument
+│   │   │   │   │   │   └── UpdateDocument.tsx
+│   │   │   │   │   └── UploadDialog
+│   │   │   │   │       └── UploadDialog.tsx
+│   │   │   │   ├── DownloadPdf
+│   │   │   │   │   ├── assets
+│   │   │   │   │   │   └── amsterdam.png
+│   │   │   │   │   ├── createPdf.ts
+│   │   │   │   │   ├── DownloadPdf.tsx
+│   │   │   │   │   └── fonts
+│   │   │   │   │       ├── bold.ts
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       └── regular.ts
+│   │   │   │   ├── tasks
+│   │   │   │   │   ├── FormDialog
+│   │   │   │   │   │   ├── FormDialogContent.tsx
+│   │   │   │   │   │   ├── FormDialog.tsx
+│   │   │   │   │   │   ├── forms
+│   │   │   │   │   │   │   ├── AdvisorForm.tsx
+│   │   │   │   │   │   │   ├── CloseCaseForm.tsx
+│   │   │   │   │   │   │   ├── CompletedTaskForm.tsx
+│   │   │   │   │   │   │   ├── FileTaskForm.tsx
+│   │   │   │   │   │   │   └── GenericTaskForm.tsx
+│   │   │   │   │   │   └── helpers
+│   │   │   │   │   │       ├── formatGenericData.ts
+│   │   │   │   │   │       ├── hasFormType.ts
+│   │   │   │   │   │       ├── types.ts
+│   │   │   │   │   │       └── useFormSubmissionHandlers.ts
+│   │   │   │   │   └── TaskButton
+│   │   │   │   │       └── TaskButton.tsx
+│   │   │   │   ├── utils
+│   │   │   │   │   └── createDataDetailsList.tsx
+│   │   │   │   └── Workflows
+│   │   │   │       ├── columns.tsx
+│   │   │   │       └── Workflows.tsx
+│   │   │   ├── CasesPage
+│   │   │   │   ├── CasesFilters.tsx
+│   │   │   │   ├── CasesPage.tsx
+│   │   │   │   └── columns.tsx
+│   │   │   ├── HoasPage
+│   │   │   │   ├── columns.tsx
+│   │   │   │   ├── HoasFilters.tsx
+│   │   │   │   └── HoasPage.tsx
+│   │   │   ├── ImportPage
+│   │   │   │   ├── config
+│   │   │   │   │   └── importTypes.ts
+│   │   │   │   ├── ImportPage.tsx
+│   │   │   │   ├── ImportResult.tsx
+│   │   │   │   └── types
+│   │   │   │       ├── CourseParticipantImport.tsx
+│   │   │   │       └── LetterImport.tsx
+│   │   │   ├── index.ts
+│   │   │   ├── NotFoundPage
+│   │   │   │   └── NotFoundPage.tsx
+│   │   │   ├── SearchPage
+│   │   │   │   ├── SearchPage.module.css
+│   │   │   │   ├── SearchPage.tsx
+│   │   │   │   ├── SearchResults
+│   │   │   │   │   ├── columns.tsx
+│   │   │   │   │   └── SearchResults.tsx
+│   │   │   │   └── SearchResultsHoa
+│   │   │   │       ├── columns.tsx
+│   │   │   │       └── SearchResultsHoa.tsx
+│   │   │   └── TasksPage
+│   │   │       ├── columns.tsx
+│   │   │       ├── TaskPage.tsx
+│   │   │       └── TasksFilters.tsx
+│   │   ├── routing
+│   │   │   ├── components
+│   │   │   │   └── CaseTitleUpdater.tsx
+│   │   │   ├── router.tsx
+│   │   │   └── utils
+│   │   │       ├── slashSandwich.ts
+│   │   │       ├── stringifyQueryParams.ts
+│   │   │       └── __tests__
+│   │   │           ├── slashSandwich.test.ts
+│   │   │           └── stringifyQueryParams.test.ts
+│   │   ├── state
+│   │   │   ├── context
+│   │   │   │   ├── actions.ts
+│   │   │   │   ├── initialState.ts
+│   │   │   │   ├── reducer.ts
+│   │   │   │   ├── types.ts
+│   │   │   │   └── ValueProvider.tsx
+│   │   │   └── rest
+│   │   │       ├── address.ts
+│   │   │       ├── advisors.ts
+│   │   │       ├── bagPdok.ts
+│   │   │       ├── bpmn.ts
+│   │   │       ├── casesStatuses.ts
+│   │   │       ├── cases.ts
+│   │   │       ├── dataPunt.ts
+│   │   │       ├── districts.ts
+│   │   │       ├── hoaCommunicationNotes.ts
+│   │   │       ├── hoa.ts
+│   │   │       ├── hooks
+│   │   │       │   ├── useApiCache.ts
+│   │   │       │   ├── useApiRequest.ts
+│   │   │       │   ├── useProtectedRequest.ts
+│   │   │       │   ├── useRequestQueue.tsx
+│   │   │       │   ├── useRequest.ts
+│   │   │       │   ├── useRequestWrapper.ts
+│   │   │       │   └── utils
+│   │   │       │       ├── apiUrl.ts
+│   │   │       │       ├── errorHandler.ts
+│   │   │       │       └── index.ts
+│   │   │       ├── index.ts
+│   │   │       ├── provider
+│   │   │       │   ├── ApiProvider.tsx
+│   │   │       │   └── noopContext.ts
+│   │   │       ├── tasks.ts
+│   │   │       └── utils
+│   │   │           ├── cleanParamObject.ts
+│   │   │           ├── getOrderingQueryParam.ts
+│   │   │           ├── index.ts
+│   │   │           └── __tests__
+│   │   │               ├── cleanParamObject.test.ts
+│   │   │               └── getOrderingQueryParam.test.ts
+│   │   ├── styles
+│   │   │   └── design-system-overrides.css
+│   │   └── utils
+│   │       ├── authConst.ts
+│   │       ├── dates.ts
+│   │       ├── devWarning.ts
+│   │       ├── files.ts
+│   │       ├── getValueByPath.ts
+│   │       ├── navigation.ts
+│   │       ├── __tests__
+│   │       │   ├── dates.test.ts
+│   │       │   ├── getValueByPath.test.ts
+│   │       │   └── text.test.tsx
+│   │       ├── text.tsx
+│   │       ├── validation.ts
+│   │       └── withExceptionCapturing.ts
+│   ├── App.tsx
+│   ├── __external__
+│   │   ├── Case.d.ts
+│   │   ├── Form.d.ts
+│   │   ├── HomeownerAssociationSearch.d.ts
+│   │   └── table.d.ts
+│   ├── __generated__
+│   │   └── apiSchema.d.ts
+│   ├── index.css
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+├── tsconfig.vitest.json
+├── vite.config.mts
+├── vitest.config.ts
+└── vitest.setup.ts
+
+139 directories, 302 files
