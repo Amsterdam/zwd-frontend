@@ -1,8 +1,7 @@
 import dayjs from "dayjs"
 
 export const isValidDate = (dateString: string): boolean => {
-  // Regex to exclude strings consisting only of digits (e.g. "1234"), which dayjs may misinterpret as timestamps.
-  // Callers should trim/normalize the input before passing it here if that behavior is required.
+  // Regex to exclude strings consisting only of digits which dayjs may misinterpret as timestamps.
   if (/^\d+$/.test(dateString)) return false
   return dayjs(dateString).isValid()
 }
