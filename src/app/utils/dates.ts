@@ -1,8 +1,10 @@
 import dayjs from "dayjs"
 
-export const isValidDate = (dateString: string): boolean =>
-  dayjs(dateString).isValid()
-
+export const isValidDate = (dateString: string): boolean => {
+  // Regex to exclude strings consisting only of digits which dayjs may misinterpret as timestamps.
+  if (/^\d+$/.test(dateString)) return false
+  return dayjs(dateString).isValid()
+}
 const DEFAULT_DATE_FORMAT = "DD-MM-YYYY"
 const DEFAULT_DATE_FORMAT_TIME = "DD-MM-YYYY HH:mm"
 const DEFAULT_TIME_FORMAT = "HH:mm"
