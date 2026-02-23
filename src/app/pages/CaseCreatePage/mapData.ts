@@ -36,11 +36,11 @@ const mapData = (
   homeowner_association,
   contacts:
     data?.fullname?.map((_, index) => ({
-          fullname: data.fullname[index],
-          email: data.email[index],
-          phone: data.phone[index],
-          role: data?.custom_role?.[index] || data.role[index]
-        })) || [],
+      fullname: data.fullname[index],
+      email: data.email[index],
+      phone: data.phone[index],
+      role: data?.custom_role?.[index] || data.role[index]
+    })) || [],
   ...(data.application_type === APPLICATION_TYPES.ACTIVATIETEAM
     ? {
         activation_team: {
