@@ -106,7 +106,7 @@ export const getColumns = (
   {
     header: "",
     dataIndex: "case.id",
-    width: 100,
+    width: 110,
     render: (caseId) => (
       <LinkButton
         label="Zaakdetails"
