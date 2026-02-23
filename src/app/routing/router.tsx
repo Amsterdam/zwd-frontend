@@ -10,8 +10,9 @@ import {
   SearchPage,
   TasksPage,
   BpmnPage,
-  ImportPage,
+  ImportPage
 } from "app/pages"
+import { HoasPage } from "app/pages/HoasPage/HoasPage"
 import { createBrowserRouter, Navigate, useLocation } from "react-router-dom"
 
 const RedirectToSearch = () => {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "/auth",
         element: <AuthPage />
+      },
+      {
+        path: "vve",
+        element: <HoasPage />
       }
     ]
   }

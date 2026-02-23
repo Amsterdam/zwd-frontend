@@ -2,7 +2,8 @@ import type { Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
-type CommunicationNote = Components.Schemas.HomeownerAssociationCommunicationNote
+type CommunicationNote =
+  Components.Schemas.HomeownerAssociationCommunicationNote
 
 export const useCommunicationNotes = (
   id: Components.Schemas.HomeownerAssociation["id"],
@@ -12,7 +13,7 @@ export const useCommunicationNotes = (
   return useApiRequest<CommunicationNote[] | CommunicationNote>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "communication-notes")}`,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -28,7 +29,7 @@ export const useCommunicationNote = (
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "communication-notes", noteId)}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })

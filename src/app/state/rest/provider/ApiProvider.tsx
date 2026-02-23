@@ -17,7 +17,7 @@ export const ApiContext = createContext<GroupedContext>({
   caseStatuses: noopContext,
   dataPunt: noopContext,
   districts: noopContext,
-  hoa: noopContext,
+  hoas: noopContext,
   tasks: noopContext
 })
 
@@ -59,7 +59,7 @@ const ApiProvider: React.FC<Props> = ({ children }) => {
       ...useApiCache(),
       ...useRequestQueue()
     },
-    hoa: {
+    hoas: {
       ...useApiCache(),
       ...useRequestQueue()
     },

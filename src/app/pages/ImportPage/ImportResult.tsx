@@ -22,7 +22,6 @@ type RowError = {
   message: string
 }
 
-
 const ImportResult: React.FC<ImportResultProps> = ({ result }) => {
   const hasErrors = result.errors && result.errors.length > 0
   const hasCounts = result.counts && Object.keys(result.counts).length > 0
@@ -35,16 +34,16 @@ const ImportResult: React.FC<ImportResultProps> = ({ result }) => {
   const errorColumns = [
     {
       header: "Rij",
-      dataIndex: "row_number",
+      dataIndex: "row_number"
     },
     {
       header: "Kolomnaam",
       dataIndex: "field",
-      render: (_text: string, record: RowError) => record.field || "–",
+      render: (_text: string, record: RowError) => record.field || "–"
     },
     {
       header: "Foutmelding",
-      dataIndex: "message",
+      dataIndex: "message"
     }
   ]
 
@@ -57,7 +56,8 @@ const ImportResult: React.FC<ImportResultProps> = ({ result }) => {
           headingLevel={2}
         >
           <Paragraph>
-            <strong>Foutmelding:</strong><br />
+            <strong>Foutmelding:</strong>
+            <br />
             {csvStructureError.message}
           </Paragraph>
         </Alert>
@@ -66,20 +66,28 @@ const ImportResult: React.FC<ImportResultProps> = ({ result }) => {
       {hasCounts && !csvStructureError && (
         <Alert
           severity={hasErrors ? "warning" : "success"}
-          heading={hasErrors ? "De import is deels geslaagd" : "De import is geslaagd"}
+          heading={
+            hasErrors ? "De import is deels geslaagd" : "De import is geslaagd"
+          }
           headingLevel={2}
         >
-          {hasErrors
-            ?
-              <Paragraph>
-                Let op: <strong>{result.counts?.failed} van de {result.counts?.total} rijen</strong> konden niet worden geïmporteerd.<br/>
-                Bekijk hieronder de specifieke fouten. Je kunt de data downloaden, aanpassen en opnieuw importeren.
-              </Paragraph>
-            :
-              <Paragraph>
-                Alle <strong>{result.counts?.total} rijen</strong> zijn succesvol geïmporteerd.
-              </Paragraph>
-          }
+          {hasErrors ? (
+            <Paragraph>
+              Let op:{" "}
+              <strong>
+                {result.counts?.failed} van de {result.counts?.total} rijen
+              </strong>{" "}
+              konden niet worden geïmporteerd.
+              <br />
+              Bekijk hieronder de specifieke fouten. Je kunt de data downloaden,
+              aanpassen en opnieuw importeren.
+            </Paragraph>
+          ) : (
+            <Paragraph>
+              Alle <strong>{result.counts?.total} rijen</strong> zijn succesvol
+              geïmporteerd.
+            </Paragraph>
+          )}
         </Alert>
       )}
 

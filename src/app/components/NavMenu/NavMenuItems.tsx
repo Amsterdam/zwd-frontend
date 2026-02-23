@@ -11,7 +11,12 @@ const NavMenuItem = ({ label, path, icon, fixed, core }: MenuItem) => {
   const href = useHref(path)
 
   return (
-    <PageHeader.MenuLink href={href} onClick={handleClick} fixed={fixed} data-core={core}>
+    <PageHeader.MenuLink
+      href={href}
+      onClick={handleClick}
+      fixed={fixed}
+      data-core={core}
+    >
       {icon && (
         <Icon
           svg={icon}

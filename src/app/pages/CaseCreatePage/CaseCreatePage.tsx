@@ -115,7 +115,8 @@ export const CaseCreatePage: React.FC = () => {
                   (formValues.advice_type === ADVIES_TYPES.ENERGIEADVIES ||
                     formValues.advice_type ===
                       ADVIES_TYPES.HAALBAARHEIDSONDERZOEK)) ||
-                (formValues.application_type === APPLICATION_TYPES.ACTIVATIETEAM &&
+                (formValues.application_type ===
+                  APPLICATION_TYPES.ACTIVATIETEAM &&
                   (formValues.activationteam_type ===
                     ACTIVATIETEAM_TYPES.INFORMATIEBIJEENKOMST ||
                     formValues.activationteam_type ===

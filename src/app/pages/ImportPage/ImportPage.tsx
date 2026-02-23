@@ -1,8 +1,21 @@
 import { useState, useEffect, useMemo } from "react"
 import { PageGrid, PageHeading, Form, FormActionButtons } from "app/components"
 import { useLetterImport, useCourseParticipantImport } from "app/state/rest"
-import { ErrorMessage, Field, Label, Select, Accordion, OrderedList, Button, Row } from "@amsterdam/design-system-react"
-import { DocumentCheckMarkIcon, DocumentIcon, DownloadIcon } from "@amsterdam/design-system-react-icons"
+import {
+  ErrorMessage,
+  Field,
+  Label,
+  Select,
+  Accordion,
+  OrderedList,
+  Button,
+  Row
+} from "@amsterdam/design-system-react"
+import {
+  DocumentCheckMarkIcon,
+  DocumentIcon,
+  DownloadIcon
+} from "@amsterdam/design-system-react-icons"
 import { useUserFullName } from "app/hooks"
 import ImportResult from "./ImportResult"
 import { FileInputFieldCSV } from "app/components/forms"
@@ -23,8 +36,9 @@ const FormFieldsWrapper: React.FC<{
   config: ImportTypeConfig
   name: string
   formMethods?: UseFormReturn<FieldValues>
-}> = ({ config, formMethods }) => <config.FormFieldsComponent formMethods={formMethods} />
-
+}> = ({ config, formMethods }) => (
+  <config.FormFieldsComponent formMethods={formMethods} />
+)
 
 const ImportTypeSelect: React.FC<{
   value: ImportTypeWithEmpty
@@ -49,19 +63,24 @@ const ImportTypeSelect: React.FC<{
 
 export const ImportPage: React.FC = () => {
   const [importType, setImportType] = useState<ImportTypeWithEmpty>("")
-  const [importResult, setImportResult] = useState<ImportResultData | null>(null)
+  const [importResult, setImportResult] = useState<ImportResultData | null>(
+    null
+  )
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const userFullName = useUserFullName()
 
   const [, { execPost: execLetterImport }] = useLetterImport({ lazy: true })
-  const [, { execPost: execCourseParticipantImport }] = useCourseParticipantImport({ lazy: true })
+  const [, { execPost: execCourseParticipantImport }] =
+    useCourseParticipantImport({ lazy: true })
 
   const importConfig = importType ? importTypeRegistry[importType] : null
 
-  const defaultValues = useMemo(() =>
-    importConfig ? importConfig.getDefaultValues(userFullName) : undefined
-  , [importConfig, userFullName])
+  const defaultValues = useMemo(
+    () =>
+      importConfig ? importConfig.getDefaultValues(userFullName) : undefined,
+    [importConfig, userFullName]
+  )
 
   const onSubmit = async (data: ImportFormData) => {
     if (!importType || !importConfig) {
@@ -77,14 +96,20 @@ export const ImportPage: React.FC = () => {
 
     let response: unknown
     if (importType === "letters") {
-      response = await execLetterImport(formData as unknown as Partial<ImportResultData>)
+      response = await execLetterImport(
+        formData as unknown as Partial<ImportResultData>
+      )
     } else if (importType === "course-participants") {
-      response = await execCourseParticipantImport(formData as unknown as Partial<ImportResultData>)
+      response = await execCourseParticipantImport(
+        formData as unknown as Partial<ImportResultData>
+      )
     } else {
       throw new Error("Onbekend import type")
     }
 
-    const result = (response as { data?: ImportResultData })?.data ?? (response as ImportResultData)
+    const result =
+      (response as { data?: ImportResultData })?.data ??
+      (response as ImportResultData)
     if (result) {
       setImportResult(result)
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -104,7 +129,8 @@ export const ImportPage: React.FC = () => {
   const handleDownloadFailedRows = () => {
     if (importResult?.failed_rows_data) {
       const { headers, rows } = importResult.failed_rows_data
-      const importLabel = importTypeRegistry[importType as ImportType].labelShort.toLowerCase()
+      const importLabel =
+        importTypeRegistry[importType as ImportType].labelShort.toLowerCase()
       const filename = `zwd-${importLabel}-fouten-${new Date().toISOString().split("T")[0]}.csv`
       downloadCsv(headers, rows, filename)
     }
@@ -118,7 +144,9 @@ export const ImportPage: React.FC = () => {
   }, [importType])
 
   if (importResult) {
-    const hasFailedRows = importResult.failed_rows_data && importResult.failed_rows_data.rows.length > 0
+    const hasFailedRows =
+      importResult.failed_rows_data &&
+      importResult.failed_rows_data.rows.length > 0
 
     return (
       <PageGrid>
@@ -151,15 +179,19 @@ export const ImportPage: React.FC = () => {
 
       {importConfig && (
         <div style={{ maxWidth: "40rem" }}>
-
           <importConfig.InstructionsComponent />
 
           <Accordion headingLevel={3}>
             <Accordion.Section label="Hoe exporteer ik een CSV-bestand vanuit Excel?">
               <OrderedList>
                 <OrderedList.Item>Open het Excel-document</OrderedList.Item>
-                <OrderedList.Item>Ga naar Bestand → Opslaan als</OrderedList.Item>
-                <OrderedList.Item>Kies het bestandsformaat &quot;CSV (komma&apos;s gescheiden) (*.csv)&quot;</OrderedList.Item>
+                <OrderedList.Item>
+                  Ga naar Bestand → Opslaan als
+                </OrderedList.Item>
+                <OrderedList.Item>
+                  Kies het bestandsformaat &quot;CSV (komma&apos;s gescheiden)
+                  (*.csv)&quot;
+                </OrderedList.Item>
                 <OrderedList.Item>Sla het bestand op</OrderedList.Item>
               </OrderedList>
             </Accordion.Section>
@@ -180,11 +212,7 @@ export const ImportPage: React.FC = () => {
 
             <FormFieldsWrapper config={importConfig} name="formFieldsWrapper" />
 
-            {error && (
-              <ErrorMessage>
-                {error}
-              </ErrorMessage>
-            )}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
 
             <FormActionButtons
               name="actions"
@@ -194,7 +222,6 @@ export const ImportPage: React.FC = () => {
               onCancel={() => setImportType("")}
             />
           </Form>
-
         </div>
       )}
     </PageGrid>
@@ -202,4 +229,3 @@ export const ImportPage: React.FC = () => {
 }
 
 export default ImportPage
-

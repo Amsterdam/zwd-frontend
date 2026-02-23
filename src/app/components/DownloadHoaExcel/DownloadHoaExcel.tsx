@@ -5,26 +5,25 @@ import { saveAs } from "file-saver"
 import { useAuth } from "react-oidc-context"
 import { ContextValues } from "app/state/context/ValueProvider"
 import { createExcel } from "./createExcel"
-import type { ExpandedCase } from "./createExcel"
-import { SORTING_INDEX_MAPPING } from "app/state/rest"
+import type { ExpandedHoa } from "./createExcel"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
 import { cleanParamObject, getOrderingQueryParam } from "app/state/rest/utils"
 import { makeApiUrl } from "app/state/rest/hooks/utils"
 import { Spinner } from "app/components"
+import { SORTING_INDEX_MAPPING } from "app/state/rest"
 
 const PAGE_SIZE = 1000
 
 const buildQueryString = (params: Record<string, unknown>, page: number) => {
   const queryParams = {
     ...params,
-    expand: "true",
     page,
     page_size: PAGE_SIZE
   }
   return stringifyQueryParams(cleanParamObject(queryParams))
 }
 
-const fetchCasesByPage = async (url: string, token?: string) => {
+const fetchHoasByPage = async (url: string, token?: string) => {
   const response = await fetch(url, {
     method: "GET",
     headers: {
@@ -39,57 +38,41 @@ const fetchCasesByPage = async (url: string, token?: string) => {
   return response.json()
 }
 
-export const DownloadExcel = () => {
+export const DownloadHoaExcel = () => {
   const auth = useAuth()
   const token = auth.user?.access_token
   const {
-    adviceType,
-    applicationType,
-    requestDateRangeAfter,
-    requestDateRangeBefore,
-    district,
-    endDateRangeAfter,
-    endDateRangeBefore,
-    isClosedFilter,
-    isSmallHoa,
-    neighborhood,
-    advisor,
     searchString,
-    sorting,
-    status,
-    wijk
-  } = useContext(ContextValues)["cases"]
+    district,
+    isSmallHoa,
+    participantCount,
+    letterCount,
+    neighborhood,
+    sorting
+  } = useContext(ContextValues)["hoas"]
   const [loading, setLoading] = useState(false)
 
   const queryParams = {
-    advice_type: adviceType,
-    application_type: applicationType,
-    request_date_range_after: requestDateRangeAfter,
-    request_date_range_before: requestDateRangeBefore,
-    end_date_range_after: endDateRangeAfter,
-    end_date_range_before: endDateRangeBefore,
-    closed: isClosedFilter,
+    searchString,
     district,
-    is_small_hoa: isSmallHoa,
+    isSmallHoa,
+    course_participant_count: participantCount,
+    letter_count: letterCount,
     neighborhood,
-    advisor,
-    search: searchString,
-    status,
-    wijk,
     ordering: sorting
       ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
       : undefined
   }
 
-  const fetchAllCases = async () => {
+  const fetchAllHoas = async () => {
     setLoading(true)
     try {
-      let allResults: ExpandedCase[] = []
+      let allResults: ExpandedHoa[] = []
       const initialQueryString = buildQueryString(queryParams, 1)
-      const initialUrl = `${makeApiUrl("cases")}${initialQueryString}`
+      const initialUrl = `${makeApiUrl("homeowner-association")}${initialQueryString}`
 
       // First request to determine the total number of items
-      const initialData = await fetchCasesByPage(initialUrl, token)
+      const initialData = await fetchHoasByPage(initialUrl, token)
       const totalItems = initialData.count
       const totalPages = Math.ceil(totalItems / PAGE_SIZE)
       allResults = [...initialData.results]
@@ -98,8 +81,8 @@ export const DownloadExcel = () => {
       const fetchPagePromises = []
       for (let page = 2; page <= totalPages; page++) {
         const queryString = buildQueryString(queryParams, page)
-        const url = `${makeApiUrl("cases")}${queryString}`
-        fetchPagePromises.push(fetchCasesByPage(url, token))
+        const url = `${makeApiUrl("homeowner-association")}${queryString}`
+        fetchPagePromises.push(fetchHoasByPage(url, token))
       }
 
       const pageResults = await Promise.all(fetchPagePromises)
@@ -113,9 +96,9 @@ export const DownloadExcel = () => {
       const blob = new Blob([buffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       })
-      saveAs(blob, "ZWD-Zaken.xlsx")
+      saveAs(blob, "ZWD-vve.xlsx")
     } catch (error) {
-      console.error("Error fetching all cases:", error)
+      console.error("Error fetching all hoas:", error)
     }
     setLoading(false)
   }
@@ -126,7 +109,7 @@ export const DownloadExcel = () => {
       variant="secondary"
       icon={loading ? <Spinner size={23} /> : <DownloadIcon />}
       iconBefore
-      onClick={fetchAllCases}
+      onClick={fetchAllHoas}
       disabled={loading}
     >
       Download Excel

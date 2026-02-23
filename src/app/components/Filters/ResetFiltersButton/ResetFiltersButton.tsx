@@ -5,7 +5,7 @@ import { ContextValues } from "app/state/context/ValueProvider"
 import { initialState } from "app/state/context/initialState"
 
 type Props = {
-  contextName: "cases" | "tasks"
+  contextName: "cases" | "tasks" | "hoas"
 }
 
 const EXCLUDED_KEYS = [
@@ -24,6 +24,8 @@ export const ResetFiltersButton: React.FC<Props> = ({ contextName }) => {
     useContext(ContextValues)["cases"]
   const { updateContextTasks, ...tasksFilters } =
     useContext(ContextValues)["tasks"]
+  const { updateContextHoas, ...hoasFilters } =
+    useContext(ContextValues)["hoas"]
 
   const resetFilters = () => {
     if (contextName === "cases") {
@@ -32,12 +34,25 @@ export const ResetFiltersButton: React.FC<Props> = ({ contextName }) => {
     } else if (contextName === "tasks") {
       const { columnsVisible } = tasksFilters
       updateContextTasks({ ...initialState.tasks, columnsVisible })
+    } else if (contextName === "hoas") {
+      const { columnsVisible } = hoasFilters
+      updateContextHoas({ ...initialState.hoas, columnsVisible })
     }
   }
 
-  const filters = contextName === "cases" ? casesFilters : tasksFilters
-  const initialFilters =
-    contextName === "cases" ? initialState.cases : initialState.tasks
+  let filters
+  let initialFilters
+
+  if (contextName === "cases") {
+    filters = casesFilters
+    initialFilters = initialState.cases
+  } else if (contextName === "tasks") {
+    filters = tasksFilters
+    initialFilters = initialState.tasks
+  } else {
+    filters = hoasFilters
+    initialFilters = initialState.hoas
+  }
 
   const hasActiveFilters = Object.entries(filters).some(([key, value]) => {
     if (EXCLUDED_KEYS.includes(key)) return false
@@ -48,7 +63,7 @@ export const ResetFiltersButton: React.FC<Props> = ({ contextName }) => {
   if (!hasActiveFilters) return null
 
   return (
-    <Field style={{ justifyContent: "flex-end" }}>
+    <Field className="align-bottom">
       <Button onClick={resetFilters} icon={CloseIcon} iconBefore>
         Wis alle filters
       </Button>

@@ -1,11 +1,11 @@
 import { FieldValues, UseFormReturn } from "react-hook-form"
 import {
   ImportInstructions as LetterImportInstructions,
-  ImportFormFields as LetterImportFormFields,
+  ImportFormFields as LetterImportFormFields
 } from "../types/LetterImport"
 import {
   ImportInstructions as CourseParticipantImportInstructions,
-  ImportFormFields as CourseParticipantImportFormFields,
+  ImportFormFields as CourseParticipantImportFormFields
 } from "../types/CourseParticipantImport"
 
 export type ImportType = "letters" | "course-participants"
@@ -53,8 +53,7 @@ export type ImportTypeRegistry = {
 }
 
 export const importTypeRegistry: ImportTypeRegistry = {
-
-  "letters": {
+  letters: {
     label: "Brieven importeren",
     labelShort: "Brieven",
     value: "letters",
@@ -89,6 +88,5 @@ export const importTypeRegistry: ImportTypeRegistry = {
       formData.append("file", courseData.file[0])
       return formData
     }
-  },
-
+  }
 }

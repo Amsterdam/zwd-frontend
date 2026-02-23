@@ -1,7 +1,57 @@
-import type { Options } from "."
+import { SORTING_INDEX_MAPPING, type Options } from "."
 import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 import stringifyQueryParams from "app/routing/utils/stringifyQueryParams"
+import { useMemo } from "react"
+import { cleanParamObject, getOrderingQueryParam } from "./utils"
+
+export const useHomeownerAssociations = (
+  pagination: TABLE.Pagination,
+  sorting?: TABLE.Sorting,
+  searchString?: string,
+  district?: string[],
+  isSmallHoa?: string,
+  participantCount?: number,
+  letterCount?: number,
+  neighborhood?: string[],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+
+  const queryString = useMemo(() => {
+    const params: Record<string, Value> = {
+      page: pagination?.page ?? 1,
+      page_size: pagination?.pageSize ?? 25,
+      ordering: sorting
+        ? getOrderingQueryParam(sorting, SORTING_INDEX_MAPPING)
+        : undefined,
+      search: searchString,
+      district,
+      is_small_hoa: isSmallHoa,
+      course_participant_count: participantCount,
+      letter_count: letterCount,
+      neighborhood
+    }
+    return stringifyQueryParams(cleanParamObject(params))
+  }, [
+    pagination.page,
+    pagination.pageSize,
+    sorting,
+    searchString,
+    district,
+    isSmallHoa,
+    participantCount,
+    letterCount,
+    neighborhood
+  ])
+  return useApiRequest<Components.Schemas.PaginatedCaseListList>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association")}${queryString}`,
+    groupName: "hoas",
+    handleError,
+    isProtected: true
+  })
+}
 
 export const useHomeownerAssociation = (
   id?: Components.Schemas.HomeownerAssociation["id"],
@@ -12,7 +62,7 @@ export const useHomeownerAssociation = (
     ...options,
     url: `${makeApiUrl("homeowner-association", id)}`,
     lazy: id === undefined,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -43,7 +93,7 @@ export const useHomeownerAssociationSearch = (
     ...options,
     url: `${makeApiUrl("homeowner-association", "search")}${params}`,
     lazy: !searchString,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -67,7 +117,9 @@ export const useHomeownerAssociationContacts = (
 export type CreateOrUpdateHoaContactsPayload = {
   contacts: Array<
     Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role"> &
-      Partial<Pick<Components.Schemas.Contact, "id" | "is_primary" | "course_date">>
+      Partial<
+        Pick<Components.Schemas.Contact, "id" | "is_primary" | "course_date">
+      >
   >
 }
 
@@ -111,7 +163,7 @@ export const useHomeownerAssociationApartments = (
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "apartments")}`,
     lazy: id === undefined,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -123,7 +175,7 @@ export const useLetterImport = (options?: Options) => {
     ...options,
     url: `${makeApiUrl("homeowner-association", "import-letters")}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })
@@ -135,7 +187,7 @@ export const useCourseParticipantImport = (options?: Options) => {
     ...options,
     url: `${makeApiUrl("homeowner-association", "import-course-participants")}`,
     lazy: true,
-    groupName: "hoa",
+    groupName: "hoas",
     handleError,
     isProtected: true
   })

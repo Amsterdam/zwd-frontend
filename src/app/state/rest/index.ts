@@ -7,7 +7,7 @@ export type ApiGroup =
   | "caseStatuses"
   | "dataPunt"
   | "districts"
-  | "hoa"
+  | "hoas"
   | "tasks"
 
 export type Options = {

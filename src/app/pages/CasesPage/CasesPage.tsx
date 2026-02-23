@@ -72,13 +72,14 @@ export const CasesPage: React.FC = () => {
 
   const columns = useMemo(() => getColumns(sorting), [sorting])
   const columnsFiltered = useMemo(
-    () => columns.filter(column => {
-      const alwaysVisible = ["prefixed_dossier_id", "id"]
-      if (alwaysVisible.includes(column?.dataIndex ?? "")) {
-        return true
-      }
-      return columnsVisible.includes(column.dataIndex ?? "")
-    }),
+    () =>
+      columns.filter((column) => {
+        const alwaysVisible = ["prefixed_dossier_id", "id"]
+        if (alwaysVisible.includes(column?.dataIndex ?? "")) {
+          return true
+        }
+        return columnsVisible.includes(column.dataIndex ?? "")
+      }),
     [columns, columnsVisible]
   )
 
@@ -91,7 +92,9 @@ export const CasesPage: React.FC = () => {
         columns={columnsFiltered}
         data={results}
         loading={isBusy}
-        onClickRow={(obj, _index, e) => navigateWithModifier(e, `/zaken/${obj.id}`)}
+        onClickRow={(obj, _index, e) =>
+          navigateWithModifier(e, `/zaken/${obj.id}`)
+        }
         onChange={onChangeTable}
         pagination={{
           page: pagination.page,

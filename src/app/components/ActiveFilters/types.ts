@@ -3,8 +3,11 @@ export type FilterType = "array" | "select" | "date" | "search" | "boolean"
 export type FilterConfig = {
   key: string
   type: FilterType
-  contexts: ("cases" | "tasks")[]
-  getLabel: (value: string, helpers?: Components.Schemas.CaseAdvisor[] | undefined) => string
+  contexts: ("cases" | "tasks" | "hoas")[]
+  getLabel: (
+    value: string,
+    helpers?: Components.Schemas.CaseAdvisor[] | undefined
+  ) => string
 }
 
 export type FilterConfigs = Record<string, FilterConfig>

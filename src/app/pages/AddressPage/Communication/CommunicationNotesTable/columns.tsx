@@ -8,10 +8,12 @@ import DeleteCommunicationNote from "../actions/DeleteCommunicationNote"
 import UpdateCommunicationNote from "../actions/UpdateCommunicationNote"
 import { formatTextWithLineBreaks } from "app/utils/text.tsx"
 
+type CommunicationNote =
+  Components.Schemas.HomeownerAssociationCommunicationNote
 
-type CommunicationNote = Components.Schemas.HomeownerAssociationCommunicationNote
-
-export const createColumns = (hoaId: number): ColumnType<CommunicationNote>[] => [
+export const createColumns = (
+  hoaId: number
+): ColumnType<CommunicationNote>[] => [
   {
     header: "Datum",
     dataIndex: "date",
@@ -28,7 +30,7 @@ export const createColumns = (hoaId: number): ColumnType<CommunicationNote>[] =>
     header: "Notitie",
     dataIndex: "note",
     sorter: createStringSorter<CommunicationNote>("note"),
-    render: (text) => formatTextWithLineBreaks(text),
+    render: (text) => formatTextWithLineBreaks(text)
   },
   {
     header: "",

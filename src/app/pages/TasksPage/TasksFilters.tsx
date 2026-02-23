@@ -15,7 +15,7 @@ import {
   AdvisorFilter,
   BooleanStatusFilter,
   DateFilter,
-  ColumnSettings,
+  ColumnSettings
 } from "app/components"
 
 const TASKS = "tasks"
@@ -122,7 +122,7 @@ export const TasksFilters = () => {
           />
         </>
       ) : (
-        <Field style={{ justifyContent: "flex-end" }}>
+        <Field className="align-bottom">
           <Button
             id="filter-button"
             icon={FilterIcon}
@@ -136,10 +136,9 @@ export const TasksFilters = () => {
 
       <ResetFiltersButton contextName={TASKS} />
 
-      <Field style={{ justifyContent: "flex-end" }}>
+      <Field className="align-bottom">
         <ColumnSettings contextName={TASKS} />
       </Field>
-
     </Row>
   )
 }
