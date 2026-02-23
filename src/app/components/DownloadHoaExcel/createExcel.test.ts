@@ -11,7 +11,8 @@ describe("createExcel", () => {
         neighborhood: "Centrum",
         course_participant_count: 3,
         letter_count: 5,
-        cases_count: 2
+        advice_cases_count: 2,
+        activationteam_cases_count: 0
       }
     ]
 
@@ -33,7 +34,8 @@ describe("createExcel", () => {
       "Buurt",
       "Aantal cursusdeelnemers",
       "Aantal brieven",
-      "Aantal zaken"
+      "Aantal advieszaken",
+      "Aantal activeringsteam zaken"
     ])
 
     // Controleer eerste rij data
