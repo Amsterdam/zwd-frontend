@@ -3,7 +3,7 @@
 
 ## Description
 
-Frontend project for Zaken Woninkwaliteit en Duurzaamheid (ZWD). 🏠 It's used to make housing more sustainable and to improve the quality of buildings by collaborating with the homeowners' associations (vve's).  
+Frontend project for Zaken Woninkwaliteit en Duurzaamheid (ZWD). 🏠 It's used to make housing more sustainable and to improve the quality of buildings by collaborating with the homeowners' associations (VvE's).  
 
 This project is using React, typescript + SWC and is bootstrapped with `npm create vite@latest`.
 

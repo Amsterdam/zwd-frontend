@@ -5,7 +5,7 @@ export const menuItems: MenuItem[] = [
   { label: "Zoeken", path: "/zoeken", icon: SearchIcon, core: true },
   { label: "Zakenoverzicht", path: "/zaken", core: true },
   { label: "Takenoverzicht", path: "/taken", core: true },
-  { label: "Vve-overzicht", path: "/vve" },
+  { label: "VvE-overzicht", path: "/vve" },
   { label: "Import", path: "/import" },
   { label: "BPMN", path: "/bpmn" }
 ]

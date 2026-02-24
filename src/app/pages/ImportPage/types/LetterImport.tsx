@@ -10,12 +10,12 @@ import type { FieldValues, UseFormReturn } from "react-hook-form"
 export const ImportInstructions: React.FC = () => (
   <>
     <Accordion headingLevel={3}>
-      <Accordion.Section label="Wat gebeurt er bij het importeren van verzonden vve-brieven?">
+      <Accordion.Section label="Wat gebeurt er bij het importeren van verzonden VvE-brieven?">
         <UnorderedList>
           <UnorderedList.Item>
-            Bij een match met een vve wordt een contactmelding aangemaakt. Deze
-            is terug te vinden in het communicatieoverzicht van deze vve. Er
-            wordt maar één contactmelding aangemaakt per vve, ongeacht hoe vaak
+            Bij een match met een VvE wordt een contactmelding aangemaakt. Deze
+            is terug te vinden in het communicatieoverzicht van deze VvE. Er
+            wordt maar één contactmelding aangemaakt per VvE, ongeacht hoe vaak
             deze voorkomt in het bronbestand.
           </UnorderedList.Item>
           <UnorderedList.Item>
@@ -35,7 +35,7 @@ export const ImportInstructions: React.FC = () => (
         <Paragraph>Het document moet de volgende kolommen bevatten:</Paragraph>
         <UnorderedList>
           <UnorderedList.Item>
-            <strong>vve</strong>: Statutaire naam van de vve
+            <strong>VvE</strong>: Statutaire naam van de VvE
           </UnorderedList.Item>
         </UnorderedList>
       </Accordion.Section>
@@ -50,7 +50,7 @@ export const ImportFormFields: React.FC<{
     <DateInputField
       name="date"
       label="Datum brief"
-      type="datetime-local"
+      type="date"
       validation={validationRequired}
       formMethods={formMethods}
     />

@@ -58,7 +58,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
       sorter: createStringSorter<Contact>("phone")
     },
     {
-      header: "Functie in vve",
+      header: "Functie in VvE",
       dataIndex: "role",
       sorter: createStringSorter<Contact>("role")
     },

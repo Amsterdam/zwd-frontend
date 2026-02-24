@@ -77,7 +77,7 @@ export const ApartmentsPage: React.FC = () => {
         label={`Woningen ${hoa?.number_of_apartments ? `(${hoa?.number_of_apartments})` : ""} — ${hoa?.name}`}
         icon={HouseIcon}
         backLinkUrl={`/vve/${hoaId}`}
-        backLinkLabel="Terug naar vve"
+        backLinkLabel="Terug naar VvE"
       />
       <Table<Components.Schemas.Apartment>
         columns={columns}

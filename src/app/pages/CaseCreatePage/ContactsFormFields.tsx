@@ -16,8 +16,8 @@ type Props = {
 }
 
 const contacts = [
-  { id: 0, label: "eerste contactpersoon vve" },
-  { id: 1, label: "tweede contactpersoon vve" }
+  { id: 0, label: "eerste contactpersoon VvE" },
+  { id: 1, label: "tweede contactpersoon VvE" }
 ]
 
 export const ContactsFormFields: React.FC<Props> = ({
@@ -59,7 +59,7 @@ export const ContactsFormFields: React.FC<Props> = ({
           <Row wrap alignVertical="end">
             <SelectField
               name={`role[${contact.id}]`}
-              label="Functie in vve"
+              label="Functie in VvE"
               options={OPTIONS_ROLE_FUNCTIONS}
               validation={{ required: true }}
               formMethods={formMethods}

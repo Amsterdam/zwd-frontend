@@ -67,21 +67,21 @@ describe("createExcel", () => {
       "Aanvraagdatum",
       "Einddatum zaak",
       "Laatst gewijzigd",
-      "Vve statutaire naam",
-      "Vve postcode",
-      "Vve buurt",
-      "Vve wijk",
-      "Vve stadsdeel",
-      "Vve aantal appartementen",
-      "Vve bouwjaar",
-      "Vve klein",
-      "Vve prioriteitswijk",
-      "Vve kvk nummer",
-      "Vve monument status",
-      "Vve ligt in beschermd gebied",
-      "Vve beschermd stads- of dorpsgezicht",
-      "Vve Eigenaren",
-      "Vve aantal cursusdeelnemers",
+      "VvE statutaire naam",
+      "VvE postcode",
+      "VvE buurt",
+      "VvE wijk",
+      "VvE stadsdeel",
+      "VvE aantal appartementen",
+      "VvE bouwjaar",
+      "VvE klein",
+      "VvE prioriteitswijk",
+      "VvE kvk nummer",
+      "VvE monument status",
+      "VvE ligt in beschermd gebied",
+      "VvE beschermd stads- of dorpsgezicht",
+      "VvE Eigenaren",
+      "VvE aantal cursusdeelnemers",
       "Extra Field 1",
       "Extra Field 2"
     ])
@@ -110,27 +110,27 @@ describe("createExcel", () => {
     ) // Laatst gewijzigd
 
     // Controleer VVE gegevens
-    expect(firstRow.getCell(10).value).toBe("VVE De Zonnebloem") // Vve statutaire naam
-    expect(firstRow.getCell(11).value).toBe("1234AB") // Vve postcode
-    expect(firstRow.getCell(12).value).toBe("Centrum") // Vve buurt
-    expect(firstRow.getCell(13).value).toBe("Wijk 1") // Vve wijk
-    expect(firstRow.getCell(14).value).toBe("Stadsdeel A") // Vve stadsdeel
-    expect(firstRow.getCell(15).value).toBe(10) // Vve aantal appartementen
-    expect(firstRow.getCell(16).value).toBe(1990) // Vve bouwjaar
-    expect(firstRow.getCell(17).value).toBe("Ja") // Vve klein
-    expect(firstRow.getCell(18).value).toBe("Nee") // Vve prioriteitswijk
-    expect(firstRow.getCell(19).value).toBe("12345678") // Vve kvk nummer
-    expect(firstRow.getCell(20).value).toBe("Geen") // Vve monument status
-    expect(firstRow.getCell(21).value).toBe("Nee") // Vve ligt in beschermd gebied
-    expect(firstRow.getCell(22).value).toBe("Nee") // Vve beschermd stads- of dorpsgezicht
+    expect(firstRow.getCell(10).value).toBe("VVE De Zonnebloem") // VvE statutaire naam
+    expect(firstRow.getCell(11).value).toBe("1234AB") // VvE postcode
+    expect(firstRow.getCell(12).value).toBe("Centrum") // VvE buurt
+    expect(firstRow.getCell(13).value).toBe("Wijk 1") // VvE wijk
+    expect(firstRow.getCell(14).value).toBe("Stadsdeel A") // VvE stadsdeel
+    expect(firstRow.getCell(15).value).toBe(10) // VvE aantal appartementen
+    expect(firstRow.getCell(16).value).toBe(1990) // VvE bouwjaar
+    expect(firstRow.getCell(17).value).toBe("Ja") // VvE klein
+    expect(firstRow.getCell(18).value).toBe("Nee") // VvE prioriteitswijk
+    expect(firstRow.getCell(19).value).toBe("12345678") // VvE kvk nummer
+    expect(firstRow.getCell(20).value).toBe("Geen") // VvE monument status
+    expect(firstRow.getCell(21).value).toBe("Nee") // VvE ligt in beschermd gebied
+    expect(firstRow.getCell(22).value).toBe("Nee") // VvE beschermd stads- of dorpsgezicht
 
     // Controleer eigenaren
     expect(firstRow.getCell(23).value).toBe(
       "Onderneming: Bedrijf A (5 appartementen); Particulier: Persoon B (5 appartementen)"
-    ) // Vve Eigenaren
+    ) // VvE Eigenaren
 
     // Controleer cursusdeelnemers
-    expect(firstRow.getCell(24).value).toBe(3) // Vve aantal cursusdeelnemers
+    expect(firstRow.getCell(24).value).toBe(3) // VvE aantal cursusdeelnemers
 
     // Controleer extra velden
     expect(firstRow.getCell(25).value).toBe("Value 1") // Extra Field 1

@@ -57,7 +57,7 @@ export const HoasPage: React.FC = () => {
 
   return (
     <PageGrid>
-      <PageHeading label={`Vve-overzicht (${count})`} />
+      <PageHeading label={`VvE-overzicht (${count})`} />
       <HoaFilters />
       <ActiveFilters contextName="hoas" />
       <Table

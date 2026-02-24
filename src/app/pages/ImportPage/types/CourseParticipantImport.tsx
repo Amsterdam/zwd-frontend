@@ -11,7 +11,7 @@ export const ImportInstructions: React.FC = () => (
       <Accordion.Section label="Wat gebeurt er bij het importeren van cursusdeelnemers?">
         <UnorderedList>
           <UnorderedList.Item>
-            Bij een match met een vve worden bestaande contacten bijgewerkt met
+            Bij een match met een VvE worden bestaande contacten bijgewerkt met
             de cursusdatum uit het import-bestand, of toegevoegd als nieuw
             contact wanneer ze nog niet bestaan.
           </UnorderedList.Item>
@@ -40,7 +40,7 @@ export const ImportInstructions: React.FC = () => (
             <strong>cursusdatum</strong>: Cursusdatum
           </UnorderedList.Item>
           <UnorderedList.Item>
-            <strong>vve</strong>: Statutaire naam van de vve
+            <strong>VvE</strong>: Statutaire naam van de VvE
           </UnorderedList.Item>
         </UnorderedList>
         <Paragraph>De volgende kolommen zijn optioneel:</Paragraph>
@@ -49,7 +49,7 @@ export const ImportInstructions: React.FC = () => (
             <strong>telefoon</strong>: Telefoonnummer van de cursusdeelnemer
           </UnorderedList.Item>
           <UnorderedList.Item>
-            <strong>functie</strong>: Functie binnen de vve van de
+            <strong>functie</strong>: Functie binnen de VvE van de
             cursusdeelnemer
           </UnorderedList.Item>
         </UnorderedList>

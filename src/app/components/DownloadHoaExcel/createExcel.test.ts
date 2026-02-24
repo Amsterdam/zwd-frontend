@@ -11,12 +11,13 @@ describe("createExcel", () => {
         neighborhood: "Centrum",
         course_participant_count: 3,
         letter_count: 5,
-        cases_count: 2
+        advice_cases_count: 2,
+        activationteam_cases_count: 0
       }
     ]
 
     const workbook = createExcel(mockData)
-    const worksheet = workbook.getWorksheet("vve's")
+    const worksheet = workbook.getWorksheet("VvE's")
 
     // Controleer of worksheet bestaat
     expect(worksheet).toBeDefined()
@@ -33,12 +34,13 @@ describe("createExcel", () => {
       "Buurt",
       "Aantal cursusdeelnemers",
       "Aantal brieven",
-      "Aantal zaken"
+      "Aantal advieszaken",
+      "Aantal activeringsteam zaken"
     ])
 
     // Controleer eerste rij data
     if (!worksheet) {
-      throw new Error('Worksheet "vve\'s" not found')
+      throw new Error('Worksheet "VvE\'s" not found')
     }
     const firstRow = worksheet.getRow(2)
     expect(firstRow.getCell(1).value).toBe("VVE De Zonnebloem")

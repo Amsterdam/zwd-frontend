@@ -65,10 +65,10 @@ export const HoasFilters = () => {
         }
       />
       <BooleanStatusFilter
-        label="Vve grootte"
-        allLabel="Alle vve's"
-        trueLabel="Kleine vve's"
-        falseLabel="Grote vve's"
+        label="VvE grootte"
+        allLabel="Alle VvE's"
+        trueLabel="Kleine VvE's"
+        falseLabel="Grote VvE's"
         onChangeFilter={(value: string) => onChangeFilter("isSmallHoa", value)}
         value={isSmallHoa}
       />

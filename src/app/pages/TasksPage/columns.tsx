@@ -27,7 +27,7 @@ export const getColumns = (
     sortOrder: getSortOrder(sorting, "case.prefixed_dossier_id")
   },
   {
-    header: "Vve statutaire naam",
+    header: "VvE statutaire naam",
     dataIndex: "case.homeowner_association.name",
     sorter: createStringSorter<Components.Schemas.CaseUserTaskList>(
       "case.homeowner_association.name"
@@ -35,7 +35,7 @@ export const getColumns = (
     sortOrder: getSortOrder(sorting, "case.homeowner_association.name")
   },
   {
-    header: "Vve grootte",
+    header: "VvE grootte",
     dataIndex: "case.homeowner_association.number_of_apartments",
     sorter: createNumberSorter<Components.Schemas.CaseUserTaskList>(
       "case.homeowner_association.number_of_apartments"
