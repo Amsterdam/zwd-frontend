@@ -97,7 +97,7 @@ export const TasksFilters = () => {
             }
           />
           <BooleanStatusFilter
-            label="Vve grootte"
+            label="VvE grootte"
             allLabel="Alle vve's"
             trueLabel="Kleine vve's"
             falseLabel="Grote vve's"

@@ -2,7 +2,8 @@ import type { ColumnType } from "app/components"
 import {
   createNumberSorter,
   createStringSorter,
-  getSortOrder
+  getSortOrder,
+  LinkButton
 } from "app/components"
 
 type DataType = Components.Schemas.CaseList
@@ -57,7 +58,19 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     dataIndex: "activationteam_cases_count",
     sorter: createNumberSorter<DataType>("activationteam_cases_count"),
     sortOrder: getSortOrder(sorting, "activationteam_cases_count")
-  }
+  },
+  {
+      header: "",
+      dataIndex: "id",
+      width: 110,
+      render: (hoaId) => (
+        <LinkButton
+          label="VvE-details"
+          to={`/vve/${hoaId}`}
+          onClick={() => {}}
+        />
+      )
+    }
 ]
 
 export default getColumns

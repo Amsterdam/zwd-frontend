@@ -70,7 +70,7 @@ export const CaseCreatePage: React.FC = () => {
     <PageGrid>
       <PageHeading label="Nieuwe zaak aanmaken" icon={PencilIcon} />
       <>
-        <Heading level={3}>Vve</Heading>
+        <Heading level={3}>VvE</Heading>
         {hoaId && <HoaName id={Number(hoaId)} />}
         <SectionDivider text="Vul dit formulier in om een nieuwe zaak aan te maken" />
         {isBusy ? (

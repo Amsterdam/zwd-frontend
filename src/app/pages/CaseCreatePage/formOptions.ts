@@ -53,8 +53,8 @@ export const ROLE_FUNCTIONS = {
   BESTUURSLID: "Bestuurslid",
   COMMISSIELID_DUURZAAM: "Commissielid duurzaam",
   COMMISSIELID_TECHNISCH: "Commissielid technisch",
-  VVE_LID: "Vve-lid",
-  VVE_BEHEERDER: "Vve-beheerder",
+  VVE_LID: "VvE-lid",
+  VVE_BEHEERDER: "VvE-beheerder",
   CUSTOM: "Anders, namelijk:"
 }
 

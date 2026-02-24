@@ -16,38 +16,38 @@ const casesColumns = [
   { key: "request_date", header: "Aanvraagdatum" },
   { key: "end_date", header: "Einddatum zaak" },
   { key: "updated", header: "Laatst gewijzigd" },
-  { key: "hoa_name", header: "Vve statutaire naam" },
-  { key: "hoa_zip_code", header: "Vve postcode" },
-  { key: "hoa_neighborhood", header: "Vve buurt" },
-  { key: "hoa_wijk", header: "Vve wijk" },
-  { key: "hoa_district", header: "Vve stadsdeel" },
+  { key: "hoa_name", header: "VvE statutaire naam" },
+  { key: "hoa_zip_code", header: "VvE postcode" },
+  { key: "hoa_neighborhood", header: "VvE buurt" },
+  { key: "hoa_wijk", header: "VvE wijk" },
+  { key: "hoa_district", header: "VvE stadsdeel" },
   {
     key: "hoa_number_of_apartments",
-    header: "Vve aantal appartementen"
+    header: "VvE aantal appartementen"
   },
-  { key: "hoa_build_year", header: "Vve bouwjaar" },
-  { key: "hoa_is_small", header: "Vve klein" },
+  { key: "hoa_build_year", header: "VvE bouwjaar" },
+  { key: "hoa_is_small", header: "VvE klein" },
   {
     key: "hoa_is_priority_neighborhood",
-    header: "Vve prioriteitswijk"
+    header: "VvE prioriteitswijk"
   },
-  { key: "hoa_kvk_nummer", header: "Vve kvk nummer" },
+  { key: "hoa_kvk_nummer", header: "VvE kvk nummer" },
   {
     key: "hoa_monument_status",
-    header: "Vve monument status"
+    header: "VvE monument status"
   },
   {
     key: "hoa_ligt_in_beschermd_gebied",
-    header: "Vve ligt in beschermd gebied"
+    header: "VvE ligt in beschermd gebied"
   },
   {
     key: "hoa_beschermd_stadsdorpsgezicht",
-    header: "Vve beschermd stads- of dorpsgezicht"
+    header: "VvE beschermd stads- of dorpsgezicht"
   },
-  { key: "hoa_owners", header: "Vve Eigenaren" },
+  { key: "hoa_owners", header: "VvE Eigenaren" },
   {
     key: "hoa_course_participant_count",
-    header: "Vve aantal cursusdeelnemers"
+    header: "VvE aantal cursusdeelnemers"
   }
 ]
 

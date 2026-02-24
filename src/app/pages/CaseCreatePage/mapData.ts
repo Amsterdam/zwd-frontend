@@ -66,7 +66,7 @@ export const defaultDummyValues: DefaultDummyValues = {
   fullname: ["Chewbacca", "Han Solo"],
   email: ["chewbacca@starwars.org", "hansolo@starwars.org"],
   phone: ["0612345678", "0031611112222"],
-  role: ["Bestuurslid", "Vve-lid"],
+  role: ["Bestuurslid", "VvE-lid"],
   description: "Dit is een toelichting test"
 }
 
@@ -81,6 +81,6 @@ export const dummyValuesActivationTeam: DefaultDummyValues = {
   fullname: ["Chewbacca", "Han Solo"],
   email: ["chewbacca@starwars.org", "hansolo@starwars.org"],
   phone: ["0612345678", "0031611112222"],
-  role: ["Bestuurslid", "Vve-lid"],
+  role: ["Bestuurslid", "VvE-lid"],
   description: "Dit is een toelichting test"
 }
