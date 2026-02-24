@@ -51,7 +51,7 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     header: "Advies",
     dataIndex: "advice_cases_count",
     sorter: createNumberSorter<DataType>("advice_cases_count"),
-    sortOrder: getSortOrder(sorting, "advice_cases_count")
+    sortOrder: getSortOrder(sorting, "advice_cases_count"),
   },
   {
     header: "Activatieteam",

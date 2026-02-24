@@ -19,7 +19,7 @@ export const createColumns = (
     dataIndex: "date",
     sorter: createDateSorter<CommunicationNote>("date"),
     defaultSortOrder: "DESCEND",
-    render: (text) => <DateTime text={text} includeTime />
+    render: (text) => <DateTime text={text} />
   },
   {
     header: "Naam",

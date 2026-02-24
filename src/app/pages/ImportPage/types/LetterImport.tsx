@@ -50,7 +50,7 @@ export const ImportFormFields: React.FC<{
     <DateInputField
       name="date"
       label="Datum brief"
-      type="datetime-local"
+      type="date"
       validation={validationRequired}
       formMethods={formMethods}
     />

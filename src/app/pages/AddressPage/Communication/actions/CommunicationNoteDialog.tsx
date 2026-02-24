@@ -33,7 +33,7 @@ export const CommunicationNoteDialog: React.FC<Props> = ({
       <DateInputField
         name="date"
         label="Datum"
-        type="datetime-local"
+        type="date"
         validation={validationRequired}
       />
       <TextInputField
