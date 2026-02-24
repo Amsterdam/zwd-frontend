@@ -8,7 +8,7 @@ const hoaColumns = [
   { key: "course_participant_count", header: "Aantal cursusdeelnemers" },
   { key: "letter_count", header: "Aantal brieven" },
   { key: "advice_cases_count", header: "Aantal advieszaken" },
-  { key: "activationteam_cases_count", header: "Aantal activeringsteamszaken" }
+  { key: "activationteam_cases_count", header: "Aantal activeringsteam zaken" }
 ]
 
 export type ExpandedHoa = Components.Schemas.HomeownerAssociation & {
