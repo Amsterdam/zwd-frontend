@@ -96,7 +96,7 @@ export const DownloadHoaExcel = () => {
       const blob = new Blob([buffer], {
         type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       })
-      saveAs(blob, "ZWD-vve.xlsx")
+      saveAs(blob, "ZWD-VvE.xlsx")
     } catch (error) {
       console.error("Error fetching all hoas:", error)
     }

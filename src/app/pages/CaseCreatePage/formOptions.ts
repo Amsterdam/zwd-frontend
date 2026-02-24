@@ -21,7 +21,7 @@ export const ACTIVATIETEAM_SUBJECTS = {
   UITVOERINGS_BESLUIT:
     "U heeft de plannen voor het verduurzamingsscenario gemaakt en bent klaar om deze uit te voeren. U wilt op de ledenvergadering besluiten een opdracht te verlenen (aan bijvoorbeeld een aannemer).",
   FINANCIEEL_BESLUIT:
-    "In de ledenvergadering nemen we het besluit om met de vve een financiering af te sluiten om de verduurzamingsmaatregelen te kunnen betalen.",
+    "In de ledenvergadering nemen we het besluit om met de VvE een financiering af te sluiten om de verduurzamingsmaatregelen te kunnen betalen.",
   ANDERS: "Anders, namelijk:"
 }
 

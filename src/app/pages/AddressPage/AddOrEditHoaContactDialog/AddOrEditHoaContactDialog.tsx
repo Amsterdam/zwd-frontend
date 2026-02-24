@@ -140,7 +140,7 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
         <SelectField
           name="role"
           id={`${dialogId}_role`}
-          label="Functie in vve"
+          label="Functie in VvE"
           options={OPTIONS_ROLE_FUNCTIONS}
           hasDefaultOption={true}
           validation={validationRequired}
@@ -155,7 +155,7 @@ export const AddOrEditHoaContactDialog: React.FC<Props> = ({
         <CheckboxField
           name="is_primary"
           id={`${dialogId}_is_primary`}
-          label="Is primair vve-contact"
+          label="Is primair VvE-contact"
           validation={{ required: false }}
         />
         <DateInputField

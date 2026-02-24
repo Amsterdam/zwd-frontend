@@ -68,7 +68,7 @@ export const AddressPage: React.FC = () => {
                 <HoaDescription hoa={hoa} />
                 <Paragraph size="small" style={{ marginTop: "1.5rem" }}>
                   <span style={{ marginRight: "0.25rem" }}>
-                    Zie je onjuiste vve-gegevens?
+                    Zie je onjuiste VvE-gegevens?
                   </span>
                   <Link
                     href="https://www.amsterdam.nl/stelselpedia/terugmelden/"
@@ -81,7 +81,7 @@ export const AddressPage: React.FC = () => {
               </Grid.Cell>
             ) : (
               <Grid.Cell span={gridSpan}>
-                <p>Er zijn geen vve-gegevens gevonden voor dit adres.</p>
+                <p>Er zijn geen VvE-gegevens gevonden voor dit adres.</p>
               </Grid.Cell>
             )}
             {hoa?.zip_code && (

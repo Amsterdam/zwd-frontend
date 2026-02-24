@@ -100,7 +100,7 @@ const createPdf = (
   doc.setFontSize(FONT_SIZE_TITLE)
   doc.text(docTitle, MARGIN_LEFT, 49)
 
-  // Subtitle vve name
+  // Subtitle VvE name
   doc.setFont("Amsterdam-Regular", "normal")
   doc.setFontSize(FONT_SIZE_NORMAL)
 
@@ -147,7 +147,7 @@ const createPdf = (
 
   startY = addDescription(doc, "Zaakdetails", caseDescriptionFields, startY)
 
-  // -------------------- Vve gegevens -------------------- //
+  // -------------------- VvE gegevens -------------------- //
   const hoaDescriptionFields = [
     { label: "Postcode:", value: formatValue(hoaData.zip_code) },
     { label: "Stadsdeel:", value: formatValue(hoaData.district) },
@@ -173,7 +173,7 @@ const createPdf = (
     }
   ]
 
-  startY = addDescription(doc, "Vve-gegevens", hoaDescriptionFields, startY)
+  startY = addDescription(doc, "VvE-gegevens", hoaDescriptionFields, startY)
 
   // -------------------- Contactpersonen -------------------- //
   const contacts = hoaData.contacts.map((contact) => ({

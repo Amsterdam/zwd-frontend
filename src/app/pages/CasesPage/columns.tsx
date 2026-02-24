@@ -33,13 +33,13 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sortOrder: getSortOrder(sorting, "legacy_id")
   },
   {
-    header: "Vve statutaire naam",
+    header: "VvE statutaire naam",
     dataIndex: "homeowner_association.name",
     sorter: createStringSorter<DataType>("homeowner_association.name"),
     sortOrder: getSortOrder(sorting, "homeowner_association.name")
   },
   {
-    header: "Vve grootte",
+    header: "VvE grootte",
     dataIndex: "homeowner_association.number_of_apartments",
     sorter: createNumberSorter<DataType>(
       "homeowner_association.number_of_apartments"

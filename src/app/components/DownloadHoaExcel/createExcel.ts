@@ -20,7 +20,7 @@ export type ExpandedHoa = Components.Schemas.HomeownerAssociation & {
 
 export const createExcel = (data: ExpandedHoa[]) => {
   const workbook = new Excel.Workbook()
-  const worksheet = workbook.addWorksheet("vve's")
+  const worksheet = workbook.addWorksheet("VvE's")
 
   worksheet.columns = hoaColumns
   worksheet.columns.forEach((column) => {

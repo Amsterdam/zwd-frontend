@@ -2,7 +2,7 @@ import { ColumnType, LinkButton } from "app/components"
 
 const columns: ColumnType<HomeownerAssociationSearch>[] = [
   {
-    header: "Vve statutaire naam",
+    header: "VvE statutaire naam",
     dataIndex: "brkVveStatutaireNaam"
   },
   {

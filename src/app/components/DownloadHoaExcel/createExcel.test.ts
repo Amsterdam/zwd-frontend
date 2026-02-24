@@ -17,7 +17,7 @@ describe("createExcel", () => {
     ]
 
     const workbook = createExcel(mockData)
-    const worksheet = workbook.getWorksheet("vve's")
+    const worksheet = workbook.getWorksheet("VvE's")
 
     // Controleer of worksheet bestaat
     expect(worksheet).toBeDefined()
@@ -40,7 +40,7 @@ describe("createExcel", () => {
 
     // Controleer eerste rij data
     if (!worksheet) {
-      throw new Error('Worksheet "vve\'s" not found')
+      throw new Error('Worksheet "VvE\'s" not found')
     }
     const firstRow = worksheet.getRow(2)
     expect(firstRow.getCell(1).value).toBe("VVE De Zonnebloem")

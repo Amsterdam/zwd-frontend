@@ -29,9 +29,9 @@ export const SearchPage: React.FC = () => {
   }
 
   const isSearchVve = isVveSearch === "true"
-  const label = isSearchVve ? "Vve zoeken" : "Adres zoeken"
+  const label = isSearchVve ? "VvE zoeken" : "Adres zoeken"
   const placeholder = isSearchVve
-    ? "Zoek op vve naam"
+    ? "Zoek op VvE naam"
     : "Zoek op postcode of straat"
 
   return (
@@ -52,7 +52,7 @@ export const SearchPage: React.FC = () => {
         </SearchField>
         <div className={styles.switchContainer}>
           <Label htmlFor="switch-voor-zoeken-op-vve-naam">
-            Zoek op vve naam
+            Zoek op VvE naam
           </Label>
           <Switch
             checked={isSearchVve}

@@ -61,7 +61,7 @@ export const FILTER_CONFIGS: FilterConfigs = {
     key: "isSmallHoa",
     type: "boolean",
     contexts: ["cases", "tasks", "hoas"],
-    getLabel: (value) => (value === "true" ? "Kleine vve's" : "Grote vve's")
+    getLabel: (value) => (value === "true" ? "Kleine VvE's" : "Grote VvE's")
   },
   requestDateRangeAfter: {
     key: "requestDateRangeAfter",

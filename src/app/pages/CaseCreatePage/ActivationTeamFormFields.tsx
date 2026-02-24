@@ -33,7 +33,7 @@ export const ActivationTeamFormFields: React.FC<Props> = ({
     <>
       <RadioGroupFieldSet
         name="activationteam_type"
-        label="Voor welke bijeenkomst wordt het vve-activatieteam ingezet?"
+        label="Voor welke bijeenkomst wordt het VvE-activatieteam ingezet?"
         options={optionsActivatieteamTypes}
         validation={{ required: true }}
         formMethods={formMethods}
