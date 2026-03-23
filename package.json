@@ -62,7 +62,7 @@
     "dtsgenerator": "^3.19.2",
     "env-cmd": "^11.0.0",
     "eslint": "^10.1.0",
-    "globals": "^17.3.0",
+    "globals": "^17.4.0",
     "jsdom": "^29.0.1",
     "prettier": "^3.8.1",
     "typescript-eslint": "^8.57.1",
