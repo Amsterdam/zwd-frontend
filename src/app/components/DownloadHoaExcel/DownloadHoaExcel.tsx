@@ -53,9 +53,9 @@ export const DownloadHoaExcel = () => {
   const [loading, setLoading] = useState(false)
 
   const queryParams = {
-    searchString,
+    search: searchString,
     district,
-    isSmallHoa,
+    is_small_hoa: isSmallHoa,
     course_participant_count: participantCount,
     letter_count: letterCount,
     neighborhood,
