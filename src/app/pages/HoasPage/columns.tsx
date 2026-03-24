@@ -51,7 +51,7 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     header: "Advies",
     dataIndex: "advice_cases_count",
     sorter: createNumberSorter<DataType>("advice_cases_count"),
-    sortOrder: getSortOrder(sorting, "advice_cases_count"),
+    sortOrder: getSortOrder(sorting, "advice_cases_count")
   },
   {
     header: "Activatieteam",
@@ -60,17 +60,13 @@ const getColumns = (sorting: TABLE.Sorting): ColumnType<DataType>[] => [
     sortOrder: getSortOrder(sorting, "activationteam_cases_count")
   },
   {
-      header: "",
-      dataIndex: "id",
-      width: 110,
-      render: (hoaId) => (
-        <LinkButton
-          label="VvE-details"
-          to={`/vve/${hoaId}`}
-          onClick={() => {}}
-        />
-      )
-    }
+    header: "",
+    dataIndex: "id",
+    width: 110,
+    render: (hoaId) => (
+      <LinkButton label="VvE-details" to={`/vve/${hoaId}`} onClick={() => {}} />
+    )
+  }
 ]
 
 export default getColumns
