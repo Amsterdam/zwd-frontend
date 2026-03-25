@@ -1,9 +1,5 @@
 import { useCaseEvents } from "app/state/rest"
-import {
-  SmallSkeleton,
-  PageHeading,
-  Timeline
-} from "app/components"
+import { SmallSkeleton, PageHeading, Timeline } from "app/components"
 
 type Props = {
   caseId: Components.Schemas.Case["id"]
