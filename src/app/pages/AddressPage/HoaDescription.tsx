@@ -20,7 +20,10 @@ const capitalizeFirstLetterOrFallback = (
 export const HoaDescription: React.FC<Props> = ({ hoa }) => {
   if (hoa?.id) {
     const items = [
-      { label: "VvE statutaire naam", value: hoa?.name },
+      {
+        label: "VvE statutaire naam",
+        value: <span className="breakAnywhere">{hoa?.name}</span>
+      },
       {
         label: "KVK-nummer",
         value: capitalizeFirstLetterOrFallback(hoa?.kvk_nummer)

@@ -9,7 +9,7 @@ export function Timeline({ events, ...restProps }: Props) {
   return (
     <div className={styles.container} {...restProps}>
       {events.map((event, index) => (
-        <TimelineItem key={index} event={event} defaultOpen={true} />
+        <TimelineItem key={index} event={event} defaultOpen={index === 0} />
       ))}
     </div>
   )

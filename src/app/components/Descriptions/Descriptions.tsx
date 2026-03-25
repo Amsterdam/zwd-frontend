@@ -18,7 +18,9 @@ export const Descriptions: React.FC<Props> = ({
   items,
   variant = "default"
 }) => (
-  <DescriptionList className={variant === "subtle" ? styles.subtle : ""}>
+  <DescriptionList
+    className={`${variant === "subtle" ? styles.subtle : ""} ${styles.breakAnywhere}`}
+  >
     {items.map((item, index) => (
       <Fragment key={index}>
         <DescriptionList.Term>{item.label}</DescriptionList.Term>
