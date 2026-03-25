@@ -15,7 +15,7 @@
     "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "prettier": "prettier --check src",
-    "prettier:fix": "prettier --write src",
+    "format": "prettier --write src",
     "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
     "test": "vitest",
     "preview": "vite preview"

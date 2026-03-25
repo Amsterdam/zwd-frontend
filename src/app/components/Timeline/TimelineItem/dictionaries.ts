@@ -8,6 +8,9 @@ export const EVENT_TYPES: Record<CaseEvent["type"], string> = {
 export const getEventTitle = (event: CaseEvent): string => {
   const { type, event_values } = event
   if (type === EVENT_TYPES.GENERIC_TASK) {
+    if (event_values?.description === "Notitie toevoegen") {
+      return "Notitie"
+    }
     return event_values.description
   }
   if (EVENT_TYPES[type]) {

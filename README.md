@@ -45,3 +45,9 @@ npm install
 npm start
 ```
 This will start the development server and open the app in your default browser. http://localhost:5173/
+
+# Directory tree structure
+
+```typescript
+tree -I "node_modules|.next|.git" -L 10 > directory-tree.txt
+```

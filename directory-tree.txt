@@ -22,11 +22,11 @@
 │   │   ├── AmsterdamSans-Regular-BSIiMMb3.eot
 │   │   ├── AmsterdamSans-Regular-nwmnLZDN.woff
 │   │   ├── AmsterdamSans-Regular-QnM7etvR.woff2
-│   │   ├── html2canvas.esm-B0tyYwQk.js
-│   │   ├── index-BRhpf7En.js
-│   │   ├── index.es-DTFJWr8u.js
-│   │   ├── index-heqaEtq8.css
-│   │   └── purify.es-CQJ0hv7W.js
+│   │   ├── html2canvas.esm-DXEQVQnt.js
+│   │   ├── index-BT1LToFr.js
+│   │   ├── index-DhhEuKIF.css
+│   │   ├── index.es-CE3Jr_Ft.js
+│   │   └── purify.es-Bzr520pe.js
 │   ├── config
 │   │   └── env.js
 │   └── index.html
@@ -74,6 +74,7 @@
 │   │   │   ├── DefaultLayout
 │   │   │   │   └── DefaultLayout.tsx
 │   │   │   ├── Descriptions
+│   │   │   │   ├── Descriptions.module.css
 │   │   │   │   └── Descriptions.tsx
 │   │   │   ├── DetailsList
 │   │   │   │   └── DetailsList.tsx
@@ -204,12 +205,14 @@
 │   │   │   │   └── Tag.tsx
 │   │   │   ├── TaskReviewGuard
 │   │   │   │   └── TaskReviewGuard.tsx
-│   │   │   └── TimelineEvents
-│   │   │       ├── dictionaries.ts
-│   │   │       ├── TimelineEvent.module.css
-│   │   │       ├── TimelineEvents.tsx
-│   │   │       ├── TimelineEvent.tsx
-│   │   │       └── useValues.ts
+│   │   │   └── Timeline
+│   │   │       ├── TimelineItem
+│   │   │       │   ├── dictionaries.ts
+│   │   │       │   ├── TimelineItem.module.css
+│   │   │       │   ├── TimelineItem.tsx
+│   │   │       │   └── useValues.ts
+│   │   │       ├── Timeline.module.css
+│   │   │       └── Timeline.tsx
 │   │   ├── config
 │   │   │   └── env.ts
 │   │   ├── hooks
@@ -440,4 +443,4 @@
 ├── vitest.config.ts
 └── vitest.setup.ts
 
-139 directories, 302 files
+140 directories, 304 files

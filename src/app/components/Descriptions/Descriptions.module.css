@@ -1,0 +1,17 @@
+.subtle {
+  /* spacing between items */
+  display: grid;
+  row-gap: 4px;
+}
+
+/* labels */
+.subtle :global(dt) {
+  color: var(--ams-color-text-secondary);
+  font-weight: 400;
+  margin: 0;
+}
+
+/* values */
+.subtle :global(dd) {
+  margin: 0 0 4px 0;
+}
