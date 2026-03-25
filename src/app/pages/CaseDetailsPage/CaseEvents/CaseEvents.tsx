@@ -5,7 +5,6 @@ import {
   TimelineEvents,
   Timeline
 } from "app/components"
-import { sortEvents } from "./sortCaseEvents"
 
 type Props = {
   caseId: Components.Schemas.Case["id"]
@@ -14,9 +13,7 @@ type Props = {
 export const CaseEvents: React.FC<Props> = ({ caseId }) => {
   const [data, { isBusy }] = useCaseEvents(caseId)
 
-  const events = data ? sortEvents(data) : []
-
-  console.log("events", events)
+  const events = data ? [...data]?.reverse() : []
 
   if (isBusy) {
     return <SmallSkeleton height={4} />
@@ -25,7 +22,7 @@ export const CaseEvents: React.FC<Props> = ({ caseId }) => {
   return (
     <div style={{ marginBottom: "32px" }}>
       <PageHeading label="Zaakhistorie" level={3} border />
-      <Timeline events={events} />
+      <Timeline events={events} style={{ marginTop: "32px" }} />
       <TimelineEvents events={events} />
     </div>
   )

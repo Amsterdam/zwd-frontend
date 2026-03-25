@@ -1,6 +1,6 @@
 .itemWrapper {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   padding-left: 40px;
 }
 .marker {
@@ -76,20 +76,4 @@
 .collapsibleOpen .collapsibleInner {
   opacity: 1;
   transform: translateY(0);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: fit-content(300px) 1fr;
-  gap: 8px 16px;
-}
-
-/* dit zorgt dat alle children direct in de grid vallen */
-.row {
-  display: contents;
-}
-
-.label {
-  color: #666;
-  word-break: break-word;
 }

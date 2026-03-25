@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Icon } from "@amsterdam/design-system-react"
 import {
   CheckMarkIcon,
@@ -7,8 +8,8 @@ import {
 } from "@amsterdam/design-system-react-icons"
 import { useValues } from "./useValues"
 import { getEventTitle } from "./dictionaries"
+import { Descriptions } from "app/components"
 import styles from "./TimelineItem.module.css"
-import { useState } from "react"
 
 type Props = {
   event: CaseEvent
@@ -18,8 +19,7 @@ type Props = {
 export function TimelineItem({ event, defaultOpen }: Props) {
   const [isOpen, setIsOpen] = useState(defaultOpen)
   const data = useValues(event)
-  console.log("event", event)
-  console.log(" DATA => ", data)
+
   const isNote = event.event_variables?.form_notitie_toevoegen
   const hasDocument = event.event_variables?.document_name
 
@@ -59,15 +59,7 @@ export function TimelineItem({ event, defaultOpen }: Props) {
         >
           <div className={styles.collapsibleInner}>
             <div className={styles.divider} />
-
-            <div className={styles.grid}>
-              {data.map((item, index) => (
-                <div key={index} className={styles.row}>
-                  <span className={styles.label}>{item.label}:</span>
-                  <span>{item.value}</span>
-                </div>
-              ))}
-            </div>
+            <Descriptions items={data} variant="subtle" />
           </div>
         </div>
       </div>
