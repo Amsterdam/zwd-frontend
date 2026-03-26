@@ -1,0 +1,11 @@
+.primaryTag {
+  display: inline-block;
+  vertical-align: text-bottom;
+  background: var(--ams-color-interactive);
+  color: var(--ams-color-text-inverse);
+  font-size: 0.75em;
+  line-height: 1.1;
+  padding: 0.225em 0.35em;
+  border-radius: 0.2rem;
+  user-select: none;
+}
