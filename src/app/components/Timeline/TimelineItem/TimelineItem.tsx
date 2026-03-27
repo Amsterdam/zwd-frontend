@@ -30,7 +30,7 @@ export function TimelineItem({ event, defaultOpen }: Props) {
       : CheckMarkIcon
 
   const toggleOpen = () => setIsOpen(!isOpen)
-
+  console.log("event", event)
   return (
     <div className={styles.itemWrapper}>
       <div className={`${styles.marker} ${isNote ? styles.markerNote : ""}`}>
@@ -46,12 +46,21 @@ export function TimelineItem({ event, defaultOpen }: Props) {
           onClick={toggleOpen}
           aria-expanded={isOpen}
         >
-          <strong>{getEventTitle(event)}</strong>
-          <ChevronDownIcon
-            className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
-            height={16}
-            width={16}
-          />
+          {event.id % 2 === 0 ? (
+            <strong>{getEventTitle(event)}</strong>
+          ) : (
+            <strong>
+              E-mail vve met intakeformulier, inschrijfformulier cursus,
+              dossiernummer en overige documenten
+            </strong>
+          )}
+          <div>
+            <ChevronDownIcon
+              className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
+              height={16}
+              width={16}
+            />
+          </div>
         </button>
 
         <div
