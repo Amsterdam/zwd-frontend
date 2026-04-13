@@ -2,6 +2,7 @@ import {
   ColumnType,
   createDateSorter,
   createStringSorter,
+  PrimaryTag,
   Table
 } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
@@ -10,17 +11,6 @@ import { formatDate } from "app/utils/dates"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
 import EditHoaContact from "./EditHoaContact/EditHoaContact"
 import AddHoaContact from "./AddHoaContact/AddHoaContact"
-
-const contactPrimaryTagStyles = {
-  display: "inline-block",
-  verticalAlign: "text-bottom",
-  background: "var(--ams-color-interactive)",
-  color: "var(--ams-color-text-inverse)",
-  fontSize: "0.75em",
-  lineHeight: "1.1",
-  padding: "0.225em 0.35em",
-  borderRadius: "0.2rem"
-}
 
 type Props = {
   hoaId: Components.Schemas.HomeownerAssociation["id"]
@@ -41,7 +31,7 @@ export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
         record.is_primary ? (
           <>
             <span style={{ marginRight: "0.35em" }}>{name}</span>
-            <span style={contactPrimaryTagStyles}>primair</span>
+            <PrimaryTag />
           </>
         ) : (
           name

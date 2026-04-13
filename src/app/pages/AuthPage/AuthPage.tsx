@@ -1,8 +1,8 @@
 import {
   Button,
   DescriptionList,
-  Heading,
-  Page
+  Page,
+  Paragraph
 } from "@amsterdam/design-system-react"
 import { LogOutIcon } from "@amsterdam/design-system-react-icons"
 import { Spinner, PageHeading, PageGrid } from "app/components"
@@ -22,17 +22,19 @@ const Wrapper: React.FC<WrapperProps> = ({ align, children }) => {
 
 export const LoggingInPage: React.FC = () => (
   <Wrapper>
-    <Heading level={4}>U wordt automatisch aangemeld...</Heading>
-    <br />
-    <Spinner size={48} />
+    <div style={{ marginBottom: "1.5rem" }}>
+      <Spinner size={48} />
+    </div>
+    <Paragraph>Even geduld, u wordt automatisch aangemeld.</Paragraph>
   </Wrapper>
 )
 
 export const LoggingInErrorPage: React.FC = () => (
   <Wrapper>
-    <Heading level={4}>
-      Sorry, er is iets fout gegaan tijdens het inloggen.
-    </Heading>
+    <Paragraph>Inloggen mislukt.</Paragraph>
+    <Paragraph>
+      Er ging iets mis. Probeer het opnieuw of ververs de pagina.
+    </Paragraph>
   </Wrapper>
 )
 
