@@ -69,7 +69,9 @@ export const useFetchFile = (fileUrl: string) => {
       return response.data as Blob
     } catch (error: unknown) {
       const axiosError = error as AxiosError
-      throw new Error(axiosError.message)
+      const err = new Error(axiosError.message)
+
+      throw err
     }
   }, [token, fileUrl])
 
