@@ -21,7 +21,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@amsterdam/design-system-react": "^3.3.0",
+    "@amsterdam/design-system-react": "^4.1.0",
     "@amsterdam/design-system-react-icons": "^2.0.0",
     "@types/file-saver": "^2.0.7",
     "@types/leaflet": "^1.9.20",
