@@ -30,7 +30,7 @@ export function TimelineItem({ event, defaultOpen }: Props) {
       : CheckMarkIcon
 
   const toggleOpen = () => setIsOpen(!isOpen)
-  console.log("event", event)
+
   return (
     <div className={styles.itemWrapper}>
       <div className={`${styles.marker} ${isNote ? styles.markerNote : ""}`}>
