@@ -15,14 +15,14 @@ export const ACTIVATIETEAM_TYPES = {
 
 export const ACTIVATIETEAM_SUBJECTS = {
   ADVIES_PRESENTATIE:
-    "In de informatiebijeenkomst worden de uitkomsten van het advies of haalbaarheidsadvies gepresenteerd.",
+    "De adviseur presenteert het verduurzamingsadvies",
   OPTIE_KEUZE:
-    "U wilt een keuze maken voor een van de verduurzamingsopties op de ledenvergadering. Op basis van deze keuze kunt u plannen gaan maken voor de uitvoering.",
+    "We kiezen een scenario om te verduurzamen",
   UITVOERINGS_BESLUIT:
-    "U heeft de plannen voor het verduurzamingsscenario gemaakt en bent klaar om deze uit te voeren. U wilt op de ledenvergadering besluiten een opdracht te verlenen (aan bijvoorbeeld een aannemer).",
+    "We geven opdracht om de verduurzaming uit te voeren",
   FINANCIEEL_BESLUIT:
-    "In de ledenvergadering nemen we het besluit om met de VvE een financiering af te sluiten om de verduurzamingsmaatregelen te kunnen betalen.",
-  ANDERS: "Anders, namelijk:"
+    "We beslissen hoe we de verduurzaming financieren",
+  ANDERS: "Iets anders, namelijk:"
 }
 
 const createOptions = (record: Record<string, string>) =>
