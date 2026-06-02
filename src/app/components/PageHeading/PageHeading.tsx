@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 type Props = {
   label: string
-  level?: 1 | 2 | 3 | 4 | 5 | 6
+  level?: 1 | 2 | 3 | 4 | 5
   icon?: IconProps["svg"]
   border?: boolean
   backLinkUrl?: string
@@ -20,7 +20,6 @@ type Size =
   | "level-3"
   | "level-4"
   | "level-5"
-  | "level-6"
 
 export const PageHeading: React.FC<Props> = ({
   label,
