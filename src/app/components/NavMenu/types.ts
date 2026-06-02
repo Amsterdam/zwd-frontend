@@ -1,7 +1,9 @@
+import type { IconProps } from "@amsterdam/design-system-react"
+
 export type MenuItem = {
   label?: string
   path: string
-  icon?: React.ComponentType
+  icon?: IconProps["svg"]
   fixed?: boolean
   core?: boolean
 }

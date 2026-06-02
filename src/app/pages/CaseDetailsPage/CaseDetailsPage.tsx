@@ -5,7 +5,7 @@ import {
   DocumentsIcon,
   DocumentCheckMarkIcon
 } from "@amsterdam/design-system-react-icons"
-import { Icon, Row, Tabs } from "@amsterdam/design-system-react"
+import { Icon, type IconProps, Row, Tabs } from "@amsterdam/design-system-react"
 import { useCase } from "app/state/rest"
 import { PageHeading, PageSpinner, DetailsList, PageGrid } from "app/components"
 import { useURLState } from "app/hooks"
@@ -16,7 +16,7 @@ import AddSubtask from "./AddSubtask/AddSubtask"
 import DownloadPdf from "./DownloadPdf/DownloadPdf"
 import createDataDetailsList from "./utils/createDataDetailsList"
 
-const TabHeader: React.FC<{ svg: React.FC; label: string }> = ({
+const TabHeader: React.FC<{ svg: IconProps["svg"]; label: string }> = ({
   svg,
   label
 }) => (

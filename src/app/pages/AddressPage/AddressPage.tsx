@@ -6,6 +6,7 @@ import {
   Grid,
   GridColumnNumbers,
   Icon,
+  type IconProps,
   Link,
   Paragraph,
   Tabs
@@ -31,7 +32,7 @@ import {
 
 type TabHeaderProps = {
   label: string
-  svg: React.FC
+  svg: IconProps["svg"]
 }
 
 const TabHeader: React.FC<TabHeaderProps> = ({ svg, label }) => (
