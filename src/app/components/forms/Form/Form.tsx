@@ -53,7 +53,6 @@ export const Form = <T extends FieldValues>({
   return (
     <>
       <Grid
-        paddingTop="large"
         paddingBottom="x-large"
         style={{ paddingLeft: 0 }}
       >
