@@ -33,6 +33,12 @@ export const AdviceTypeFilter: React.FC<Props> = ({
         >
           Haalbaarheidsonderzoek
         </Select.Option>
+        <Select.Option key="Energieadvies (OUD)" value="Energieadvies (OUD)">
+          Energieadvies (OUD)
+        </Select.Option>
+        <Select.Option key="Zon-Advies (OUD)" value="Zon-Advies (OUD)">
+          Zon-Advies (OUD)
+        </Select.Option>
       </Select>
     </Field>
   )
