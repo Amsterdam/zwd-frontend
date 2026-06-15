@@ -4,7 +4,7 @@ import { config } from "dotenv"
 config({ path: ".env.local" })
 
 // To run against another backend than the default, add a `.env.local` file with the following content:
-// VITE_SWAGGER_SCHEMA_URL=http://localhost:8081/api/schema/?format=json
+// const VITE_SWAGGER_SCHEMA_URL=http://localhost:8081/api/schema/?format=json
 const url = process.env.VITE_SWAGGER_SCHEMA_URL || "https://acc.api.zwd.amsterdam.nl/api/schema/?format=json"
 
 console.log(`👉 Generating schema from \`${ url }\``)

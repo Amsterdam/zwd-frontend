@@ -17,6 +17,7 @@
     "prettier": "prettier --check src",
     "format": "prettier --write src",
     "swagger:generate-schema": "TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
+    "swagger:generate-schema:local": "VITE_SWAGGER_SCHEMA_URL=http://localhost:8081/api/schema/?format=json TS_NODE_PROJECT=./scripts/tsconfig.json ts-node scripts/src/generateSwaggerSchema.ts",
     "test": "vitest",
     "preview": "vite preview"
   },

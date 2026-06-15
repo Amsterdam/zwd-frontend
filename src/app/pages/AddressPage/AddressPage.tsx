@@ -13,7 +13,8 @@ import {
 } from "@amsterdam/design-system-react"
 import {
   useHomeownerAssociation,
-  useHomeownerAssociationByBagId
+  useHomeownerAssociationByBagId,
+  useHomeownerAssociationSubsidy
 } from "app/state/rest"
 import HoaCases from "./HoaCases"
 import HoaOwners from "./HoaOwners"
@@ -24,11 +25,13 @@ import Communication from "./Communication"
 import { useURLState } from "app/hooks"
 import {
   CertificateIcon,
+  EuroCoinsIcon,
   FolderIcon,
   PencilIcon,
   PersonIcon,
   MegaphoneIcon
 } from "@amsterdam/design-system-react-icons"
+import Subsidy from "./Subsidy/Subsidy"
 
 type TabHeaderProps = {
   label: string
@@ -50,11 +53,58 @@ export const AddressPage: React.FC = () => {
   const [dataByBagId, { isBusy }] = useHomeownerAssociationByBagId(bagId)
   const [dataByHoaId, { isBusy: isLoading }] =
     useHomeownerAssociation(hoaIdNumber)
+  const hoa = bagId ? dataByBagId : dataByHoaId
+  const [dataSubsidy] = useHomeownerAssociationSubsidy(hoa?.id)
   const [activeTab, setActiveTab] = useURLState("tab", "zaken")
 
   const hasId = bagId || hoaId
   const loading = isBusy || isLoading
-  const hoa = bagId ? dataByBagId : dataByHoaId
+  const hasSubsidies = Array.isArray(dataSubsidy) && dataSubsidy.length > 0
+
+  const tabs = hoa?.id
+    ? [
+        {
+          id: "zaken",
+          icon: FolderIcon,
+          label: "Zaken",
+          panel: <HoaCases hoaId={hoa.id} />
+        },
+        {
+          id: "contactpersonen",
+          icon: PersonIcon,
+          label: "Contactpersonen",
+          panel: <HoaContacts hoaId={hoa.id} />
+        },
+        {
+          id: "eigenaren",
+          icon: CertificateIcon,
+          label: "Eigenaren",
+          panel: <HoaOwners hoa={hoa} />
+        },
+        {
+          id: "communicatie",
+          icon: MegaphoneIcon,
+          label: "Communicatie",
+          panel: <Communication hoaId={hoa.id} />
+        },
+        {
+          id: "aantekeningen",
+          icon: PencilIcon,
+          label: "Aantekeningen",
+          panel: <Annotation hoaId={hoa.id} />
+        },
+        ...(hasSubsidies
+          ? [
+              {
+                id: "subsidies",
+                icon: EuroCoinsIcon,
+                label: `Subsidies (${dataSubsidy.length})`,
+                panel: <Subsidy data={dataSubsidy} />
+              }
+            ]
+          : [])
+      ]
+    : []
 
   return (
     <PageGrid>
@@ -98,37 +148,17 @@ export const AddressPage: React.FC = () => {
               style={{ marginTop: "2rem" }}
             >
               <Tabs.List>
-                <Tabs.Button aria-controls="zaken">
-                  <TabHeader svg={FolderIcon} label="Zaken" />
-                </Tabs.Button>
-                <Tabs.Button aria-controls="contactpersonen">
-                  <TabHeader svg={PersonIcon} label="Contactpersonen" />
-                </Tabs.Button>
-                <Tabs.Button aria-controls="eigenaren">
-                  <TabHeader svg={CertificateIcon} label="Eigenaren" />
-                </Tabs.Button>
-                <Tabs.Button aria-controls="communicatie">
-                  <TabHeader svg={MegaphoneIcon} label="Communicatie" />
-                </Tabs.Button>
-                <Tabs.Button aria-controls="aantekeningen">
-                  <TabHeader svg={PencilIcon} label="Aantekeningen" />
-                </Tabs.Button>
+                {tabs.map((tab) => (
+                  <Tabs.Button key={tab.id} aria-controls={tab.id}>
+                    <TabHeader svg={tab.icon} label={tab.label} />
+                  </Tabs.Button>
+                ))}
               </Tabs.List>
-              <Tabs.Panel id="zaken">
-                <HoaCases hoaId={hoa.id} />
-              </Tabs.Panel>
-              <Tabs.Panel id="contactpersonen">
-                <HoaContacts hoaId={hoa.id} />
-              </Tabs.Panel>
-              <Tabs.Panel id="eigenaren">
-                <HoaOwners hoa={hoa} />
-              </Tabs.Panel>
-              <Tabs.Panel id="communicatie">
-                <Communication hoaId={hoa.id} />
-              </Tabs.Panel>
-              <Tabs.Panel id="aantekeningen">
-                <Annotation hoaId={hoa.id} />
-              </Tabs.Panel>
+              {tabs.map((tab) => (
+                <Tabs.Panel key={tab.id} id={tab.id}>
+                  {tab.panel}
+                </Tabs.Panel>
+              ))}
             </Tabs>
           )}
         </>

@@ -83,6 +83,21 @@ export const useHomeownerAssociationCases = (
   })
 }
 
+export const useHomeownerAssociationSubsidy = (
+  id?: Components.Schemas.HomeownerAssociation["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.SubsidyItem[]>({
+    ...options,
+    url: `${makeApiUrl("homeowner-association", id, "subsidy")}`,
+    lazy: id === undefined,
+    groupName: "hoas",
+    handleError,
+    isProtected: true
+  })
+}
+
 export const useHomeownerAssociationSearch = (
   searchString?: string,
   options?: Options
