@@ -19,10 +19,12 @@ import {
   validationPhone
 } from "app/utils/validation"
 
-export enum FormMode {
-  ADD = "add",
-  EDIT = "edit"
-}
+export const FormMode = {
+  ADD: "add",
+  EDIT: "edit"
+} as const
+
+export type FormMode = (typeof FormMode)[keyof typeof FormMode]
 
 type Contact = Components.Schemas.Contact
 

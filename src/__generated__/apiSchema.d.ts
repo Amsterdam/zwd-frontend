@@ -17,8 +17,10 @@ declare namespace Components {
         /**
          * * `Energieadvies` - ENERGY_ADVICE
          * * `Haalbaarheidsonderzoek` - HBO
+         * * `Energieadvies (OUD)` - OLD_ENERGY_ADVICE
+         * * `Zon-Advies (OUD)` - OLD_SOLAR_ADVICE
          */
-        export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek";
+        export type AdviceTypeEnum = "Energieadvies" | "Haalbaarheidsonderzoek" | "Energieadvies (OUD)" | "Zon-Advies (OUD)";
         export interface Apartment {
             straatnaam?: string | null;
             huisnummer?: number | null;
@@ -47,6 +49,8 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
+             * * `Energieadvies (OUD)` - OLD_ENERGY_ADVICE
+             * * `Zon-Advies (OUD)` - OLD_SOLAR_ADVICE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
@@ -91,6 +95,8 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
+             * * `Energieadvies (OUD)` - OLD_ENERGY_ADVICE
+             * * `Zon-Advies (OUD)` - OLD_SOLAR_ADVICE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
@@ -158,6 +164,8 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
+             * * `Energieadvies (OUD)` - OLD_ENERGY_ADVICE
+             * * `Zon-Advies (OUD)` - OLD_SOLAR_ADVICE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             advisor: string;
@@ -267,6 +275,9 @@ declare namespace Components {
             owners?: Owner[];
             wijk: string;
             zip_code?: string | null;
+            letter_count: string;
+            advice_cases_count: string;
+            activationteam_cases_count: string;
         }
         export interface HomeownerAssociationCommunicationNote {
             id: number;
@@ -332,6 +343,8 @@ declare namespace Components {
             advice_type?: null & (/**
              * * `Energieadvies` - ENERGY_ADVICE
              * * `Haalbaarheidsonderzoek` - HBO
+             * * `Energieadvies (OUD)` - OLD_ENERGY_ADVICE
+             * * `Zon-Advies (OUD)` - OLD_SOLAR_ADVICE
              */
             AdviceTypeEnum | BlankEnum | NullEnum);
             application_type?: /**
@@ -467,12 +480,12 @@ declare namespace Components {
             count: number;
             /**
              * example:
-             * http://api.example.org/accounts/?offset=400&limit=100
+             * http://api.example.org/accounts/?page=4
              */
             next?: string | null; // uri
             /**
              * example:
-             * http://api.example.org/accounts/?offset=200&limit=100
+             * http://api.example.org/accounts/?page=2
              */
             previous?: string | null; // uri
             results: HomeownerAssociation[];
@@ -537,6 +550,23 @@ declare namespace Components {
         }
         export interface StartWorkflow {
             workflow_option_id: number;
+        }
+        export interface SubsidyItem {
+            id: number;
+            dossiernummer: string;
+            aanvrager: string;
+            regelingnaam: string;
+            beleidsterrein?: string | null;
+            organisatieonderdeel?: string | null;
+            projectnaam?: string | null;
+            typePeriodiciteit?: string | null;
+            bedragAangevraagd?: string | null; // decimal ^-?\d{0,10}(?:\.\d{0,2})?$
+            bedragVerleend?: string | null; // decimal ^-?\d{0,10}(?:\.\d{0,2})?$
+            publicatiedatumVerleningsbesluit?: string | null; // date
+            bedragVastgesteld?: string | null; // decimal ^-?\d{0,10}(?:\.\d{0,2})?$
+            publicatiedatumVaststellingsbesluit?: string | null; // date
+            subsidiejaar?: number | null;
+            datumOverzicht?: string | null; // date
         }
         export interface Wijk {
             id: number;
@@ -706,7 +736,7 @@ declare namespace Paths {
     }
     namespace CasesAdvisorsList {
         namespace Parameters {
-            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Energieadvies (OUD)" | "Haalbaarheidsonderzoek" | "Zon-Advies (OUD)";
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
@@ -835,7 +865,7 @@ declare namespace Paths {
     }
     namespace CasesList {
         namespace Parameters {
-            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Energieadvies (OUD)" | "Haalbaarheidsonderzoek" | "Zon-Advies (OUD)";
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
@@ -880,7 +910,7 @@ declare namespace Paths {
     }
     namespace CasesProcessesList {
         namespace Parameters {
-            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Energieadvies (OUD)" | "Haalbaarheidsonderzoek" | "Zon-Advies (OUD)";
             export type Advisor = number[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type Closed = boolean;
@@ -1128,12 +1158,26 @@ declare namespace Paths {
     }
     namespace HomeownerAssociationList {
         namespace Parameters {
-            export type Limit = number;
-            export type Offset = number;
+            export type CourseParticipantCount = number;
+            export type District = string[];
+            export type IsSmallHoa = boolean;
+            export type LetterCount = number;
+            export type Neighborhood = string[];
+            export type Ordering = string;
+            export type Page = number;
+            export type PageSize = number;
+            export type Search = string;
         }
         export interface QueryParameters {
-            limit?: Parameters.Limit;
-            offset?: Parameters.Offset;
+            course_participant_count?: Parameters.CourseParticipantCount;
+            district?: Parameters.District;
+            is_small_hoa?: Parameters.IsSmallHoa;
+            letter_count?: Parameters.LetterCount;
+            neighborhood?: Parameters.Neighborhood;
+            ordering?: Parameters.Ordering;
+            page?: Parameters.Page;
+            page_size?: Parameters.PageSize;
+            search?: Parameters.Search;
         }
         namespace Responses {
             export type $200 = Components.Schemas.PaginatedHomeownerAssociationList;
@@ -1151,12 +1195,6 @@ declare namespace Paths {
             export type $200 = Components.Schemas.HomeownerAssociationUpdate;
         }
     }
-    namespace HomeownerAssociationPriorityZipcodeCreate {
-        export type RequestBody = Components.Schemas.HomeownerAssociation;
-        namespace Responses {
-            export type $200 = Components.Schemas.HomeownerAssociation;
-        }
-    }
     namespace HomeownerAssociationRetrieve {
         namespace Parameters {
             export type Id = number;
@@ -1171,6 +1209,19 @@ declare namespace Paths {
     namespace HomeownerAssociationSearchRetrieve {
         namespace Responses {
             export type $200 = Components.Schemas.HomeownerAssociation;
+        }
+    }
+    namespace HomeownerAssociationSubsidyList {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.SubsidyItem[];
+            export interface $503 {
+            }
         }
     }
     namespace HomeownerAssociationUpdate {
@@ -1211,7 +1262,7 @@ declare namespace Paths {
     }
     namespace TasksList {
         namespace Parameters {
-            export type AdviceType = "Energieadvies" | "Haalbaarheidsonderzoek";
+            export type AdviceType = "Energieadvies" | "Energieadvies (OUD)" | "Haalbaarheidsonderzoek" | "Zon-Advies (OUD)";
             export type Advisor = string[];
             export type ApplicationType = "Activatieteam" | "Advies";
             export type District = string[];

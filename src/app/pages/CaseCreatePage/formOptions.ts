@@ -14,14 +14,10 @@ export const ACTIVATIETEAM_TYPES = {
 }
 
 export const ACTIVATIETEAM_SUBJECTS = {
-  ADVIES_PRESENTATIE:
-    "De adviseur presenteert het verduurzamingsadvies",
-  OPTIE_KEUZE:
-    "We kiezen een scenario om te verduurzamen",
-  UITVOERINGS_BESLUIT:
-    "We geven opdracht om de verduurzaming uit te voeren",
-  FINANCIEEL_BESLUIT:
-    "We beslissen hoe we de verduurzaming financieren",
+  ADVIES_PRESENTATIE: "De adviseur presenteert het verduurzamingsadvies",
+  OPTIE_KEUZE: "We kiezen een scenario om te verduurzamen",
+  UITVOERINGS_BESLUIT: "We geven opdracht om de verduurzaming uit te voeren",
+  FINANCIEEL_BESLUIT: "We beslissen hoe we de verduurzaming financieren",
   ANDERS: "Iets anders, namelijk:"
 }
 

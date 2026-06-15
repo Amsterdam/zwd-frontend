@@ -52,10 +52,7 @@ export const Form = <T extends FieldValues>({
 
   return (
     <>
-      <Grid
-        paddingBottom="x-large"
-        style={{ paddingLeft: 0 }}
-      >
+      <Grid paddingBottom="x-large" style={{ paddingLeft: 0 }}>
         <Grid.Cell span={formGrid}>
           <form
             className="ams-gap-m"
