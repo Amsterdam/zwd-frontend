@@ -46,14 +46,7 @@ export function TimelineItem({ event, defaultOpen }: Props) {
           onClick={toggleOpen}
           aria-expanded={isOpen}
         >
-          {event.id % 2 === 0 ? (
-            <strong>{getEventTitle(event)}</strong>
-          ) : (
-            <strong>
-              E-mail vve met intakeformulier, inschrijfformulier cursus,
-              dossiernummer en overige documenten
-            </strong>
-          )}
+          <strong>{getEventTitle(event)}</strong>
           <div>
             <ChevronDownIcon
               className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
