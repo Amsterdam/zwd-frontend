@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { HouseIcon } from "@amsterdam/design-system-react-icons"
 import { useParams } from "react-router-dom"
 import { PageHeading, PageSpinner, PageGrid } from "app/components"
@@ -59,52 +60,54 @@ export const AddressPage: React.FC = () => {
 
   const hasId = bagId || hoaId
   const loading = isBusy || isLoading
-  const hasSubsidies = Array.isArray(dataSubsidy) && dataSubsidy.length > 0
 
-  const tabs = hoa?.id
-    ? [
-        {
-          id: "zaken",
-          icon: FolderIcon,
-          label: "Zaken",
-          panel: <HoaCases hoaId={hoa.id} />
-        },
-        {
-          id: "contactpersonen",
-          icon: PersonIcon,
-          label: "Contactpersonen",
-          panel: <HoaContacts hoaId={hoa.id} />
-        },
-        {
-          id: "eigenaren",
-          icon: CertificateIcon,
-          label: "Eigenaren",
-          panel: <HoaOwners hoa={hoa} />
-        },
-        {
-          id: "communicatie",
-          icon: MegaphoneIcon,
-          label: "Communicatie",
-          panel: <Communication hoaId={hoa.id} />
-        },
-        {
-          id: "aantekeningen",
-          icon: PencilIcon,
-          label: "Aantekeningen",
-          panel: <Annotation hoaId={hoa.id} />
-        },
-        ...(hasSubsidies
-          ? [
-              {
-                id: "subsidies",
-                icon: EuroCoinsIcon,
-                label: `Subsidies (${dataSubsidy.length})`,
-                panel: <Subsidy data={dataSubsidy} />
-              }
-            ]
-          : [])
-      ]
-    : []
+  const tabs = useMemo(() => {
+    if (!hoa?.id) return []
+
+    const baseTabs = [
+      {
+        id: "zaken",
+        icon: FolderIcon,
+        label: "Zaken",
+        panel: <HoaCases hoaId={hoa.id} />
+      },
+      {
+        id: "contactpersonen",
+        icon: PersonIcon,
+        label: "Contactpersonen",
+        panel: <HoaContacts hoaId={hoa.id} />
+      },
+      {
+        id: "eigenaren",
+        icon: CertificateIcon,
+        label: "Eigenaren",
+        panel: <HoaOwners hoa={hoa} />
+      },
+      {
+        id: "communicatie",
+        icon: MegaphoneIcon,
+        label: "Communicatie",
+        panel: <Communication hoaId={hoa.id} />
+      },
+      {
+        id: "aantekeningen",
+        icon: PencilIcon,
+        label: "Aantekeningen",
+        panel: <Annotation hoaId={hoa.id} />
+      }
+    ]
+
+    if (Array.isArray(dataSubsidy) && dataSubsidy.length > 0) {
+      baseTabs.push({
+        id: "subsidies",
+        icon: EuroCoinsIcon,
+        label: `Subsidies (${dataSubsidy.length})`,
+        panel: <Subsidy data={dataSubsidy} />
+      })
+    }
+
+    return baseTabs
+  }, [hoa, dataSubsidy])
 
   return (
     <PageGrid>
