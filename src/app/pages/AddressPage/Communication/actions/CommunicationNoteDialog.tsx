@@ -6,7 +6,7 @@ import {
   DateInputField,
   TextInputField
 } from "app/components"
-import { validationRequired } from "app/utils/validation"
+import { validationRequired } from "app/utils/validators"
 import { FormValues } from "./types"
 
 type Props = {

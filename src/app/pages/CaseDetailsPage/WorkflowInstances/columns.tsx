@@ -1,9 +1,7 @@
 import { Icon } from "@amsterdam/design-system-react"
 import { CheckMarkIcon, ClockIcon } from "@amsterdam/design-system-react-icons"
-import { ColumnType, Tag } from "app/components"
-
-const formatWorkflowType = (workflowType: string): string =>
-  workflowType.replace(/_/g, " ").replace(/^./, (char) => char.toUpperCase())
+import { ColumnType, RouterLink, Tag } from "app/components"
+import { formatWorkflowType } from "app/utils"
 
 const columns: ColumnType<Components.Schemas.CaseWorkflowInstance>[] = [
   {
@@ -32,6 +30,31 @@ const columns: ColumnType<Components.Schemas.CaseWorkflowInstance>[] = [
         {completed ? "Afgerond" : "Actief"}
       </Tag>
     )
+  },
+  {
+    header: "",
+    dataIndex: "current_task_specs",
+    width: 200,
+    render: (_, record) => {
+      if (!record?.workflow_type || !record?.workflow_version) {
+        return null
+      }
+
+      const hasCurrentTasks = !!record.current_task_specs?.length
+      const queryParams = new URLSearchParams({
+        model: record.workflow_type,
+        version: record.workflow_version,
+        ...(hasCurrentTasks && {
+          tasks: record.current_task_specs!.join(",")
+        })
+      })
+
+      return (
+        <RouterLink to={`/bpmn?${queryParams.toString()}`}>
+          {hasCurrentTasks ? "Bekijk huidige processtap" : "Bekijk het proces"}
+        </RouterLink>
+      )
+    }
   }
 ]
 

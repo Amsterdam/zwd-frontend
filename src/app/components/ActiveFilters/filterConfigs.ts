@@ -1,4 +1,4 @@
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 import { FilterConfigs } from "./types"
 
 export const FILTER_CONFIGS: FilterConfigs = {

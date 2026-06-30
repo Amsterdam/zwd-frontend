@@ -225,6 +225,7 @@ declare namespace Components {
             workflow_version?: string | null;
             completed?: boolean;
             main_workflow?: boolean;
+            current_task_specs: string[];
         }
         export interface Contact {
             id: number;

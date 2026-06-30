@@ -6,7 +6,7 @@ import {
   createNumberSorter,
   getSortOrder
 } from "app/components"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 
 type DataType = Components.Schemas.CaseList
 

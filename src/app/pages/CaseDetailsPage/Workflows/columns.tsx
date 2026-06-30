@@ -2,7 +2,7 @@ import { Icon } from "@amsterdam/design-system-react"
 import { DocumentCheckMarkIcon } from "@amsterdam/design-system-react-icons"
 import { ColumnType, TaskReviewGuard } from "app/components"
 import TaskButton from "../tasks/TaskButton/TaskButton"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 
 const getColumns = (
   caseId: Components.Schemas.Case["id"]

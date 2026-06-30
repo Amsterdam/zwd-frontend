@@ -1,4 +1,4 @@
-import { formatDate, formatTime } from "app/utils/dates"
+import { formatDate, formatTime } from "app/utils"
 
 type Props = {
   text: string

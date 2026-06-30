@@ -1,5 +1,5 @@
 import { RouterLink } from "app/components"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 
 function createDataDetailsList(data?: Components.Schemas.Case) {
   const dataDetailsList = [

@@ -6,7 +6,7 @@ import {
   getSortOrder,
   LinkButton
 } from "app/components"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 
 export const DEFAULT_COLUMNS = [
   "case.prefixed_dossier_id",

@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  height: 500px;
+}
+
+.currentTask :global(.djs-visual) > :first-child {
+  fill: var(--ams-color-highlight-azure) !important;
+}
