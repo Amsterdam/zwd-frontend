@@ -17,8 +17,7 @@ export const WorkflowInstances: React.FC<Props> = ({ caseId }) => {
     <div style={{ marginTop: 16, marginBottom: 32 }}>
       <Paragraph style={{ marginBottom: 16 }}>
         Dit overzicht toont alle processen die op deze zaak zijn gestart,
-        inclusief afgeronde processen. Via het menu (BPMN) bekijk je het
-        procesmodel en de vervolgstappen in de BPMN-viewer.
+        inclusief afgeronde processen.
       </Paragraph>
       <Table
         columns={columns}
