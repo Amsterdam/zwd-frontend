@@ -28,6 +28,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["src", "scripts", "./.eslintrc.cjs"],
+  "include": ["src", "scripts", "./.eslintrc.cjs", "src/app/pages/CaseDetailsPage/WorkflowInstances/.tsx"],
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/generateSwaggerSchema.ts"]
 }
