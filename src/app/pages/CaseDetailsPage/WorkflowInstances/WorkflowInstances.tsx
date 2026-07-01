@@ -17,7 +17,8 @@ export const WorkflowInstances: React.FC<Props> = ({ caseId }) => {
     <div style={{ marginTop: 16, marginBottom: 32 }}>
       <Paragraph style={{ marginBottom: 16 }}>
         Dit overzicht toont alle processen die op deze zaak zijn gestart,
-        inclusief afgeronde processen.
+        inclusief afgeronde processen. Als een zaak wordt afgesloten, worden
+        alle processen verwijderd.
       </Paragraph>
       <Table
         columns={columns}
