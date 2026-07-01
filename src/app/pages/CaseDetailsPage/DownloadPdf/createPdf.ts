@@ -1,7 +1,7 @@
 import { jsPDF } from "jspdf"
 import amsterdam from "./assets/amsterdam.png"
 import { FONT_REGULAR, FONT_BOLD } from "./fonts"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 
 const FONT_SIZE_TITLE = 24
 const FONT_SIZE_NORMAL = 10

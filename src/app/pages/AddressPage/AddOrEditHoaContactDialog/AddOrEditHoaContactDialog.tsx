@@ -13,11 +13,7 @@ import {
   CUSTOM_ROLE,
   OPTIONS_ROLE_FUNCTIONS
 } from "app/pages/CaseCreatePage/formOptions"
-import {
-  validationRequired,
-  validationEmail,
-  validationPhone
-} from "app/utils/validation"
+import { validationRequired, validationEmail, validationPhone } from "app/utils"
 
 export const FormMode = {
   ADD: "add",

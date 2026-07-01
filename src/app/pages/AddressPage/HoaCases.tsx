@@ -10,7 +10,7 @@ import {
 } from "app/components"
 import { useHomeownerAssociationCases } from "app/state/rest"
 import { useNavigateWithModifier } from "app/hooks"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 import { PlusIcon } from "@amsterdam/design-system-react-icons"
 
 type Props = {

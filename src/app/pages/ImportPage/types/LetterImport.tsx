@@ -4,7 +4,7 @@ import {
   UnorderedList
 } from "@amsterdam/design-system-react"
 import { DateInputField, TextInputField, TextAreaField } from "app/components"
-import { validationRequired } from "app/utils/validation"
+import { validationRequired } from "app/utils/validators"
 import type { FieldValues, UseFormReturn } from "react-hook-form"
 
 export const ImportInstructions: React.FC = () => (

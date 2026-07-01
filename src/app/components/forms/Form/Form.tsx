@@ -53,7 +53,7 @@ export const Form = <T extends FieldValues>({
   return (
     <>
       <Grid paddingBottom="x-large" style={{ paddingLeft: 0 }}>
-        <Grid.Cell span={formGrid}>
+        <Grid.Cell span={formGrid} style={{ paddingLeft: 0 }}>
           <form
             className="ams-gap-m"
             onSubmit={withExceptionCapturing(handleSubmit(onSubmit))}

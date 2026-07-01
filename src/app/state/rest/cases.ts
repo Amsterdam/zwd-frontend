@@ -137,7 +137,23 @@ export const useWorkflows = (
   const handleError = useErrorHandler()
   return useApiRequest<Components.Schemas.CaseWorkflow[]>({
     ...options,
+    lazy: id === undefined || options?.lazy,
     url: `${makeApiUrl("cases", id, "workflows")}`,
+    groupName: "cases",
+    handleError,
+    isProtected: true
+  })
+}
+
+export const useWorkflowInstances = (
+  id: Components.Schemas.Case["id"],
+  options?: Options
+) => {
+  const handleError = useErrorHandler()
+  return useApiRequest<Components.Schemas.CaseWorkflowInstance[]>({
+    ...options,
+    lazy: id === undefined || options?.lazy,
+    url: `${makeApiUrl("cases", id, "workflow-instances")}`,
     groupName: "cases",
     handleError,
     isProtected: true

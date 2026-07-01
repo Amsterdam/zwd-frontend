@@ -6,7 +6,7 @@ import {
   Table
 } from "app/components"
 import { useCaseDocuments } from "app/state/rest"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 import DoucumentsActions from "./DocumentActions"
 
 const columns: ColumnType<Components.Schemas.CaseDocument>[] = [

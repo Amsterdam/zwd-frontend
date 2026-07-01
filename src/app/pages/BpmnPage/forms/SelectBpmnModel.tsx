@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+// SelectBpmnModel.tsx
 import { Spinner } from "app/components"
 import { useBpmnModels } from "app/state/rest"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
@@ -6,21 +6,17 @@ import { Field, Label, Select } from "@amsterdam/design-system-react"
 type Props = {
   onSelect: (value: Components.Schemas.BpmnModel) => void
   bpmnModelName?: string
+  value?: string
 }
 
 export const SelectBpmnModel: React.FC<Props> = ({
   onSelect,
-  bpmnModelName
+  bpmnModelName,
+  value
 }) => {
   const [models, { isBusy }] = useBpmnModels(bpmnModelName)
-  const [selectedVersion, setSelectedVersion] = useState("")
-
-  useEffect(() => {
-    setSelectedVersion("")
-  }, [bpmnModelName])
 
   const handleSelect = (version: string) => {
-    setSelectedVersion(version)
     const selectedModel = models?.find((item) => item.version === version)
     if (selectedModel) {
       onSelect(selectedModel)
@@ -35,7 +31,7 @@ export const SelectBpmnModel: React.FC<Props> = ({
       ) : (
         <Select
           id="bpmn-version"
-          value={selectedVersion}
+          value={value ?? ""}
           onChange={(e) => handleSelect(e.target.value)}
         >
           <Select.Option key="default" value="">

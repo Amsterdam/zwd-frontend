@@ -7,7 +7,7 @@ import {
 } from "app/components"
 import { CopyEmailButton } from "app/components/CopyEmailButton/CopyEmailButton"
 import { useHomeownerAssociationContacts } from "app/state/rest"
-import { formatDate } from "app/utils/dates"
+import { formatDate } from "app/utils"
 import DeleteHoaContact from "./DeleteHoaContact/DeleteHoaContact"
 import EditHoaContact from "./EditHoaContact/EditHoaContact"
 import AddHoaContact from "./AddHoaContact/AddHoaContact"

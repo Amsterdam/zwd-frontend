@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import {
   FolderIcon,
   DocumentsIcon,
+  ConnectedCirclesIcon,
   DocumentCheckMarkIcon
 } from "@amsterdam/design-system-react-icons"
 import { Icon, type IconProps, Row, Tabs } from "@amsterdam/design-system-react"
@@ -12,6 +13,7 @@ import { useURLState } from "app/hooks"
 import Workflows from "./Workflows/Workflows"
 import CaseEvents from "./CaseEvents/CaseEvents"
 import Documents from "./Documents"
+import WorkflowInstances from "./WorkflowInstances/WorkflowInstances"
 import AddSubtask from "./AddSubtask/AddSubtask"
 import DownloadPdf from "./DownloadPdf/DownloadPdf"
 import createDataDetailsList from "./utils/createDataDetailsList"
@@ -51,6 +53,9 @@ export const CaseDetailsPage: React.FC = () => {
           <Tabs.Button aria-controls="documenten">
             <TabHeader svg={DocumentsIcon} label="Documenten" />
           </Tabs.Button>
+          <Tabs.Button aria-controls="processen">
+            <TabHeader svg={ConnectedCirclesIcon} label="Processen" />
+          </Tabs.Button>
         </Tabs.List>
         <Tabs.Panel id="taken">
           {data?.id && (
@@ -63,6 +68,9 @@ export const CaseDetailsPage: React.FC = () => {
         </Tabs.Panel>
         <Tabs.Panel id="documenten">
           <Documents />
+        </Tabs.Panel>
+        <Tabs.Panel id="processen">
+          {data?.id && <WorkflowInstances caseId={data?.id} />}
         </Tabs.Panel>
       </Tabs>
     </PageGrid>

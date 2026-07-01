@@ -1,19 +1,24 @@
 import { useBpmnFile } from "app/state/rest"
 import { PageSpinner } from "app/components"
-import BpmnDiagramViewer from "./BpmnDiagramViewer"
+import BpmnDiagramViewer from "./BpmnDiagramViewer/BpmnDiagramViewer"
 
 type Props = {
-  bpmnModel: Components.Schemas.BpmnModel
+  model: string
+  version: string
+  currentTaskSpecs?: string[]
 }
 
-export const BpmnDiagram: React.FC<Props> = ({ bpmnModel }) => {
-  const { model, version } = bpmnModel
+export const BpmnDiagram: React.FC<Props> = ({
+  model,
+  version,
+  currentTaskSpecs
+}) => {
   const [xml, { isBusy }] = useBpmnFile(model, version)
 
   if (isBusy) {
     return <PageSpinner />
   } else if (xml) {
-    return <BpmnDiagramViewer xml={xml} />
+    return <BpmnDiagramViewer xml={xml} currentTaskSpecs={currentTaskSpecs} />
   }
   return <></>
 }

@@ -219,6 +219,14 @@ declare namespace Components {
             tasks: CaseUserTask[];
             completed?: boolean;
         }
+        export interface CaseWorkflowInstance {
+            id: number;
+            workflow_type?: string | null;
+            workflow_version?: string | null;
+            completed?: boolean;
+            main_workflow?: boolean;
+            current_task_specs: string[];
+        }
         export interface Contact {
             id: number;
             fullname: string;
@@ -972,6 +980,17 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $200 = Components.Schemas.Case;
+        }
+    }
+    namespace CasesWorkflowInstancesList {
+        namespace Parameters {
+            export type Id = number;
+        }
+        export interface PathParameters {
+            id: Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = Components.Schemas.CaseWorkflowInstance[];
         }
     }
     namespace CasesWorkflowsRetrieve {

@@ -1,12 +1,15 @@
+// SelectBpmnModelName.tsx
 import { Spinner } from "app/components"
 import { useBpmnModelNames } from "app/state/rest"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
+import { formatWorkflowType } from "app/utils"
 
 type Props = {
+  value?: string
   onSelect: (value: string) => void
 }
 
-export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
+export const SelectBpmnModelName: React.FC<Props> = ({ value, onSelect }) => {
   const [modelNames, { isBusy }] = useBpmnModelNames()
   const names = modelNames ?? []
 
@@ -18,15 +21,15 @@ export const SelectBpmnModelName: React.FC<Props> = ({ onSelect }) => {
       ) : (
         <Select
           id="bpmn-model"
+          value={value ?? ""}
           onChange={(e) => onSelect(e.target.value)}
-          defaultValue=""
         >
           <Select.Option key="placeholder" value="">
             Selecteer naam
           </Select.Option>
           {names.map((name) => (
             <Select.Option key={name} value={name}>
-              {name}
+              {formatWorkflowType(name)}
             </Select.Option>
           ))}
         </Select>
