@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { HouseIcon } from "@amsterdam/design-system-react-icons"
 import { useParams } from "react-router-dom"
-import { PageHeading, PageSpinner, PageGrid } from "app/components"
+import { PageHeading, PageSpinner, PageGrid, Spinner } from "app/components"
 import HoaDescription from "./HoaDescription"
 import {
   Grid,
@@ -35,7 +35,7 @@ import {
 import Subsidy from "./Subsidy/Subsidy"
 
 type TabHeaderProps = {
-  label: string
+  label: React.ReactNode
   svg: IconProps["svg"]
 }
 
@@ -55,7 +55,8 @@ export const AddressPage: React.FC = () => {
   const [dataByHoaId, { isBusy: isLoading }] =
     useHomeownerAssociation(hoaIdNumber)
   const hoa = bagId ? dataByBagId : dataByHoaId
-  const [dataSubsidy] = useHomeownerAssociationSubsidy(hoa?.id)
+  const [dataSubsidy, { isBusy: isLoadingSubsidy }] =
+    useHomeownerAssociationSubsidy(hoa?.id)
   const [activeTab, setActiveTab] = useURLState("tab", "zaken")
 
   const hasId = bagId || hoaId
@@ -64,7 +65,12 @@ export const AddressPage: React.FC = () => {
   const tabs = useMemo(() => {
     if (!hoa?.id) return []
 
-    const baseTabs = [
+    const baseTabs: Array<{
+      id: string
+      icon: IconProps["svg"]
+      label: React.ReactNode
+      panel: React.ReactNode
+    }> = [
       {
         id: "zaken",
         icon: FolderIcon,
@@ -97,17 +103,29 @@ export const AddressPage: React.FC = () => {
       }
     ]
 
-    if (Array.isArray(dataSubsidy) && dataSubsidy.length > 0) {
+    if (
+      isLoadingSubsidy ||
+      (Array.isArray(dataSubsidy) && dataSubsidy.length > 0)
+    ) {
       baseTabs.push({
         id: "subsidies",
         icon: EuroCoinsIcon,
-        label: `Subsidies (${dataSubsidy.length})`,
+        label: (
+          <>
+            Subsidies
+            {isLoadingSubsidy ? (
+              <Spinner size={16} color="#003677" />
+            ) : (
+              ` (${dataSubsidy?.length})`
+            )}
+          </>
+        ),
         panel: <Subsidy data={dataSubsidy} />
       })
     }
 
     return baseTabs
-  }, [hoa, dataSubsidy])
+  }, [hoa, dataSubsidy, isLoadingSubsidy])
 
   return (
     <PageGrid>
