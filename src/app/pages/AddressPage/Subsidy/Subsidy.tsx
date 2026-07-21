@@ -3,7 +3,7 @@ import { Descriptions } from "app/components"
 import { Heading } from "@amsterdam/design-system-react"
 
 type Props = {
-  data: Components.Schemas.SubsidyItem[]
+  data?: Components.Schemas.SubsidyItem[]
 }
 
 const formatCurrency = (value?: string | null): string => {
