@@ -23,6 +23,7 @@ type Props = {
   validation: RegisterOptions
   formMethods?: UseFormReturn<FieldValues>
   shouldShow?: (formValues: FieldValues) => boolean
+  style?: React.CSSProperties
 }
 
 export const TextInputField: React.FC<Props> = ({
@@ -33,6 +34,7 @@ export const TextInputField: React.FC<Props> = ({
   validation = {},
   formMethods = {},
   shouldShow,
+  style,
   ...rest
 }) => {
   const {
@@ -82,6 +84,7 @@ export const TextInputField: React.FC<Props> = ({
         type={type}
         size={type === "tel" ? 14 : undefined}
         className={type === "tel" ? styles.inputTel : undefined}
+        style={style}
         {...(register ? register(name, validation) : {})}
         {...rest}
         onChange={handleValidation}
