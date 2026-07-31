@@ -5,29 +5,27 @@ ARG NODE_VERSION=22
 FROM node:$NODE_VERSION-alpine AS builder
 
 ENV DIR=/var/www
-COPY . $DIR/
-RUN ls -la $DIR
-
-# build dirs and "config" directory in /application
-RUN mkdir -p $DIR/builds/application/config
-
 WORKDIR $DIR
-COPY package*.json $DIR/
-RUN npm ci --production --unsafe-perm --ignore-scripts .
+
+COPY package*.json ./
+RUN npm ci --ignore-scripts
+
+COPY . .
 
 RUN npm run build
 
-RUN mv $DIR/dist/* $DIR/builds/application/
+# build dirs and "config" directory in /application
+RUN mkdir -p $DIR/builds/application/config && \
+    mv $DIR/dist/* $DIR/builds/application/
 
 FROM nginx:stable-alpine
 
-ADD nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /var/www/builds /var/www
 COPY --from=builder /var/www/env.* /var/www
 COPY --from=builder /var/www/package.json /var/www/package.json
 
 COPY entrypoint.sh /entrypoint.sh
-
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
