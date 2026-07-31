@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.tsbuildinfo
+.eslintcache
 *.local
 
 # Editor directories and files

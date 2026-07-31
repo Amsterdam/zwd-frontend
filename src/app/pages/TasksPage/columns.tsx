@@ -84,21 +84,25 @@ export const getColumns = (
     header: "Adviseur",
     dataIndex: "case.advisor",
     sorter:
-      createStringSorter<components["schemas"]["CaseUserTaskList"]>("case.advisor"),
+      createStringSorter<components["schemas"]["CaseUserTaskList"]>(
+        "case.advisor"
+      ),
     sortOrder: getSortOrder(sorting, "case.advisor"),
     render: (text) => text || "–"
   },
   {
     header: "Open taak",
     dataIndex: "name",
-    sorter: createStringSorter<components["schemas"]["CaseUserTaskList"]>("name"),
+    sorter:
+      createStringSorter<components["schemas"]["CaseUserTaskList"]>("name"),
     sortOrder: getSortOrder(sorting, "name")
   },
   {
     header: "Aangemaakt",
     dataIndex: "created",
     width: 130,
-    sorter: createDateSorter<components["schemas"]["CaseUserTaskList"]>("created"),
+    sorter:
+      createDateSorter<components["schemas"]["CaseUserTaskList"]>("created"),
     defaultSortOrder: "DESCEND" as const,
     sortOrder: getSortOrder(sorting, "created"),
     render: (text) => formatDate(text, true)

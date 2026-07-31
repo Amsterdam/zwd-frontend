@@ -40,32 +40,39 @@ export const ApartmentsPage: React.FC = () => {
         {
           header: "Straat",
           dataIndex: "straatnaam",
-          sorter: createStringSorter<components["schemas"]["Apartment"]>("straatnaam")
+          sorter:
+            createStringSorter<components["schemas"]["Apartment"]>("straatnaam")
         },
         {
           header: "Huisnummer",
           dataIndex: "huisnummer",
           render: huisnummerRender,
-          sorter: createNumberSorter<components["schemas"]["Apartment"]>("huisnummer")
+          sorter:
+            createNumberSorter<components["schemas"]["Apartment"]>("huisnummer")
         },
         {
           header: "Postcode",
           dataIndex: "postcode",
-          sorter: createStringSorter<components["schemas"]["Apartment"]>("postcode")
+          sorter:
+            createStringSorter<components["schemas"]["Apartment"]>("postcode")
         },
         {
           header: "Eigenaar type",
           dataIndex: "eigenaar_type",
           render: (text: string) => text || "-",
           sorter:
-            createStringSorter<components["schemas"]["Apartment"]>("eigenaar_type")
+            createStringSorter<components["schemas"]["Apartment"]>(
+              "eigenaar_type"
+            )
         },
         {
           header: "Eigenaar naam",
           dataIndex: "eigenaar_naam",
           render: (text: string) => text || "-",
           sorter:
-            createStringSorter<components["schemas"]["Apartment"]>("eigenaar_naam")
+            createStringSorter<components["schemas"]["Apartment"]>(
+              "eigenaar_naam"
+            )
         }
       ] satisfies ColumnType<components["schemas"]["Apartment"]>[],
     []

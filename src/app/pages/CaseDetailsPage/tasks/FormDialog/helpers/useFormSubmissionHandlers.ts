@@ -52,7 +52,10 @@ export const useFormSubmissionHandlers = (
   }
 
   const submitFormCaseClose = async (
-    variables: Pick<components["schemas"]["CaseClose"], "reason" | "description">
+    variables: Pick<
+      components["schemas"]["CaseClose"],
+      "reason" | "description"
+    >
   ) => {
     setLoading(true)
     try {
