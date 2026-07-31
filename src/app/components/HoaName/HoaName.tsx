@@ -1,7 +1,7 @@
 import { useHomeownerAssociation } from "app/state/rest"
 
 type Props = {
-  id: Components.Schemas.HomeownerAssociation["id"]
+  id: components["schemas"]["HomeownerAssociation"]["id"]
 }
 
 export const HoaName: React.FC<Props> = ({ id }) => {

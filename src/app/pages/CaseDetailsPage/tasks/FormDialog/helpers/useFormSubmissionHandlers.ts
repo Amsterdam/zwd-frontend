@@ -9,7 +9,7 @@ import type { GenericTaskFormData } from "./types"
 
 export const useFormSubmissionHandlers = (
   taskId: string,
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 ) => {
   const [loading, setLoading] = useState(false)
   const [, { execPost }] = useTaskComplete({ lazy: true })
@@ -52,7 +52,10 @@ export const useFormSubmissionHandlers = (
   }
 
   const submitFormCaseClose = async (
-    variables: Pick<Components.Schemas.CaseClose, "reason" | "description">
+    variables: Pick<
+      components["schemas"]["CaseClose"],
+      "reason" | "description"
+    >
   ) => {
     setLoading(true)
     try {

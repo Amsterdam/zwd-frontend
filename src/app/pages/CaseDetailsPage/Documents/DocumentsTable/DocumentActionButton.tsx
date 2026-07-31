@@ -5,7 +5,7 @@ import { makeApiUrl } from "app/state/rest/hooks/utils"
 import { Spinner } from "app/components"
 
 type Props = {
-  record: Components.Schemas.CaseDocument
+  record: components["schemas"]["CaseDocument"]
   icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element
   label: string
   onFile: (file: Blob) => void

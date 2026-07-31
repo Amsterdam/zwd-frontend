@@ -17,7 +17,7 @@ export const BpmnPage: React.FC = () => {
     setSearchParams({ model: name })
   }
 
-  const handleSelectModel = (model: Components.Schemas.BpmnModel) => {
+  const handleSelectModel = (model: components["schemas"]["BpmnModel"]) => {
     setSearchParams({ model: model.model, version: model.version })
   }
 

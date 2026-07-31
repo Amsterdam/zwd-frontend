@@ -4,7 +4,7 @@ import { useDialog } from "app/hooks"
 import AddHoaContactDialog from "./AddHoaContactDialog/AddHoaContactDialog"
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   label?: string
 }
 

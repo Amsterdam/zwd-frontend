@@ -4,7 +4,7 @@ import FormDialog from "../FormDialog/FormDialog"
 
 type Props = {
   task: CustomCaseUserTask
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 }
 
 export const TaskButton: React.FC<Props> = ({ task, caseId }) => {

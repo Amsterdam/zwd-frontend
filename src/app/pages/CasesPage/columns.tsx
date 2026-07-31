@@ -8,7 +8,7 @@ import {
 } from "app/components"
 import { formatDate } from "app/utils"
 
-type DataType = Components.Schemas.CaseList
+type DataType = components["schemas"]["CaseList"]
 
 export const DEFAULT_COLUMNS = [
   "prefixed_dossier_id",

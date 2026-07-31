@@ -4,7 +4,7 @@ import { useCase, useHomeownerAssociation } from "app/state/rest"
 import createPdf from "./createPdf"
 
 export const DownloadPdf: React.FC<{
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 }> = ({ caseId }) => {
   const [caseData] = useCase(caseId)
   const hoaId = caseData?.homeowner_association?.id

@@ -1,7 +1,7 @@
 import { RouterLink } from "app/components"
 import { formatDate } from "app/utils"
 
-function createDataDetailsList(data?: Components.Schemas.Case) {
+function createDataDetailsList(data?: components["schemas"]["Case"]) {
   const dataDetailsList = [
     {
       term: "Naam",

@@ -17,11 +17,11 @@ export const DEFAULT_COLUMNS = [
 
 export const getColumns = (
   sorting: TABLE.Sorting
-): ColumnType<Components.Schemas.CaseUserTaskList>[] => [
+): ColumnType<components["schemas"]["CaseUserTaskList"]>[] => [
   {
     header: "ID",
     dataIndex: "case.prefixed_dossier_id",
-    sorter: createNumberSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createNumberSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.prefixed_dossier_id"
     ),
     sortOrder: getSortOrder(sorting, "case.prefixed_dossier_id")
@@ -29,7 +29,7 @@ export const getColumns = (
   {
     header: "VvE statutaire naam",
     dataIndex: "case.homeowner_association.name",
-    sorter: createStringSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createStringSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.homeowner_association.name"
     ),
     sortOrder: getSortOrder(sorting, "case.homeowner_association.name")
@@ -37,7 +37,7 @@ export const getColumns = (
   {
     header: "VvE grootte",
     dataIndex: "case.homeowner_association.number_of_apartments",
-    sorter: createNumberSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createNumberSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.homeowner_association.number_of_apartments"
     ),
     sortOrder: getSortOrder(
@@ -48,7 +48,7 @@ export const getColumns = (
   {
     header: "Stadsdeel",
     dataIndex: "case.homeowner_association.district",
-    sorter: createStringSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createStringSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.homeowner_association.district"
     ),
     sortOrder: getSortOrder(sorting, "case.homeowner_association.district")
@@ -56,7 +56,7 @@ export const getColumns = (
   {
     header: "Buurt",
     dataIndex: "case.homeowner_association.neighborhood",
-    sorter: createStringSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createStringSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.homeowner_association.neighborhood"
     ),
     sortOrder: getSortOrder(sorting, "case.homeowner_association.neighborhood")
@@ -64,7 +64,7 @@ export const getColumns = (
   {
     header: "Aanvraagtype",
     dataIndex: "case.application_type",
-    sorter: createStringSorter<Components.Schemas.CaseUserTaskList>(
+    sorter: createStringSorter<components["schemas"]["CaseUserTaskList"]>(
       "case.application_type"
     ),
     sortOrder: getSortOrder(sorting, "case.application_type"),
@@ -74,7 +74,7 @@ export const getColumns = (
     header: "Adviestype",
     dataIndex: "case.advice_type",
     sorter:
-      createStringSorter<Components.Schemas.CaseUserTaskList>(
+      createStringSorter<components["schemas"]["CaseUserTaskList"]>(
         "case.advice_type"
       ),
     sortOrder: getSortOrder(sorting, "case.advice_type"),
@@ -84,21 +84,25 @@ export const getColumns = (
     header: "Adviseur",
     dataIndex: "case.advisor",
     sorter:
-      createStringSorter<Components.Schemas.CaseUserTaskList>("case.advisor"),
+      createStringSorter<components["schemas"]["CaseUserTaskList"]>(
+        "case.advisor"
+      ),
     sortOrder: getSortOrder(sorting, "case.advisor"),
     render: (text) => text || "–"
   },
   {
     header: "Open taak",
     dataIndex: "name",
-    sorter: createStringSorter<Components.Schemas.CaseUserTaskList>("name"),
+    sorter:
+      createStringSorter<components["schemas"]["CaseUserTaskList"]>("name"),
     sortOrder: getSortOrder(sorting, "name")
   },
   {
     header: "Aangemaakt",
     dataIndex: "created",
     width: 130,
-    sorter: createDateSorter<Components.Schemas.CaseUserTaskList>("created"),
+    sorter:
+      createDateSorter<components["schemas"]["CaseUserTaskList"]>("created"),
     defaultSortOrder: "DESCEND" as const,
     sortOrder: getSortOrder(sorting, "created"),
     render: (text) => formatDate(text, true)

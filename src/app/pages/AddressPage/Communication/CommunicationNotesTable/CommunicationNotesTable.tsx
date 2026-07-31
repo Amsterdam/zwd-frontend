@@ -15,7 +15,7 @@ export const CommunicationNotesTable: React.FC<
     <Table
       data={
         (communicationNotes ??
-          []) as Components.Schemas.HomeownerAssociationCommunicationNote[]
+          []) as components["schemas"]["HomeownerAssociationCommunicationNote"][]
       }
       columns={createColumns(hoaId)}
       emptyPlaceholder="Geen contactmeldingen gevonden"

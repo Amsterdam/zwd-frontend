@@ -16,7 +16,10 @@ type Props = {
   submitForm: (variables: ComletedTaskFormData | GenericTaskFormData) => void
   submitFormFile: (variables: { upload: FileList }) => void
   submitFormCaseClose: (
-    variables: Pick<Components.Schemas.CaseClose, "reason" | "description">
+    variables: Pick<
+      components["schemas"]["CaseClose"],
+      "reason" | "description"
+    >
   ) => void
 }
 

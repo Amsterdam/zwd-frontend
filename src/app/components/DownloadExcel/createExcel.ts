@@ -1,8 +1,8 @@
-import Excel from "exceljs"
+import { createWorkbook } from "app/utils/xlsx"
 
-export type ExpandedCase = Components.Schemas.Case & {
+export type ExpandedCase = components["schemas"]["Case"] & {
   updated?: string
-  homeowner_association: Components.Schemas.HomeownerAssociation | null
+  homeowner_association: components["schemas"]["HomeownerAssociation"] | null
   additional_fields: { header: string; value: string }[]
 }
 
@@ -52,7 +52,7 @@ const casesColumns = [
 ]
 
 export const createExcel = (data: ExpandedCase[]) => {
-  const workbook = new Excel.Workbook()
+  const workbook = createWorkbook()
   const worksheet = workbook.addWorksheet("Zaken")
 
   worksheet.columns = casesColumns

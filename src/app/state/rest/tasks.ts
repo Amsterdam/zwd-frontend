@@ -81,7 +81,7 @@ export const useTasks = (
     sorting
   ])
 
-  return useApiRequest<Components.Schemas.PaginatedCaseUserTaskListList>({
+  return useApiRequest<components["schemas"]["PaginatedCaseUserTaskListList"]>({
     ...options,
     url: `${makeApiUrl("tasks")}${queryString}`,
     groupName: "tasks",

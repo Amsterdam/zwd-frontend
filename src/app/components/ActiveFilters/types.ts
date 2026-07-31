@@ -6,7 +6,7 @@ export type FilterConfig = {
   contexts: ("cases" | "tasks" | "hoas")[]
   getLabel: (
     value: string,
-    helpers?: Components.Schemas.CaseAdvisor[] | undefined
+    helpers?: components["schemas"]["CaseAdvisor"][] | undefined
   ) => string
 }
 

@@ -24,7 +24,7 @@ export const ApartmentsPage: React.FC = () => {
 
   const huisnummerRender = (
     _text: string,
-    row: Components.Schemas.Apartment
+    row: components["schemas"]["Apartment"]
   ) => {
     const huisnummer = row.huisnummer ?? ""
     const huisletter = row.huisletter ?? ""
@@ -40,34 +40,41 @@ export const ApartmentsPage: React.FC = () => {
         {
           header: "Straat",
           dataIndex: "straatnaam",
-          sorter: createStringSorter<Components.Schemas.Apartment>("straatnaam")
+          sorter:
+            createStringSorter<components["schemas"]["Apartment"]>("straatnaam")
         },
         {
           header: "Huisnummer",
           dataIndex: "huisnummer",
           render: huisnummerRender,
-          sorter: createNumberSorter<Components.Schemas.Apartment>("huisnummer")
+          sorter:
+            createNumberSorter<components["schemas"]["Apartment"]>("huisnummer")
         },
         {
           header: "Postcode",
           dataIndex: "postcode",
-          sorter: createStringSorter<Components.Schemas.Apartment>("postcode")
+          sorter:
+            createStringSorter<components["schemas"]["Apartment"]>("postcode")
         },
         {
           header: "Eigenaar type",
           dataIndex: "eigenaar_type",
           render: (text: string) => text || "-",
           sorter:
-            createStringSorter<Components.Schemas.Apartment>("eigenaar_type")
+            createStringSorter<components["schemas"]["Apartment"]>(
+              "eigenaar_type"
+            )
         },
         {
           header: "Eigenaar naam",
           dataIndex: "eigenaar_naam",
           render: (text: string) => text || "-",
           sorter:
-            createStringSorter<Components.Schemas.Apartment>("eigenaar_naam")
+            createStringSorter<components["schemas"]["Apartment"]>(
+              "eigenaar_naam"
+            )
         }
-      ] satisfies ColumnType<Components.Schemas.Apartment>[],
+      ] satisfies ColumnType<components["schemas"]["Apartment"]>[],
     []
   )
 
@@ -79,7 +86,7 @@ export const ApartmentsPage: React.FC = () => {
         backLinkUrl={`/vve/${hoaId}`}
         backLinkLabel="Terug naar VvE"
       />
-      <Table<Components.Schemas.Apartment>
+      <Table<components["schemas"]["Apartment"]>
         columns={columns}
         data={apartments ?? []}
         loading={isBusy}

@@ -3,12 +3,12 @@ import { Table, SmallSkeleton } from "app/components"
 import getColumns from "./columns"
 
 type Props = {
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 }
 
 export const Workflows: React.FC<Props> = ({ caseId }) => {
   const [data, { isBusy }] = useWorkflows(caseId)
-  const workflows = data ?? ([] as Components.Schemas.CaseWorkflow[])
+  const workflows = data ?? ([] as components["schemas"]["CaseWorkflow"][])
   const columns = getColumns(caseId)
 
   if (isBusy) {

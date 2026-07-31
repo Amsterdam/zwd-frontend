@@ -3,10 +3,10 @@ import { PencilIcon } from "@amsterdam/design-system-react-icons"
 import { useDialog } from "app/hooks"
 import EditHoaContactDialog from "./EditHoaContactDialog/EditHoaContactDialog"
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   contact: Contact
   label?: string
 }

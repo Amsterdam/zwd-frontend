@@ -4,7 +4,7 @@ import columns from "./columns"
 import { Paragraph } from "@amsterdam/design-system-react"
 
 type Props = {
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 }
 
 export const WorkflowInstances: React.FC<Props> = ({ caseId }) => {

@@ -74,8 +74,8 @@ const formatValue = (
 }
 
 const createPdf = (
-  caseData?: Components.Schemas.Case,
-  hoaData?: Components.Schemas.HomeownerAssociation
+  caseData?: components["schemas"]["Case"],
+  hoaData?: components["schemas"]["HomeownerAssociation"]
 ) => {
   if (!caseData || !hoaData) return
 

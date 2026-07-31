@@ -13,10 +13,10 @@ import EditHoaContact from "./EditHoaContact/EditHoaContact"
 import AddHoaContact from "./AddHoaContact/AddHoaContact"
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
 }
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 export const HoaContacts: React.FC<Props> = ({ hoaId }) => {
   const [contacts, { isBusy }] = useHomeownerAssociationContacts(hoaId)

@@ -3,11 +3,11 @@ import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
 export const useAdvisors = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseAdvisor[]>({
+  return useApiRequest<components["schemas"]["CaseAdvisor"][]>({
     ...options,
     url: `${makeApiUrl("cases", id, "advisors")}`,
     groupName: "advisors",
@@ -17,11 +17,11 @@ export const useAdvisors = (
 }
 
 export const useAdvisor = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.PatchedUpdateCaseAdvisor>({
+  return useApiRequest<components["schemas"]["PatchedUpdateCaseAdvisor"]>({
     ...options,
     url: `${makeApiUrl("cases", id, "advisor")}`,
     lazy: true,
@@ -33,7 +33,7 @@ export const useAdvisor = (
 
 export const useAdvisorsList = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseAdvisor[]>({
+  return useApiRequest<components["schemas"]["CaseAdvisor"][]>({
     ...options,
     url: `${makeApiUrl("advisors")}`,
     groupName: "advisors",

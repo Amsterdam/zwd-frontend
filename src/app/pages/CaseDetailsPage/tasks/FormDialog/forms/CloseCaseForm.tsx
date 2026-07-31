@@ -8,7 +8,7 @@ import {
 import { useCaseCloseReasons } from "app/state/rest"
 
 type CaseCloseFormValues = Pick<
-  Components.Schemas.CaseClose,
+  components["schemas"]["CaseClose"],
   "reason" | "description"
 >
 

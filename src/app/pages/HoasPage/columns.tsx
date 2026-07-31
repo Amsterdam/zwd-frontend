@@ -6,7 +6,7 @@ import {
   LinkButton
 } from "app/components"
 
-type DataType = Components.Schemas.CaseList
+type DataType = components["schemas"]["CaseList"]
 
 export const DEFAULT_COLUMNS = ["name"]
 

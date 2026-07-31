@@ -3,10 +3,10 @@ import { IconButton } from "@amsterdam/design-system-react"
 import DeleteHoaContactDialog from "./DeleteHoaContactDialog/DeleteHoaContactDialog"
 import { TrashBinIcon } from "@amsterdam/design-system-react-icons"
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   contact: Contact
   label: string
 }

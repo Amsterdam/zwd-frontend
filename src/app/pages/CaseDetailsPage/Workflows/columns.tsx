@@ -5,7 +5,7 @@ import TaskButton from "../tasks/TaskButton/TaskButton"
 import { formatDate } from "app/utils"
 
 const getColumns = (
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 ): ColumnType<CustomCaseUserTask>[] => [
   {
     header: "",

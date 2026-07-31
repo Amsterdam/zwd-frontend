@@ -22,10 +22,10 @@ export const FormMode = {
 
 export type FormMode = (typeof FormMode)[keyof typeof FormMode]
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   dialogId: string
   mode: FormMode
   contact?: Contact

@@ -1,11 +1,11 @@
 import { ConfirmationDialog } from "app/components"
 import { useHomeownerAssociationContactDelete } from "app/state/rest"
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 type Props = {
   dialogId: string
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   contact: Contact
 }
 

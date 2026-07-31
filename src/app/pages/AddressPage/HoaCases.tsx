@@ -14,37 +14,37 @@ import { formatDate } from "app/utils"
 import { PlusIcon } from "@amsterdam/design-system-react-icons"
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
 }
 
-const columns: ColumnType<Components.Schemas.Case>[] = [
+const columns: ColumnType<components["schemas"]["Case"]>[] = [
   {
     header: "ID",
     dataIndex: "prefixed_dossier_id",
-    sorter: createNumberSorter<Components.Schemas.Case>("id"),
+    sorter: createNumberSorter<components["schemas"]["Case"]>("id"),
     defaultSortOrder: "DESCEND"
   },
   {
     header: "Status",
     dataIndex: "status",
-    sorter: createStringSorter<Components.Schemas.Case>("status")
+    sorter: createStringSorter<components["schemas"]["Case"]>("status")
   },
   {
     header: "Aanvraagdatum",
     dataIndex: "request_date",
-    sorter: createDateSorter<Components.Schemas.Case>("request_date"),
+    sorter: createDateSorter<components["schemas"]["Case"]>("request_date"),
     render: (text) => formatDate(text)
   },
   {
     header: "Laatst gewijzigd",
     dataIndex: "updated",
-    sorter: createDateSorter<Components.Schemas.Case>("updated"),
+    sorter: createDateSorter<components["schemas"]["Case"]>("updated"),
     render: (text) => formatDate(text)
   },
   {
     header: "Einddatum zaak",
     dataIndex: "end_date",
-    sorter: createDateSorter<Components.Schemas.Case>("end_date"),
+    sorter: createDateSorter<components["schemas"]["Case"]>("end_date"),
     render: (text) => formatDate(text)
   },
   {

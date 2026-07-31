@@ -1,5 +1,5 @@
 type CommunicationNote =
-  Components.Schemas.HomeownerAssociationCommunicationNote
+  components["schemas"]["HomeownerAssociationCommunicationNote"]
 
 export type FormValues = {
   date: CommunicationNote["date"]

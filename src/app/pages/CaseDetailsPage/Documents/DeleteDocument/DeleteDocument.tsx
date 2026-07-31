@@ -5,7 +5,7 @@ import { ConfirmationDialog } from "app/components"
 import { useDialog } from "app/hooks"
 
 type Props = {
-  record: Components.Schemas.CaseDocument
+  record: components["schemas"]["CaseDocument"]
 }
 
 export const DeleteDocument: React.FC<Props> = ({ record }) => {

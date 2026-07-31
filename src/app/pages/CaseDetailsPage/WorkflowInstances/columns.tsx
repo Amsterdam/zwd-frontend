@@ -3,7 +3,7 @@ import { CheckMarkIcon, ClockIcon } from "@amsterdam/design-system-react-icons"
 import { ColumnType, RouterLink, Tag } from "app/components"
 import { formatWorkflowType } from "app/utils"
 
-const columns: ColumnType<Components.Schemas.CaseWorkflowInstance>[] = [
+const columns: ColumnType<components["schemas"]["CaseWorkflowInstance"]>[] = [
   {
     header: "ID",
     dataIndex: "id"

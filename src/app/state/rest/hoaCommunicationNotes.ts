@@ -3,10 +3,10 @@ import { makeApiUrl, useErrorHandler } from "./hooks/utils"
 import useApiRequest from "./hooks/useApiRequest"
 
 type CommunicationNote =
-  Components.Schemas.HomeownerAssociationCommunicationNote
+  components["schemas"]["HomeownerAssociationCommunicationNote"]
 
 export const useCommunicationNotes = (
-  id: Components.Schemas.HomeownerAssociation["id"],
+  id: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -20,7 +20,7 @@ export const useCommunicationNotes = (
 }
 
 export const useCommunicationNote = (
-  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"],
   noteId: CommunicationNote["id"],
   options?: Options
 ) => {

@@ -12,6 +12,9 @@ type FormItem = {
   tooltip?: string
 }
 
-type CustomCaseUserTask = Omit<Components.Schemas.CaseUserTask, "form"> & {
+type CustomCaseUserTask = Omit<
+  components["schemas"]["CaseUserTask"],
+  "form"
+> & {
   form?: FormItem[] // Form is generated as null
 }
