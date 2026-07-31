@@ -1,11 +1,11 @@
-declare type BAGPdokResponse = {
+type BAGPdokResponse = {
   response: {
     numFound: number
     docs: Array<BAGPdokAddress>
   }
 }
 
-declare type BAGPdokAddress = {
+type BAGPdokAddress = {
   woonplaatsnaam: string
   weergavenaam: string
   adrestype: string
