@@ -1,4 +1,4 @@
-import Excel from "exceljs"
+import { createWorkbook } from "app/utils/xlsx"
 
 const hoaColumns = [
   { key: "name", header: "Statutaire naam" },
@@ -19,7 +19,7 @@ export type ExpandedHoa = components["schemas"]["HomeownerAssociation"] & {
 }
 
 export const createExcel = (data: ExpandedHoa[]) => {
-  const workbook = new Excel.Workbook()
+  const workbook = createWorkbook()
   const worksheet = workbook.addWorksheet("VvE's")
 
   worksheet.columns = hoaColumns

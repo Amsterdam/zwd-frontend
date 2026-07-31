@@ -1,4 +1,4 @@
-import Excel from "exceljs"
+import { createWorkbook } from "app/utils/xlsx"
 
 export type ExpandedCase = components["schemas"]["Case"] & {
   updated?: string
@@ -52,7 +52,7 @@ const casesColumns = [
 ]
 
 export const createExcel = (data: ExpandedCase[]) => {
-  const workbook = new Excel.Workbook()
+  const workbook = createWorkbook()
   const worksheet = workbook.addWorksheet("Zaken")
 
   worksheet.columns = casesColumns

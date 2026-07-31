@@ -18,7 +18,7 @@
     "generate:api-schema:acc": "npx --yes openapi-typescript https://acc.api.zwd.amsterdam.nl/api/schema/ -o ./src/__generated__/apiSchema.d.ts",
     "lint": "eslint --max-warnings 0 --cache src",
     "lint:fix": "eslint --cache --fix src",
-    "typecheck": "tsc --noEmit --incremental",
+    "typecheck": "tsc -b --noEmit",
     "test": "vitest",
     "preview": "vite preview"
   },
@@ -28,7 +28,7 @@
     "axios": "^1.15.0",
     "bpmn-js": "^18.14.0",
     "dayjs": "^1.11.13",
-    "exceljs": "^4.4.0",
+    "fflate": "^0.8.3",
     "file-saver": "^2.0.5",
     "immer": "^11.1.4",
     "jspdf": "^4.2.1",
