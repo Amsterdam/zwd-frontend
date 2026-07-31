@@ -3,7 +3,8 @@ import {
   DateInputField,
   SelectField,
   TextAreaField,
-  FormActionButtons
+  FormActionButtons,
+  TextInputField
 } from "app/components"
 import type { GenericTaskFormData } from "../helpers/types"
 import formatGenericData from "../helpers/formatGenericData"
@@ -57,6 +58,16 @@ export const GenericTaskForm: React.FC<Props> = ({
                 name={formItem.name}
                 label={formItem.label}
                 validation={{ required: formItem.required }}
+              />
+            )
+          case "shorttext":
+            return (
+              <TextInputField
+                key={index}
+                name={formItem.name}
+                label={formItem.label}
+                validation={{ required: formItem.required }}
+                style={{ maxWidth: "320px" }}
               />
             )
           default:
