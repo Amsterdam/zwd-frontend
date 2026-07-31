@@ -9,16 +9,16 @@ import { useCaseDocuments } from "app/state/rest"
 import { formatDate } from "app/utils"
 import DoucumentsActions from "./DocumentActions"
 
-const columns: ColumnType<Components.Schemas.CaseDocument>[] = [
+const columns: ColumnType<components["schemas"]["CaseDocument"]>[] = [
   {
     header: "Naam",
     dataIndex: "name",
-    sorter: createStringSorter<Components.Schemas.CaseDocument>("name")
+    sorter: createStringSorter<components["schemas"]["CaseDocument"]>("name")
   },
   {
     header: "Aangemaakt op",
     dataIndex: "created",
-    sorter: createDateSorter<Components.Schemas.CaseDocument>("created"),
+    sorter: createDateSorter<components["schemas"]["CaseDocument"]>("created"),
     render: (text) => formatDate(text, true),
     defaultSortOrder: "DESCEND"
   },

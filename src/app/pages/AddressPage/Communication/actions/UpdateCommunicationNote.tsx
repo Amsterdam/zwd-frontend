@@ -9,7 +9,7 @@ import { ISO_DATE_FORMAT_TIME } from "app/utils/dates"
 
 type Props = {
   hoaId: number
-  communicationNote: Components.Schemas.HomeownerAssociationCommunicationNote
+  communicationNote: components["schemas"]["HomeownerAssociationCommunicationNote"]
 }
 
 export const UpdateCommunicationNote: React.FC<Props> = ({

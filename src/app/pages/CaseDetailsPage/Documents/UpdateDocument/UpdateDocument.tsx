@@ -5,7 +5,7 @@ import { useCaseDocumentUpdate } from "app/state/rest"
 import { useDialog } from "app/hooks"
 
 type Props = {
-  record: Components.Schemas.CaseDocument
+  record: components["schemas"]["CaseDocument"]
 }
 
 type CaseDocumentData = {

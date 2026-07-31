@@ -5,7 +5,7 @@ import DeleteDocument from "../DeleteDocument/DeleteDocument"
 import DocumentActionButton from "./DocumentActionButton"
 
 type Props = {
-  record: Components.Schemas.CaseDocument
+  record: components["schemas"]["CaseDocument"]
 }
 
 const DocumentsActions: React.FC<Props> = ({ record }) => (

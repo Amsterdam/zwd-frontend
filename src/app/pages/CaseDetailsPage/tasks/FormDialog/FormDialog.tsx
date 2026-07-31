@@ -5,7 +5,7 @@ import { FormDialogContent } from "./FormDialogContent"
 type Props = {
   dialogId: string
   task: CustomCaseUserTask
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
   closeDialog: () => void
 }
 

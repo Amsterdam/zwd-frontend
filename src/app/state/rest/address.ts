@@ -7,7 +7,7 @@ export const useHomeownerAssociationByBagId = (
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.HomeownerAssociation>({
+  return useApiRequest<components["schemas"]["HomeownerAssociation"]>({
     ...options,
     url: `${makeApiUrl("address", bagId, "homeowner-association")}`,
     lazy: bagId === undefined,

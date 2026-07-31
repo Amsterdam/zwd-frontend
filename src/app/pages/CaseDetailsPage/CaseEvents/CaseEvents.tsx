@@ -2,7 +2,7 @@ import { useCaseEvents } from "app/state/rest"
 import { SmallSkeleton, PageHeading, Timeline } from "app/components"
 
 type Props = {
-  caseId: Components.Schemas.Case["id"]
+  caseId: components["schemas"]["Case"]["id"]
 }
 
 export const CaseEvents: React.FC<Props> = ({ caseId }) => {

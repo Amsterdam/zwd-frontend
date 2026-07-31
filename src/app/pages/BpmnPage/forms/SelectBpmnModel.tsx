@@ -4,7 +4,7 @@ import { useBpmnModels } from "app/state/rest"
 import { Field, Label, Select } from "@amsterdam/design-system-react"
 
 type Props = {
-  onSelect: (value: Components.Schemas.BpmnModel) => void
+  onSelect: (value: components["schemas"]["BpmnModel"]) => void
   bpmnModelName?: string
   value?: string
 }

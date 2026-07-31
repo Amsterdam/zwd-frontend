@@ -4,7 +4,7 @@ import useApiRequest from "./hooks/useApiRequest"
 
 export const useCaseStatuses = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseStatus[]>({
+  return useApiRequest<components["schemas"]["CaseStatus"][]>({
     ...options,
     url: `${makeApiUrl("case-statuses")}`,
     groupName: "caseStatuses",

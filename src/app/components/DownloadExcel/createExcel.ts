@@ -1,8 +1,8 @@
 import Excel from "exceljs"
 
-export type ExpandedCase = Components.Schemas.Case & {
+export type ExpandedCase = components["schemas"]["Case"] & {
   updated?: string
-  homeowner_association: Components.Schemas.HomeownerAssociation | null
+  homeowner_association: components["schemas"]["HomeownerAssociation"] | null
   additional_fields: { header: string; value: string }[]
 }
 

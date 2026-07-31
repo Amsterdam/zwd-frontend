@@ -4,7 +4,7 @@ import {
 } from "../../AddOrEditHoaContactDialog/AddOrEditHoaContactDialog"
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   dialogId: string
 }
 

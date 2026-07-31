@@ -6,7 +6,7 @@ import { PencilIcon, PlusIcon } from "@amsterdam/design-system-react-icons"
 import { formatTextWithLineBreaks } from "app/utils/text.tsx"
 
 type FormValues = {
-  annotation: Components.Schemas.HomeownerAssociation["annotation"]
+  annotation: components["schemas"]["HomeownerAssociation"]["annotation"]
 }
 
 export const Annotation: React.FC<{ hoaId: number }> = ({ hoaId }) => {

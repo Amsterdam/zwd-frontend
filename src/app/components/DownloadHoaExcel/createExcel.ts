@@ -11,7 +11,7 @@ const hoaColumns = [
   { key: "activationteam_cases_count", header: "Aantal activeringsteam zaken" }
 ]
 
-export type ExpandedHoa = Components.Schemas.HomeownerAssociation & {
+export type ExpandedHoa = components["schemas"]["HomeownerAssociation"] & {
   advice_cases_count: number
   activationteam_cases_count: number
   letter_count: number

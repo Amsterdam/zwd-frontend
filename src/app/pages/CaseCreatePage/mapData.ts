@@ -13,10 +13,10 @@ type FormTypes = {
   activationteam_meeting_date?: string
 }
 
-type FormAdviceType = Components.Schemas.AdviceTypeEnum | ""
+type FormAdviceType = components["schemas"]["AdviceTypeEnum"] | ""
 
 export type CaseCreateFormTypes = Omit<
-  Components.Schemas.CaseCreate,
+  components["schemas"]["CaseCreate"],
   "advice_type" | "activation_team" | "contacts"
 > &
   FormTypes & {
@@ -25,13 +25,13 @@ export type CaseCreateFormTypes = Omit<
 
 const mapData = (
   data: CaseCreateFormTypes,
-  homeowner_association: Components.Schemas.HomeownerAssociation["id"]
+  homeowner_association: components["schemas"]["HomeownerAssociation"]["id"]
 ): CaseCreateInput => ({
   request_date: data.request_date,
   application_type: data.application_type,
   advice_type: (data.application_type === APPLICATION_TYPES.ADVIES
     ? data.advice_type
-    : undefined) as unknown as Components.Schemas.CaseCreate["advice_type"],
+    : undefined) as unknown as components["schemas"]["CaseCreate"]["advice_type"],
   description: data.description,
   homeowner_association,
   contacts:

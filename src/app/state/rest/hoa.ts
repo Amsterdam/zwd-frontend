@@ -44,7 +44,7 @@ export const useHomeownerAssociations = (
     letterCount,
     neighborhood
   ])
-  return useApiRequest<Components.Schemas.PaginatedCaseListList>({
+  return useApiRequest<components["schemas"]["PaginatedCaseListList"]>({
     ...options,
     url: `${makeApiUrl("homeowner-association")}${queryString}`,
     groupName: "hoas",
@@ -54,11 +54,11 @@ export const useHomeownerAssociations = (
 }
 
 export const useHomeownerAssociation = (
-  id?: Components.Schemas.HomeownerAssociation["id"],
+  id?: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.HomeownerAssociation>({
+  return useApiRequest<components["schemas"]["HomeownerAssociation"]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id)}`,
     lazy: id === undefined,
@@ -69,11 +69,11 @@ export const useHomeownerAssociation = (
 }
 
 export const useHomeownerAssociationCases = (
-  id?: Components.Schemas.HomeownerAssociation["id"],
+  id?: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Case[]>({
+  return useApiRequest<components["schemas"]["Case"][]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "cases")}`,
     lazy: id === undefined,
@@ -84,11 +84,11 @@ export const useHomeownerAssociationCases = (
 }
 
 export const useHomeownerAssociationSubsidy = (
-  id?: Components.Schemas.HomeownerAssociation["id"],
+  id?: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.SubsidyItem[]>({
+  return useApiRequest<components["schemas"]["SubsidyItem"][]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "subsidy")}`,
     lazy: id === undefined,
@@ -115,11 +115,11 @@ export const useHomeownerAssociationSearch = (
 }
 
 export const useHomeownerAssociationContacts = (
-  id?: Components.Schemas.HomeownerAssociation["id"],
+  id?: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Contact[]>({
+  return useApiRequest<components["schemas"]["Contact"][]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "contacts")}`,
     lazy: id === undefined,
@@ -131,15 +131,15 @@ export const useHomeownerAssociationContacts = (
 
 export type CreateOrUpdateHoaContactsPayload = {
   contacts: Array<
-    Pick<Components.Schemas.Contact, "fullname" | "email" | "phone" | "role"> &
+    Pick<components["schemas"]["Contact"], "fullname" | "email" | "phone" | "role"> &
       Partial<
-        Pick<Components.Schemas.Contact, "id" | "is_primary" | "course_date">
+        Pick<components["schemas"]["Contact"], "id" | "is_primary" | "course_date">
       >
   >
 }
 
 export const useHomeownerAssociationContactsCreateOrUpdate = (
-  hoaId: Components.Schemas.HomeownerAssociation["id"],
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -154,12 +154,12 @@ export const useHomeownerAssociationContactsCreateOrUpdate = (
 }
 
 export const useHomeownerAssociationContactDelete = (
-  hoaId: Components.Schemas.HomeownerAssociation["id"],
-  contactId: Components.Schemas.Contact["id"],
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"],
+  contactId: components["schemas"]["Contact"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Contact>({
+  return useApiRequest<components["schemas"]["Contact"]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", hoaId, "delete-contact", contactId)}`,
     lazy: true,
@@ -170,11 +170,11 @@ export const useHomeownerAssociationContactDelete = (
 }
 
 export const useHomeownerAssociationApartments = (
-  id?: Components.Schemas.HomeownerAssociation["id"],
+  id?: components["schemas"]["HomeownerAssociation"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Apartment[]>({
+  return useApiRequest<components["schemas"]["Apartment"][]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", id, "apartments")}`,
     lazy: id === undefined,
@@ -186,7 +186,7 @@ export const useHomeownerAssociationApartments = (
 
 export const useLetterImport = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.ImportResult>({
+  return useApiRequest<components["schemas"]["ImportResult"]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", "import-letters")}`,
     lazy: true,
@@ -198,7 +198,7 @@ export const useLetterImport = (options?: Options) => {
 
 export const useCourseParticipantImport = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.ImportResult>({
+  return useApiRequest<components["schemas"]["ImportResult"]>({
     ...options,
     url: `${makeApiUrl("homeowner-association", "import-course-participants")}`,
     lazy: true,

@@ -4,7 +4,7 @@ import useApiRequest from "./hooks/useApiRequest"
 
 export const useDistricts = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.District[]>({
+  return useApiRequest<components["schemas"]["District"][]>({
     ...options,
     url: `${makeApiUrl("districts")}`,
     groupName: "districts",
@@ -15,7 +15,7 @@ export const useDistricts = (options?: Options) => {
 
 export const useNeighborhoods = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Neighborhood[]>({
+  return useApiRequest<components["schemas"]["Neighborhood"][]>({
     ...options,
     url: `${makeApiUrl("neighborhoods")}`,
     groupName: "districts",

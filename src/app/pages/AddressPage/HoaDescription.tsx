@@ -1,7 +1,7 @@
 import { Descriptions, RouterLink } from "app/components"
 
 type Props = {
-  hoa: Components.Schemas.HomeownerAssociation
+  hoa: components["schemas"]["HomeownerAssociation"]
 }
 
 const capitalizeFirstLetterOrFallback = (

@@ -6,7 +6,7 @@ import { ConfirmationDialog } from "app/components"
 
 type Props = {
   hoaId: number
-  communicationNote: Components.Schemas.HomeownerAssociationCommunicationNote
+  communicationNote: components["schemas"]["HomeownerAssociationCommunicationNote"]
 }
 
 export const DeleteCommunicationNote: React.FC<Props> = ({

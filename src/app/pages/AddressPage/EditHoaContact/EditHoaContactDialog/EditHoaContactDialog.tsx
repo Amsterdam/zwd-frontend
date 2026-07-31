@@ -3,10 +3,10 @@ import {
   FormMode
 } from "../../AddOrEditHoaContactDialog/AddOrEditHoaContactDialog"
 
-type Contact = Components.Schemas.Contact
+type Contact = components["schemas"]["Contact"]
 
 type Props = {
-  hoaId: Components.Schemas.HomeownerAssociation["id"]
+  hoaId: components["schemas"]["HomeownerAssociation"]["id"]
   dialogId: string
   contact: Contact
 }

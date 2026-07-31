@@ -15,7 +15,7 @@ export const useBpmnModelNames = (options?: Options) => {
 
 export const useBpmnModels = (bpmnModelName?: string, options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.BpmnModel[]>({
+  return useApiRequest<components["schemas"]["BpmnModel"][]>({
     ...options,
     url: `${makeApiUrl("bpmn-models", bpmnModelName)}`,
     groupName: "bpmn",

@@ -9,7 +9,7 @@ import UpdateCommunicationNote from "../actions/UpdateCommunicationNote"
 import { formatTextWithLineBreaks } from "app/utils/text.tsx"
 
 type CommunicationNote =
-  Components.Schemas.HomeownerAssociationCommunicationNote
+  components["schemas"]["HomeownerAssociationCommunicationNote"]
 
 export const createColumns = (
   hoaId: number

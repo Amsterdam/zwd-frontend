@@ -22,7 +22,7 @@ export const UploadDialog: React.FC<Props> = ({ id }) => {
     formData.append("name", data.upload[0]?.name ?? "Onbekend")
     formData.append("document", data.upload[0])
     void execPost(
-      formData as unknown as Partial<Components.Schemas.CaseDocument>
+      formData as unknown as Partial<components["schemas"]["CaseDocument"]>
     )
   }
 

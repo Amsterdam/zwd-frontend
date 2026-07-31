@@ -94,7 +94,7 @@ export const useCases = (
     sorting
   ])
 
-  return useApiRequest<Components.Schemas.PaginatedCaseListList>({
+  return useApiRequest<components["schemas"]["PaginatedCaseListList"]>({
     ...options,
     url: `${makeApiUrl("cases")}${queryString}`,
     groupName: "cases",
@@ -104,11 +104,11 @@ export const useCases = (
 }
 
 export const useCase = (
-  id?: Components.Schemas.Case["id"],
+  id?: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.Case>({
+  return useApiRequest<components["schemas"]["Case"]>({
     ...options,
     lazy: id === undefined,
     url: `${makeApiUrl("cases", id)}`,
@@ -131,11 +131,11 @@ export const useCaseCreate = (options?: Options) => {
 }
 
 export const useWorkflows = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseWorkflow[]>({
+  return useApiRequest<components["schemas"]["CaseWorkflow"][]>({
     ...options,
     lazy: id === undefined || options?.lazy,
     url: `${makeApiUrl("cases", id, "workflows")}`,
@@ -146,11 +146,11 @@ export const useWorkflows = (
 }
 
 export const useWorkflowInstances = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseWorkflowInstance[]>({
+  return useApiRequest<components["schemas"]["CaseWorkflowInstance"][]>({
     ...options,
     lazy: id === undefined || options?.lazy,
     url: `${makeApiUrl("cases", id, "workflow-instances")}`,
@@ -162,7 +162,7 @@ export const useWorkflowInstances = (
 
 export const useTaskComplete = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.GenericCompletedTaskCreate>({
+  return useApiRequest<components["schemas"]["GenericCompletedTaskCreate"]>({
     ...options,
     url: makeApiUrl("generic-tasks", "complete"),
     groupName: "cases",
@@ -173,7 +173,7 @@ export const useTaskComplete = (options?: Options) => {
 
 export const useTaskCompleteFileUpload = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.GenericCompletedTaskCreate>({
+  return useApiRequest<components["schemas"]["GenericCompletedTaskCreate"]>({
     ...options,
     url: makeApiUrl("generic-tasks", "complete-file-task"),
     lazy: true,
@@ -184,11 +184,11 @@ export const useTaskCompleteFileUpload = (options?: Options) => {
 }
 
 export const useCaseProcesses = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.WorkflowOption[]>({
+  return useApiRequest<components["schemas"]["WorkflowOption"][]>({
     ...options,
     url: `${makeApiUrl("cases", id, "processes")}`,
     groupName: "cases",
@@ -198,11 +198,11 @@ export const useCaseProcesses = (
 }
 
 export const useCaseProcessesStart = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.StartWorkflow>({
+  return useApiRequest<components["schemas"]["StartWorkflow"]>({
     ...options,
     url: `${makeApiUrl("cases", id, "processes", "start")}`,
     lazy: true,
@@ -213,7 +213,7 @@ export const useCaseProcessesStart = (
 }
 
 export const useCaseEvents = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
@@ -227,11 +227,11 @@ export const useCaseEvents = (
 }
 
 export const useCaseDocuments = (
-  id: Components.Schemas.Case["id"],
+  id: components["schemas"]["Case"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseDocument[]>({
+  return useApiRequest<components["schemas"]["CaseDocument"][]>({
     ...options,
     url: `${makeApiUrl("cases", id, "documents")}`,
     groupName: "cases",
@@ -242,7 +242,7 @@ export const useCaseDocuments = (
 
 export const useCaseDocumentUpload = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseDocument>({
+  return useApiRequest<components["schemas"]["CaseDocument"]>({
     ...options,
     url: `${makeApiUrl("cases", "documents")}`,
     lazy: true,
@@ -253,12 +253,12 @@ export const useCaseDocumentUpload = (options?: Options) => {
 }
 
 export const useCaseDocumentUpdate = (
-  id: Components.Schemas.Case["id"],
-  docId: Components.Schemas.CaseDocument["id"],
+  id: components["schemas"]["Case"]["id"],
+  docId: components["schemas"]["CaseDocument"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseDocument>({
+  return useApiRequest<components["schemas"]["CaseDocument"]>({
     ...options,
     url: `${makeApiUrl("cases", id, "documents", docId, "update-name")}`,
     lazy: true,
@@ -269,12 +269,12 @@ export const useCaseDocumentUpdate = (
 }
 
 export const useCaseDocumentDelete = (
-  id: Components.Schemas.Case["id"],
-  docId: Components.Schemas.CaseDocument["id"],
+  id: components["schemas"]["Case"]["id"],
+  docId: components["schemas"]["CaseDocument"]["id"],
   options?: Options
 ) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseDocument>({
+  return useApiRequest<components["schemas"]["CaseDocument"]>({
     ...options,
     url: `${makeApiUrl("cases", id, "documents", docId)}`,
     lazy: true,
@@ -286,7 +286,7 @@ export const useCaseDocumentDelete = (
 
 export const useCaseCloseReasons = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseCloseReason[]>({
+  return useApiRequest<components["schemas"]["CaseCloseReason"][]>({
     ...options,
     url: makeApiUrl("case-close", "reasons"),
     groupName: "cases",
@@ -297,7 +297,7 @@ export const useCaseCloseReasons = (options?: Options) => {
 
 export const useCaseClose = (options?: Options) => {
   const handleError = useErrorHandler()
-  return useApiRequest<Components.Schemas.CaseClose>({
+  return useApiRequest<components["schemas"]["CaseClose"]>({
     ...options,
     url: makeApiUrl("case-close"),
     lazy: true,

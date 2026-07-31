@@ -16,7 +16,7 @@ type HomeownerAssociationOwner = {
 }
 
 type Props = {
-  hoa: Components.Schemas.HomeownerAssociation
+  hoa: components["schemas"]["HomeownerAssociation"]
 }
 
 const getPercentage = (value: number, total: number) =>

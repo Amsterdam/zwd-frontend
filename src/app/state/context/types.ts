@@ -23,7 +23,7 @@ export type StateType = {
     isSmallHoa: string
     neighborhood: string[]
     pagination: TABLE.Pagination
-    results: Components.Schemas.CaseList[]
+    results: components["schemas"]["CaseList"][]
     searchString: string
     showAllFilters: boolean
     sorting: TABLE.Sorting
@@ -45,7 +45,7 @@ export type StateType = {
     neighborhood: string[]
     taskName: string
     pagination: TABLE.Pagination
-    results: Components.Schemas.CaseUserTaskList[]
+    results: components["schemas"]["CaseUserTaskList"][]
     searchString: string
     showAllFilters: boolean
     sorting: TABLE.Sorting
@@ -58,7 +58,7 @@ export type StateType = {
     columnsVisible: string[]
     count: number
     pagination: TABLE.Pagination
-    results: Components.Schemas.CaseList[]
+    results: components["schemas"]["CaseList"][]
     sorting: TABLE.Sorting
     searchString: string
     district: string[]
