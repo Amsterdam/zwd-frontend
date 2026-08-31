@@ -1,9 +1,15 @@
 import { createWorkbook } from "app/utils/xlsx"
 
-export type ExpandedCase = components["schemas"]["Case"] & {
+type ExpandedCaseWorkflow = {
+  workflow_type?: string | null
+  workflow_version?: string | null
+}
+
+export type ExpandedCase = Omit<components["schemas"]["Case"], "workflows"> & {
   updated?: string
   homeowner_association: components["schemas"]["HomeownerAssociation"] | null
   additional_fields: { header: string; value: string }[]
+  workflows?: ExpandedCaseWorkflow[]
 }
 
 const casesColumns = [
@@ -54,19 +60,37 @@ const casesColumns = [
 export const createExcel = (data: ExpandedCase[]) => {
   const workbook = createWorkbook()
   const worksheet = workbook.addWorksheet("Zaken")
-
   worksheet.columns = casesColumns
   worksheet.columns.forEach((column) => {
     column.width = 15
   })
   worksheet.getColumn(10).width = 100
   worksheet.getRow(1).font = { bold: true }
+  const workflow_fields = new Map<
+    string,
+    { header: string; key: string; width: number }
+  >()
   const additional_fields = new Map<
     string,
     { header: string; key: string; width: number }
   >()
 
   data.forEach((caseItem) => {
+    ;(caseItem.workflows ?? []).forEach((workflow) => {
+      if (!workflow.workflow_type) return
+
+      const header = `${workflow.workflow_type} versie`
+      const key = `workflow_${workflow.workflow_type}_version`
+
+      if (!workflow_fields.has(key)) {
+        workflow_fields.set(key, {
+          header,
+          key,
+          width: 15
+        })
+      }
+    })
+
     caseItem.additional_fields.forEach(
       (field: { header: string | undefined }) => {
         if (!field.header) return
@@ -85,6 +109,7 @@ export const createExcel = (data: ExpandedCase[]) => {
   })
   worksheet.columns = [
     ...worksheet.columns,
+    ...Array.from(workflow_fields.values()),
     ...Array.from(additional_fields.values())
   ]
 
@@ -96,6 +121,29 @@ export const createExcel = (data: ExpandedCase[]) => {
             `${owner.type}: ${owner.name} (${owner.number_of_apartments} appartementen)`
         )
         .join("; ") || ""
+
+    const workflow_fields_map = Object.entries(
+      (caseItem.workflows ?? []).reduce<Record<string, string[]>>(
+        (accumulator, workflow) => {
+          if (!workflow.workflow_type || !workflow.workflow_version) {
+            return accumulator
+          }
+
+          const key = `workflow_${workflow.workflow_type}_version`
+
+          if (!accumulator[key]) {
+            accumulator[key] = []
+          }
+
+          accumulator[key].push(workflow.workflow_version)
+          return accumulator
+        },
+        {}
+      )
+    ).reduce<Record<string, string>>((accumulator, [key, versions]) => {
+      accumulator[key] = versions.join("; ")
+      return accumulator
+    }, {})
 
     const additional_fields_map = Object.fromEntries(
       caseItem.additional_fields.map((f: { header: string; value: string }) => [
@@ -133,6 +181,7 @@ export const createExcel = (data: ExpandedCase[]) => {
       hoa_owners: owners,
       hoa_course_participant_count:
         caseItem.homeowner_association?.course_participant_count || 0,
+      ...workflow_fields_map,
       ...additional_fields_map
     }
     worksheet.addRow(row)
