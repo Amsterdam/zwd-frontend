@@ -11,6 +11,16 @@ describe("createExcel", () => {
         application_type: "Type A",
         advice_type: "Type B",
         advisor: "John Doe",
+        workflows: [
+          {
+            workflow_type: "director",
+            workflow_version: "2.1.0"
+          },
+          {
+            workflow_type: "sub_workflow",
+            workflow_version: "1.2.0"
+          }
+        ],
         request_date: "2025-09-10T12:07:57.926331Z",
         end_date: "2025-12-31T23:59:59.000Z",
         updated: "2025-09-12T09:15:00.000Z",
@@ -82,6 +92,8 @@ describe("createExcel", () => {
       "VvE beschermd stads- of dorpsgezicht",
       "VvE Eigenaren",
       "VvE aantal cursusdeelnemers",
+      "director versie",
+      "sub_workflow versie",
       "Extra Field 1",
       "Extra Field 2"
     ])
@@ -132,8 +144,12 @@ describe("createExcel", () => {
     // Controleer cursusdeelnemers
     expect(firstRow.getCell(24).value).toBe(3) // VvE aantal cursusdeelnemers
 
+    // Controleer workflow versies
+    expect(firstRow.getCell(25).value).toBe("2.1.0") // director versie
+    expect(firstRow.getCell(26).value).toBe("1.2.0") // sub_workflow versie
+
     // Controleer extra velden
-    expect(firstRow.getCell(25).value).toBe("Value 1") // Extra Field 1
-    expect(firstRow.getCell(26).value).toBe("Value 2") // Extra Field 2
+    expect(firstRow.getCell(27).value).toBe("Value 1") // Extra Field 1
+    expect(firstRow.getCell(28).value).toBe("Value 2") // Extra Field 2
   })
 })
