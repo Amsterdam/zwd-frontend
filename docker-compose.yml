@@ -4,6 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: zwd-frontend
-    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-salmagundi/zwd-frontend}:${VERSION:-latest}
+    image: ${REGISTRY:-127.0.0.1:5001}/${REPOSITORY:-ams-woon/zwd/frontend}:${VERSION:-latest}
     ports:
       - "8081:8000"
