@@ -35,7 +35,7 @@
     "jwt-decode": "^4.0.0",
     "leaflet": "^1.9.4",
     "lodash.debounce": "^4.0.8",
-    "proj4": "^2.20.2",
+    "proj4": "^2.22.0",
     "qs": "^6.15.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
