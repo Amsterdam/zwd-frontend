@@ -43,7 +43,7 @@
     "react-oidc-context": "^3.3.0",
     "react-router-dom": "^7.18.2",
     "react-select": "^5.10.2",
-    "supercluster": "^8.0.1"
+    "supercluster": "^9.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
