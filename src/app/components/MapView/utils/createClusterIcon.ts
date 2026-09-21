@@ -2,7 +2,7 @@
 // @see https://github.com/Leaflet/Leaflet/issues/4968#issuecomment-483402699
 import L from "leaflet"
 import type { Feature, Point } from "geojson"
-import Supercluster from "supercluster"
+import type { ClusterProperties } from "supercluster"
 import MarkerIcon from "./MarkerIcon.svg"
 
 const iconDefault = L.icon({
@@ -23,7 +23,7 @@ export type ClusterStyles = {
   large: string
 }
 
-export const createClusterIcon = <P extends Supercluster.ClusterProperties>(
+export const createClusterIcon = <P extends ClusterProperties>(
   feature: Feature<Point, P>,
   latlng: L.LatLng,
   styles: ClusterStyles
