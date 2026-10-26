@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@amsterdam/design-system-react": "^4.1.0",
-    "@amsterdam/design-system-react-icons": "^2.0.0",
+    "@amsterdam/design-system-react-icons": "^2.3.0",
     "axios": "^1.15.0",
     "bpmn-js": "^18.14.0",
     "dayjs": "^1.11.13",
