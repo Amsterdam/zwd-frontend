@@ -904,6 +904,8 @@ export interface components {
             advice_type?: (components["schemas"]["AdviceTypeEnum"] | components["schemas"]["BlankEnum"] | components["schemas"]["NullEnum"]) | null;
             application_type?: components["schemas"]["ApplicationTypeEnum"];
             /** Format: date-time */
+            archived_at?: string | null;
+            /** Format: date-time */
             created?: string;
             description?: string | null;
             /** Format: date */
@@ -915,6 +917,9 @@ export interface components {
             /** Format: date */
             request_date?: string;
             readonly advisor: components["schemas"]["CaseAdvisor"];
+            /** Format: date-time */
+            advisor_assigned_at?: string | null;
+            readonly result: components["schemas"]["CaseResult"] | null;
             readonly status: string;
             workflows: components["schemas"]["CaseWorkflow"][];
         };
@@ -1015,6 +1020,13 @@ export interface components {
             readonly status: string;
             /** Format: date-time */
             readonly updated: string;
+        };
+        CaseResult: {
+            reason: string;
+            is_successful: boolean;
+            description?: string | null;
+            /** Format: date-time */
+            readonly created: string;
         };
         CaseStatus: {
             name: string;
