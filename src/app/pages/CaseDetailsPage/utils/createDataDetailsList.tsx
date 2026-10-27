@@ -12,6 +12,9 @@ function createDataDetailsList(data?: components["schemas"]["Case"]) {
       )
     },
     { term: "Zaak ID", details: data?.prefixed_dossier_id },
+    ...(data?.legacy_id
+      ? [{ term: "Dossiernummer (Excel)", details: `${data.legacy_id}` }]
+      : []),
     { term: "Aanvraag", details: data?.application_type },
     {
       term: "Aanvraagdatum",
@@ -29,6 +32,12 @@ function createDataDetailsList(data?: components["schemas"]["Case"]) {
     dataDetailsList.push({
       term: "Adviseur",
       details: data?.advisor?.name
+    })
+  }
+  if (data?.advisor_assigned_at) {
+    dataDetailsList.push({
+      term: "Adviseur toegekend op",
+      details: formatDate(data.advisor_assigned_at)
     })
   }
 
@@ -50,14 +59,21 @@ function createDataDetailsList(data?: components["schemas"]["Case"]) {
     })
   }
 
-  if (data?.legacy_id) {
+  if (data?.result?.reason) {
     dataDetailsList.push({
-      term: "Dossiernummer (Excel)",
-      details: `${data.legacy_id}`
+      term: "Resultaat",
+      details: data?.result?.reason
     })
   }
 
   dataDetailsList.push({ term: "Status", details: data?.status })
+
+  if (data?.archived_at) {
+    dataDetailsList.push({
+      term: "Gearchiveerd op",
+      details: formatDate(data?.archived_at)
+    })
+  }
 
   return dataDetailsList
 }
