@@ -7,7 +7,6 @@ type Props = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 export function Timeline({ events, ...restProps }: Props) {
-  console.log(events)
   if (!events || events.length === 0) {
     return (
       <div className={styles.noEvents}>
