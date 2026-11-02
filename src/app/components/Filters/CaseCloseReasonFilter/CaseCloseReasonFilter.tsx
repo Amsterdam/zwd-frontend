@@ -20,7 +20,7 @@ export const CaseCloseReasonFilter: React.FC<Props> = ({ onChangeFilter }) => {
 
   return (
     <Field>
-      <Label htmlFor="caseCloseReason">Reden sluiting</Label>
+      <Label htmlFor="caseCloseReason">Afsluitreden</Label>
       <MultiSelectField
         onChange={onChangeFilter}
         value={caseCloseReason}
