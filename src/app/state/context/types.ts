@@ -12,6 +12,7 @@ export type StateType = {
     adviceType: string
     advisor: string[]
     applicationType: string
+    caseCloseReason: string[]
     columnsVisible: string[]
     count: number
     requestDateRangeAfter?: string

@@ -15,6 +15,7 @@ import {
   NeighborhoodFilter,
   BooleanStatusFilter,
   AdvisorFilter,
+  CaseCloseReasonFilter,
   ResetFiltersButton
 } from "app/components"
 
@@ -104,6 +105,11 @@ export const CasesFilters = () => {
             contextName={CASES}
             onChangeFilter={(value: string[]) =>
               onChangeFilter("advisor", value)
+            }
+          />
+          <CaseCloseReasonFilter
+            onChangeFilter={(value: string[]) =>
+              onChangeFilter("caseCloseReason", value)
             }
           />
           <BooleanStatusFilter
