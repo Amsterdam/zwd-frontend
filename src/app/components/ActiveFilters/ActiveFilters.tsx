@@ -2,7 +2,7 @@ import { useContext, useMemo } from "react"
 import { Row } from "@amsterdam/design-system-react"
 import { CloseIcon } from "@amsterdam/design-system-react-icons"
 import { ContextValues } from "app/state/context/ValueProvider"
-import { useAdvisorsList } from "app/state/rest"
+import { useAdvisorsList, useCaseCloseReasons } from "app/state/rest"
 import { FILTER_CONFIGS } from "./filterConfigs"
 import { FilterValue, FilterChip } from "./types"
 import styles from "./ActiveFilters.module.css"
@@ -26,6 +26,11 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
     updateContext = fullContext.hoas.updateContextHoas
   }
   const [advisors] = useAdvisorsList()
+  const [caseCloseReasons] = useCaseCloseReasons()
+  const labelHelpers = useMemo(
+    () => ({ advisors, caseCloseReasons }),
+    [advisors, caseCloseReasons]
+  )
 
   const removeFilter = (key: string, valueToRemove?: string) => {
     const config = FILTER_CONFIGS[key]
@@ -67,7 +72,7 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
           value.forEach((v) => {
             chips.push({
               key,
-              label: config.getLabel(v, advisors),
+              label: config.getLabel(v, labelHelpers),
               value: v
             })
           })
@@ -76,14 +81,14 @@ export const ActiveFilters: React.FC<Props> = ({ contextName }) => {
       } else {
         chips.push({
           key,
-          label: config.getLabel(value as string, advisors),
+          label: config.getLabel(value as string, labelHelpers),
           value: value as string
         })
       }
     })
 
     return chips
-  }, [context, advisors, contextName])
+  }, [context, labelHelpers, contextName])
 
   if (activeFilterChips.length === 0) {
     return null

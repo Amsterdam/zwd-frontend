@@ -42,8 +42,16 @@ export const FILTER_CONFIGS: FilterConfigs = {
     key: "advisor",
     type: "array",
     contexts: ["cases", "tasks"],
-    getLabel: (value, advisors) =>
-      advisors?.find((a) => String(a.id) === value)?.name || value
+    getLabel: (value, helpers) =>
+      helpers?.advisors?.find((a) => String(a.id) === value)?.name || value
+  },
+  caseCloseReason: {
+    key: "caseCloseReason",
+    type: "array",
+    contexts: ["cases"],
+    getLabel: (value, helpers) =>
+      helpers?.caseCloseReasons?.find((r) => String(r.id) === value)?.name ||
+      value
   },
   applicationType: {
     key: "applicationType",

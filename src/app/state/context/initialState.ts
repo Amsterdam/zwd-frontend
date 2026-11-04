@@ -8,6 +8,7 @@ export const initialState: StateType = {
   cases: {
     adviceType: "",
     applicationType: "",
+    caseCloseReason: [],
     columnsVisible: CASES_DEFAULT_COLUMNS,
     count: 0,
     requestDateRangeAfter: "",
