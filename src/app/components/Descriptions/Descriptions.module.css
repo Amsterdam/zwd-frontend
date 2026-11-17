@@ -4,6 +4,15 @@
   row-gap: 4px;
 }
 
+/*
+ * Prevent long labels from taking all the width and squeezing the values to zero.
+ * Extra specificity is needed because the ADS stylesheet (`auto minmax(0, 1fr)`)
+ * is loaded after this CSS module.
+ */
+.subtle:global(.ams-description-list) {
+  grid-template-columns: fit-content(50%) minmax(0, 1fr);
+}
+
 /* labels */
 .subtle :global(dt) {
   color: var(--ams-color-text-secondary);
